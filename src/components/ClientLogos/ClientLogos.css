@@ -1,70 +1,230 @@
-.clients {
-    background: var(--bg-secondary);
-    padding: 40px 0;
-    overflow: hidden;
+/* ClientLogos.css */
+:root {
+  --clients-bg: #f8fafc;
+  --clients-card-bg: rgba(255, 255, 255, 0.85);
+  --clients-border: rgba(0, 102, 255, 0.12);
+  --clients-glow: rgba(0, 102, 255, 0.08);
+  --clients-text: #1e293b;
+  --clients-text-muted: #64748b;
+  --clients-accent: #0066ff;
+  --clients-accent-grad: linear-gradient(135deg, #0066ff, #3b82f6, #00c7ff);
+  --clients-transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
+.clients {
+  background: var(--clients-bg);
+  padding: 56px 0 48px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Subtle background pattern */
+.clients::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 40%, rgba(0, 102, 255, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.clients__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+.clients__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+
 .clients__label {
-    text-align: center;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 28px;
-    padding: 0 var(--section-px);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--clients-text-muted);
+  letter-spacing: 0.3px;
 }
 
 .clients__track-wrapper {
-    overflow: hidden;
-    position: relative;
-    /* Fade edges */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  overflow: hidden;
+  position: relative;
+  /* Enhanced fade edges with backdrop */
+  -webkit-mask-image: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0,0,0,0.9) 8%, 
+    black 20%,
+    black 80%,
+    rgba(0,0,0,0.9) 92%,
+    transparent 100%);
+  mask-image: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0,0,0,0.9) 8%, 
+    black 20%,
+    black 80%,
+    rgba(0,0,0,0.9) 92%,
+    transparent 100%);
 }
 
 .clients__track {
-    display: flex;
-    gap: 20px;
-    width: max-content;
-    animation: marquee 25s linear infinite;
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
-.clients__chip {
-    flex-shrink: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 14px 28px;
-    box-shadow: var(--card-shadow);
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    cursor: default;
-    transition: transform var(--t-base) var(--ease),
-        border-color var(--t-base) var(--ease),
-        color var(--t-base) var(--ease),
-        box-shadow var(--t-base) var(--ease);
+.clients__track:hover {
+  animation-play-state: paused;
 }
 
-.clients__chip:hover {
-    transform: translateY(-4px);
-    border-color: var(--cyan);
-    box-shadow: var(--card-shadow-hover);
-    background: var(--grad-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Modern card design - glass morphism */
+.clients__card {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--clients-card-bg);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--clients-border);
+  border-radius: 60px;
+  padding: 10px 28px 10px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: var(--clients-transition);
+  cursor: default;
+}
+
+.clients__card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--clients-accent);
+  box-shadow: 0 20px 30px -12px rgba(0, 102, 255, 0.15);
+  background: white;
+}
+
+/* Logo icon placeholder - can be replaced with actual logos */
+.clients__icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(59, 130, 246, 0.05));
+  border-radius: 12px;
+  color: var(--clients-accent);
+}
+
+.clients__name {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--clients-text);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.clients__card:hover .clients__name {
+  background: linear-gradient(135deg, #0066ff, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Alternative minimal style - if you prefer cleaner look */
+.clients__card--minimal {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid rgba(0, 102, 255, 0.15);
+  border-radius: 40px;
+  padding: 12px 32px;
+  transition: var(--clients-transition);
+}
+
+.clients__card--minimal:hover {
+  background: rgba(0, 102, 255, 0.05);
+  border-color: var(--clients-accent);
+  transform: translateY(-3px);
+}
+
+.clients__name--minimal {
+  font-weight: 500;
+  color: var(--clients-text-muted);
+  transition: color 0.2s;
+}
+
+.clients__card--minimal:hover .clients__name--minimal {
+  color: var(--clients-accent);
+  -webkit-text-fill-color: var(--clients-accent);
+}
+
+/* Double speed variant for different sections */
+.clients__track--fast {
+  animation: marquee 20s linear infinite;
+}
+
+/* Glow effect on scroll reveal */
+.clients__card {
+  opacity: 0;
+  animation: cardReveal 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .clients {
+    padding: 40px 0 36px;
+  }
+  
+  .clients__card {
+    padding: 8px 20px 8px 16px;
+    gap: 8px;
+  }
+  
+  .clients__icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .clients__name {
+    font-size: 0.8rem;
+  }
+  
+  .clients__track {
+    gap: 16px;
+  }
+  
+  .clients__badge {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+  }
+}
+
+/* Optional: Stagger animation for cards */
+.clients__card:nth-child(1) { animation-delay: 0s; }
+.clients__card:nth-child(2) { animation-delay: 0.03s; }
+.clients__card:nth-child(3) { animation-delay: 0.06s; }
+.clients__card:nth-child(4) { animation-delay: 0.09s; }
+.clients__card:nth-child(5) { animation-delay: 0.12s; }
+.clients__card:nth-child(6) { animation-delay: 0.15s; }
+.clients__card:nth-child(7) { animation-delay: 0.18s; }
+.clients__card:nth-child(8) { animation-delay: 0.21s; }
