@@ -1,0 +1,280 @@
+.how {
+    background: var(--bg-primary);
+    padding: var(--section-py) var(--section-px);
+}
+
+.how__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.how__head {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.how__steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 60px;
+}
+
+.how__step-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.how__step {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--r-xl);
+    padding: 36px 28px;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.how__step:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* Decorative background number */
+.how__step::before {
+    content: attr(data-num);
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 7rem;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.06;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.how__step-icon {
+    margin-bottom: 4px;
+}
+
+.how__icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    border-radius: var(--r-md);
+    transition: transform var(--t-base) var(--ease-spring);
+}
+
+.how__step:hover .how__icon {
+    transform: translateY(-4px) scale(1.05);
+}
+
+.how__step-num {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.how__step-title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+}
+
+.how__step-body {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    flex: 1;
+}
+
+.how__badge {
+    display: inline-block;
+    background: var(--bg-accent);
+    color: var(--blue-mid);
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    border: 1px solid rgba(13, 71, 161, 0.15);
+    align-self: flex-start;
+    animation: none;
+}
+
+.how__step.visible .how__badge {
+    animation: badgePop 0.5s var(--ease-spring) both;
+    animation-delay: 0.4s;
+}
+
+@keyframes badgePop {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Connector arrow */
+.how__arrow {
+    flex-shrink: 0;
+    width: 60px;
+    height: 4px;
+    position: relative;
+    background: rgba(13, 71, 161, 0.1);
+    margin: 0 -4px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.how__arrow-line {
+    position: absolute;
+    inset: 0;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s var(--ease);
+}
+
+.how__arrow--active .how__arrow-line {
+    transform: scaleX(1);
+}
+
+.how__arrow-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    top: -3px;
+    animation: dotTravel 2s linear infinite;
+    box-shadow: 0 0 8px rgba(0, 180, 255, 0.7);
+}
+
+@keyframes dotTravel {
+    0% {
+        left: -10px;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* Stats strip */
+.how__stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 28px 40px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--r-xl);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.how__stats strong {
+    color: var(--blue-mid);
+    font-family: var(--font-head);
+    font-weight: 700;
+}
+
+.how__stats-divider {
+    color: var(--card-border-hover);
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .how__steps {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .how__step-wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .how__arrow {
+        width: 4px;
+        height: 30px;
+        margin: 0;
+    }
+
+    .how__arrow-dot {
+        animation: dotTravelV 2s linear infinite;
+        width: 10px;
+        height: 10px;
+        left: -3px;
+    }
+
+    @keyframes dotTravelV {
+        0% {
+            top: -10px;
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            top: 100%;
+            opacity: 0;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .how {
+        padding: 60px 20px;
+    }
+
+    .how__stats {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .how__stats-divider {
+        display: none;
+    }
+}
