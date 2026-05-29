@@ -1,145 +1,243 @@
 .ts {
-    background: var(--grad);
-    padding: 80px var(--section-px);
-    position: relative;
-    overflow: hidden;
-    animation: gradShift 8s ease-in-out infinite alternate;
+  background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #00B4FF 100%);
+  padding: 80px var(--section-px);
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes gradShift {
-    0% {
-        background-position: 0% 50%;
-    }
+/* Animated wave background */
+.ts__waves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-    100% {
-        background-position: 100% 50%;
-    }
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.05)' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x;
+  background-size: 1440px 100px;
+  animation: wave 20s linear infinite;
+  opacity: 0.3;
+}
+
+.wave:nth-child(2) {
+  bottom: 30px;
+  opacity: 0.2;
+  animation: wave 15s linear infinite reverse;
+}
+
+.wave:nth-child(3) {
+  bottom: 60px;
+  opacity: 0.1;
+  animation: wave 25s linear infinite;
+}
+
+@keyframes wave {
+  0% { background-position-x: 0; }
+  100% { background-position-x: 1440px; }
+}
+
+.ts__sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ts-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1) translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translateY(-40px);
+  }
 }
 
 .ts__watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: 20rem;
-    color: white;
-    opacity: 0.035;
-    pointer-events: none;
-    user-select: none;
-    letter-spacing: -12px;
-    line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 18rem;
+  color: white;
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -10px;
+  white-space: nowrap;
 }
 
-.ts__grid-overlay {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-}
-
-.ts__mask-left,
-.ts__mask-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 120px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.ts__mask-left {
-    left: 0;
-    background: linear-gradient(to right, rgba(13, 71, 161, 0.25), transparent);
-}
-
-.ts__mask-right {
-    right: 0;
-    background: linear-gradient(to left, rgba(0, 180, 255, 0.25), transparent);
+.ts__grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
 }
 
 .ts__inner {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
 }
 
 .ts__block {
-    display: flex;
-    align-items: center;
-    flex: 1;
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 .ts__stat {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-    transition: transform var(--t-base) var(--ease);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 24px;
+  transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+  position: relative;
+  cursor: pointer;
+}
+
+.ts__stat::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ts__stat:hover::before {
+  opacity: 1;
 }
 
 .ts__stat:hover {
-    transform: scale(1.05);
+  transform: translateY(-8px);
 }
 
 .ts__num {
-    font-family: var(--font-head);
-    font-weight: 800;
-    font-size: 3.5rem;
-    color: white;
-    line-height: 1;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: white;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+
+.ts__num::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.ts__stat:hover .ts__num::after {
+  width: 80%;
 }
 
 .ts__label {
-    font-family: var(--font-body);
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.75);
-    text-align: center;
-    line-height: 1.4;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .ts__divider {
-    width: 1px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.2);
-    flex-shrink: 0;
+  width: 2px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  border-radius: 2px;
 }
 
+/* Counter animation */
+.counter-animate {
+  animation: countPop 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+@keyframes countPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .ts {
-        padding: 60px 20px;
-    }
-
-    .ts__inner {
-        flex-wrap: wrap;
-    }
-
-    .ts__block {
-        min-width: 45%;
-    }
-
-    .ts__divider {
-        display: none;
-    }
-
-    .ts__watermark {
-        font-size: 10rem;
-    }
+  .ts {
+    padding: 60px 20px;
+  }
+  
+  .ts__inner {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .ts__block {
+    min-width: 45%;
+  }
+  
+  .ts__divider {
+    display: none;
+  }
+  
+  .ts__watermark {
+    font-size: 8rem;
+    letter-spacing: -5px;
+  }
+  
+  .ts__num {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .ts__block {
-        min-width: 100%;
-    }
+  .ts__block {
+    min-width: 100%;
+  }
 }

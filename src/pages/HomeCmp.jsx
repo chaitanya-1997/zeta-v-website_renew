@@ -11,23 +11,25 @@ import TeamStats from '../components/TeamStats'
 import AwardsPartners from '../components/AwardsPartners'
 import ContactSection from '../components/Contact'
 import FooterSection from '../components/Footer'
+import ScrollNav from '../components/Scroller'
 
 export default function HomeCmp() {
     return (
         <>
             <Navbar />
+            <ScrollNav />
             <main>
-                <HeroSection />
-                <ClientLogosStrip />
-                <ChallengesSection />
-                <WhyZetaV />
-                <IndustriesSection />
-                <ServicesSection />
-                <HowWeWork />
-                <SuccessStories />
-                <TeamStats />
-                <AwardsPartners />
-                <ContactSection />
+                <section id="about"><HeroSection /></section>
+                <section id="clients"><ClientLogosStrip /></section>
+                <section id="challenges"><ChallengesSection /></section>
+                <section id="why-zeta"><WhyZetaV /></section>
+                <section id="industries"><IndustriesSection /></section>
+                <section id="services"><ServicesSection /></section>
+                <section id="how-we-work"><HowWeWork /></section>
+                <section id="stories"><SuccessStories /></section>
+                <section id="team-stats"><TeamStats /></section>
+                <section id="awards"><AwardsPartners /></section>
+                <section id="contact"><ContactSection /></section>
             </main>
             <FooterSection />
         </>

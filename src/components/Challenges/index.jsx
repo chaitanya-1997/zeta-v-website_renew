@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import './Challenges.css';
 
-// Custom SVG Icons
+// Custom SVG Icons for each challenge
 const Icons = {
   Legacy: () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,44 +11,11 @@ const Icons = {
       <path d="M3 8H21" stroke="currentColor" strokeWidth="1.5"/>
     </svg>
   ),
-  Data: () => (
+  Complexity: () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M3 8H21" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M8 3V21" stroke="currentColor" strokeWidth="1.5"/>
-      <circle cx="12" cy="12" r="2" fill="currentColor"/>
-      <circle cx="17" cy="17" r="1.5" fill="currentColor"/>
-      <circle cx="7" cy="17" r="1.5" fill="currentColor"/>
-    </svg>
-  ),
-  Security: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 3L4 7V12C4 16.5 7 20 12 22C17 20 20 16.5 20 12V7L12 3Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-      <path d="M12 8V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="12" cy="16" r="1" fill="currentColor"/>
-    </svg>
-  ),
-  Cloud: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 10C18 6.5 15.5 4 12 4C9 4 6.5 6 6 9C3.5 9.5 2 11.5 2 14C2 16.5 4 18 6.5 18H18C20.5 18 22 16.5 22 14C22 11.5 20.5 10 18 10Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-      <path d="M12 12V17M10 15L12 17L14 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  ),
-  AI: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M12 5V2M12 22V19M19 12H22M2 12H5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M17.5 6.5L19.5 4.5M6.5 17.5L4.5 19.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M17.5 17.5L19.5 19.5M6.5 6.5L4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  ),
-  DigitalExperience: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M8 21H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M12 17V21" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M7 7H9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M7 11H17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M4 4L8 8M20 4L16 8M20 20L16 16M4 20L8 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   ),
   Talent: () => (
@@ -56,13 +23,24 @@ const Icons = {
       <circle cx="12" cy="8" r="3" stroke="currentColor" strokeWidth="1.5"/>
       <path d="M5 20V19C5 15 8 13 12 13C16 13 19 15 19 19V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       <path d="M16 6L18 8L22 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M2 4L4 6L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   ),
-  Growth: () => (
+  Data: () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M17 7H21V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M21 3L17 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M3 8H21" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M8 3V21" stroke="currentColor" strokeWidth="1.5"/>
+      <circle cx="12" cy="12" r="2" fill="currentColor"/>
+      <path d="M16 16L19 19M16 8L19 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
+  Security: () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3L4 7V12C4 16.5 7 20 12 22C17 20 20 16.5 20 12V7L12 3Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      <path d="M12 8V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <circle cx="12" cy="16" r="1" fill="currentColor"/>
+      <path d="M8 5L16 9" stroke="currentColor" strokeWidth="1.5"/>
     </svg>
   ),
 };
@@ -70,43 +48,28 @@ const Icons = {
 const challenges = [
   { 
     icon: Icons.Legacy, 
-    title: 'Legacy Modernization', 
-    desc: 'Modernize outdated systems without disrupting operations.' 
+    title: 'Legacy Systems Slowing Innovation', 
+    desc: 'Outdated legacy systems increase operational costs and limit agility, Zeta-V addresses through application modernization and scalable cloud-native solutions.' 
   },
   { 
-    icon: Icons.Data, 
-    title: 'Data & Analytics Gaps', 
-    desc: 'Unlock actionable insights from your enterprise data.' 
-  },
-  { 
-    icon: Icons.Security, 
-    title: 'Cybersecurity & Compliance', 
-    desc: 'Protect assets and meet regulatory requirements.' 
-  },
-  { 
-    icon: Icons.Cloud, 
-    title: 'Cloud Migration', 
-    desc: 'Accelerate your journey to the cloud, safely.' 
-  },
-  { 
-    icon: Icons.AI, 
-    title: 'AI & Automation', 
-    desc: 'Embed intelligence into every business process.' 
-  },
-  { 
-    icon: Icons.DigitalExperience, 
-    title: 'Digital Customer Experience', 
-    desc: 'Delight customers with seamless digital touchpoints.' 
+    icon: Icons.Complexity, 
+    title: 'Complexity of Digital Transformation', 
+    desc: 'Disconnected tools and unclear ROI slow digital transformation initiatives, Zeta-V solves through strategic digital transformation consulting and integrated technology solutions.' 
   },
   { 
     icon: Icons.Talent, 
-    title: 'Talent & Capability Scaling', 
-    desc: 'Build teams and capabilities that grow with you.' 
+    title: 'Technology Talent Gap', 
+    desc: 'The shortage of skilled professionals in cloud, AI, and cybersecurity delays projects, Zeta-V overcomes through IT staff augmentation and global technology talent access.' 
   },
   { 
-    icon: Icons.Growth, 
-    title: 'Growth & Market Expansion', 
-    desc: 'Enter new markets with confidence and clarity.' 
+    icon: Icons.Data, 
+    title: 'Data Without Decisions', 
+    desc: 'Large volumes of business data remain underutilized due to fragmented systems, Zeta-V solves through data analytics services, data engineering, and business intelligence platforms.' 
+  },
+  { 
+    icon: Icons.Security, 
+    title: 'Security & Risk in a Digital World', 
+    desc: 'Growing cyber threats put enterprise infrastructure and sensitive data at risk, Zeta-V mitigates through cybersecurity consulting, risk management, and cloud security solutions.' 
   },
 ];
 
@@ -123,15 +86,34 @@ export default function ChallengesSection() {
 
   return (
     <section id="challenges" className="challenges">
+      {/* New Animated Background */}
+      <div className="challenges__bg">
+        <div className="bg-aurora"></div>
+        <div className="bg-gradient-sphere"></div>
+        <div className="bg-grid-overlay"></div>
+        <div className="bg-noise"></div>
+      </div>
+
+      {/* Floating Tech Elements (enhanced) */}
+      <div className="challenges__floating">
+        <div className="float-node node-1"></div>
+        <div className="float-node node-2"></div>
+        <div className="float-node node-3"></div>
+        <div className="float-node node-4"></div>
+        <div className="float-line line-1"></div>
+        <div className="float-line line-2"></div>
+        <div className="float-particle particle-1"></div>
+        <div className="float-particle particle-2"></div>
+      </div>
+
       <div className="challenges__inner">
-        <div className="challenges__head reveal visible">
-          <span className="section-label">Your Priorities</span>
+        <div className="challenges__head">
+          <span className="section-label">Business Challenges</span>
           <h2 className="section-title">
-            Which Business Challenges Are Your{' '}
-            <span className="grad-text">Top Priority</span>?
+            What's Holding Your <span className="grad-text">Business Back</span>?
           </h2>
           <p className="section-subtitle">
-            Select your key focus areas and we'll design a tailored roadmap for you.
+            In today's fast-moving digital economy, organizations must innovate faster while managing complex technology landscapes.
           </p>
         </div>
 
@@ -152,6 +134,7 @@ export default function ChallengesSection() {
                 </div>
                 <h3 className="challenges__title">{challenge.title}</h3>
                 <p className="challenges__desc">{challenge.desc}</p>
+                <div className="card-shine"></div>
               </button>
             );
           })}
@@ -161,10 +144,10 @@ export default function ChallengesSection() {
           <div className="challenges__cta">
             <p className="challenges__cta-text">
               You've selected <strong>{selected.length}</strong> challenge{selected.length > 1 ? 's' : ''}.
-              Let's build your roadmap.
+              Let's discuss how Zeta-V can help.
             </p>
             <a href="#contact" className="btn-grad">
-              Get Your Custom Roadmap →
+              Schedule a Consultation →
             </a>
           </div>
         )}
