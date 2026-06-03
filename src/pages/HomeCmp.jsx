@@ -26,7 +26,7 @@ export default function HomeCmp() {
                 <section id="industries"><IndustriesSection /></section>
                 <section id="services"><ServicesSection /></section>
                 <section id="how-we-work"><HowWeWork /></section>
-                <section id="stories"><SuccessStories /></section>
+                {/* <section id="stories"><SuccessStories /></section> */}
                 <section id="team-stats"><TeamStats /></section>
                 <section id="awards"><AwardsPartners /></section>
                 <section id="contact"><ContactSection /></section>

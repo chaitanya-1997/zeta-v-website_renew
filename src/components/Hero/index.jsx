@@ -1,6 +1,10 @@
+
 // Hero.jsx
 import { useState, useEffect } from 'react';
 import './Hero.css';
+
+// Import background image
+import heroBg from './galexy3.jpg';
 
 const slides = [
   {
@@ -12,7 +16,7 @@ const slides = [
       </>
     ),
     sub: 'Simplifying digital transformation across India and globally with scalable, enterprise-ready technology.',
-    bgImage: 'url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format")',
+    bgImage: heroBg,
     techIcon: 'digital'
   },
   {
@@ -24,7 +28,7 @@ const slides = [
       </>
     ),
     sub: 'Cloud modernization, AI innovation & scalable tech ecosystems for enterprises.',
-    bgImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format")',
+    bgImage: heroBg,
     techIcon: 'ai'
   },
   {
@@ -36,7 +40,7 @@ const slides = [
       </>
     ),
     sub: 'Global workforce & scalable tech to lead in the AI-driven economy.',
-    bgImage: 'url("https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=2074&auto=format")',
+    bgImage: heroBg,
     techIcon: 'analytics'
   },
 ];
@@ -48,7 +52,7 @@ const stats = [
   { value: '90%+', label: 'Retention' },
 ];
 
-// Enhanced SVG Icons
+// Enhanced SVG Icons with neon colors
 const Icons = {
   Lightning: () => (
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -67,8 +71,8 @@ const Icons = {
       <circle cx="12" cy="12" r="2" fill="url(#grad1)"/>
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
+          <stop offset="0%" stopColor="#00B4FF"/>
+          <stop offset="100%" stopColor="#0D47A1"/>
         </linearGradient>
       </defs>
     </svg>
@@ -81,8 +85,8 @@ const Icons = {
       <circle cx="12" cy="12" r="2" fill="url(#grad2)"/>
       <defs>
         <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
+          <stop offset="0%" stopColor="#00B4FF"/>
+          <stop offset="100%" stopColor="#0D47A1"/>
         </linearGradient>
       </defs>
     </svg>
@@ -91,14 +95,14 @@ const Icons = {
     <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
       <path d="M21 21H3V3" stroke="url(#grad3)" strokeWidth="1.5" strokeLinecap="round"/>
       <path d="M7 15L10 11L13 14L20 6" stroke="url(#grad3)" strokeWidth="2" strokeLinecap="round"/>
-      <circle cx="7" cy="15" r="2" fill="#0D47A1"/>
+      <circle cx="7" cy="15" r="2" fill="#00B4FF"/>
       <circle cx="10" cy="11" r="2" fill="#1565C0"/>
       <circle cx="13" cy="14" r="2" fill="#2196F3"/>
-      <circle cx="20" cy="6" r="2" fill="#00B4FF"/>
+      <circle cx="20" cy="6" r="2" fill="#0D47A1"/>
       <defs>
         <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
+          <stop offset="0%" stopColor="#00B4FF"/>
+          <stop offset="100%" stopColor="#0D47A1"/>
         </linearGradient>
       </defs>
     </svg>
@@ -108,8 +112,8 @@ const Icons = {
       <path d="M6 16C3.8 16 2 14.2 2 12C2 9.8 3.8 8 6 8C6.1 8 6.2 8 6.3 8C6.8 5.7 8.9 4 11.3 4C14.2 4 16.6 6.3 16.8 9.2C18.1 9.6 19.1 10.7 19.4 12.1C20.3 12.6 21 13.5 21 14.5C21 16.4 19.4 18 17.5 18H6Z" stroke="url(#grad4)" strokeWidth="1.5" fill="none"/>
       <defs>
         <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
+          <stop offset="0%" stopColor="#00B4FF"/>
+          <stop offset="100%" stopColor="#0D47A1"/>
         </linearGradient>
       </defs>
     </svg>
@@ -161,15 +165,37 @@ export default function HeroSection() {
   return (
     <section className="hero">
       <div className="hero__bg">
-        <div className="hero__bg-image" style={{ backgroundImage: slide.bgImage }}></div>
+        <div className="hero__bg-image" style={{ backgroundImage: `url(${slide.bgImage})` }}></div>
         <div className="hero__bg-overlay"></div>
+      </div>
+
+      {/* Stars background */}
+      <div className="hero__stars">
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
+        <div className="star"></div>
       </div>
 
       <div className="hero__orb hero__orb--1" />
       <div className="hero__orb hero__orb--2" />
       <div className="hero__orb hero__orb--3" />
-
-      <div className="hero__grid" />
 
       <div className="hero__floating-icons">
         <div className="float-icon float-icon-1"><Icons.Cloud /></div>
@@ -205,7 +231,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* RIGHT SIDE - Visual Only (No Supporting Text) */}
+        {/* RIGHT SIDE - Glassmorphic Visual Elements */}
         <div className="hero__right">
           <div className="hero__visual">
             <div className="hero__tech-illustration">
@@ -254,6 +280,8 @@ export default function HeroSection() {
             <div className="hero__particle hero__particle--2" />
             <div className="hero__particle hero__particle--3" />
             <div className="hero__particle hero__particle--4" />
+            <div className="hero__particle hero__particle--5" />
+            <div className="hero__particle hero__particle--6" />
             
             <div className="hero__glyph">ZV</div>
             

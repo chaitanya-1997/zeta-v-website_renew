@@ -137,7 +137,7 @@ export default function ClientLogosStrip() {
         </div>
 
         {/* Expertise Section - Hexagon Network */}
-        <div className="clients__expertise">
+        {/* <div className="clients__expertise">
           <div className="expertise__header">
             <h3 className="expertise__title">Our clients rely on us for expertise in</h3>
           </div>
@@ -158,7 +158,7 @@ export default function ClientLogosStrip() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Tagline below logos */}
         <div className="clients__tagline">

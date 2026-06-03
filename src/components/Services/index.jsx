@@ -4,7 +4,6 @@ import './Services.css'
 
 // Modern gradient icons for service categories
 const ServiceIcons = {
-  
   digital: () => (
     <svg viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="10" fill="url(#digitalGrad)" stroke="none" opacity="0.9"/>
@@ -236,7 +235,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Service Categories Grid */}
+        {/* Service Categories - Horizontal Scrolling / Carousel Style Design */}
         <div className="services__categories">
           {serviceCategories.map((category, idx) => {
             const [ref, visible] = useReveal(idx * 100)
@@ -245,29 +244,40 @@ export default function ServicesSection() {
               <div 
                 key={category.id}
                 ref={ref}
-                className={`service-category reveal${visible ? ' visible' : ''}`}
+                className={`service-category-card reveal${visible ? ' visible' : ''}`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="category-header">
-                  <div className="category-icon">
-                    <IconComponent />
+                <div className="service-category-inner">
+                  <div className="category-front">
+                    <div className="category-icon-ring">
+                      <div className="category-icon">
+                        <IconComponent />
+                      </div>
+                    </div>
+                    <h3 className="category-title">{category.title}</h3>
+                    {/* <div className="category-arrow">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div> */}
                   </div>
-                  <h3 className="category-title">{category.title}</h3>
+                  <div className="category-back">
+                    <ul className="category-services-list">
+                      {category.subServices.map((service, i) => (
+                        <li key={i}>
+                          <span className="service-marker"></span>
+                          {service}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <ul className="category-services">
-                  {category.subServices.map((service, i) => (
-                    <li key={i}>
-                      <span className="service-dot"></span>
-                      {service}
-                    </li>
-                  ))}
-                </ul>
               </div>
             )
           })}
         </div>
 
-        {/* Technology Services Section */}
+        {/* Technology Services - Modern Glassmorphism Cards with Animated Borders */}
         <div className="services__tech">
           <div className="tech-header">
             <span className="tech-badge">Technology Expertise</span>
@@ -283,20 +293,25 @@ export default function ServicesSection() {
                 <div 
                   key={idx}
                   ref={ref}
-                  className={`tech-card reveal${visible ? ' visible' : ''}`}
+                  className={`tech-glass-card reveal${visible ? ' visible' : ''}`}
                   style={{ transitionDelay: `${idx * 80}ms` }}
                 >
-                  <div className="tech-card-icon">
-                    <IconComponent />
+                  <div className="glass-card-glow"></div>
+                  <div className="glass-card-content">
+                    <div className="tech-icon-wrapper">
+                      <IconComponent />
+                    </div>
+                    <h4 className="tech-card-title">{service.title}</h4>
+                    <p className="tech-card-desc">{service.description}</p>
+                    <div className="tech-features-pills">
+                      {service.features.map((feature, i) => (
+                        <span key={i} className="tech-pill">{feature}</span>
+                      ))}
+                    </div>
                   </div>
-                  <h4 className="tech-card-title">{service.title}</h4>
-                  <p className="tech-card-desc">{service.description}</p>
-                  <div className="tech-features">
-                    {service.features.map((feature, i) => (
-                      <span key={i} className="tech-feature">{feature}</span>
-                    ))}
+                  <div className="glass-card-footer">
+                    <span className="learn-more">Explore Service →</span>
                   </div>
-                  <div className="tech-card-shine"></div>
                 </div>
               )
             })}
