@@ -1,3 +1,4 @@
+// Services.jsx
 import { useState } from 'react'
 import { useReveal } from '../../hooks/useReveal'
 import './Services.css'
@@ -235,7 +236,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Service Categories - Horizontal Scrolling / Carousel Style Design */}
+        {/* Service Categories - Flip Card Design */}
         <div className="services__categories">
           {serviceCategories.map((category, idx) => {
             const [ref, visible] = useReveal(idx * 100)
@@ -255,11 +256,6 @@ export default function ServicesSection() {
                       </div>
                     </div>
                     <h3 className="category-title">{category.title}</h3>
-                    {/* <div className="category-arrow">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                    </div> */}
                   </div>
                   <div className="category-back">
                     <ul className="category-services-list">
@@ -320,7 +316,7 @@ export default function ServicesSection() {
 
         {/* CTA Button */}
         <div className="services__cta">
-          <a href="#contact" className="services-cta-btn">
+          <a href="#contact" className="btn-grad">
             Discover All Services →
           </a>
         </div>

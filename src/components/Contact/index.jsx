@@ -1,3 +1,4 @@
+// Contact.jsx
 import { useState } from 'react'
 import { useReveal } from '../../hooks/useReveal'
 import './Contact.css'
@@ -50,11 +51,6 @@ const Icons = {
       <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
-  arrowRight: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  ),
   send: () => (
     <svg viewBox="0 0 24 24" fill="none">
       <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -70,6 +66,20 @@ const Icons = {
       <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
       <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       <path d="M16 8H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
+  calendar: () => (
+    <svg viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M8 2V6M16 2V6M3 10H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <circle cx="12" cy="15" r="1" fill="currentColor"/>
+      <circle cx="16" cy="15" r="1" fill="currentColor"/>
+      <circle cx="8" cy="15" r="1" fill="currentColor"/>
+    </svg>
+  ),
+  arrowRight: () => (
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
 }
@@ -93,10 +103,6 @@ export default function ContactSection() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [headRef, headVisible] = useReveal(0)
-  const [leftRef, leftVisible] = useReveal(0)
-  const [rightRef, rightVisible] = useReveal(100)
-  const [connectRef, connectVisible] = useReveal(0)
-  const [hqRef, hqVisible] = useReveal(0)
 
   const handleChange = e => setFormData(f => ({ ...f, [e.target.name]: e.target.value }))
 
@@ -122,24 +128,8 @@ export default function ContactSection() {
         </div>
 
         <div className="contact__layout">
-          {/* Steps */}
-          <div ref={leftRef} className={`contact__steps-box reveal-left${leftVisible ? ' visible' : ''}`}>
-            <div className="steps-header">
-              <Icons.check />
-              <h3 className="contact__steps-title">Things we do next:</h3>
-            </div>
-            <ol className="contact__steps">
-              {steps.map(s => (
-                <li key={s.num} className="contact__step">
-                  <span className="contact__step-num">{s.num}</span>
-                  <p className="contact__step-text">{s.text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* Form */}
-          <div ref={rightRef} className={`contact__form-box reveal-right${rightVisible ? ' visible' : ''}`}>
+          {/* Form - First on mobile */}
+          <div className="contact__form-box">
             {submitted ? (
               <div className="contact__success">
                 <div className="contact__success-icon">
@@ -196,117 +186,125 @@ export default function ContactSection() {
               </form>
             )}
           </div>
+
+          {/* Steps - Below form on mobile */}
+          <div className="contact__steps-box">
+            <div className="steps-header">
+              <Icons.check />
+              <h3 className="contact__steps-title">Things we do next:</h3>
+            </div>
+            <ol className="contact__steps">
+              {steps.map(s => (
+                <li key={s.num} className="contact__step">
+                  <span className="contact__step-num">{s.num}</span>
+                  <p className="contact__step-text">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </div>
 
-      {/* Section 2: Connect & Collaborate - Contact Details */}
-      <div ref={connectRef} className={`contact__connect-section reveal${connectVisible ? ' visible' : ''}`}>
+      {/* Section 2: Connect & Collaborate */}
+      {/* <div className="contact__connect-section">
         <div className="contact__connect-inner">
           <div className="contact__connect-left">
-            <div className="connect-badge">
-              <span>Connect With Us</span>
-            </div>
-            <h2 className="contact__connect-title">Let's Connect &amp; Collaborate</h2>
+            <span className="connect-badge">Connect & Collaborate</span>
+            <h3 className="contact__connect-title">Let's build something great together</h3>
             <p className="contact__connect-sub">
-              Have a project or requirement? Reach out to our team today.
+              Whether you have a question, want to start a project, or simply want to connect, our team is ready to assist you.
             </p>
             <div className="contact__cards">
-              {/* Call Us */}
-              <div className="contact__card" style={{ borderBottomColor: '#0D47A1' }}>
-                <div className="contact__card-icon" style={{ background: '#0D47A115', color: '#0D47A1' }}>
+              <div className="contact__card">
+                <div className="contact__card-icon" style={{ background: 'linear-gradient(135deg, #0D47A1, #1565C0)' }}>
                   <Icons.call />
                 </div>
                 <div>
                   <div className="contact__card-label">Call Us</div>
-                  <div className="contact__card-phone">+91 206-901-5402</div>
+                  <div className="contact__card-phone">+91 123 456 7890</div>
                 </div>
               </div>
-
-              {/* Mail Us - Contact */}
-              <div className="contact__card" style={{ borderBottomColor: '#1565C0' }}>
-                <div className="contact__card-icon" style={{ background: '#1565C015', color: '#1565C0' }}>
+              <div className="contact__card">
+                <div className="contact__card-icon" style={{ background: 'linear-gradient(135deg, #1565C0, #1E88E5)' }}>
                   <Icons.mail />
                 </div>
                 <div>
-                  <div className="contact__card-label">Mail Us</div>
-                  <div className="contact__card-phone">Contact-us@zeta-v.com</div>
+                  <div className="contact__card-label">Email Us</div>
+                  <div className="contact__card-phone">contact@zeta-v.com</div>
                 </div>
               </div>
-
-              {/* Mail Us - Careers */}
-              <div className="contact__card" style={{ borderBottomColor: '#2196F3' }}>
-                <div className="contact__card-icon" style={{ background: '#2196F315', color: '#2196F3' }}>
-                  <Icons.mail />
+              <div className="contact__card">
+                <div className="contact__card-icon" style={{ background: 'linear-gradient(135deg, #1E88E5, #2196F3)' }}>
+                  <Icons.calendar />
                 </div>
                 <div>
-                  <div className="contact__card-label">Careers</div>
-                  <div className="contact__card-phone">Careers@zeta-v.com</div>
+                  <div className="contact__card-label">Schedule</div>
+                  <div className="contact__card-phone">Book a Meeting</div>
                 </div>
               </div>
-
-              {/* Visit Us */}
-              <div className="contact__card" style={{ borderBottomColor: '#00B4FF' }}>
-                <div className="contact__card-icon" style={{ background: '#00B4FF15', color: '#00B4FF' }}>
+              <div className="contact__card">
+                <div className="contact__card-icon" style={{ background: 'linear-gradient(135deg, #00B4FF, #42A5F5)' }}>
                   <Icons.location />
                 </div>
                 <div>
                   <div className="contact__card-label">Visit Us</div>
-                  <div className="contact__card-phone">Gera's Imperium Rise, Hinjewadi – Pune</div>
+                  <div className="contact__card-phone">Find Location</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTA Buttons */}
           <div className="contact__cta-box">
             <div className="cta-buttons">
-              <a href="#schedule" className="cta-btn primary">
-                Schedule a Consultation →
+              <a href="#book-meeting" className="cta-btn primary">
+                Book a Consultation <Icons.arrowRight />
               </a>
-              <a href="#contact" className="cta-btn secondary">
-                Contact Our Experts →
+              <a href="#brochure" className="cta-btn secondary">
+                Download Brochure <Icons.arrowRight />
               </a>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Section 3: Headquarters */}
-      <div ref={hqRef} className={`contact__hq-section reveal${hqVisible ? ' visible' : ''}`}>
+      {/* <div className="contact__hq-section">
         <div className="contact__hq-inner">
           <div className="contact__map">
-            <iframe
-              title="Zeta-V HQ Pune"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.1435452991184!2d73.734053!3d18.574892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf5e1a2d8c8f%3A0x5e8c6c5e5e5e5e5e!2sHinjewadi%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000"
-              width="100%"
-              height="100%"
-              style={{ border: 0, borderRadius: 'inherit' }}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5!2d77.5945!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3c7d1a6e4b!2sBangalore!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
+              title="Zeta-V Headquarters Location"
             />
           </div>
-
-          <div className="contact__hq-info">
-            <div className="hq-badge">
+          <div className="contact__hq-right">
+            <span className="hq-badge">
               <Icons.location />
-              <span>Our Headquarters</span>
-            </div>
-            <h2 className="contact__hq-title">Visit our office</h2>
+              Headquarters
+            </span>
+            <h3 className="contact__hq-title">Global Headquarters</h3>
             <p className="contact__hq-sub">
-              Where ideas meet innovation. Come visit us at our Pune headquarters.
+              Visit our headquarters to meet our team and discuss how we can help transform your business.
             </p>
             <div className="contact__hq-address">
               <div className="hq-icon">
                 <Icons.location />
               </div>
               <div>
-                <div className="contact__hq-name">Zeta-V Headquarters</div>
-                <div className="contact__hq-loc">Gera's Imperium Rise, Hinjewadi<br />Pune, Maharashtra - 411057</div>
+                <div className="contact__hq-name">Zeta-V Solutions Technologies</div>
+                <div className="contact__hq-loc">
+                  #123, Tech Park, Electronic City,<br />
+                  Bangalore - 560100, Karnataka, India
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }

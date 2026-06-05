@@ -2,9 +2,10 @@
 // Hero.jsx
 import { useState, useEffect } from 'react';
 import './Hero.css';
+import logoImage from './ZETAV-LOGO-zv.png'
 
 // Import background image
-import heroBg from './galexy3.jpg';
+import heroBg from './galexy1.jpg';
 
 const slides = [
   {
@@ -283,7 +284,19 @@ export default function HeroSection() {
             <div className="hero__particle hero__particle--5" />
             <div className="hero__particle hero__particle--6" />
             
-            <div className="hero__glyph">ZV</div>
+            <div className="hero__glyph">
+
+                <a href="/" className="navbar__logo" >
+                          <img 
+                            src={logoImage} 
+                            alt="Zeta-V Logo" 
+                            className="navbar__logo-mark"
+                          />
+                         
+                        </a> 
+
+
+            </div>
             
             <div className="hero__line hero__line--h" />
             <div className="hero__line hero__line--v" />

@@ -1,3 +1,4 @@
+// Navbar.jsx
 import { useState, useEffect } from 'react'
 import './Navbar.css'
 import logoImage from './ZETAV-LOGO-zv.png'
@@ -83,7 +84,10 @@ export default function Navbar() {
               alt="Zeta-V Logo" 
               className="navbar__logo-mark"
             />
-            <span className="navbar__wordmark">ZETA-V</span>
+            <div className="navbar__wordmark-wrapper">
+              <span className="navbar__wordmark-line">Zeta-v Solutions</span>
+              <span className="navbar__wordmark-line navbar__wordmark-line-small">Technologies</span>
+            </div>
           </a>
 
           {/* Desktop Nav */}

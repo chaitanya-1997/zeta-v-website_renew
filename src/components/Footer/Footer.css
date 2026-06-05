@@ -1,3 +1,4 @@
+/* Footer.css */
 .footer {
   background: #0A1628;
   padding: 60px 5% 0;
@@ -92,6 +93,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.25s;
+  cursor: pointer;
 }
 
 .footer__social svg {
@@ -109,6 +111,7 @@
   color: white;
 }
 
+/* Column Headers - Blue color */
 .footer__col {
   display: flex;
   flex-direction: column;
@@ -117,30 +120,68 @@
 
 .footer__col-title {
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: #00B4FF;
+  margin-bottom: 4px;
+  position: relative;
+  display: inline-block;
 }
 
+/* Optional: Add subtle underline effect on hover */
+.footer__col-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00B4FF, #0D47A1);
+  transition: width 0.3s ease;
+}
+
+.footer__col:hover .footer__col-title::after {
+  width: 100%;
+}
+
+/* Footer Links with Blue Arrow on Hover */
 .footer__links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .footer__link {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
-  transition: all 0.2s;
-  display: block;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+/* Arrow indicator that appears on hover */
+.footer__link::before {
+  content: '→';
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.25s ease;
+  color: #00B4FF;
+  font-size: 0.9rem;
 }
 
 .footer__link:hover {
   color: white;
-  padding-left: 6px;
+  padding-left: 8px;
+}
+
+.footer__link:hover::before {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .footer__bottom {
@@ -177,10 +218,11 @@
   color: rgba(255, 255, 255, 0.3);
   text-decoration: none;
   transition: color 0.2s;
+  position: relative;
 }
 
 .footer__legal-link:hover {
-  color: rgba(255, 255, 255, 0.6);
+  color: #00B4FF;
 }
 
 /* Responsive */
@@ -201,6 +243,9 @@
   .footer__inner {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+  }
+  .footer__col-title::after {
+    display: none;
   }
 }
 

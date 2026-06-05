@@ -627,7 +627,7 @@ export default function IndustriesSection() {
 
         {/* CTA below industries */}
         <div className="industries__cta-wrapper">
-          <a href="#contact" className="industries__cta-btn">
+          <a href="#contact" className="btn-grad">
             Explore Industry Solutions →
           </a>
         </div>

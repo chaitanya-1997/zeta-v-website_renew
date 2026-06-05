@@ -105,14 +105,17 @@ img {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
+  text-align: left;
   color: var(--cyan);
   margin-bottom: 12px;
   display: block;
 }
 
+/* ─── Button Styles with Responsive Sizes ───────────────── */
 .btn-grad {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: var(--grad);
   color: #fff;
@@ -127,6 +130,7 @@ img {
   overflow: hidden;
   transition: transform var(--t-base) var(--ease),
               box-shadow var(--t-base) var(--ease);
+  white-space: nowrap;
 }
 
 .btn-grad::after {
@@ -150,6 +154,7 @@ img {
 .btn-outline {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: transparent;
   color: var(--blue-mid);
@@ -161,6 +166,7 @@ img {
   border: 1.5px solid var(--blue-mid);
   cursor: pointer;
   transition: all var(--t-base) var(--ease);
+  white-space: nowrap;
 }
 
 .btn-outline:hover {
@@ -168,6 +174,79 @@ img {
   border-color: var(--cyan);
   color: var(--cyan);
   transform: translateY(-2px);
+}
+
+/* Tablet - Medium Screens */
+@media (max-width: 1024px) {
+  .btn-grad {
+    font-size: 0.88rem;
+    padding: 12px 28px;
+  }
+  
+  .btn-outline {
+    font-size: 0.88rem;
+    padding: 11px 28px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 900px) {
+  .btn-grad {
+    font-size: 0.82rem;
+    padding: 10px 24px;
+    gap: 6px;
+  }
+  
+  .btn-outline {
+    font-size: 0.82rem;
+    padding: 9px 24px;
+    gap: 6px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 768px) {
+  .btn-grad {
+    font-size: 0.78rem;
+    padding: 9px 20px;
+    gap: 5px;
+  }
+  
+  .btn-outline {
+    font-size: 0.78rem;
+    padding: 8px 20px;
+    gap: 5px;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .btn-grad {
+    font-size: 0.72rem;
+    padding: 7px 16px;
+    gap: 4px;
+  }
+  
+  .btn-outline {
+    font-size: 0.72rem;
+    padding: 6px 16px;
+    gap: 4px;
+  }
+}
+
+/* Extra Small Devices (iPhone SE, etc.) */
+@media (max-width: 380px) {
+  .btn-grad {
+    font-size: 0.68rem;
+    padding: 6px 14px;
+    gap: 4px;
+  }
+  
+  .btn-outline {
+    font-size: 0.68rem;
+    padding: 5px 14px;
+    gap: 4px;
+  }
 }
 
 /* ─── Reveal Animations ─────────────────────────────────── */
@@ -225,6 +304,7 @@ img {
 .section-title {
   font-family: var(--font-head);
   font-size: clamp(2rem, 4vw, 3rem);
+  text-align: left;
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.2;
@@ -233,7 +313,7 @@ img {
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 600px;
+  text-align: left;
   line-height: 1.8;
   margin-top: 16px;
 }

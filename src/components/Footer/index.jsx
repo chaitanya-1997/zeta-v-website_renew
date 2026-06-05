@@ -1,3 +1,4 @@
+// Footer.jsx (updated - same as before but keeping your existing code)
 import './Footer.css'
 import logoImage from './ZETAV-LOGO-zv.png'
 
@@ -102,7 +103,9 @@ export default function FooterSection() {
             <h4 className="footer__col-title">{title}</h4>
             <ul className="footer__links">
               {links.map((link, i) => (
-                <li key={i}><a href="#" className="footer__link">{link}</a></li>
+                <li key={i}>
+                  <a href="#" className="footer__link">{link}</a>
+                </li>
               ))}
             </ul>
           </div>

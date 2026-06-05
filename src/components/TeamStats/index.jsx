@@ -1,3 +1,4 @@
+// TeamStats.jsx
 import { useState, useEffect } from 'react'
 import { useReveal } from '../../hooks/useReveal'
 import './TeamStats.css'
@@ -18,14 +19,14 @@ function AnimatedNumber({ value, suffix, label, index }) {
     if (visible) {
       setIsAnimating(true)
       let start = 0
-      const duration = 2000
+      const duration = 1800
       const increment = value / (duration / 16)
       const timer = setInterval(() => {
         start += increment
         if (start >= value) {
           setCount(value)
           clearInterval(timer)
-          setTimeout(() => setIsAnimating(false), 500)
+          setTimeout(() => setIsAnimating(false), 300)
         } else {
           setCount(Math.floor(start))
         }
@@ -53,7 +54,7 @@ export default function TrustStats() {
   useEffect(() => {
     // Generate sparkles
     const sparklesArray = []
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 30; i++) {
       sparklesArray.push({
         id: i,
         left: Math.random() * 100,
