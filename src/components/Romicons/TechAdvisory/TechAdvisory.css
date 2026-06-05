@@ -1,0 +1,291 @@
+.tech-advisory-section {
+  padding: 120px 5%;
+  background: #ffffff;
+}
+
+.tech-advisory-container {
+  max-width: 1400px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* =====================
+   LEFT DIAGRAM
+===================== */
+
+.tech-diagram {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+}
+
+.diagram-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #3097f3,
+    #2563eb
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  text-align: center;
+
+  box-shadow:
+    0 25px 60px rgba(37,99,235,0.25);
+
+  z-index: 5;
+}
+
+.diagram-line {
+  position: absolute;
+  background: #dbeafe;
+}
+
+.line-top {
+  width: 2px;
+  height: 120px;
+  left: 50%;
+  top: 70px;
+  transform: translateX(-50%);
+}
+
+.line-right {
+  width: 120px;
+  height: 2px;
+  top: 50%;
+  right: 70px;
+}
+
+.line-bottom {
+  width: 2px;
+  height: 120px;
+  left: 50%;
+  bottom: 70px;
+  transform: translateX(-50%);
+}
+
+.line-left {
+  width: 120px;
+  height: 2px;
+  top: 50%;
+  left: 70px;
+}
+
+.diagram-node {
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  background: #eff6ff;
+  border: 2px solid #bfdbfe;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #2563eb;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  transition: 0.4s ease;
+}
+
+.diagram-node:hover {
+  transform: scale(1.08);
+}
+
+.node-top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.node-right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.node-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.node-left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.diagram-node svg {
+  margin-bottom: 10px;
+}
+
+/* =====================
+   CONTENT
+===================== */
+
+.section-label {
+  display: inline-block;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: #2563eb;
+
+  margin-bottom: 18px;
+}
+
+.tech-content h2 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+
+  color: #0f172a;
+
+  margin-bottom: 24px;
+}
+
+.tech-content h2 span {
+  color: #2563eb;
+}
+
+.tech-content p {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: #64748b;
+
+  margin-bottom: 40px;
+}
+
+.advisory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.advisory-card {
+  padding: 18px;
+
+  background: #f8fbff;
+
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+
+  font-weight: 600;
+  color: #0f172a;
+
+  transition: 0.3s ease;
+}
+
+.advisory-card:hover {
+  transform: translateY(-5px);
+  border-color: #2563eb;
+}
+
+/* =====================
+   TABLET
+===================== */
+
+@media (max-width: 1024px) {
+
+  .tech-advisory-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .tech-content h2 {
+    font-size: 2.8rem;
+  }
+
+  .tech-content p {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* =====================
+   MOBILE
+===================== */
+
+@media (max-width: 768px) {
+
+  .tech-advisory-section {
+    padding: 90px 20px;
+  }
+
+  .tech-diagram {
+    width: 320px;
+    height: 320px;
+  }
+
+  .diagram-core {
+    width: 110px;
+    height: 110px;
+    font-size: 0.9rem;
+  }
+
+  .diagram-node {
+    width: 85px;
+    height: 85px;
+    font-size: 0.6rem;
+  }
+
+  .diagram-node svg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+  }
+
+  .line-top,
+  .line-bottom {
+    height: 75px;
+  }
+
+  .line-left,
+  .line-right {
+    width: 75px;
+  }
+
+  .tech-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .advisory-grid {
+    grid-template-columns: 1fr;
+  }
+}

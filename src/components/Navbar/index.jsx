@@ -1,8 +1,16 @@
 import { useState, useEffect } from 'react'
 import './Navbar.css'
+import { Link } from "react-router-dom";
 
-const navLinks = ['About', 'Industries', 'Services', 'Journey', 'Careers', 'Contact']
-
+const navLinks = [
+    { name: 'About Us', path: '/about-us' },
+    { name: 'Industries', id: 'industries' },
+    { name: 'Services', id: 'services' },
+    { name: 'Romicons', path: '/romicons' },
+    { name: 'Journey', id: 'journey' },
+    { name: 'Careers', id: 'careers' },
+    { name: 'Contact', id: 'contact' }
+]
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
@@ -13,13 +21,17 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
-    const handleLinkClick = (e, link) => {
-        e.preventDefault()
-        const id = link.toLowerCase()
-        const el = document.getElementById(id)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-        setMenuOpen(false)
+    const handleLinkClick = (e, id) => {
+    e.preventDefault()
+
+    const el = document.getElementById(id)
+
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
     }
+
+    setMenuOpen(false)
+}
 
     return (
         <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
@@ -39,18 +51,28 @@ export default function Navbar() {
                 </a>
 
                 {/* Desktop Nav */}
-                <nav className="navbar__links">
-                    {navLinks.map(link => (
-                        <a
-                            key={link}
-                            href={`#${link.toLowerCase()}`}
-                            className="navbar__link"
-                            onClick={e => handleLinkClick(e, link)}
-                        >
-                            {link}
-                        </a>
-                    ))}
-                </nav>
+              <nav className="navbar__links">
+    {navLinks.map((link) => (
+        link.path ? (
+            <Link
+                key={link.name}
+                to={link.path}
+                className="navbar__link"
+            >
+                {link.name}
+            </Link>
+        ) : (
+            <a
+                key={link.name}
+                href={`#${link.id}`}
+                className="navbar__link"
+                onClick={(e) => handleLinkClick(e, link.id)}
+            >
+                {link.name}
+            </a>
+        )
+    ))}
+</nav>
 
                 {/* CTA */}
                 <a href="#contact" className="navbar__cta btn-grad" onClick={e => handleLinkClick(e, 'Contact')}>
@@ -69,17 +91,29 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <div className={`navbar__mobile${menuOpen ? ' navbar__mobile--open' : ''}`}>
-                {navLinks.map((link, i) => (
-                    <a
-                        key={link}
-                        href={`#${link.toLowerCase()}`}
-                        className="navbar__mobile-link"
-                        style={{ animationDelay: menuOpen ? `${i * 80}ms` : '0ms' }}
-                        onClick={e => handleLinkClick(e, link)}
-                    >
-                        {link}
-                    </a>
-                ))}
+              {navLinks.map((link, i) => (
+    link.path ? (
+        <Link
+            key={link.name}
+            to={link.path}
+            className="navbar__mobile-link"
+            style={{ animationDelay: menuOpen ? `${i * 80}ms` : '0ms' }}
+            onClick={() => setMenuOpen(false)}
+        >
+            {link.name}
+        </Link>
+    ) : (
+        <a
+            key={link.name}
+            href={`#${link.id}`}
+            className="navbar__mobile-link"
+            style={{ animationDelay: menuOpen ? `${i * 80}ms` : '0ms' }}
+            onClick={(e) => handleLinkClick(e, link.id)}
+        >
+            {link.name}
+        </a>
+    )
+))}
                 <a href="#contact" className="btn-grad navbar__mobile-cta" onClick={e => handleLinkClick(e, 'Contact')}>
                     Let's Talk
                 </a>

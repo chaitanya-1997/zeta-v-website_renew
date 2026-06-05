@@ -1,0 +1,319 @@
+.journey-section {
+  width: 100%;
+  padding: 100px 5%;
+  background: white;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Heading
+========================= */
+
+.journey-heading {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.journey-heading h2 {
+  font-size: 4.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.grad-text {
+  color: #1d9bf0;
+}
+
+
+
+/* =========================
+   Timeline Wrapper
+========================= */
+
+.horizontal-timeline {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Animated Center Line
+========================= */
+
+.timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 5px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #3097f3, #2563eb, #00c6ff);
+  border-radius: 30px;
+  z-index: 1;
+  box-shadow: 0 0 18px rgba(48, 151, 243, 0.18);
+}
+
+/* =========================
+   Timeline Card
+   8 cards: positions at 6.25%, 18.75%, 31.25%, 43.75%,
+   56.25%, 68.75%, 81.25%, 93.75%
+   (centers of equal 12.5% slots)
+========================= */
+
+.timeline-card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+.timeline-card:nth-child(2)  { left: 0%; }
+.timeline-card:nth-child(3)  { left: 12.5%; }
+.timeline-card:nth-child(4)  { left: 25%; }
+.timeline-card:nth-child(5)  { left: 37.5%; }
+.timeline-card:nth-child(6)  { left: 50%; }
+.timeline-card:nth-child(7)  { left: 62.5%; }
+.timeline-card:nth-child(8)  { left: 75%; }
+.timeline-card:nth-child(9)  { left: 87.5%; }
+
+/* nth-child(2) because nth-child(1) is the .timeline-line div */
+
+/* =========================
+   Content — above or below line
+========================= */
+
+.timeline-card.top .timeline-content {
+  position: absolute;
+  bottom: calc(50% + 36px);
+  transform: translateX(-50%);
+}
+
+.timeline-card.bottom .timeline-content {
+  position: absolute;
+  top: calc(50% + 36px);
+  transform: translateX(-50%);
+}
+
+/* =========================
+   Timeline Content
+========================= */
+
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   Content Box
+========================= */
+
+.timeline-text {
+  background: white;
+  padding: 12px 14px;
+  border-radius: 14px;
+  min-width: 145px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-text p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* =========================
+   Connector
+========================= */
+
+.timeline-connector {
+  width: 3px;
+  height: 55px;
+  background: #3097f3;
+  border-radius: 20px;
+  margin: 14px 0;
+}
+
+/* =========================
+   Year Circle
+========================= */
+
+.timeline-year {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3097f3, #2563eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+  z-index: 4;
+}
+
+.timeline-year h3 {
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* =========================
+   Dot — pinned on timeline line, centered in card
+========================= */
+
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #3097f3;
+  z-index: 5;
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 12px rgba(48, 151, 243, 0.35);
+  pointer-events: none;
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media screen and (max-width: 1200px) {
+
+  .journey-heading h2 {
+    font-size: 3.4rem;
+  }
+
+  .horizontal-timeline {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+  }
+
+  .timeline-line,
+  .timeline-dot {
+    display: none;
+  }
+
+  .timeline-card {
+    position: static;
+    width: 40%;
+    height: auto;
+    top: auto;
+    bottom: auto;
+    left: auto !important;
+  }
+
+  .timeline-card.top .timeline-content,
+  .timeline-card.bottom .timeline-content {
+    position: static;
+    transform: none;
+    left: auto;
+    bottom: auto;
+    top: auto;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media screen and (max-width: 768px) {
+
+  .journey-section {
+    padding: 80px 20px;
+  }
+
+  .journey-heading {
+    margin-bottom: 60px;
+  }
+
+  .journey-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  
+
+  .horizontal-timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;
+    padding-left: 40px;
+    height: auto;
+  }
+
+  .timeline-line {
+    display: block;
+    width: 4px !important;
+    height: 100%;
+    top: 0;
+    left: 18px;
+    right: auto;
+    transform: none;
+  }
+
+  .timeline-card {
+    position: relative;
+    width: 100%;
+    left: auto !important;
+    justify-content: flex-start;
+  }
+
+  .timeline-card.top .timeline-content,
+  .timeline-card.bottom .timeline-content {
+    position: static;
+    transform: none;
+  }
+
+  .timeline-dot {
+    display: block;
+    top: 50%;
+    left: -22px;
+    transform: translateY(-50%);
+  }
+
+  .timeline-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .timeline-connector {
+    display: none;
+  }
+
+  .timeline-year {
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+  }
+
+  .timeline-year h3 {
+    font-size: 0.9rem;
+  }
+
+  .timeline-text {
+    min-width: auto;
+    width: 100%;
+    padding: 14px;
+  }
+
+  .timeline-text p {
+    font-size: 0.85rem;
+  }
+}

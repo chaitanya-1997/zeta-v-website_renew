@@ -1,0 +1,202 @@
+.partners-section {
+  width: 100%;
+
+  padding: 90px 5%;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* =========================
+   Heading
+========================= */
+
+.partners-heading {
+  text-align: center;
+
+  margin-bottom: 55px;
+}
+
+.partners-heading h2 {
+  font-size: 4rem;
+  font-weight: 800;
+
+  color: #0f172a;
+
+  margin-bottom: 18px;
+}
+
+.partners-heading h2 span {
+  color: #2563eb;
+}
+
+
+
+/* =========================
+   Slider
+========================= */
+
+.partners-slider {
+  width: 100%;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* =========================
+   Moving Track
+========================= */
+
+.partners-track {
+  display: flex;
+
+  align-items: center;
+
+  gap: 26px;
+
+  width: max-content;
+
+  animation: scrollPartners 22s linear infinite;
+}
+
+/* =========================
+   Partner Card
+========================= */
+
+.partner-card {
+  min-width: 240px;
+
+  height: 90px;
+
+  padding: 0 28px;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid rgba(15,23,42,0.06);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* =========================
+   Partner Logo
+========================= */
+
+.partner-card img {
+  width: 170px;
+
+  max-height: 52px;
+
+  object-fit: contain;
+
+  transition: 0.4s ease;
+}
+
+/* =========================
+   Hover Effects
+========================= */
+
+.partner-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 12px 28px rgba(37,99,235,0.08);
+}
+
+.partner-card:hover img {
+  transform: scale(1.04);
+}
+
+/* =========================
+   Infinite Animation
+========================= */
+
+@keyframes scrollPartners {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media screen and (max-width: 1024px) {
+
+  .partners-heading h2 {
+    font-size: 3rem;
+  }
+
+  .partner-card {
+    min-width: 210px;
+
+    height: 80px;
+  }
+
+  .partner-card img {
+    width: 150px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media screen and (max-width: 768px) {
+
+  .partners-section {
+    padding: 70px 20px;
+  }
+
+  .partners-heading {
+    margin-bottom: 40px;
+  }
+
+  .partners-heading h2 {
+    font-size: 2.4rem;
+  }
+
+  .partners-heading p {
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+  }
+
+  .partners-track {
+    gap: 18px;
+
+    animation-duration: 16s;
+  }
+
+  .partner-card {
+    min-width: 180px;
+
+    height: 72px;
+
+    padding: 0 18px;
+
+    border-radius: 14px;
+  }
+
+  .partner-card img {
+    width: 130px;
+
+    max-height: 42px;
+  }
+}

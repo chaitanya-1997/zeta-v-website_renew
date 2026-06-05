@@ -1,0 +1,271 @@
+.choose-section {
+  width: 100%;
+
+  padding: 80px 5%;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* =========================
+   Animated Background
+========================= */
+
+
+/* Left Glow */
+
+.choose-section::before {
+  width: 280px;
+  height: 280px;
+
+  background: #3097f3;
+
+  top: 10%;
+  left: -100px;
+}
+
+/* Right Glow */
+
+.choose-section::after {
+  width: 320px;
+  height: 320px;
+
+  background: #2563eb;
+
+  bottom: -120px;
+  right: -120px;
+
+  animation-delay: 3s;
+}
+
+.choose-heading,
+.choose-grid {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================
+   Heading
+========================= */
+
+.choose-heading {
+  text-align: center;
+
+  margin-bottom: 50px;
+}
+
+.choose-heading h2 {
+  font-size: 4rem;
+  font-weight: 800;
+
+  color: #0f172a;
+
+  margin-bottom: 18px;
+}
+
+.choose-heading h2 span {
+  color: #2563eb;
+}
+
+
+
+/* =========================
+   Grid
+========================= */
+
+.choose-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(240px, 280px));
+
+  justify-content: center;
+
+  gap: 60px;
+
+  align-items: stretch;
+}
+
+/* =========================
+   Card
+========================= */
+
+.choose-card {
+   position: relative;
+
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 28px 22px;
+
+  min-height: 240px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(37,99,235,0.08);
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.05);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* =========================
+   Animated Top Border
+========================= */
+
+.choose-line {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 0%;
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #3097f3,
+    #2563eb,
+    #00c6ff
+  );
+
+  transition:
+    width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.choose-card:hover .choose-line {
+  width: 100%;
+}
+
+/* =========================
+   Icon
+========================= */
+
+.choose-icon {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 20px;
+
+  background: linear-gradient(
+    135deg,
+    #3097f3,
+    #2563eb
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  margin-bottom: 24px;
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,0.18);
+
+  transition: 0.4s ease;
+}
+
+/* =========================
+   Hover Icon Effect
+========================= */
+
+.choose-card:hover .choose-icon {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* =========================
+   Content
+========================= */
+
+.choose-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  color: #0f172a;
+
+  margin-bottom: 14px;
+}
+
+.choose-card p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+
+  color: #475569;
+}
+
+/* =========================
+   Hover
+========================= */
+
+.choose-card:hover {
+  box-shadow:
+    0 18px 45px rgba(37,99,235,0.12);
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media screen and (max-width: 1200px) {
+
+  .choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .choose-heading h2 {
+    font-size: 3.2rem;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media screen and (max-width: 768px) {
+
+  .choose-section {
+    padding: 80px 20px;
+  }
+
+  .choose-heading {
+    margin-bottom: 60px;
+  }
+
+  .choose-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  .choose-heading p {
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .choose-grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .choose-card {
+    padding: 26px 18px;
+    min-height: auto;
+  }
+
+  .choose-icon {
+    width: 62px;
+    height: 62px;
+  }
+
+  .choose-card h3 {
+    font-size: 1.1rem;
+  }
+}
