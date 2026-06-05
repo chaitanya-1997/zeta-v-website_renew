@@ -1,0 +1,136 @@
+.framework-section {
+    padding: 60px 8%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated diagonal lines */
+.framework-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 15px,
+        rgba(0, 132, 255, 0.012) 15px,
+        rgba(0, 132, 255, 0.012) 30px
+    );
+    animation: slideLines 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Floating hexagon shape */
+.framework-section::after {
+    content: '';
+    position: absolute;
+    bottom: 8%;
+    right: 5%;
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border: 2px solid rgba(0, 132, 255, 0.06);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: floatHexa 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes slideLines {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+}
+
+@keyframes floatHexa {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(10px, -15px) rotate(5deg); }
+    66% { transform: translate(-10px, 10px) rotate(-5deg); }
+}
+
+.framework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.framework-card {
+    position: relative;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(0,132,255,0.1);
+    border-radius: 20px;
+    padding: 30px 24px;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 180px;
+}
+
+.framework-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0d47a1, #00b4ff);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.framework-card:hover::before {
+    transform: scaleX(1);
+}
+
+.framework-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,132,255,0.3);
+    box-shadow: 0 12px 32px rgba(0,132,255,0.1);
+}
+
+.framework-card span {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0d47a1, #00b4ff);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,132,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.framework-card:hover span {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 12px 28px rgba(0,132,255,0.3);
+}
+
+.framework-card h3 {
+    color: #07142b;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .framework-section { padding: 40px 6%; }
+    .framework-grid { grid-template-columns: 1fr; gap: 16px; }
+    .framework-card { min-height: auto; padding: 28px 22px; border-radius: 18px; }
+    .framework-card h3 { font-size: 18px; }
+    .framework-card span { width: 42px; height: 42px; font-size: 15px; }
+}

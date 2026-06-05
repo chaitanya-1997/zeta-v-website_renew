@@ -1,0 +1,110 @@
+.gallery-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #F4F6F9;
+  color: #07142b;
+  position: relative;
+}
+
+/* ============================================
+   FLOATING GEOMETRIC NETWORK NODES - VISIBLE
+============================================ */
+.gallery-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* 10 floating nodes at different positions */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(11, 111, 232, 0.15) 0%, rgba(11, 111, 232, 0.08) 30%, transparent 70%),
+    radial-gradient(circle at 80% 15%, rgba(0, 180, 255, 0.13) 0%, rgba(0, 180, 255, 0.06) 30%, transparent 70%),
+    radial-gradient(circle at 90% 70%, rgba(11, 111, 232, 0.14) 0%, rgba(11, 111, 232, 0.07) 30%, transparent 70%),
+    radial-gradient(circle at 15% 80%, rgba(0, 180, 255, 0.12) 0%, rgba(0, 180, 255, 0.05) 30%, transparent 70%),
+    radial-gradient(circle at 50% 45%, rgba(11, 111, 232, 0.10) 0%, rgba(11, 111, 232, 0.04) 30%, transparent 70%),
+    radial-gradient(circle at 65% 10%, rgba(0, 180, 255, 0.11) 0%, rgba(0, 180, 255, 0.05) 30%, transparent 70%),
+    radial-gradient(circle at 8% 55%, rgba(11, 111, 232, 0.13) 0%, rgba(11, 111, 232, 0.06) 30%, transparent 70%),
+    radial-gradient(circle at 95% 35%, rgba(0, 180, 255, 0.10) 0%, rgba(0, 180, 255, 0.04) 30%, transparent 70%),
+    radial-gradient(circle at 35% 90%, rgba(11, 111, 232, 0.11) 0%, rgba(11, 111, 232, 0.05) 30%, transparent 70%),
+    radial-gradient(circle at 75% 85%, rgba(0, 180, 255, 0.12) 0%, rgba(0, 180, 255, 0.06) 30%, transparent 70%);
+
+  background-size: 
+    350px 350px, 300px 300px, 320px 320px, 280px 280px, 400px 400px,
+    290px 290px, 310px 310px, 260px 260px, 330px 330px, 340px 340px;
+
+  background-position: 
+    10% 20%, 80% 15%, 90% 70%, 15% 80%, 50% 45%,
+    65% 10%, 8% 55%, 95% 35%, 35% 90%, 75% 85%;
+
+  background-repeat: no-repeat;
+}
+
+/* Connecting network lines - VISIBLE */
+.gallery-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  
+  background-image:
+    /* Line: Node 1 (10%,20%) to Node 2 (80%,15%) */
+    linear-gradient(175deg, transparent 48.5%, rgba(11, 111, 232, 0.08) 49%, rgba(11, 111, 232, 0.08) 51%, transparent 51.5%),
+    /* Line: Node 2 (80%,15%) to Node 8 (95%,35%) */
+    linear-gradient(130deg, transparent 48.5%, rgba(0, 180, 255, 0.07) 49%, rgba(0, 180, 255, 0.07) 51%, transparent 51.5%),
+    /* Line: Node 5 (50%,45%) to Node 3 (90%,70%) */
+    linear-gradient(145deg, transparent 48.5%, rgba(11, 111, 232, 0.08) 49%, rgba(11, 111, 232, 0.08) 51%, transparent 51.5%),
+    /* Line: Node 5 (50%,45%) to Node 4 (15%,80%) */
+    linear-gradient(210deg, transparent 48.5%, rgba(0, 180, 255, 0.06) 49%, rgba(0, 180, 255, 0.06) 51%, transparent 51.5%),
+    /* Line: Node 7 (8%,55%) to Node 9 (35%,90%) */
+    linear-gradient(120deg, transparent 48.5%, rgba(11, 111, 232, 0.07) 49%, rgba(11, 111, 232, 0.07) 51%, transparent 51.5%),
+    /* Line: Node 6 (65%,10%) to Node 10 (75%,85%) */
+    linear-gradient(160deg, transparent 48.5%, rgba(0, 180, 255, 0.07) 49%, rgba(0, 180, 255, 0.07) 51%, transparent 51.5%),
+    /* Line: Node 1 (10%,20%) to Node 7 (8%,55%) */
+    linear-gradient(95deg, transparent 48.5%, rgba(11, 111, 232, 0.06) 49%, rgba(11, 111, 232, 0.06) 51%, transparent 51.5%),
+    /* Line: Node 3 (90%,70%) to Node 10 (75%,85%) */
+    linear-gradient(140deg, transparent 48.5%, rgba(0, 180, 255, 0.06) 49%, rgba(0, 180, 255, 0.06) 51%, transparent 51.5%);
+
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Node floating animations */
+@keyframes nodeFloat1 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(18px, -12px); }
+  50% { transform: translate(-10px, -22px); }
+  75% { transform: translate(-14px, 10px); }
+}
+
+@keyframes nodeFloat2 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-14px, 18px); }
+  50% { transform: translate(22px, -6px); }
+  75% { transform: translate(-6px, -16px); }
+}
+
+@keyframes nodeFloat3 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(12px, 14px); }
+  66% { transform: translate(-16px, -10px); }
+}
+
+/* Apply animations to nodes */
+.gallery-page::before {
+  animation: 
+    nodeFloat1 20s ease-in-out infinite,
+    nodeFloat2 24s ease-in-out infinite,
+    nodeFloat3 22s ease-in-out infinite,
+    nodeFloat1 26s ease-in-out infinite,
+    nodeFloat2 21s ease-in-out infinite,
+    nodeFloat3 23s ease-in-out infinite,
+    nodeFloat1 25s ease-in-out infinite,
+    nodeFloat2 19s ease-in-out infinite,
+    nodeFloat3 27s ease-in-out infinite,
+    nodeFloat1 22s ease-in-out infinite;
+}

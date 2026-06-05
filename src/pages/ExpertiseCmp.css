@@ -1,0 +1,153 @@
+.expertise-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: transparent;
+  color: var(--text-dark, #071A3D);
+  position: relative;
+}
+
+/* Remove all pseudo-elements */
+.expertise-page::before,
+.expertise-page::after {
+  display: none;
+}
+
+/* All sections - transparent */
+.expertise-page section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 8%;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Override any nth-child backgrounds */
+.expertise-page section:nth-child(2),
+.expertise-page section:nth-child(3),
+.expertise-page section:nth-child(4),
+.expertise-page section:nth-child(5) {
+  background: transparent;
+}
+
+/* Remove all section dividers */
+.expertise-page section:not(:last-child)::after {
+  display: none;
+}
+
+/* ============================================
+   SECTION HEADER
+============================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* .section-header h2 {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--text-dark, #071A3D);
+  margin-bottom: 12px;
+  letter-spacing: -2px;
+} */
+
+.section-header p {
+  max-width: 720px;
+  margin: auto;
+  color: var(--text-light, #64748B);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.section-header::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-blue, #0B6FE8), var(--secondary-blue, #20B8FF));
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+/* ============================================
+   CARDS - Glass Effect
+============================================ */
+/* Cards float above the global canvas with glass effect */
+.expertise-page .project-card,
+.expertise-page .service-card,
+.expertise-page .tech-card,
+.expertise-page .focus-card,
+.expertise-page .high-impact-card,
+.expertise-page .fw-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ============================================
+   BUTTON
+============================================ */
+.expertise-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 34px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, var(--primary-blue, #0B6FE8), #0066cc);
+  color: #ffffff !important;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.expertise-btn:hover::before {
+  left: 100%;
+}
+
+.expertise-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(11, 111, 232, 0.35);
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1200px) {
+  .section-header h2 { font-size: 38px; }
+}
+
+@media (max-width: 992px) {
+  .section-header h2 { font-size: 34px; }
+  .section-header p { font-size: 15px; }
+  .expertise-page section { padding: 50px 6%; }
+}
+
+@media (max-width: 768px) {
+  .expertise-page section { padding: 40px 6%; }
+  .section-header { margin-bottom: 30px; }
+  .section-header h2 { font-size: 30px; line-height: 1.2; }
+  .section-header p { font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  .expertise-page section { padding: 35px 5%; }
+  .section-header h2 { font-size: 26px; }
+}

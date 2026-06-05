@@ -1,0 +1,126 @@
+/* ============================================
+   COLOR SYSTEM
+============================================ */
+:root {
+  --page-bg: #F8FBFF;
+  --primary-blue: #0B6FE8;
+  --secondary-blue: #20B8FF;
+  --text-dark: #071A3D;
+  --text-light: #64748B;
+  --grid: rgba(11, 111, 232, 0.035);
+  --glow-1: rgba(11, 111, 232, 0.08);
+  --glow-2: rgba(32, 184, 255, 0.06);
+  --glow-3: rgba(0, 153, 255, 0.05);
+  --scroll-progress: 0;
+}
+
+/* ============================================
+   LAYER 1: BASE BACKGROUND
+============================================ */
+body {
+  background: var(--page-bg);
+}
+
+.page-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--page-bg);
+}
+
+/* ============================================
+   LAYER 2: BLUEPRINT GRID
+============================================ */
+.page-bg__grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridDrift 30s linear infinite;
+}
+
+@keyframes gridDrift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* ============================================
+   LAYER 3: MESH GRADIENTS
+============================================ */
+.page-bg__mesh {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(160px);
+  will-change: transform;
+}
+
+.page-bg__mesh--1 {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, var(--glow-1) 0%, transparent 65%);
+  top: -15%;
+  left: -10%;
+}
+
+.page-bg__mesh--2 {
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, var(--glow-2) 0%, transparent 65%);
+  top: 40%;
+  right: -15%;
+}
+
+.page-bg__mesh--3 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--glow-3) 0%, transparent 65%);
+  bottom: -10%;
+  left: 25%;
+}
+
+/* ============================================
+   TECHNOLOGY PATHWAY SVG
+============================================ */
+.page-bg__pathway {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  z-index: 1;
+}
+
+.pathway-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - (var(--scroll-progress) * 100));
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+.pathway-line-core {
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - (var(--scroll-progress) * 100));
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+@media (max-width: 768px) {
+  .page-bg__mesh--1 { width: 600px; height: 600px; }
+  .page-bg__mesh--2 { width: 500px; height: 500px; }
+  .page-bg__mesh--3 { width: 450px; height: 450px; }
+  .page-bg__grid { background-size: 40px 40px; }
+}
+
+@media (max-width: 480px) {
+  .page-bg__mesh--1 { width: 400px; height: 400px; }
+  .page-bg__mesh--2 { width: 350px; height: 350px; }
+  .page-bg__mesh--3 { width: 300px; height: 300px; }
+}

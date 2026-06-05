@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D47A1"/>
+      <stop offset="100%" stop-color="#00B4FF"/>
+    </linearGradient>
+  </defs>
+  <text x="4" y="40" font-family="Syne,sans-serif" font-weight="800" font-size="42" fill="url(#g)">Z</text>
+</svg>

@@ -1,0 +1,102 @@
+.contact-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #ffffff;
+  color: #07142b;
+  position: relative;
+}
+
+.contact-page section {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Section backgrounds */
+.contact-page section:nth-child(2) {
+  background: #a8bfec3a;
+  padding: 100px 8% 80px;
+}
+
+.contact-page section:nth-child(3) {
+  background: #f4f8ff;
+  padding: 70px 8% 70px;
+}
+
+.contact-page section:nth-child(4) {
+  background: #a8bfec3a;
+  padding: 70px 8% 70px;
+}
+
+.contact-page section:nth-child(5) {
+  background: #f4f8ff;
+  padding: 70px 8% 80px;
+}
+
+/* Section dividers */
+.contact-page section:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 132, 255, 0.08) 30%,
+    rgba(0, 132, 255, 0.08) 70%,
+    transparent
+  );
+  z-index: 3;
+}
+
+/* Section headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* .section-header h2 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #07142b;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+} */
+
+.section-header p {
+  font-size: 16px;
+  color: #5d6b82;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section-header::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #0d47a1, #00b4ff);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .contact-page section:nth-child(2) {
+    padding: 60px 5% 50px;
+  }
+  .contact-page section:nth-child(3),
+  .contact-page section:nth-child(4),
+  .contact-page section:nth-child(5) {
+    padding: 50px 5% 50px;
+  }
+  .section-header h2 {
+    font-size: 30px;
+  }
+  .section-header {
+    margin-bottom: 35px;
+  }
+}

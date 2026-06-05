@@ -1,0 +1,257 @@
+/* ============================================
+   MODAL ROOT - PORTAL TO BODY
+============================================ */
+.fm-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.fm-root > * {
+  pointer-events: auto;
+}
+
+/* ============================================
+   OVERLAY
+============================================ */
+.fm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 26, 61, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+}
+
+/* ============================================
+   CENTER CONTAINER
+============================================ */
+.fm-center {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ============================================
+   MODAL CARD - LARGE SIZE
+============================================ */
+.fm-card {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  max-height: 88vh;
+  background: #ffffff;
+  border: 1px solid rgba(11, 111, 232, 0.15);
+  border-radius: 28px;
+  box-shadow: 
+    0 40px 100px rgba(11, 111, 232, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+    0 0 80px rgba(32, 184, 255, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: auto;
+  padding: 48px 48px 40px;
+}
+
+/* Custom scrollbar */
+.fm-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fm-card::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.fm-card::-webkit-scrollbar-thumb {
+  background: rgba(11, 111, 232, 0.12);
+  border-radius: 3px;
+}
+
+/* ============================================
+   CLOSE BUTTON
+============================================ */
+.fm-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(11, 111, 232, 0.06);
+  border: 1px solid rgba(11, 111, 232, 0.12);
+  color: #0B6FE8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+/* ============================================
+   ICON
+============================================ */
+.fm-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: rgba(11, 111, 232, 0.06);
+  border: 1px solid rgba(11, 111, 232, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 36px;
+  color: #0B6FE8;
+}
+
+/* ============================================
+   TITLE
+============================================ */
+.fm-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #071A3D;
+  text-align: center;
+  margin: 0 0 28px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+/* ============================================
+   CONTENT
+============================================ */
+.fm-content {
+  padding: 0;
+}
+
+.fm-content h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #071A3D;
+  margin: 28px 0 12px;
+}
+
+.fm-content h3:first-child {
+  margin-top: 0;
+}
+
+.fm-content p {
+  font-size: 15px;
+  color: #64748B;
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.fm-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.fm-content ul li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #64748B;
+  line-height: 1.7;
+}
+
+.fm-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0B6FE8, #20B8FF);
+}
+
+.fm-content .highlight-box {
+  background: rgba(11, 111, 232, 0.04);
+  border: 1px solid rgba(11, 111, 232, 0.1);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin: 22px 0;
+}
+
+.fm-content .highlight-box p {
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.fm-content .highlight-box strong {
+  color: #0B6FE8;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+.fm-footer {
+  text-align: center;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(11, 111, 232, 0.08);
+}
+
+.fm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #0B6FE8, #0066cc);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(11, 111, 232, 0.25);
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 768px) {
+  .fm-card {
+    max-width: 95%;
+    max-height: 85vh;
+    border-radius: 24px;
+    padding: 36px 28px 32px;
+  }
+  
+  .fm-title { font-size: 26px; }
+  .fm-icon { width: 64px; height: 64px; font-size: 28px; }
+  .fm-close { top: 16px; right: 16px; width: 40px; height: 40px; }
+  .fm-content h3 { font-size: 17px; }
+  .fm-content p { font-size: 14px; }
+  .fm-content ul li { font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  .fm-card {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 20px;
+    padding: 30px 20px 28px;
+  }
+  
+  .fm-title { font-size: 22px; }
+  .fm-icon { width: 56px; height: 56px; font-size: 24px; margin-bottom: 16px; }
+  .fm-close { top: 12px; right: 12px; width: 36px; height: 36px; font-size: 14px; }
+  .fm-content h3 { font-size: 16px; }
+  .fm-content p { font-size: 13px; }
+  .fm-content ul li { font-size: 13px; }
+  .fm-footer { margin-top: 20px; padding-top: 16px; }
+}

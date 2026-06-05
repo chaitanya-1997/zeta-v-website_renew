@@ -1,0 +1,145 @@
+.ts {
+    background: var(--grad);
+    padding: 80px var(--section-px);
+    position: relative;
+    overflow: hidden;
+    animation: gradShift 8s ease-in-out infinite alternate;
+}
+
+@keyframes gradShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.ts__watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 20rem;
+    color: white;
+    opacity: 0.035;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -12px;
+    line-height: 1;
+}
+
+.ts__grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.ts__mask-left,
+.ts__mask-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ts__mask-left {
+    left: 0;
+    background: linear-gradient(to right, rgba(13, 71, 161, 0.25), transparent);
+}
+
+.ts__mask-right {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 180, 255, 0.25), transparent);
+}
+
+.ts__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.ts__block {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.ts__stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    transition: transform var(--t-base) var(--ease);
+}
+
+.ts__stat:hover {
+    transform: scale(1.05);
+}
+
+.ts__num {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 3.5rem;
+    color: white;
+    line-height: 1;
+}
+
+.ts__label {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.ts__divider {
+    width: 1px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .ts {
+        padding: 60px 20px;
+    }
+
+    .ts__inner {
+        flex-wrap: wrap;
+    }
+
+    .ts__block {
+        min-width: 45%;
+    }
+
+    .ts__divider {
+        display: none;
+    }
+
+    .ts__watermark {
+        font-size: 10rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ts__block {
+        min-width: 100%;
+    }
+}

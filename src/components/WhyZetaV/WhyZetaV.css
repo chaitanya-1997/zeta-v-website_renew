@@ -1,0 +1,143 @@
+.why {
+    background: var(--bg-secondary);
+    padding: var(--section-py) var(--section-px);
+    position: relative;
+    overflow: hidden;
+}
+
+.why__watermark {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-15deg);
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 18rem;
+    color: var(--blue-dark);
+    opacity: 0.035;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    letter-spacing: -10px;
+}
+
+.why__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why__head {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.why__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+}
+
+.why__block {
+    position: relative;
+    padding: 0 24px 40px 0;
+}
+
+.why__num {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 5.5rem;
+    line-height: 1;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.14;
+    display: block;
+    margin-bottom: -20px;
+    user-select: none;
+}
+
+.why__icon-wrap {
+    margin-bottom: 20px;
+}
+
+.why__icon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.8rem;
+    border-radius: var(--r-md);
+    transition: transform var(--t-base) var(--ease-spring);
+}
+
+.why__block:hover .why__icon {
+    transform: translateY(-4px);
+}
+
+.why__block-title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.why__block-body {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.why__link {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--cyan);
+    transition: opacity var(--t-fast) var(--ease);
+}
+
+.why__link:hover {
+    opacity: 0.75;
+}
+
+.why__underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--grad);
+    border-radius: 2px;
+    transition: width 1s var(--ease);
+}
+
+.why__block.visible .why__underline {
+    width: 80px;
+}
+
+.why__rule {
+    width: 100%;
+    height: 1px;
+    background: var(--grad);
+    opacity: 0.2;
+    margin-top: 0;
+}
+
+@media (max-width: 900px) {
+    .why__blocks {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .why__watermark {
+        font-size: 10rem;
+        left: -20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .why {
+        padding: 60px 20px;
+    }
+}
