@@ -1,6 +1,6 @@
 /node_modules
 /dist
-/.env
+/.envsh
 /coverage
 /.vscode
 .DS_Store

@@ -52,9 +52,16 @@
     font-family: var(--font-head);
     font-weight: 800;
     font-size: 1.25rem;
-    color: var(--text-primary);
+       color: var(--text-secondary);
     letter-spacing: 1px;
+       color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: var(--r-sm);
+    position: relative;
+    transition: color var(--t-base) var(--ease);
+    white-space: nowrap;
 }
+
 
 /* Nav Links */
 .navbar__links {
@@ -97,8 +104,20 @@
     background-clip: text;
 }
 
-.navbar__link:hover::after {
+.navbar__link:hover::after,
+.navbar__link--active::after {
     transform: scaleX(1);
+}
+
+.navbar__link--active {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar__mobile-link--active {
+    color: var(--cyan);
 }
 
 /* CTA */
@@ -186,6 +205,13 @@
 
 .navbar__mobile--open .navbar__mobile-link {
     animation: mobileLinkIn 0.4s var(--ease-spring) forwards;
+}
+
+
+.navbar__logo-mark {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
 }
 
 @keyframes mobileLinkIn {

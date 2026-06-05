@@ -1,0 +1,494 @@
+/* ============================================================
+   INTERACTIVE GLOBE STYLES
+   ============================================================ */
+
+.interactive-globe-container {
+  padding: 60px 32px;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+  min-height: 100vh;
+}
+
+.globe-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.globe-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 12px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #00D4FF 0%, #7C5CFF 60%, #FF4FB7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.globe-subtitle {
+  font-size: 1.1rem;
+  color: #475569;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Two Column Layout */
+.globe-two-col {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Left Column - Globe */
+.globe-col {
+  position: relative;
+}
+
+.globe-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background: radial-gradient(circle at center, #0B1120 0%, #020617 100%);
+}
+
+.globe-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: white;
+  z-index: 10;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+/* Right Column - Info Panel */
+.info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Office Info Card */
+.office-info-card {
+  background: white;
+  border-radius: 24px;
+  border-top: 4px solid;
+  padding: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.office-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.info-flag {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.info-title h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px;
+}
+
+.info-region {
+  font-size: 0.8rem;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Stats Row */
+.info-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Info Sections */
+.info-section {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.section-icon {
+  font-size: 1.2rem;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.section-content h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 6px;
+}
+
+.section-content p {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contact-phone, .contact-email {
+  margin-bottom: 4px;
+}
+
+.view-map-btn {
+  background: none;
+  border: none;
+  color: #3B82F6;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s;
+}
+
+.view-map-btn:hover {
+  gap: 10px;
+}
+
+/* Expand Button */
+.expand-btn {
+  width: 100%;
+  padding: 12px;
+  background: #F1F5F9;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 16px;
+}
+
+.expand-btn:hover {
+  background: #E2E8F0;
+}
+
+.expand-icon {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Expanded Info */
+.expanded-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.gallery-preview {
+  margin-top: 8px;
+}
+
+.preview-placeholder {
+  height: 80px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #475569;
+}
+
+/* Location Quick Links */
+.location-quick-links {
+  background: white;
+  border-radius: 24px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.location-quick-links h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+}
+
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.quick-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quick-link-btn:hover {
+  background: #F1F5F9;
+  border-color: var(--hover-color);
+  transform: translateX(4px);
+}
+
+.quick-link-btn.active {
+  background: linear-gradient(135deg, #00D4FF10 0%, #7C5CFF10 100%);
+  border-color: var(--hover-color);
+}
+
+.quick-link-flag {
+  font-size: 1.1rem;
+}
+
+/* Marker Styles */
+.office-marker {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  z-index: 100;
+}
+
+.marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.marker-label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  margin-bottom: 8px;
+}
+
+.marker-label.visible {
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .interactive-globe-container {
+    padding: 40px 24px;
+  }
+  
+  .globe-two-col {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .globe-two-col {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .globe-wrapper {
+    aspect-ratio: 1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .info-col {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .interactive-globe-container {
+    padding: 30px 16px;
+  }
+  
+  .office-info-card {
+    padding: 20px;
+  }
+  
+  .info-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .info-stats {
+    flex-wrap: wrap;
+  }
+  
+  .quick-links-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .globe-legend {
+    bottom: 12px;
+    right: 12px;
+    padding: 4px 12px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Add this to your existing CSS */
+
+/* Auto Rotate Button */
+.auto-rotate-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.auto-rotate-btn:hover {
+  background: rgba(0, 212, 255, 0.3);
+  border-color: #00D4FF;
+  transform: scale(1.05);
+}
+
+.auto-rotate-btn.active {
+  background: rgba(0, 212, 255, 0.3);
+  border-color: #00D4FF;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Globe Wrapper Position Relative for Controls */
+.globe-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background: radial-gradient(circle at center, #0B1120 0%, #020617 100%);
+}
+
+/* Marker Pulse Animation Fix */
+.marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  opacity: 0.4;
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
