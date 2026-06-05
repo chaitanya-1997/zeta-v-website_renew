@@ -37,5 +37,8 @@ export default function TeamStats() {
         </section>
     )
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322

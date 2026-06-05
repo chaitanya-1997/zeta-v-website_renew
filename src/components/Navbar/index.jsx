@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
@@ -13,11 +14,19 @@ const navLinks = [
     'Careers',
     'Contact'
 ]
+=======
+import './Navbar.css'
+
+const navLinks = ['About', 'Industries', 'Services', 'Journey', 'Careers', 'Contact']
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
+<<<<<<< HEAD
     const location = useLocation()
+=======
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 60)
@@ -29,6 +38,7 @@ export default function Navbar() {
         e.preventDefault()
         const id = link.toLowerCase()
         const el = document.getElementById(id)
+<<<<<<< HEAD
         if (el) {
             el.scrollIntoView({ behavior: 'smooth' })
         }
@@ -57,6 +67,16 @@ export default function Navbar() {
         <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
             <div className="navbar__inner">
                 {/* LOGO */}
+=======
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+        setMenuOpen(false)
+    }
+
+    return (
+        <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
+            <div className="navbar__inner">
+                {/* Logo */}
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322
                 <a href="/" className="navbar__logo">
                     <svg className="navbar__logo-mark" viewBox="0 0 48 48" fill="none">
                         <defs>
@@ -70,6 +90,7 @@ export default function Navbar() {
                     <span className="navbar__wordmark">ZETA-V</span>
                 </a>
 
+<<<<<<< HEAD
                 {/* DESKTOP NAV */}
                 <nav className="navbar__links">
                     {navLinks.map((link) => {
@@ -157,3 +178,54 @@ export default function Navbar() {
         </header>
     )
 }
+=======
+                {/* Desktop Nav */}
+                <nav className="navbar__links">
+                    {navLinks.map(link => (
+                        <a
+                            key={link}
+                            href={`#${link.toLowerCase()}`}
+                            className="navbar__link"
+                            onClick={e => handleLinkClick(e, link)}
+                        >
+                            {link}
+                        </a>
+                    ))}
+                </nav>
+
+                {/* CTA */}
+                <a href="#contact" className="navbar__cta btn-grad" onClick={e => handleLinkClick(e, 'Contact')}>
+                    Let's Talk
+                </a>
+
+                {/* Hamburger */}
+                <button
+                    className={`navbar__hamburger${menuOpen ? ' open' : ''}`}
+                    onClick={() => setMenuOpen(o => !o)}
+                    aria-label="Toggle menu"
+                >
+                    <span /><span /><span />
+                </button>
+            </div>
+
+            {/* Mobile Menu */}
+            <div className={`navbar__mobile${menuOpen ? ' navbar__mobile--open' : ''}`}>
+                {navLinks.map((link, i) => (
+                    <a
+                        key={link}
+                        href={`#${link.toLowerCase()}`}
+                        className="navbar__mobile-link"
+                        style={{ animationDelay: menuOpen ? `${i * 80}ms` : '0ms' }}
+                        onClick={e => handleLinkClick(e, link)}
+                    >
+                        {link}
+                    </a>
+                ))}
+                <a href="#contact" className="btn-grad navbar__mobile-cta" onClick={e => handleLinkClick(e, 'Contact')}>
+                    Let's Talk
+                </a>
+            </div>
+        </header>
+    )
+}
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322

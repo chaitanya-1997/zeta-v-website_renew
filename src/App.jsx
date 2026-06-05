@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import HomeCmp from './pages/HomeCmp'
@@ -19,3 +20,10 @@ export default function App() {
         </BrowserRouter>
     )
 }
+=======
+import HomeCmp from './pages/HomeCmp'
+
+export default function App() {
+    return <HomeCmp />
+}
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322

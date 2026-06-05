@@ -10,11 +10,16 @@
         "preview": "vite preview"
     },
     "dependencies": {
+<<<<<<< HEAD
         "framer-motion": "^12.40.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^5.6.0",
         "react-router-dom": "^7.15.1"
+=======
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322
     },
     "devDependencies": {
         "@types/react": "^18.2.43",
@@ -26,4 +31,8 @@
         "eslint-plugin-react-refresh": "^0.4.5",
         "vite": "^5.0.8"
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e60c9f9eb002ec8dddc0358163172988aa51e322
