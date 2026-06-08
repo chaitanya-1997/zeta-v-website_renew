@@ -1,19 +1,69 @@
 .deal-advisory {
-  padding: 120px 5%;
-  background: #ffffff;
+  padding: 50px 5%;
 }
 
 .deal-container {
   max-width: 1400px;
   margin: 0 auto;
-
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   gap: 80px;
   align-items: center;
 }
 
-/* LEFT */
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.deal-content {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 24px;
+}
+
+/* SVG BACKGROUND */
+
+.deal-bg {
+  position: absolute;
+  inset: 0;
+
+  background-image: var(--deal-bg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  opacity: 0.4;
+
+  animation: dealFloat 8s ease-in-out infinite alternate;
+
+  z-index: 0;
+}
+
+.deal-content > *:not(.deal-bg) {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes dealFloat {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+
+  100% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 20px;
+}
 
 .deal-content h2 {
   font-size: 3.5rem;
@@ -30,207 +80,339 @@
 .deal-content p {
   font-size: 1.05rem;
   line-height: 1.9;
-  color: #64748b;
-  margin-bottom: 40px;
+  color:  #323131;;
   max-width: 650px;
 }
 
-.deal-features {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
+/* =========================
+   ACCORDION
+========================= */
 
-.deal-feature {
+.deal-accordion {
   display: flex;
-  align-items: center;
-  gap: 15px;
-
-  padding: 18px;
-  border-radius: 18px;
-
-  background: #f8fbff;
-  border: 1px solid #e5eefc;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.feature-icon {
-  width: 50px;
-  height: 50px;
-
-  border-radius: 50%;
-  background: #eff6ff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #2563eb;
+.accordion-item {
+  border: 1px solid #d4d4d4;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.3s ease;
 }
 
-/* RIGHT */
-
-.deal-visual {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  margin: auto;
+.accordion-item:hover {
+  border-color: #2563eb;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
 }
 
-.deal-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: 170px;
-  height: 170px;
-
-  border-radius: 50%;
-
-  background: linear-gradient(
-    135deg,
-    #3097f3,
-    #2563eb
-  );
-
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  font-weight: 700;
-
-  z-index: 10;
-
-  box-shadow:
-    0 20px 50px rgba(37,99,235,.25);
+.accordion-item.active {
+  border-color: #2563eb;
+  background: #eef5ff;
 }
 
-.deal-line {
-  position: absolute;
+.accordion-item.active .icon-circle {
   background: #dbeafe;
+  border-color: #93c5fd;
 }
 
-.horizontal {
-  width: 360px;
-  height: 2px;
-
-  top: 50%;
-  left: 70px;
+.accordion-item.active .accordion-header h3 {
+  color: #1d4ed8;
 }
 
-.vertical {
-  width: 2px;
-  height: 360px;
-
-  left: 50%;
-  top: 70px;
-}
-
-.deal-node {
-  position: absolute;
-
-  width: 140px;
-  height: 140px;
-
-  border-radius: 50%;
-
-  background: white;
-
-  border: 2px solid #bfdbfe;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  font-size: 0.95rem;
+.accordion-item.active .accordion-number {
+  color: #2563eb;
   font-weight: 700;
-
-  color: #0f172a;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.06);
 }
 
-.top {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.accordion-header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
 }
 
-.right {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.accordion-number {
+  font-size: 1.4rem;
+  color: #323131;
+  min-width: 30px;
+  font-weight: 600;
 }
 
-.bottom {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.accordion-header h3 {
+  flex: 1;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
 }
 
-.left {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.arrow {
+  transition: transform 0.3s ease;
+  color: #6b7280;
 }
 
-/* Responsive */
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 0 26px 28px 85px;
+}
+
+.icon-circle {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  border-radius: 50%;
+  border: 1px solid #d6d6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  background: #ffffff;
+}
+
+.accordion-content p {
+  flex: 1;
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 5.5;
+  color: #4b5563;
+}
+
+
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 1024px) {
+
+  .deal-advisory {
+    padding: 80px 5%;
+  }
+
   .deal-container {
     grid-template-columns: 1fr;
+    gap: 60px;
   }
 
   .deal-content {
     text-align: center;
+    padding: 20px;
+  }
+
+  .deal-content h2 {
+    font-size: 2.8rem;
   }
 
   .deal-content p {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  /* Fix label visibility */
+
+  .section-label {
+    position: relative;
+    z-index: 5;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .deal-bg {
+    opacity: 0.18;
+  }
+
+  .accordion-header {
+    padding: 20px 22px;
+  }
+
+  .accordion-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .accordion-number {
+    font-size: 1.2rem;
+  }
+
+  .accordion-content {
+    padding: 0 22px 24px 72px;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .accordion-content p {
+    line-height: 1.8;
+    font-size: 0.98rem;
+  }
+
+  .icon-circle {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
   }
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 768px) {
 
+  .deal-advisory {
+    padding: 70px 20px;
+  }
+
+  .deal-container {
+    gap: 40px;
+  }
+
+  .deal-content {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 5;
+  }
+
   .deal-content h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 15px 0 18px;
   }
 
-  .deal-features {
-    grid-template-columns: 1fr;
+  .deal-content p {
+    font-size: 1rem;
+    line-height: 1.8;
   }
 
-  .deal-visual {
-    width: 340px;
-    height: 340px;
+  .deal-bg {
+    opacity: 0.12;
+    background-size: 90%;
   }
 
-  .deal-core {
-    width: 120px;
-    height: 120px;
+  .accordion-item {
+    border-radius: 14px;
   }
 
-  .deal-node {
-    width: 95px;
-    height: 95px;
-    font-size: 0.75rem;
+  .accordion-header {
+    padding: 18px 16px;
+    gap: 14px;
   }
 
-  .horizontal {
-    width: 240px;
-    left: 50px;
+  .accordion-number {
+    min-width: 30px;
+    font-size: 1rem;
   }
 
-  .vertical {
-    height: 240px;
-    top: 50px;
+  .accordion-header h3 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  /* KEEP ICON + TEXT IN SAME ROW */
+
+  .accordion-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    padding: 0 16px 18px 60px;
+  }
+
+  .icon-circle {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .icon-circle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .accordion-content p {
+    flex: 1;
+    margin: 0;
+
+    font-size: 0.92rem;
+    line-height: 1.7;
+
+    word-break: break-word;
   }
 }
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  .deal-advisory {
+    padding: 60px 16px;
+  }
+
+  .deal-content h2 {
+    font-size: 1.9rem;
+  }
+
+  .deal-content p {
+    font-size: 0.95rem;
+  }
+
+  .accordion-header {
+    padding: 16px 14px;
+  }
+
+  .accordion-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .accordion-number {
+    font-size: 0.95rem;
+  }
+
+  .accordion-content {
+    padding: 0 14px 16px 52px;
+    gap: 12px;
+  }
+
+  .icon-circle {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+
+  .icon-circle svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .accordion-content p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+}
+
+
+
+
+
+

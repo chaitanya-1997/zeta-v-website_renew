@@ -1,60 +1,86 @@
 import React from "react";
 import { motion } from "framer-motion";
-
 import {
+  BarChart3,
+  Map,
   TrendingUp,
-  LineChart,
-  Users,
-  Target,
-  ArrowRight,
+  Globe,
 } from "lucide-react";
 
 import "./MarketAdvisory.css";
 
+import market from "../../../assets/Advisory/market.svg";
+
+const advisoryPoints = [
+  {
+    number: "01",
+    icon: <BarChart3 size={22} />,
+    title: "Competitive Benchmarking",
+    description:
+      "Map your position against industry peers with rigorous quantitative and qualitative analysis across product, pricing, and positioning.",
+  },
+  {
+    number: "02",
+    icon: <Map size={22} />,
+    title: "Market Entry Strategy",
+    description:
+      "Custom entry blueprints tailored to regulatory landscapes, channel dynamics, and risk profiles in each target market.",
+  },
+  {
+    number: "03",
+    icon: <TrendingUp size={22} />,
+    title: "Scalable Growth Strategy",
+    description:
+      "Structured operating models designed to scale revenue and headcount without proportional drag on efficiency or culture.",
+  },
+  {
+    number: "04",
+    icon: <Globe size={22} />,
+    title: "Global Reach",
+    description:
+      "Active advisory network spanning multiple regions, connecting you with partners, capital networks, and enterprise buyers.",
+  },
+];
+
 const MarketAdvisory = () => {
   return (
     <section className="market-advisory">
-
       <div className="market-container">
 
         {/* LEFT SIDE */}
 
-        <motion.div
-          className="market-diagram"
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div className="market-list">
+          {advisoryPoints.map((item, index) => (
+            <motion.div
+              key={index}
+              className="market-item"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+              }}
+              viewport={{ once: true }}
+              whileHover={{ x: 10 }}
+            >
+              <div className="market-number">
+                {item.number}
+              </div>
 
-          <div className="diagram-line vertical"></div>
-          <div className="diagram-line horizontal"></div>
+              <div className="market-details">
+                <div className="market-title-row">
+                  <span className="market-icon">
+                    {item.icon}
+                  </span>
 
-          <div className="market-center">
-            <span>Market Advisory</span>
-          </div>
+                  <h3>{item.title}</h3>
+                </div>
 
-          <div className="market-node top">
-            <TrendingUp size={28} />
-            <h4>Competitive Benchmarking</h4>
-          </div>
-
-          <div className="market-node right">
-            <Users size={28} />
-            <h4>Scalable Growth Strategy </h4>
-          </div>
-
-          <div className="market-node bottom">
-            <Target size={28} />
-            <h4>Market Entry Strategy </h4>
-          </div>
-
-          <div className="market-node left">
-            <LineChart size={28} />
-            <h4>Global Reach </h4>
-          </div>
-
-        </motion.div>
+                <p>{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
         {/* RIGHT SIDE */}
 
@@ -65,45 +91,38 @@ const MarketAdvisory = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          {/* SVG Background */}
 
-          <span className="section-label">
-            MARKET ADVISORY
-          </span>
+          <div
+            className="market-content-bg"
+            style={{
+              backgroundImage: `url(${market})`,
+            }}
+          ></div>
 
-          <h2 className="section-title">
-            Turning Market Intelligence Into
-            <span className="grad-text"> Strategic Advantage</span>
-          </h2>
+          <div className="market-content-inner">
+            <span className="section-label">
+              MARKET ADVISORY
+            </span>
 
-          <p className="section-subtitle">
-            At Zeta-V, our Market Advisory services combine in-depth market research, actionable strategies, 
-            and team-building expertise to empower your business to thrive in both established and emerging markets.
-          </p>
+            <h2 className="section-title">
+              Turning Market Intelligence Into
+              <span className="grad-text">
+                {" "}Strategic Advantage
+              </span>
+            </h2>
 
-          <div className="market-points">
-
-            <div className="point">
-              Competitive Benchmarking
-            </div>
-
-            <div className="point">
-              Scalable Growth Strategy
-            </div>
-
-            <div className="point">
-              Market Entry Strategy
-            </div>
-
-            <div className="point">
-              Global Reach
-            </div>
-
+            <p className="section-subtitle">
+              At Zeta-V, our Market Advisory services combine
+              in-depth market research, actionable strategies,
+              and team-building expertise to empower your
+              business to thrive in both established and
+              emerging markets.
+            </p>
           </div>
-
         </motion.div>
 
       </div>
-
     </section>
   );
 };

@@ -27,14 +27,14 @@ export default function CTA() {
 
           <a
             href="/contact"
-            className="cta-btn primary-btn"
+            className="btn-grad"
           >
             Talk to Advisor
           </a>
 
           <a
             href="/services"
-            className="cta-btn secondary-btn"
+            className="btn-outline"
           >
             View Advisory services
           </a>

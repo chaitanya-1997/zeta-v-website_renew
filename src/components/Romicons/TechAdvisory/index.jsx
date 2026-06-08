@@ -1,19 +1,38 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Cog,
-  Workflow,
-  Cpu,
-  Rocket,
-} from "lucide-react";
-
 import "./TechAdvisory.css";
 
-const advisoryPoints = [
-  "Process Improvement",
-  "Technology Optimization",
-  "End-to-End Support",
-  "Agile & Scalable Solutions",
+import techBg from "../../../assets/Advisory/tech.svg";
+
+const timelineItems = [
+  {
+    number: "01",
+    title: "Process Improvement",
+    description:
+      "Enhancing operational workflows for better efficiency.",
+    side: "right",
+  },
+  {
+    number: "02",
+    title: "Technology Optimization",
+    description:
+      "Aligning tech resources with business goals.",
+    side: "left",
+  },
+  {
+    number: "03",
+    title: "End-to-End Support",
+    description:
+      "Providing comprehensive assistance throughout.",
+    side: "right",
+  },
+  {
+    number: "04",
+    title: "Agile & Scalable Solutions",
+    description:
+      "Developing flexible and growth-oriented systems.",
+    side: "left",
+  },
 ];
 
 const TechAdvisory = () => {
@@ -21,72 +40,78 @@ const TechAdvisory = () => {
     <section className="tech-advisory-section">
       <div className="tech-advisory-container">
 
-        {/* LEFT SIDE DIAGRAM */}
+        {/* LEFT SIDE TIMELINE */}
 
         <motion.div
-          className="tech-diagram"
+          className="timeline-wrapper"
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          <div className="timeline-line"></div>
 
-          <div className="diagram-core">
-            <span>Tech Advisory</span>
-          </div>
+          {timelineItems.map((item, index) => (
+            <motion.div
+              key={index}
+              className={`timeline-item ${item.side}`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+              }}
+              viewport={{ once: true }}
+            >
+              <div className="timeline-dot"></div>
 
-          <div className="diagram-line line-top"></div>
-          <div className="diagram-line line-right"></div>
-          <div className="diagram-line line-bottom"></div>
-          <div className="diagram-line line-left"></div>
+              <motion.div
+                className="timeline-content"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.3 }}
+              >
+                <span className="timeline-number">
+                  {item.number}
+                </span>
 
-          <div className="diagram-node node-top">
-            <Cog size={32} />
-            <span>Process Improvement</span>
-          </div>
+                <h3>{item.title}</h3>
 
-          <div className="diagram-node node-right">
-            <Cpu size={32} />
-            <span>Technology Optimization</span>
-          </div>
-
-          <div className="diagram-node node-bottom">
-            <Rocket size={32} />
-            <span>Agile Solutions</span>
-          </div>
-
-          <div className="diagram-node node-left">
-            <Workflow size={32} />
-            <span>End-to-End Support</span>
-          </div>
-
+                <p>{item.description}</p>
+              </motion.div>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* RIGHT SIDE CONTENT */}
 
         <motion.div
           className="tech-content"
+          style={{
+            "--tech-bg": `url(${techBg})`,
+          }}
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-
           <span className="section-label">
             TECH ADVISORY
           </span>
 
-          <h2 className="section-title">
+          <h2>
             Technology Strategies That
-            <span className="grad-text"> Accelerate Transformation</span>
+            <span className="grad-text">
+              {" "}Accelerate Transformation
+            </span>
           </h2>
 
-          <p className="section-subtitle">
-            Our Tech Advisory services guide you through the journey of transformation- driving incremental 
-            innovation and enabling process digitalization to improve efficiency, enhance agility, 
-            and unlock new opportunities.
+          <p>
+            Our Tech Advisory services guide you through the
+            journey of transformation—driving incremental
+            innovation and enabling process digitalization
+            to improve efficiency, enhance agility, and
+            unlock new opportunities.
           </p>
-
         </motion.div>
 
       </div>

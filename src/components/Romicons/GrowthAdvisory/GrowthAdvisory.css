@@ -1,17 +1,36 @@
 .growth-advisory {
-  padding: 120px 5%;
-  background: #ffffff;
+  padding: 50px 5%;
   overflow: hidden;
+  position: relative;
+}
+
+.growth-bg-animation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 600px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.growth-bg-animation img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .growth-container {
   max-width: 1400px;
   margin: auto;
-
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
   gap: 80px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 /* =========================
@@ -20,222 +39,134 @@
 
 .section-label {
   display: inline-block;
-
   font-size: 0.9rem;
   font-weight: 700;
-
   letter-spacing: 2px;
   text-transform: uppercase;
-
   color: #2563eb;
-
   margin-bottom: 20px;
+}
+
+.growth-content {
+  position: relative;
+  z-index: 2;
 }
 
 .growth-content h2 {
   font-size: 3.5rem;
   font-weight: 800;
-
-  color: #0f172a;
   line-height: 1.15;
-
+  color: #0f172a;
   margin-bottom: 24px;
 }
 
-.growth-content h2 span {
+.grad-text {
   color: #2563eb;
 }
 
 .growth-content p {
   font-size: 1.08rem;
   line-height: 1.9;
-  color: #64748b;
-
+  color: #313337;
   margin-bottom: 40px;
 }
 
-.growth-grid {
+/* =========================
+   RIGHT CARD GRID
+========================= */
+
+.card-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.growth-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
 }
 
 .growth-card {
-  padding: 22px;
+  min-height: 150px;
+  padding: 20px;
+  border: 2px solid #d9d9d9;
+  background: #ffffff;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-  border-radius: 20px;
-  background: #f8fbff;
+.growth-card.active {
+  background: #dbe7f7;
+}
 
-  border: 1px solid #e2e8f0;
+.card-number {
+  font-size: 3rem;
+  font-weight: 750;
+  line-height: 1;
+  color: #3b3b3b;
+}
 
-  transition: 0.35s ease;
+.growth-card.active .card-number {
+  color: #2c62b6;
+}
+
+.card-icon {
+  color: #2c62b6;
+  transition: all 0.4s ease;
+}
+
+.growth-card h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.growth-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+/* Hover Effects */
+
+.growth-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #60a5fa
+  );
+  transition: 0.5s ease;
+}
+
+.growth-card:hover::before {
+  width: 100%;
 }
 
 .growth-card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 20px 40px rgba(37,99,235,0.12);
+  background: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.18);
 }
 
-.growth-icon {
-  width: 60px;
-  height: 60px;
-
-  border-radius: 50%;
-
-  background: #eff6ff;
-  color: #2563eb;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 16px;
+.growth-card:hover .card-number,
+.growth-card:hover h3,
+.growth-card:hover p,
+.growth-card:hover .card-icon {
+  color: #ffffff;
 }
 
-.growth-card h4 {
-  font-size: 1rem;
-  color: #0f172a;
-  font-weight: 700;
-}
-
-/* =========================
-   RIGHT DIAGRAM
-========================= */
-
-.growth-visual {
-  position: relative;
-
-  width: 520px;
-  height: 520px;
-
-  margin: auto;
-}
-
-.growth-core {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: 160px;
-  height: 160px;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #3097f3,
-      #2563eb
-    );
-
-  color: white;
-
-  font-size: 1.5rem;
-  font-weight: 800;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 5;
-
-  box-shadow:
-    0 25px 60px rgba(37,99,235,0.25);
-}
-
-.growth-ring {
-  position: absolute;
-
-  border-radius: 50%;
-  border: 1px dashed #bfdbfe;
-
-  animation: rotateRing 25s linear infinite;
-}
-
-.ring-1 {
-  width: 320px;
-  height: 320px;
-
-  top: 100px;
-  left: 100px;
-}
-
-.ring-2 {
-  width: 470px;
-  height: 470px;
-
-  top: 25px;
-  left: 25px;
-
-  animation-duration: 40s;
-}
-
-@keyframes rotateRing {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.node {
-  position: absolute;
-
-  width: 140px;
-  height: 140px;
-
-  border-radius: 24px;
-
-  background: white;
-
-  border: 1px solid #e2e8f0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-
-  text-align: center;
-
-  box-shadow:
-    0 12px 30px rgba(15,23,42,0.08);
-
-  color: #2563eb;
-}
-
-.node span {
-  font-size: 0.9rem;
-  font-weight: 700;
-
-  color: #0f172a;
-}
-
-.node-1 {
-  top: 0;
-  left: 190px;
-}
-
-.node-2 {
-  right: 0;
-  top: 190px;
-}
-
-.node-3 {
-  bottom: 0;
-  left: 190px;
-}
-
-.node-4 {
-  left: 0;
-  top: 190px;
+.growth-card:hover .card-icon {
+  transform: rotate(-8deg) scale(1.15);
 }
 
 /* =========================
@@ -244,88 +175,192 @@
 
 @media (max-width: 1024px) {
 
+  .growth-advisory {
+    padding: 80px 5%;
+  }
+
   .growth-container {
     grid-template-columns: 1fr;
-    gap: 70px;
+    gap: 50px;
+  }
+
+  .growth-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .growth-content p {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* SVG remains visible behind content */
+
+  .growth-bg-animation {
+    width: 420px;
+    height: 420px;
+
+    left: 50%;
+    top: 180px;
+
+    transform: translateX(-50%);
+    opacity: 0.18;
+  }
+
+  /* KEEP GRID ON TABLETS */
+
+  .growth-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .growth-card {
+    min-height: 220px;
+    padding: 24px;
+  }
+
+  .growth-content h2 {
+    font-size: 3rem;
+  }
+}
+
+
+/* =========================
+   LARGE MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .growth-advisory {
+    padding: 70px 20px;
+  }
+
+  .growth-container {
+    gap: 45px;
   }
 
   .growth-content {
     text-align: center;
   }
 
+  .growth-content h2 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+  }
+
   .growth-content p {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* SVG visible behind left content */
+
+  .growth-bg-animation {
+    width: 320px;
+    height: 320px;
+
+    left: 50%;
+    top: 150px;
+
+    transform: translateX(-50%);
+    opacity: 0.15;
+  }
+
+  /* KEEP 2x2 GRID */
+
+  .growth-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .growth-card {
+    min-height: 210px;
+    padding: 18px;
+  }
+
+  .card-number {
+    font-size: 2.3rem;
+  }
+
+  .card-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .growth-card h3 {
+    font-size: 1.15rem;
+    line-height: 1.4;
+  }
+
+  .growth-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 
+
 /* =========================
-   MOBILE
+   SMALL MOBILE
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
 
   .growth-advisory {
-    padding: 90px 20px;
+    padding: 60px 16px;
   }
 
   .growth-content h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
-  .growth-grid {
-    grid-template-columns: 1fr;
+  .growth-content p {
+    font-size: 0.95rem;
   }
 
-  .growth-visual {
-    width: 320px;
-    height: 320px;
+  /* SVG still visible */
+
+  .growth-bg-animation {
+    width: 260px;
+    height: 260px;
+
+    left: 50%;
+    top: 140px;
+
+    transform: translateX(-50%);
+    opacity: 0.12;
   }
 
-  .growth-core {
-    width: 110px;
-    height: 110px;
+  /* EXACT GRID maintained */
+
+  .growth-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .growth-card {
+    min-height: 190px;
+    padding: 14px;
+  }
+
+  .card-number {
+    font-size: 1.9rem;
+  }
+
+  .card-icon {
+    margin-bottom: 12px;
+  }
+
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .growth-card h3 {
     font-size: 1rem;
+    margin-bottom: 8px;
   }
 
-  .ring-1 {
-    width: 200px;
-    height: 200px;
-    top: 60px;
-    left: 60px;
-  }
-
-  .ring-2 {
-    width: 300px;
-    height: 300px;
-    top: 10px;
-    left: 10px;
-  }
-
-  .node {
-    width: 90px;
-    height: 90px;
-    padding: 10px;
-  }
-
-  .node span {
-    font-size: 0.65rem;
-  }
-
-  .node-1 {
-    left: 115px;
-  }
-
-  .node-2 {
-    top: 115px;
-  }
-
-  .node-3 {
-    left: 115px;
-  }
-
-  .node-4 {
-    top: 115px;
+  .growth-card p {
+    font-size: 0.82rem;
+    line-height: 1.5;
   }
 }

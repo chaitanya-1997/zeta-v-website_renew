@@ -44,41 +44,6 @@
   gap: 14px;
 }
 
-.cta-btn {
-  text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-/* Primary Button */
-
-.primary-btn {
-  background: #111111;
-  color: #ffffff;
-}
-
-.primary-btn:hover {
-  transform: translateY(-3px);
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* Secondary Button */
-
-.secondary-btn {
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #374151;
-}
-
-.secondary-btn:hover {
-  border-color: #2563eb;
-  color: #2563eb;
-  transform: translateY(-3px);
-}
-
 /* =========================
    Tablet
 ========================= */
@@ -111,13 +76,12 @@
 
   .cta-buttons {
     flex-direction: column;
-
     width: 100%;
   }
 
-  .cta-btn {
+  .cta-buttons .btn-grad,
+  .cta-buttons .btn-outline {
     width: 100%;
-
     max-width: 280px;
   }
 }
