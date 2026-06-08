@@ -1,24 +1,23 @@
 // HomeCmp.jsx
 import Navbar from '../components/Navbar'
-import HeroSection from '../components/Hero'
-import ClientLogosStrip from '../components/ClientLogos'
-import ChallengesSection from '../components/Challenges'
-import WhyZetaV from '../components/WhyZetaV'
-import IndustriesSection from '../components/Industries'
-import ServicesSection from '../components/Services'
-import HowWeWork from '../components/HowWeWork'
-import SuccessStories from '../components/SuccessStories'
-import TeamStats from '../components/TeamStats'
-import AwardsPartners from '../components/AwardsPartners'
-import ContactSection from '../components/Contact'
+import HeroSection from '../components/HomeAll/Hero'
+import ClientLogosStrip from '../components/HomeAll/ClientLogos'
+import ChallengesSection from '../components/HomeAll/Challenges'
+import WhyZetaV from '../components/HomeAll/WhyZetaV'
+import IndustriesSection from '../components/HomeAll/Industries'
+import ServicesSection from '../components/HomeAll/Services'
+import HowWeWork from '../components/HomeAll/HowWeWork'
+import SuccessStories from '../components/HomeAll/SuccessStories'
+import TeamStats from '../components/HomeAll/TeamStats'
+import AwardsPartners from '../components/HomeAll/AwardsPartners'
+import ContactSection from '../components/HomeAll/Contact'
 import FooterSection from '../components/Footer'
-import ScrollNav from '../components/Scroller'
 
 export default function HomeCmp() {
   return (
     <>
       <Navbar />
-      <ScrollNav />
+
       <main>
         <section id="about"><HeroSection /></section>
         <section id="clients"><ClientLogosStrip /></section>

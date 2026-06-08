@@ -1,0 +1,174 @@
+.culture-section {
+  width: 100%;
+  padding: 120px 5%;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.culture-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* =========================
+   Left Content
+========================= */
+
+.culture-content h2 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.culture-content h2 span {
+  color: #618be8;
+}
+
+
+.culture-description {
+  font-size: 1rem;
+  line-height: 2;
+  color: #475569;
+}
+
+/* =========================
+   Right Side Stats
+========================= */
+
+.culture-stats {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-left: 1px solid #e2e8f0;
+}
+
+.culture-stat {
+  padding: 22px 0 22px 30px;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  transition: all 0.35s ease;
+}
+
+.culture-stat:last-child {
+  border-bottom: none;
+}
+
+.culture-stat-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 8px;
+}
+
+.culture-icon {
+  font-size: 1.25rem;
+  color: #2563eb;
+}
+
+.culture-stat h3 {
+  font-size: 2.2rem;
+  font-weight: 800;
+
+  color: #2563eb;
+
+  margin: 0;
+
+  transition: 0.35s ease;
+}
+
+.culture-stat p {
+  font-size: 0.95rem;
+
+  color: #475569;
+
+  line-height: 1.6;
+
+  margin: 0;
+}
+
+.culture-stat:hover {
+  padding-left: 40px;
+}
+
+.culture-stat:hover h3 {
+  transform: translateX(4px);
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 1024px) {
+
+  .culture-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .culture-content {
+    text-align: center;
+  }
+
+  .culture-content h2 {
+    font-size: 3rem;
+  }
+
+  .culture-stats {
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+  .culture-section {
+    padding: 80px 20px;
+  }
+
+  .culture-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .culture-subtitle {
+    font-size: 1rem;
+  }
+
+  .culture-description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .culture-stat {
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .culture-stat-top {
+    justify-content: center;
+  }
+
+  .culture-stat:hover {
+    padding-left: 0;
+  }
+
+  .culture-stat h3 {
+    font-size: 2rem;
+  }
+
+  .culture-stat p {
+    font-size: 0.9rem;
+  }
+
+  .culture-icon {
+    font-size: 1.1rem;
+  }
+}

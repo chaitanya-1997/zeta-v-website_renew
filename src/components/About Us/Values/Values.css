@@ -1,0 +1,199 @@
+.values-section {
+  padding: 100px 20px;
+  background: #ffffff;
+}
+
+.values-container {
+  position: relative;
+  width: 1000px;
+  height: 700px;
+  margin: auto;
+}
+
+/* =========================
+   CENTER CIRCLE
+========================= */
+
+.core-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  z-index: 10;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.core-circle span {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   CONNECTOR LINES
+========================= */
+
+.horizontal-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 720px;
+  height: 4px;
+  background: #d1d5db;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.vertical-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 350px;
+  background: #d1d5db;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* =========================
+   VALUE NODES
+========================= */
+
+.value-node {
+  position: absolute;
+  text-align: center;
+}
+
+.icon-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  color: #2563eb;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+  z-index: 5;
+  position: relative;
+}
+
+.value-node h4 {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.value-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+/* =========================
+   EQUAL DISTANCE POSITIONS
+========================= */
+
+.top-node {
+  top : 1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-node {
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left-node {
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right-node {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.values-heading {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.values-heading h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 12px;
+}
+
+
+
+.grad-text {
+  background: linear-gradient(
+    90deg,
+    #3097f3,
+    #2563eb
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1024px) {
+  .values-container {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .values-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .horizontal-line,
+  .vertical-line,
+  .core-circle,
+  .value-node {
+    position: static;
+    transform: none;
+  }
+
+  .horizontal-line,
+  .vertical-line {
+    display: none;
+  }
+
+  .core-circle {
+    margin: auto;
+  }
+
+  .value-node {
+    width: 100%;
+  }
+}

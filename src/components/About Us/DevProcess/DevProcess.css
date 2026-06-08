@@ -1,0 +1,476 @@
+.process-section {
+  width: 100%;
+
+  padding: 110px 5%;
+
+  background: white;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* =========================
+   Animated Background
+========================= */
+
+.process-section::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(48,151,243,0.12), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(37,99,235,0.10), transparent 30%),
+    radial-gradient(circle at 70% 80%, rgba(0,198,255,0.10), transparent 30%);
+
+  background-size: 180% 180%;
+
+  animation: processBg 10s ease infinite;
+
+  z-index: 0;
+}
+
+@keyframes processBg {
+
+  0% {
+    background-position:
+      0% 50%,
+      100% 50%,
+      50% 100%;
+  }
+
+  50% {
+    background-position:
+      100% 50%,
+      0% 50%,
+      50% 0%;
+  }
+
+  100% {
+    background-position:
+      0% 50%,
+      100% 50%,
+      50% 100%;
+  }
+}
+
+/* =========================
+   Heading
+========================= */
+
+.process-heading {
+  text-align: center;
+
+  margin-bottom: 90px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.process-heading h2 {
+  font-size: 4rem;
+  font-weight: 800;
+
+  color: #0f172a;
+
+  margin-bottom: 18px;
+
+  line-height: 1.2;
+}
+
+
+
+/* =========================
+   Timeline
+========================= */
+
+.process-timeline {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 24px;
+
+  z-index: 2;
+}
+
+/* =========================
+   Progress Line
+========================= */
+
+.timeline-progress {
+  position: absolute;
+
+  top: 40px;
+  left: 0;
+
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #3097f3,
+    #2563eb,
+    #00c6ff
+  );
+
+  border-radius: 20px;
+
+  z-index: 1;
+}
+
+/* =========================
+   Process Card
+========================= */
+
+.process-card {
+  position: relative;
+
+  width: 100%;
+
+  text-align: center;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   Connector Dot
+========================= */
+
+.process-connector {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 4px solid #2563eb;
+
+  margin: 32px auto 24px;
+
+  box-shadow:
+    0 0 15px rgba(37,99,235,0.25);
+
+  flex-shrink: 0;
+}
+
+/* =========================
+   Icon
+========================= */
+
+.process-icon {
+  width: 82px;
+  height: 82px;
+
+  border-radius: 24px;
+
+  background: linear-gradient(
+    135deg,
+    #3097f3,
+    #2563eb
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  margin: auto;
+
+  box-shadow:
+    0 14px 30px rgba(37,99,235,0.18);
+}
+
+/* =========================
+   Content
+========================= */
+
+.process-card h3 {
+  margin-top: 24px;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  color: #0f172a;
+
+  line-height: 1.5;
+}
+
+.process-card p {
+  margin-top: 14px;
+
+  font-size: 0.88rem;
+  line-height: 1.8;
+
+  color: #475569;
+
+  max-width: 220px;
+}
+
+/* =========================
+   Large Tablets
+========================= */
+
+@media screen and (max-width: 1200px) {
+
+  .process-section {
+    padding: 100px 4%;
+  }
+
+  .process-heading h2 {
+    font-size: 3.3rem;
+  }
+
+  .process-timeline {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 45px;
+  }
+
+  .process-card {
+    width: 30%;
+    min-width: 240px;
+  }
+
+  .timeline-progress {
+    top: 42px;
+
+    width: 100% !important;
+  }
+
+  .process-card p {
+    font-size: 0.88rem;
+  }
+}
+
+/* =========================
+   Tablet Devices
+========================= */
+
+@media screen and (max-width: 992px) {
+
+  .process-section {
+    padding: 90px 30px;
+  }
+
+  .process-heading {
+    margin-bottom: 70px;
+  }
+
+  .process-heading h2 {
+    font-size: 3rem;
+  }
+
+  .process-heading p {
+    font-size: 1rem;
+  }
+
+  .process-timeline {
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    flex-wrap: nowrap;
+
+    justify-content: flex-start;
+
+    gap: 35px;
+
+    padding-bottom: 20px;
+
+    scroll-behavior: smooth;
+  }
+
+  .process-timeline::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .process-timeline::-webkit-scrollbar-thumb {
+    background: rgba(37,99,235,0.35);
+
+    border-radius: 20px;
+  }
+
+  .process-card {
+    min-width: 240px;
+
+    flex-shrink: 0;
+  }
+
+  .timeline-progress {
+    display: block;
+
+    width: 100% !important;
+
+    top: 42px;
+  }
+}
+
+/* =========================
+   Mobile Devices
+========================= */
+
+@media screen and (max-width: 768px) {
+
+  .process-section {
+    padding: 80px 20px;
+  }
+
+  .process-heading {
+    margin-bottom: 55px;
+  }
+
+  .process-heading h2 {
+    font-size: 2.5rem;
+
+    line-height: 1.2;
+  }
+
+  .process-heading p {
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+  }
+
+  /* Horizontal Scroll Timeline */
+
+  .process-timeline {
+
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: nowrap;
+
+    justify-content: flex-start;
+
+    align-items: flex-start;
+
+    gap: 28px;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding-bottom: 20px;
+
+    scroll-snap-type: x mandatory;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Scrollbar */
+
+  .process-timeline::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .process-timeline::-webkit-scrollbar-thumb {
+    background: rgba(37,99,235,0.35);
+
+    border-radius: 20px;
+  }
+
+  /* KEEP LINE VISIBLE */
+
+  .timeline-progress {
+
+    display: block;
+
+    position: absolute;
+
+    top: 42px;
+    left: 0;
+
+    height: 4px;
+
+    width: 1600px !important;
+
+    z-index: 1;
+  }
+
+  .process-card {
+
+    min-width: 240px;
+
+    max-width: 240px;
+
+    flex-shrink: 0;
+
+    scroll-snap-align: center;
+  }
+
+  .process-icon {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 22px;
+  }
+
+  .process-card h3 {
+    font-size: 1rem;
+  }
+
+  .process-card p {
+    font-size: 0.86rem;
+
+    line-height: 1.7;
+  }
+
+  .process-connector {
+    margin: 30px auto 22px;
+  }
+}
+
+/* =========================
+   Small Mobile Devices
+========================= */
+
+@media screen and (max-width: 480px) {
+
+  .process-section {
+    padding: 70px 16px;
+  }
+
+  .process-heading h2 {
+    font-size: 2.1rem;
+  }
+
+  .process-heading p {
+    font-size: 0.9rem;
+  }
+
+  .process-card {
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+  .process-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .process-card h3 {
+    font-size: 0.96rem;
+  }
+
+  .process-card p {
+    font-size: 0.82rem;
+  }
+
+  .timeline-progress {
+    top: 38px;
+  }
+}

@@ -1,20 +1,30 @@
-// Navbar.jsx
 import { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import './Navbar.css'
 import logoImage from './ZETAV-LOGO-zv.png'
 
 const navLinks = [
-  { name: 'About', id: 'about' },
-  { name: 'Industries', id: 'industries' },
-  { name: 'Services', id: 'services' },
-  { name: 'Journey', id: 'how-we-work' },
-  { name: 'Careers', id: 'careers' },
-  { name: 'Contact', id: 'contact' }
+  { name: 'Industries', type: 'route', path: '/industries' },
+  { name: 'Services', type: 'route', path: '/services' },
+  { name: 'Expertise', type: 'route', path: '/expertise' },
+  { name: 'Accelerator', type: 'route', path: '/accelerator' },
+  { name: 'Careers', type: 'route', path: '/careers' },
+  { name: 'Contact', type: 'route', path: '/contact' }
+]
+
+// Dropdown items for Discover Zeta-V
+const discoverItems = [
+  { name: 'About', path: '/about' },
+  { name: 'Gallery', path: '/gallery' }
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -22,46 +32,108 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close menu when clicking outside or pressing escape
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && menuOpen) {
         setMenuOpen(false)
       }
+      if (e.key === 'Escape' && dropdownOpen) {
+        setDropdownOpen(false)
+      }
+      if (e.key === 'Escape' && mobileDropdownOpen) {
+        setMobileDropdownOpen(false)
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [menuOpen])
+  }, [menuOpen, dropdownOpen, mobileDropdownOpen])
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 70
-      const elementPosition = element.offsetTop - offset
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      })
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.navbar__dropdown') && dropdownOpen) {
+        setDropdownOpen(false)
+      }
     }
-  }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [dropdownOpen])
 
-  const handleLinkClick = (e, sectionId) => {
-    e.preventDefault()
-    scrollToSection(sectionId)
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setDropdownOpen(false)
+    setMobileDropdownOpen(false)
+  }, [location.pathname])
+
+  const handleNavigation = (path) => {
+    navigate(path)
     setMenuOpen(false)
+    setDropdownOpen(false)
+    setMobileDropdownOpen(false)
   }
 
   const handleLogoClick = (e) => {
     e.preventDefault()
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (location.pathname !== '/') {
+      navigate('/')
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
     setMenuOpen(false)
+    setDropdownOpen(false)
+    setMobileDropdownOpen(false)
+  }
+
+  // Handle Discover Zeta-V click - navigates to Home
+  const handleDiscoverClick = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (location.pathname !== '/') {
+      navigate('/')
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+    setMenuOpen(false)
+    setDropdownOpen(false)
+    setMobileDropdownOpen(false)
+  }
+
+  // Toggle desktop dropdown on click (not hover)
+  const toggleDropdown = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDropdownOpen(!dropdownOpen)
+  }
+
+  // Toggle mobile dropdown on click
+  const toggleMobileDropdown = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setMobileDropdownOpen(!mobileDropdownOpen)
   }
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
+    setDropdownOpen(false)
+    setMobileDropdownOpen(false)
   }
 
-  // Prevent body scroll when menu is open
+  // Check if a link is active
+  const isLinkActive = (path) => {
+    return location.pathname === path
+  }
+
+  // Check if Home is active (for Discover Zeta-V main button)
+  const isHomeActive = () => {
+    return location.pathname === '/'
+  }
+
+  // Check if any dropdown item is active
+  const isDropdownActive = () => {
+    return ['/about', '/gallery'].includes(location.pathname)
+  }
+
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
@@ -77,42 +149,66 @@ export default function Navbar() {
     <>
       <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
         <div className="navbar__inner">
-          {/* Logo */}
-          <a href="/" className="navbar__logo" onClick={handleLogoClick}>
+          <Link to="/" className="navbar__logo" onClick={handleLogoClick}>
             <img 
               src={logoImage} 
               alt="Zeta-V Logo" 
               className="navbar__logo-mark"
             />
             <div className="navbar__wordmark-wrapper">
-              <span className="navbar__wordmark-line">Zeta-v Solutions</span>
-              <span className="navbar__wordmark-line navbar__wordmark-line-small">Technologies</span>
+              <span className="navbar__wordmark-line">Zeta-V Technology Solutions</span>
             </div>
-          </a>
+          </Link>
 
-          {/* Desktop Nav */}
           <nav className="navbar__links">
-            {navLinks.map(link => (
-              <a
+            {/* Discover Zeta-V - Click to open dropdown (not hover) */}
+            <div 
+              className={`navbar__dropdown ${dropdownOpen ? 'open' : ''} ${isHomeActive() || isDropdownActive() ? 'active' : ''}`}
+            >
+              <div className="navbar__dropdown-trigger-wrapper">
+                <button 
+                  className="navbar__dropdown-trigger"
+                  onClick={handleDiscoverClick}
+                >
+                  Discover Zeta-V
+                </button>
+                <button 
+                  className="navbar__dropdown-arrow-btn"
+                  onClick={toggleDropdown}
+                  aria-label="Toggle dropdown"
+                >
+                  <svg className="navbar__dropdown-arrow" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div className="navbar__dropdown-menu">
+                {discoverItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={`navbar__dropdown-item ${isLinkActive(item.path) ? 'active' : ''}`}
+                    onClick={() => handleNavigation(item.path)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Regular Nav Links */}
+            {navLinks.map((link) => (
+              <Link
                 key={link.name}
-                href={`#${link.id}`}
-                className="navbar__link"
-                onClick={(e) => handleLinkClick(e, link.id)}
+                to={link.path}
+                className={`navbar__link ${isLinkActive(link.path) ? 'active' : ''}`}
+                onClick={() => handleNavigation(link.path)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          {/* CTA */}
-          <button 
-            className="navbar__cta btn-grad"
-            onClick={() => scrollToSection('contact')}
-          >
-            Let's Talk
-          </button>
-
-          {/* Hamburger */}
           <button
             className={`navbar__hamburger ${menuOpen ? 'open' : ''}`}
             onClick={toggleMenu}
@@ -138,26 +234,54 @@ export default function Navbar() {
         </button>
         
         <div className="navbar__mobile-links">
+          {/* Discover Zeta-V - Mobile Dropdown (Click to open/close) */}
+          <div className="navbar__mobile-dropdown-item">
+            <button 
+              className={`navbar__mobile-dropdown-trigger ${mobileDropdownOpen ? 'open' : ''}`}
+              onClick={toggleMobileDropdown}
+            >
+              <span>Discover Zeta-V</span>
+              <svg className="navbar__mobile-dropdown-arrow" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+            <div className={`navbar__mobile-dropdown-menu ${mobileDropdownOpen ? 'open' : ''}`}>
+              <Link
+                to="/"
+                className={`navbar__mobile-dropdown-link ${isHomeActive() ? 'active' : ''}`}
+                onClick={() => handleNavigation('/')}
+              >
+                Home
+              </Link>
+              {discoverItems.map((item, idx) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`navbar__mobile-dropdown-link ${isLinkActive(item.path) ? 'active' : ''}`}
+                  style={{ animationDelay: `${idx * 80}ms` }}
+                  onClick={() => handleNavigation(item.path)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Separator line */}
+          <div className="navbar__mobile-separator"></div>
+
+          {/* Regular Mobile Links */}
           {navLinks.map((link, i) => (
-            <a
+            <Link
               key={link.name}
-              href={`#${link.id}`}
-              className="navbar__mobile-link"
+              to={link.path}
+              className={`navbar__mobile-link ${isLinkActive(link.path) ? 'active' : ''}`}
               style={{ animationDelay: `${i * 80}ms` }}
-              onClick={(e) => handleLinkClick(e, link.id)}
+              onClick={() => handleNavigation(link.path)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
-          <button 
-            className="navbar__mobile-cta btn-grad"
-            onClick={() => {
-              scrollToSection('contact')
-              setMenuOpen(false)
-            }}
-          >
-            Let's Talk
-          </button>
         </div>
       </div>
     </>

@@ -1,0 +1,681 @@
+/* Contact.css */
+/* ─── Contact Section Wrapper ─────────────────────── */
+.contact {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 25% 50%, rgba(13, 71, 161, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ─── Section 1: Header + Layout ─────────────────── */
+.contact__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 5vw;
+  position: relative;
+  z-index: 2;
+}
+
+.contact__head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.grad-text {
+  background: linear-gradient(135deg, #0D47A1, #00B4FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ─── Mobile First Layout: Form then Steps ───────── */
+.contact__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Form box - First on mobile */
+.contact__form-box {
+  background: white;
+  border-radius: 28px;
+  padding: 32px 24px;
+  box-shadow: 0 20px 40px rgba(13, 71, 161, 0.08);
+  border: 1px solid rgba(13, 71, 161, 0.08);
+  order: 1;
+}
+
+/* Steps box - Below form on mobile */
+.contact__steps-box {
+  background: white;
+  border-radius: 28px;
+  padding: 32px 24px;
+  box-shadow: 0 20px 40px rgba(13, 71, 161, 0.08);
+  border: 1px solid rgba(13, 71, 161, 0.08);
+  order: 2;
+}
+
+/* Desktop layout - side by side */
+@media (min-width: 900px) {
+  .contact__layout {
+    flex-direction: row;
+    gap: 40px;
+  }
+  
+  .contact__form-box {
+    flex: 1;
+    order: 2;
+    padding: 40px;
+  }
+  
+  .contact__steps-box {
+    flex: 0 0 42%;
+    order: 1;
+    padding: 40px 32px;
+  }
+}
+
+.steps-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.steps-header svg {
+  width: 28px;
+  height: 28px;
+  color: #0D47A1;
+}
+
+.contact__steps-title {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1a2b4e;
+  margin: 0;
+}
+
+.contact__steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.contact__steps::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(180deg, #0D47A1, #00B4FF);
+  opacity: 0.2;
+}
+
+.contact__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 14px 0;
+}
+
+.contact__step-num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(13, 71, 161, 0.2);
+}
+
+.contact__step-text {
+  font-size: 0.9rem;
+  color: #2c3e66;
+  line-height: 1.5;
+  padding-top: 8px;
+}
+
+.contact__step-text em {
+  font-style: italic;
+  font-weight: 700;
+  color: #0D47A1;
+}
+
+/* Form Styling */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .contact__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact__field label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #1a2b4e;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.contact__field label svg {
+  width: 14px;
+  height: 14px;
+}
+
+.contact__field input,
+.contact__field select,
+.contact__field textarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: #1a2b4e;
+  background: #f8faff;
+  border: 1.5px solid rgba(13, 71, 161, 0.1);
+  border-radius: 16px;
+  padding: 12px 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.contact__field input:focus,
+.contact__field select:focus,
+.contact__field textarea:focus {
+  border-color: #0D47A1;
+  box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
+}
+
+.contact__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .contact__submit {
+    width: auto;
+  }
+}
+
+.contact__submit svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.contact__submit:hover {
+  gap: 16px;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(13, 71, 161, 0.3);
+}
+
+.contact__submit:hover svg {
+  transform: translateX(4px);
+}
+
+/* Success State */
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 400px;
+  text-align: center;
+}
+
+.contact__success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0D47A1, #00B4FF);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact__success-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.contact__success h3 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #1a2b4e;
+}
+
+.contact__success p {
+  color: #5a6e8a;
+  font-size: 0.9rem;
+}
+
+.contact__reset-btn {
+  background: transparent;
+  border: 2px solid #0D47A1;
+  color: #0D47A1;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact__reset-btn:hover {
+  background: #0D47A1;
+  color: white;
+}
+
+/* ─── Section 2: Connect & Collaborate ───────────── */
+.contact__connect-section {
+  background: linear-gradient(135deg, #f0f7ff, #ffffff);
+  padding: 60px 5vw;
+  position: relative;
+}
+
+.contact__connect-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 900px) {
+  .contact__connect-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+  
+  .contact__connect-left {
+    flex: 1;
+  }
+  
+  .contact__cta-box {
+    flex-shrink: 0;
+  }
+}
+
+.connect-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.contact__connect-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #1a2b4e;
+  margin-bottom: 12px;
+}
+
+.contact__connect-sub {
+  font-size: 0.9rem;
+  color: #5a6e8a;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.contact__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .contact__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contact__card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid rgba(13, 71, 161, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.contact__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(13, 71, 161, 0.1);
+}
+
+.contact__card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact__card-icon svg {
+  width: 22px;
+  height: 22px;
+  color: white;
+}
+
+.contact__card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #5a6e8a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.contact__card-phone {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1a2b4e;
+  word-break: break-word;
+}
+
+/* CTA Buttons */
+.contact__cta-box {
+  display: flex;
+  justify-content: center;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .cta-buttons {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  color: white;
+  box-shadow: 0 4px 15px rgba(13, 71, 161, 0.25);
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-3px);
+  gap: 15px;
+  box-shadow: 0 8px 25px rgba(13, 71, 161, 0.35);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  border: 2px solid rgba(13, 71, 161, 0.3);
+  color: #0D47A1;
+}
+
+.cta-btn.secondary:hover {
+  transform: translateY(-3px);
+  border-color: #0D47A1;
+  background: rgba(13, 71, 161, 0.05);
+  gap: 15px;
+}
+
+.cta-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ─── Section 3: Headquarters ────────────────────── */
+.contact__hq-section {
+  background: white;
+  padding: 60px 5vw;
+}
+
+.contact__hq-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 900px) {
+  .contact__hq-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+  
+  .contact__map {
+    flex: 1;
+  }
+  
+  .contact__hq-right {
+    flex: 0 0 380px;
+  }
+}
+
+.contact__map {
+  border-radius: 28px;
+  overflow: hidden;
+  height: 260px;
+  border: 1px solid rgba(13, 71, 161, 0.1);
+  box-shadow: 0 20px 40px rgba(13, 71, 161, 0.08);
+}
+
+.hq-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.hq-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.contact__hq-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #1a2b4e;
+  margin-bottom: 12px;
+}
+
+.contact__hq-sub {
+  font-size: 0.9rem;
+  color: #5a6e8a;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.contact__hq-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #f8faff, #ffffff);
+  border-radius: 20px;
+  border: 1px solid rgba(13, 71, 161, 0.1);
+}
+
+.hq-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #0D47A1, #1565C0);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.hq-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact__hq-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1a2b4e;
+  margin-bottom: 4px;
+}
+
+.contact__hq-loc {
+  font-size: 0.8rem;
+  color: #5a6e8a;
+  line-height: 1.5;
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile spacing adjustments */
+@media (max-width: 480px) {
+  .contact__inner {
+    padding: 50px 20px;
+  }
+  
+  .contact__form-box,
+  .contact__steps-box {
+    padding: 24px 18px;
+  }
+  
+  .contact__step-text {
+    font-size: 0.85rem;
+  }
+  
+  .contact__step-num {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+  
+  .contact__steps::before {
+    left: 16px;
+  }
+  
+  .contact__connect-section,
+  .contact__hq-section {
+    padding: 50px 20px;
+  }
+  
+  .contact__card {
+    padding: 12px 16px;
+  }
+  
+  .contact__card-icon {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .contact__card-phone {
+    font-size: 0.8rem;
+  }
+  
+  .contact__map {
+    height: 220px;
+  }
+  
+  .cta-btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+}
