@@ -1,0 +1,282 @@
+.romicons-hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 120px 5%;
+}
+
+/* ===================================
+   BACKGROUND IMAGE
+=================================== */
+
+.romicons-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: inherit;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  opacity: 1;
+
+  animation: heroZoom 20s ease-in-out infinite alternate;
+
+  z-index: 0;
+}
+
+/* ===================================
+   OVERLAY
+=================================== */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(200, 225, 255, 0.15) 25%,
+    rgba(120, 180, 255, 0.25) 45%,
+    rgba(42, 107, 214, 0.45) 65%,
+    rgba(16, 78, 180, 0.65) 85%,
+    rgba(6, 45, 120, 0.82) 100%
+  );
+}
+
+.hero-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* ===================================
+   CONTENT
+=================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 900px;
+  width: 100%;
+}
+
+.section-label {
+  display: inline-block;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.hero-content h1 {
+  font-size: clamp(3.2rem, 5vw, 5.5rem);
+  line-height: 1.08;
+  font-weight: 800;
+
+  color: #ffffff;
+  margin-bottom: 28px;
+}
+
+.grad-text {
+  color: #60a5fa;
+}
+
+.hero-content p {
+  max-width: 760px;
+
+  font-size: 1.18rem;
+  line-height: 1.9;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ===================================
+   BUTTONS
+=================================== */
+
+.hero-buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hero-buttons .btn-outline {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-buttons .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+
+/* ===================================
+   BACKGROUND ANIMATION
+=================================== */
+
+@keyframes heroZoom {
+  0% {
+    transform: scale(1);
+    background-position: center center;
+  }
+
+  100% {
+    transform: scale(1.12);
+    background-position: center top;
+  }
+}
+
+/* ===================================
+   LARGE TABLETS
+=================================== */
+
+@media (max-width: 1024px) {
+  .romicons-hero {
+    min-height: 90vh;
+    padding: 120px 6%;
+  }
+
+  .hero-content {
+    max-width: 720px;
+    text-align: left;
+  }
+
+  .hero-content h1 {
+    font-size: 4rem;
+  }
+
+  .hero-content p {
+    font-size: 1.05rem;
+    max-width: 100%;
+  }
+
+  .hero-buttons button {
+    height: 64px;
+    padding: 0 28px;
+    font-size: 1rem;
+  }
+}
+
+/* ===================================
+   TABLETS
+=================================== */
+
+@media (max-width: 768px) {
+  .romicons-hero {
+    min-height: 85vh;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 110px 24px 80px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    line-height: 1.15;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .hero-buttons {
+    gap: 14px;
+  }
+
+  .hero-buttons button {
+    height: 58px;
+    padding: 0 22px;
+
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+}
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media (max-width: 576px) {
+  .romicons-hero {
+    min-height: 100vh;
+    padding: 110px 20px 70px;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    margin-bottom: 18px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.35rem;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    max-width: 320px;
+
+    height: 54px;
+    font-size: 0.92rem;
+  }
+}
+
+/* ===================================
+   SMALL PHONES
+=================================== */
+
+@media (max-width: 380px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero-buttons button {
+    height: 50px;
+    font-size: 0.88rem;
+  }
+}

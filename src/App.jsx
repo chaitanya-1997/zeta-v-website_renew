@@ -9,6 +9,7 @@ import ExpertiseCmp from './pages/ExpertiseCmp'
 import AcceleratorCmp from './pages/AcceleratorCmp'
 import ContactCmp from './pages/ContactCmp'
 import GalleryCmp from './pages/GalleryCmp'
+import Romicons from './pages/Romicons'
 
 export default function App() {
     return (
@@ -24,6 +25,8 @@ export default function App() {
                 <Route path="/accelerator" element={<AcceleratorCmp />} />
                 <Route path="/contact" element={<ContactCmp />} />
                 <Route path="/gallery" element={<GalleryCmp />} />
+
+                <Route path="/romicons" element={<Romicons />} />
             </Routes>
         </>
     )

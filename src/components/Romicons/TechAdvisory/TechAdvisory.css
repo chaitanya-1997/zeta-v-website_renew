@@ -1,0 +1,386 @@
+.tech-advisory-section {
+  padding: 50px 5%;
+  background: #ffffff;
+}
+
+.tech-advisory-container {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* ===================================
+   TIMELINE — DESKTOP
+=================================== */
+
+.timeline-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-line {
+  display: none;
+}
+
+.timeline-item {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+}
+
+/* Line top half */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 50%;
+  left: 50%;
+  margin-left: -1px;
+  width: 2px;
+  background: #d1d5db;
+  z-index: 0;
+}
+
+/* Line bottom half */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  height: 50%;
+  left: 50%;
+  margin-left: -1px;
+  width: 2px;
+  background: #d1d5db;
+  z-index: 0;
+}
+
+.timeline-item:first-child::before { display: none; }
+.timeline-item:last-child::after   { display: none; }
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 0 4px #dbeafe;
+  z-index: 10;
+  flex-shrink: 0;
+  transform: none !important;
+}
+
+.timeline-content {
+  width: 38%;
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-item.right .timeline-content {
+  margin-left: calc(50% + 40px);
+  text-align: left;
+}
+
+.timeline-item.left .timeline-content {
+  margin-right: calc(50% + 40px);
+  text-align: right;
+}
+
+.timeline-number {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2563eb;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.timeline-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.timeline-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ===================================
+   RIGHT PANEL CONTENT
+=================================== */
+
+.tech-content {
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+  border-radius: 24px;
+}
+
+.tech-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--tech-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.tech-content > * {
+  position: relative;
+  z-index: 2;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 18px;
+}
+
+.tech-content h2 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.grad-text {
+  color: #2563eb;
+}
+
+.tech-content p {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: #323131;
+}
+
+/* ===================================
+   TABLET — 768px to 1024px
+   Desktop zigzag preserved, scaled down.
+=================================== */
+
+@media (max-width: 1024px) {
+  .tech-advisory-section {
+    padding: 80px 5%;
+  }
+
+  .tech-advisory-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .tech-content {
+    order: 1;
+    text-align: center;
+    padding: 35px 30px;
+  }
+
+  .timeline-wrapper {
+    order: 2;
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .tech-content h2 { font-size: 2.6rem; }
+
+  .tech-content p {
+    font-size: 1rem;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .tech-content::before { opacity: 0.12; }
+
+  .timeline-item { min-height: 140px; }
+  .timeline-content { width: 38%; }
+
+  .timeline-content h3 { font-size: 1.3rem; }
+  .timeline-content p  { font-size: 0.95rem; line-height: 1.7; }
+}
+
+/* ===================================
+   MOBILE — ≤767px
+   Line stays at center.
+   ALL items: dot at center-left anchor,
+   content (number + heading + subtext)
+   stacked to the RIGHT of the dot.
+=================================== */
+
+@media (max-width: 767px) {
+  .tech-advisory-section { padding: 60px 5%; }
+
+  .tech-advisory-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Right content first */
+  .tech-content {
+    order: 1;
+    text-align: left;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+  }
+
+  .tech-content h2 {
+    font-size: 1.85rem;
+    margin-bottom: 14px;
+  }
+
+  .tech-content p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .tech-content::before { opacity: 0.08; }
+
+  /* Timeline second */
+  .timeline-wrapper {
+    order: 2;
+    max-width: 100%;
+    padding: 10px 0;
+  }
+
+  /*
+    Shift the entire timeline left so the dot
+    sits at 28px from the left edge — giving
+    plenty of space for content on the right.
+  */
+  .timeline-item {
+    min-height: 90px;
+    align-items: flex-start;
+    padding: 14px 0;
+  }
+
+  /* Line anchored at 28px from left */
+  .timeline-item::before,
+  .timeline-item::after {
+    left: 28px;
+    margin-left: -1px;
+  }
+
+  /* top half starts from top of item */
+  .timeline-item::before {
+    top: 0;
+    height: 50%;
+  }
+
+  /* bottom half goes from midpoint down */
+  .timeline-item::after {
+    top: 50%;
+    height: 50%;
+  }
+
+  /* Dot centered on the 28px line */
+  .timeline-dot {
+    left: 28px;
+    top: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 0 0 4px #dbeafe;
+  }
+
+  /*
+    ALL items — content to the right of the dot.
+    Override both .left and .right desktop rules.
+  */
+  .timeline-item.right .timeline-content,
+  .timeline-item.left .timeline-content {
+    width: calc(100% - 64px);
+    margin-left: 64px !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-number {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .timeline-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+
+  /* Subtext below heading */
+  .timeline-content p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    display: block;
+    margin-top: 2px;
+  }
+}
+
+/* ===================================
+   SMALL PHONE — ≤400px
+=================================== */
+
+@media (max-width: 400px) {
+  .tech-content h2  { font-size: 1.6rem; }
+  .tech-content p   { font-size: 0.85rem; }
+
+  .timeline-item    { min-height: 80px; }
+
+  .timeline-item::before,
+  .timeline-item::after {
+    left: 22px;
+  }
+
+  .timeline-dot {
+    left: 22px;
+    margin-left: -7px;
+    margin-top: -7px;
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 0 0 3px #dbeafe;
+  }
+
+  .timeline-item.right .timeline-content,
+  .timeline-item.left .timeline-content {
+    width: calc(100% - 52px);
+    margin-left: 52px !important;
+  }
+
+  .timeline-content h3 { font-size: 0.9rem; }
+  .timeline-content p  { font-size: 0.78rem; }
+  .timeline-number     { font-size: 0.7rem; }
+}
