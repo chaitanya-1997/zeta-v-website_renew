@@ -47,8 +47,17 @@ export default function Enquiries() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2>Enquiries</h2>
-        <p>Get in touch with the right team for your needs.</p>
+     <span className="section-label">
+  <span className="label-dot"></span>
+  Have Questions?
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Send Us Your <span className="grad-text">Enquiries</span>
+</h2>
+<p className="section-subtitle">
+  Get in touch with the right team for your needs.
+</p>
       </motion.div>
 
       <div className="enquiries-grid">

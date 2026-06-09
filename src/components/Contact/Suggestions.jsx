@@ -30,8 +30,17 @@ export default function Suggestions() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2>Suggestions</h2>
-        <p>We value your feedback. Share your ideas to help us improve.</p>
+       <span className="section-label">
+  <span className="label-dot"></span>
+  We Value Your Feedback
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Share Your <span className="grad-text">Suggestions</span>
+</h2>
+<p className="section-subtitle">
+  We value your feedback. Share your ideas to help us improve.
+</p>
       </motion.div>
 
       <div className="suggestions-container">

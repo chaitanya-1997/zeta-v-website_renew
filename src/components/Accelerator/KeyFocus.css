@@ -1,5 +1,5 @@
 .focus-section { 
-  padding: 0; 
+  padding: 50px 40px;
   position: relative; 
   overflow: hidden;
   background: transparent;
@@ -62,34 +62,14 @@
   position: relative; 
   z-index: 1; 
 }
-.section-header h2 { 
-  font-size: clamp(1.8rem,3.5vw,2.4rem); 
-  font-weight:800; 
-  color:#07142b; 
-  margin-bottom:8px; 
-  letter-spacing:-0.5px; 
-}
+
 .grad-text-last { 
   background:linear-gradient(135deg,#0d47a1,#00b4ff); 
   -webkit-background-clip:text; 
   -webkit-text-fill-color:transparent; 
   background-clip:text; 
 }
-.section-header p { 
-  font-size:0.95rem; 
-  color:#5d6b82; 
-  line-height:1.6; 
-  max-width:500px; 
-}
-.section-header::after { 
-  content:''; 
-  display:block; 
-  width:40px; 
-  height:3px; 
-  background:linear-gradient(90deg,#0d47a1,#00b4ff); 
-  margin-top:12px; 
-  border-radius:2px; 
-}
+
 
 /* ============================================
    Desktop Carousel
@@ -557,9 +537,7 @@
   .section-header { 
     margin-bottom: 28px; 
   } 
-  .section-header h2 { 
-    font-size: 1.5rem; 
-  } 
+
   .focus-card-mobile-inner { 
     padding: 16px 14px; 
   } 

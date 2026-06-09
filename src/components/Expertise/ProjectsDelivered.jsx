@@ -59,8 +59,17 @@ export default function ProjectsDelivered() {
   return (
     <section id="projects" className="projects-section">
       <motion.div className="section-header" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-        <h2>Projects Delivered</h2>
-        <p>Delivering impactful solutions across industries worldwide.</p>
+      <span className="section-label">
+  <span className="label-dot"></span>
+  Our Track Record
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Projects <span className="grad-text">Delivered</span>
+</h2>
+<p className="section-subtitle">
+  Delivering impactful solutions across industries worldwide.
+</p>
       </motion.div>
 
       <div className="projects-grid">

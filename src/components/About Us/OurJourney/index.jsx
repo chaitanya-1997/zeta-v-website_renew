@@ -40,82 +40,71 @@ const timelineData = [
 export default function OurJourney() {
   return (
     <section className="journey-section">
-
       {/* Heading */}
-
       <motion.div
         className="journey-heading"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
-        <span className="section-label">Our Journey</span>
+        <span className="section-label">
+          <span className="label-dot"></span>
+          Our Journey
+          <span className="label-line"></span>
+        </span>
         <h2 className="section-title">
           Our <span className="grad-text">Journey</span>
         </h2>
-
         <p className="section-subtitle">
-          From vision to global impact, our journey reflects innovation,
-          growth, and transformation.
+          From vision to global impact, our journey reflects innovation, growth, and transformation.
         </p>
       </motion.div>
 
       {/* Timeline */}
-
       <div className="horizontal-timeline">
-
         {/* Animated Center Line */}
-
         <motion.div
           className="timeline-line"
-          initial={{ width: 0 }}
-          whileInView={{ width: "100%" }}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
           transition={{ duration: 2.5, ease: "easeInOut" }}
           viewport={{ once: true }}
         />
 
         {timelineData.map((item, index) => {
-
           const isTop = index % 2 === 0;
+          // Calculate position percentage for each card
+          const positionPercent = (index / (timelineData.length - 1)) * 100;
 
           return (
             <motion.div
               className={`timeline-card ${isTop ? "top" : "bottom"}`}
               key={index}
-
+              style={{ left: `${positionPercent}%` }}
               initial={{
                 opacity: 0,
                 y: isTop ? -60 : 60,
               }}
-
               whileInView={{
                 opacity: 1,
                 y: 0,
               }}
-
               transition={{
                 duration: 0.8,
                 delay: index * 0.35,
               }}
-
               viewport={{ once: true }}
             >
-
               {/* Dot */}
-
               <div className="timeline-dot" />
 
               {/* Floating Motion */}
-
               <motion.div
                 className="timeline-content"
-
                 animate={{
-                  y: isTop
-                    ? [0, -6, 0]
-                    : [0, 6, 0],
+                  y: isTop ? [0, -6, 0] : [0, 6, 0],
                 }}
-
                 transition={{
                   duration: 3,
                   repeat: Infinity,
@@ -123,17 +112,13 @@ export default function OurJourney() {
                   delay: index * 0.2,
                 }}
               >
-
                 {/* TOP */}
-
                 {isTop && (
                   <>
                     <div className="timeline-text">
                       <p>{item.title}</p>
                     </div>
-
                     <div className="timeline-connector"></div>
-
                     <div className="timeline-year">
                       <h3>{item.year}</h3>
                     </div>
@@ -141,27 +126,22 @@ export default function OurJourney() {
                 )}
 
                 {/* BOTTOM */}
-
                 {!isTop && (
                   <>
                     <div className="timeline-year">
                       <h3>{item.year}</h3>
                     </div>
-
                     <div className="timeline-connector"></div>
-
                     <div className="timeline-text">
                       <p>{item.title}</p>
                     </div>
                   </>
                 )}
-
               </motion.div>
             </motion.div>
           );
         })}
       </div>
-
     </section>
   );
 }

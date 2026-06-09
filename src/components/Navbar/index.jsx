@@ -7,8 +7,7 @@ const navLinks = [
   { name: 'Industries', type: 'route', path: '/industries' },
   { name: 'Services', type: 'route', path: '/services' },
   { name: 'Expertise', type: 'route', path: '/expertise' },
-  { name: 'Accelerator', type: 'route', path: '/accelerator' },
-   { name: 'Romicons', type: 'route', path: '/romicons' },
+  { name: 'Romicons', type: 'route', path: '/romicons' },
   { name: 'Careers', type: 'route', path: '/careers' },
   { name: 'Contact', type: 'route', path: '/contact' }
 ]
@@ -16,7 +15,8 @@ const navLinks = [
 // Dropdown items for Discover Zeta-V
 const discoverItems = [
   { name: 'About', path: '/about' },
-  { name: 'Gallery', path: '/gallery' }
+  { name: 'Gallery', path: '/gallery' },
+  { name: 'Accelerator', path: '/accelerator' }
 ]
 
 export default function Navbar() {
@@ -68,7 +68,12 @@ export default function Navbar() {
   }, [location.pathname])
 
   const handleNavigation = (path) => {
+    // First navigate to the path
     navigate(path)
+    // Then scroll to top (navigate already triggers the useEffect, but this ensures it)
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
     setMenuOpen(false)
     setDropdownOpen(false)
     setMobileDropdownOpen(false)
@@ -78,6 +83,9 @@ export default function Navbar() {
     e.preventDefault()
     if (location.pathname !== '/') {
       navigate('/')
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -92,6 +100,9 @@ export default function Navbar() {
     e.stopPropagation()
     if (location.pathname !== '/') {
       navigate('/')
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -132,7 +143,7 @@ export default function Navbar() {
 
   // Check if any dropdown item is active
   const isDropdownActive = () => {
-    return ['/about', '/gallery'].includes(location.pathname)
+    return ['/about', '/gallery', '/accelerator'].includes(location.pathname)
   }
 
   useEffect(() => {

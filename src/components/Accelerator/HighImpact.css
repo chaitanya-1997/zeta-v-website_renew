@@ -1,4 +1,5 @@
-.high-impact-section { padding:0; position:relative; overflow:hidden; }
+.high-impact-section {   padding: 50px 40px;
+position:relative; overflow:hidden; }
 
 /* ============================================
    SECTION BACKGROUND IMAGE
@@ -32,10 +33,7 @@
 .section-container { position: relative; z-index: 3; }
 
 .section-header { text-align:left; margin-bottom:40px; padding-left:0; }
-.section-header h2 { font-size:clamp(1.8rem,3.5vw,2.4rem); font-weight:800; color:#07142b; margin-bottom:8px; }
 .grad-text-last { background:linear-gradient(135deg,#0d47a1,#00b4ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.section-header p { font-size:0.95rem; color:#5d6b82; max-width:500px; }
-.section-header::after { content:''; display:block; width:40px; height:3px; background:linear-gradient(90deg,#0d47a1,#00b4ff); margin-top:12px; border-radius:2px; }
 
 .impact-carousel-wrapper { display:flex; align-items:center; }
 .impact-carousel-viewport { overflow:visible; flex:1; perspective:1000px; padding:10px 0; }
@@ -157,7 +155,6 @@
 
 @media (max-width:1024px) { .impact-card { min-width:calc((100% - 48px)/3); max-width:calc((100% - 48px)/3); } }
 @media (max-width:900px) { .impact-carousel-wrapper, .carousel-dots { display:none; } .impact-mobile-list { display:block; } }
-@media (max-width:768px) { .section-header { margin-bottom:28px; } .section-header h2 { font-size:1.5rem; } }
 
 /* ============================================
    MOBILE - Smaller Cards, Less Space

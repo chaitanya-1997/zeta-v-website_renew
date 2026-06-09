@@ -59,8 +59,17 @@ export default function WorldwideOffices() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2>Worldwide Offices</h2>
-        <p>Our global presence ensures we're always close to our clients.</p>
+      <span className="section-label">
+  <span className="label-dot"></span>
+  Our Presence
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Worldwide <span className="grad-text">Offices</span>
+</h2>
+<p className="section-subtitle">
+  Our global presence ensures we're always close to our clients.
+</p>
       </motion.div>
 
       <div className="offices-grid">

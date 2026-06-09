@@ -6,7 +6,7 @@ import logoImage from './ZETAV-LOGO-zv.png'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 // Import background image
-import heroBg from './galexy1.jpg';
+import heroBg from './Hero4.jpg';
 
 const slides = [
   {

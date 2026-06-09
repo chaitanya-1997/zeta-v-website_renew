@@ -40,8 +40,22 @@ export default function TechStack() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2>Tech Stack</h2>
-        <p>Modern technologies powering scalable digital products.</p>
+
+
+
+<span className="section-label">
+  <span className="label-dot"></span>
+  Technologies
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Our Technology <span className="grad-text">Stack</span>
+</h2>
+<p className="section-subtitle">
+  Modern tools and frameworks we use to build exceptional solutions.
+</p>
+
+       
       </motion.div>
 
       <motion.div 

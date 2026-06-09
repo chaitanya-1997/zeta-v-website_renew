@@ -1,9 +1,12 @@
+/* OurJourney.css */
+
 .journey-section {
   width: 100%;
   padding: 100px 5%;
-  background: white;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFE 100%);
   overflow: hidden;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* =========================
@@ -12,21 +15,8 @@
 
 .journey-heading {
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
-
-.journey-heading h2 {
-  font-size: 4.2rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 20px;
-}
-
-.grad-text {
-  color: #1d9bf0;
-}
-
-
 
 /* =========================
    Timeline Wrapper
@@ -35,12 +25,13 @@
 .horizontal-timeline {
   position: relative;
   width: 100%;
-  height: 480px;
+  min-height: 480px;
   box-sizing: border-box;
+  padding: 40px 0;
 }
 
 /* =========================
-   Animated Center Line
+   Animated Center Line - FIXED
 ========================= */
 
 .timeline-line {
@@ -48,43 +39,41 @@
   top: 50%;
   left: 0;
   right: 0;
-  height: 5px;
+  height: 4px;
   transform: translateY(-50%);
-  background: linear-gradient(90deg, #3097f3, #2563eb, #00c6ff);
-  border-radius: 30px;
+  background: linear-gradient(90deg, #00B4FF, #0D47A1, #00B4FF);
+  border-radius: 4px;
   z-index: 1;
-  box-shadow: 0 0 18px rgba(48, 151, 243, 0.18);
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+  transform-origin: left;
 }
 
 /* =========================
-   Timeline Card
-   8 cards: positions at 6.25%, 18.75%, 31.25%, 43.75%,
-   56.25%, 68.75%, 81.25%, 93.75%
-   (centers of equal 12.5% slots)
+   Timeline Cards - Dynamic Positioning
 ========================= */
 
 .timeline-card {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 12.5%;
+  width: 140px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 3;
   box-sizing: border-box;
+  transform: translateX(-50%);
 }
 
-.timeline-card:nth-child(2)  { left: 0%; }
-.timeline-card:nth-child(3)  { left: 12.5%; }
-.timeline-card:nth-child(4)  { left: 25%; }
-.timeline-card:nth-child(5)  { left: 37.5%; }
-.timeline-card:nth-child(6)  { left: 50%; }
-.timeline-card:nth-child(7)  { left: 62.5%; }
-.timeline-card:nth-child(8)  { left: 75%; }
-.timeline-card:nth-child(9)  { left: 87.5%; }
-
-/* nth-child(2) because nth-child(1) is the .timeline-line div */
+/* Position cards dynamically using inline styles */
+.timeline-card:nth-child(2) { left: 0%; transform: translateX(-50%); }
+.timeline-card:nth-child(3) { left: 14.28%; transform: translateX(-50%); }
+.timeline-card:nth-child(4) { left: 28.57%; transform: translateX(-50%); }
+.timeline-card:nth-child(5) { left: 42.85%; transform: translateX(-50%); }
+.timeline-card:nth-child(6) { left: 57.14%; transform: translateX(-50%); }
+.timeline-card:nth-child(7) { left: 71.42%; transform: translateX(-50%); }
+.timeline-card:nth-child(8) { left: 85.71%; transform: translateX(-50%); }
+.timeline-card:nth-child(9) { left: 100%; transform: translateX(-50%); }
 
 /* =========================
    Content — above or below line
@@ -92,82 +81,98 @@
 
 .timeline-card.top .timeline-content {
   position: absolute;
-  bottom: calc(50% + 36px);
+  bottom: calc(50% + 30px);
+  left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .timeline-card.bottom .timeline-content {
   position: absolute;
-  top: calc(50% + 36px);
+  top: calc(50% + 30px);
+  left: 50%;
   transform: translateX(-50%);
-}
-
-/* =========================
-   Timeline Content
-========================= */
-
-.timeline-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* =========================
-   Content Box
+   Timeline Content Box
 ========================= */
 
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+}
+
+/* Text Box */
 .timeline-text {
   background: white;
-  padding: 12px 14px;
-  border-radius: 14px;
-  min-width: 145px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  min-width: 150px;
   text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 180, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.timeline-text:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 180, 255, 0.15);
+  border-color: rgba(0, 180, 255, 0.3);
 }
 
 .timeline-text p {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   color: #334155;
   font-weight: 500;
+  margin: 0;
 }
 
-/* =========================
-   Connector
-========================= */
-
+/* Connector Line */
 .timeline-connector {
   width: 3px;
-  height: 55px;
-  background: #3097f3;
-  border-radius: 20px;
-  margin: 14px 0;
+  height: 40px;
+  background: linear-gradient(180deg, #00B4FF, #0D47A1);
+  border-radius: 3px;
+  margin: 12px 0;
 }
 
-/* =========================
-   Year Circle
-========================= */
-
+/* Year Circle */
 .timeline-year {
-  width: 72px;
-  height: 72px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3097f3, #2563eb);
+  background: linear-gradient(135deg, #00B4FF, #0D47A1);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+  box-shadow: 0 10px 24px rgba(0, 180, 255, 0.3);
   z-index: 4;
+  transition: all 0.3s ease;
+}
+
+.timeline-year:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 30px rgba(0, 180, 255, 0.4);
 }
 
 .timeline-year h3 {
   color: white;
   font-size: 1rem;
   font-weight: 700;
+  margin: 0;
 }
 
 /* =========================
-   Dot — pinned on timeline line, centered in card
+   Dot — on the timeline line
 ========================= */
 
 .timeline-dot {
@@ -175,48 +180,45 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #ffffff;
-  border: 4px solid #3097f3;
+  border: 3px solid #00B4FF;
   z-index: 5;
-  box-shadow:
-    0 0 0 4px rgba(255, 255, 255, 0.9),
-    0 0 12px rgba(48, 151, 243, 0.35);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 0 6px rgba(0, 180, 255, 0.2);
   pointer-events: none;
 }
 
 /* =========================
-   Tablet
+   Tablet Responsive
 ========================= */
 
-@media screen and (max-width: 1200px) {
-
-  .journey-heading h2 {
-    font-size: 3.4rem;
-  }
-
+@media screen and (max-width: 1100px) {
   .horizontal-timeline {
-    height: auto;
+    min-height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 60px;
+    gap: 40px;
+    padding: 20px;
   }
 
-  .timeline-line,
+  .timeline-line {
+    display: none;
+  }
+
   .timeline-dot {
     display: none;
   }
 
   .timeline-card {
-    position: static;
-    width: 40%;
-    height: auto;
-    top: auto;
-    bottom: auto;
+    position: static !important;
+    width: calc(50% - 40px);
+    min-width: 250px;
+    transform: none !important;
     left: auto !important;
+    margin: 0;
   }
 
   .timeline-card.top .timeline-content,
@@ -224,96 +226,92 @@
     position: static;
     transform: none;
     left: auto;
-    bottom: auto;
     top: auto;
+    bottom: auto;
+  }
+
+  .timeline-content {
+    flex-direction: column;
+  }
+
+  .timeline-text {
+    min-width: 200px;
   }
 }
 
 /* =========================
-   Mobile
+   Mobile Responsive
 ========================= */
 
 @media screen and (max-width: 768px) {
-
   .journey-section {
-    padding: 80px 20px;
+    padding: 60px 20px;
   }
 
   .journey-heading {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
-
-  .journey-heading h2 {
-    font-size: 2.5rem;
-  }
-
-  
 
   .horizontal-timeline {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 60px;
-    padding-left: 40px;
-    height: auto;
-  }
-
-  .timeline-line {
-    display: block;
-    width: 4px !important;
-    height: 100%;
-    top: 0;
-    left: 18px;
-    right: auto;
-    transform: none;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
   }
 
   .timeline-card {
-    position: relative;
     width: 100%;
-    left: auto !important;
-    justify-content: flex-start;
-  }
-
-  .timeline-card.top .timeline-content,
-  .timeline-card.bottom .timeline-content {
-    position: static;
-    transform: none;
-  }
-
-  .timeline-dot {
-    display: block;
-    top: 50%;
-    left: -22px;
-    transform: translateY(-50%);
-  }
-
-  .timeline-content {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .timeline-connector {
-    display: none;
-  }
-
-  .timeline-year {
-    width: 65px;
-    height: 65px;
-    flex-shrink: 0;
-  }
-
-  .timeline-year h3 {
-    font-size: 0.9rem;
+    max-width: 320px;
   }
 
   .timeline-text {
     min-width: auto;
     width: 100%;
-    padding: 14px;
+    padding: 12px;
   }
 
   .timeline-text p {
+    font-size: 0.8rem;
+  }
+
+  .timeline-year {
+    width: 60px;
+    height: 60px;
+  }
+
+  .timeline-year h3 {
     font-size: 0.85rem;
+  }
+
+  .timeline-connector {
+    height: 30px;
+    margin: 8px 0;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media screen and (max-width: 480px) {
+  .journey-section {
+    padding: 50px 16px;
+  }
+
+  .timeline-card {
+    max-width: 280px;
+  }
+
+  .timeline-text p {
+    font-size: 0.75rem;
+  }
+
+  .timeline-year {
+    width: 55px;
+    height: 55px;
+  }
+
+  .timeline-year h3 {
+    font-size: 0.8rem;
   }
 }

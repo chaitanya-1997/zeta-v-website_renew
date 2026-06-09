@@ -87,8 +87,17 @@ export default function Services() {
       </div>
 
       <motion.div className="section-header" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-        <h2>Services</h2>
-        <p>Delivering innovative digital services for modern enterprises.</p>
+       <span className="section-label">
+  <span className="label-dot"></span>
+  What We Offer
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Our <span className="grad-text">Services</span>
+</h2>
+<p className="section-subtitle">
+  Delivering innovative digital services for modern enterprises.
+</p>
       </motion.div>
 
       <motion.div className="services-grid" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }}>

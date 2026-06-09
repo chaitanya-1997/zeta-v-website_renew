@@ -45,13 +45,7 @@
   color: transparent;
 }
 
-.section-subtitle {
-  font-size: 1rem;
-  color: #64748B;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
+
 
 /* Filter Buttons */
 .svc-tech__filters {
@@ -273,11 +267,7 @@
   .section-title {
     font-size: 1.8rem;
   }
-  
-  .section-subtitle {
-    font-size: 0.9rem;
-  }
-  
+ 
   .svc-tech__filters {
     gap: 10px;
     margin-bottom: 36px;
@@ -353,10 +343,7 @@
   .section-title {
     font-size: 1.5rem;
   }
-  
-  .section-subtitle {
-    font-size: 0.85rem;
-  }
+ 
   
   .svc-tech__filters {
     gap: 8px;
@@ -488,7 +475,5 @@
     color: #00B4FF;
   }
   
-  .section-subtitle {
-    color: rgba(255, 255, 255, 0.6);
-  }
+
 }

@@ -36,8 +36,17 @@ export default function ConnectWithUs() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2>Connect With Us</h2>
-        <p>Follow us on social media for the latest updates and insights.</p>
+    <span className="section-label">
+  <span className="label-dot"></span>
+  Stay Connected
+  <span className="label-line"></span>
+</span>
+<h2 className="section-title">
+  Connect <span className="grad-text">With Us</span>
+</h2>
+<p className="section-subtitle">
+  Follow us on social media for the latest updates and insights.
+</p>
       </motion.div>
 
       <motion.div 
