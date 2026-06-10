@@ -49,17 +49,6 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [menuOpen, dropdownOpen, mobileDropdownOpen])
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.navbar__dropdown') && dropdownOpen) {
-        setDropdownOpen(false)
-      }
-    }
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
-  }, [dropdownOpen])
-
   // Scroll to top when route changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -68,9 +57,7 @@ export default function Navbar() {
   }, [location.pathname])
 
   const handleNavigation = (path) => {
-    // First navigate to the path
     navigate(path)
-    // Then scroll to top (navigate already triggers the useEffect, but this ensures it)
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }, 100)
@@ -111,11 +98,14 @@ export default function Navbar() {
     setMobileDropdownOpen(false)
   }
 
-  // Toggle desktop dropdown on click (not hover)
-  const toggleDropdown = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setDropdownOpen(!dropdownOpen)
+  // Handle mouse enter for dropdown
+  const handleMouseEnter = () => {
+    setDropdownOpen(true)
+  }
+
+  // Handle mouse leave for dropdown
+  const handleMouseLeave = () => {
+    setDropdownOpen(false)
   }
 
   // Toggle mobile dropdown on click
@@ -173,9 +163,11 @@ export default function Navbar() {
           </Link>
 
           <nav className="navbar__links">
-            {/* Discover Zeta-V - Click to open dropdown (not hover) */}
+            {/* Discover Zeta-V - Hover to open dropdown, click main text goes to Home */}
             <div 
               className={`navbar__dropdown ${dropdownOpen ? 'open' : ''} ${isHomeActive() || isDropdownActive() ? 'active' : ''}`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <div className="navbar__dropdown-trigger-wrapper">
                 <button 
@@ -186,7 +178,6 @@ export default function Navbar() {
                 </button>
                 <button 
                   className="navbar__dropdown-arrow-btn"
-                  onClick={toggleDropdown}
                   aria-label="Toggle dropdown"
                 >
                   <svg className="navbar__dropdown-arrow" viewBox="0 0 24 24" fill="none">

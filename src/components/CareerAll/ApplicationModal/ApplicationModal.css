@@ -1,0 +1,253 @@
+/* Unique prefixed classes for Application Modal */
+.zv-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 21, 48, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.zv-modal {
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  background: #FFFFFF;
+  border: 1px solid rgba(14, 21, 48, 0.08);
+  border-radius: 20px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.zv-modal__header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 32px;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(14, 21, 48, 0.08);
+  z-index: 10;
+}
+
+.zv-modal__header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0E1530;
+  margin-bottom: 4px;
+}
+
+.zv-modal__header p {
+  font-size: 0.85rem;
+  color: #7B85A3;
+}
+
+.zv-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #7B85A3;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.zv-modal__close:hover {
+  color: #0E1530;
+}
+
+.zv-modal__form {
+  padding: 32px;
+}
+
+.zv-form-section {
+  margin-bottom: 32px;
+}
+
+.zv-form-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0E1530;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(14, 21, 48, 0.08);
+}
+
+.zv-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.zv-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zv-form-field--full {
+  grid-column: span 2;
+}
+
+.zv-form-field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4A5474;
+}
+
+.zv-form-field input,
+.zv-form-field select,
+.zv-form-field textarea {
+  padding: 12px 16px;
+  background: #F6F8FE;
+  border: 1px solid rgba(14, 21, 48, 0.08);
+  border-radius: 12px;
+  color: #0E1530;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.zv-form-field input:focus,
+.zv-form-field select:focus,
+.zv-form-field textarea:focus {
+  outline: none;
+  border-color: #7C5CFF;
+}
+
+.zv-form-field small {
+  font-size: 0.7rem;
+  color: #7B85A3;
+}
+
+.zv-form-checkbox {
+  margin: 24px 0;
+}
+
+.zv-form-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #4A5474;
+  cursor: pointer;
+}
+
+.zv-form-checkbox a {
+  color: #7C5CFF;
+  text-decoration: none;
+}
+
+.zv-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(14, 21, 48, 0.08);
+}
+
+.zv-modal-warning {
+  margin: 16px 32px;
+  padding: 12px 16px;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  color: #856404;
+}
+
+.zv-modal-warning p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* Button Styles */
+.zv-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #F6F8FE;
+  border: 1px solid rgba(14, 21, 48, 0.08);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #4A5474;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.zv-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid rgba(14, 21, 48, 0.08);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #4A5474;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.zv-btn-outline:hover {
+  border-color: #7C5CFF;
+  color: #7C5CFF;
+}
+
+.zv-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00D4FF 0%, #7C5CFF 60%, #4a32cf 100%);
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.zv-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.35);
+}
+
+.zv-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .zv-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .zv-form-field--full {
+    grid-column: span 1;
+  }
+  
+  .zv-modal__header,
+  .zv-modal__form {
+    padding: 20px;
+  }
+  
+  .zv-form-actions {
+    flex-direction: column;
+  }
+  
+  .zv-form-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}

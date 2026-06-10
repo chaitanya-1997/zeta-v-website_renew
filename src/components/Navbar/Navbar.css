@@ -77,7 +77,7 @@
     margin-left: auto;
 }
 
-/* ========== DESKTOP DROPDOWN STYLES - Click to Open ========== */
+/* ========== DESKTOP DROPDOWN STYLES - Hover to Open ========== */
 .navbar__dropdown {
     position: relative;
 }
@@ -89,6 +89,7 @@
     background: transparent;
     border-radius: 30px;
     transition: all 0.25s ease;
+    position: relative;
 }
 
 .navbar__dropdown-trigger {
@@ -177,7 +178,7 @@
     transform: scaleX(1);
 }
 
-/* Desktop Dropdown Menu - Opens on click (not hover) */
+/* Desktop Dropdown Menu - Opens on hover */
 .navbar__dropdown-menu {
     position: absolute;
     top: calc(100% + 8px);
@@ -197,7 +198,8 @@
     pointer-events: none;
 }
 
-/* Dropdown open state - triggered by click */
+/* Dropdown open state - triggered by hover */
+.navbar__dropdown:hover .navbar__dropdown-menu,
 .navbar__dropdown.open .navbar__dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -245,6 +247,18 @@
 .navbar--scrolled .navbar__dropdown-item.active {
     color: #0D47A1;
     background: rgba(13, 71, 161, 0.05);
+}
+
+/* First item top border radius */
+.navbar__dropdown-item:first-child {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* Last item bottom border radius */
+.navbar__dropdown-item:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 /* ========== REGULAR NAV LINKS ========== */
