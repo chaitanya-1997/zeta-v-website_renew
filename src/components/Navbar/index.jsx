@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import './Navbar.css'
-import logoImage from './ZETAV-LOGO-zv.png'
+import logoImage from '../../../public/ZETAV-LOGO-zv.png'
 
 const navLinks = [
   { name: 'Industries', type: 'route', path: '/industries' },

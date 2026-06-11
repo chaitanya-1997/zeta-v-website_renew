@@ -2,11 +2,11 @@
 // Hero.jsx
 import { useState, useEffect } from 'react';
 import './Hero.css';
-import logoImage from './ZETAV-LOGO-zv.png'
+import logoImage from '../../../../public/ZETAV-LOGO-zv.png';
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 // Import background image
-import heroBg from './Hero4.jpg';
+import heroBg from '../../../assets/images/Hero4.jpg';
 
 const slides = [
   {

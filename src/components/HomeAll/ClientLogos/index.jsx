@@ -3,12 +3,12 @@ import { useEffect, useState, useRef } from 'react'
 import './ClientLogos.css';
 
 // Import client logos
-import cl1 from './cl1.avif';
-import cl2 from './cl2.png';
-import cl3 from './cl3.png';
-import cl4 from './cl4.png';
-import cl5 from './cl5.png';
-import cl6 from './cl6.png';
+import cl1 from '../../../assets/team/cl1.avif';
+import cl2 from '../../../assets/team/cl2.png';
+import cl3 from '../../../assets/team/cl3.png';
+import cl4 from '../../../assets/team/cl4.png';
+import cl5 from '../../../assets/team/cl5.png';
+import cl6 from '../../../assets/team/cl6.png';
 
 // Client logos - 6 actual images
 const logoItems = [

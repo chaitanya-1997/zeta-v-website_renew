@@ -1,6 +1,6 @@
 // Footer.jsx
 import './Footer.css'
-import logoImage from './ZETAV-LOGO-zv.png'
+import logoImage from '../../../public/ZETAV-LOGO-zv.png'
 
 const SocialIcons = {
   linkedin: () => (

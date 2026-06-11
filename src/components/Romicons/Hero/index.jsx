@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import heroImg from "./Hero3.jpg"
+import heroImg from "../../../assets/images/Hero3.jpg"
 
 // SVG Icons matching Home Hero
 const Icons = {

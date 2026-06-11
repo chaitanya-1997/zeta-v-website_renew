@@ -3,12 +3,15 @@ import { motion } from "framer-motion";
 
 import "./Partners.css";
 
-import izapy from "../../../assets/team/izapy.png";
-import fugu from "../../../assets/team/fugu.png";
-import inmorphis from "../../../assets/team/inmorphis.png";
-import cynoteck from "../../../assets/team/cynoteck.png";
-import swan from "../../../assets/team/swan.png";
-import zerolite from "../../../assets/team/zerolite.png";
+
+
+import swan from '../../../assets/team/cl1.avif';
+import zerolite from '../../../assets/team/cl2.png';
+import izapy from '../../../assets/team/cl3.png';
+import fugu from '../../../assets/team/cl4.png';
+import inmorphis from '../../../assets/team/cl5.png';
+import cynoteck from '../../../assets/team/cl6.png';
+
 
 
 const partners = [

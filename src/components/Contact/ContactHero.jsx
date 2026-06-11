@@ -2,7 +2,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FaPhone, FaEnvelope, FaHeadset, FaMapMarkerAlt } from 'react-icons/fa'
-import contactHeroBg from '../../assets/contactimg/contact-hero.jpg'
+import contactHeroBg from '../../assets/images/contact-hero.jpg'
 import './ContactHero.css'
 
 export default function ContactHero() {
