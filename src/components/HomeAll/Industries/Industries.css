@@ -112,7 +112,7 @@
   padding: 35px 28px;
   border: 1px solid rgba(13, 71, 161, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
+ 
   flex-shrink: 0;
   will-change: transform, opacity;
 }
@@ -202,7 +202,9 @@
 
 .industries-card-link {
   display: inline-flex;
+  border: none;
   align-items: center;
+  background: none;
   gap: 8px;
   font-weight: 600;
   font-size: 0.85rem;
@@ -217,6 +219,7 @@
 }
 
 .industries-card-link:hover {
+  cursor: pointer;
   gap: 12px;
 }
 

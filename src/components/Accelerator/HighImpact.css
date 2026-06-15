@@ -62,7 +62,8 @@ position:relative; overflow:hidden; }
 }
 
 .impact-card-front { 
-  background:#fff; border:1px solid rgba(0,132,255,0.08); 
+  background: linear-gradient(160deg, #F5F9FF 0%, #EDF4FF 100%); 
+  border:1px solid rgba(0,132,255,0.12); 
   box-shadow:0 2px 12px rgba(0,0,0,0.03); 
   padding:32px 22px; text-align:left; 
   display:flex; flex-direction:column; align-items:flex-start; justify-content:center; 
@@ -107,7 +108,18 @@ position:relative; overflow:hidden; }
 .impact-card-flipped:hover .impact-card-back-image { transform: scale(1.05); }
 .impact-card-back-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,21,40,0.95) 0%,rgba(13,21,40,0.5) 50%,rgba(13,21,40,0.25) 100%); }
 .impact-card-back-content { position:absolute; bottom:0; left:0; right:0; padding:28px 22px; z-index:2; text-align:center; }
-.impact-card-back-content h3 { font-size:0.95rem; font-weight:700; color:#fff; margin-bottom:16px; }
+/* Back card title - default white, stays white on hover */
+.impact-card-back-content h3 { 
+  font-size: 0.95rem; 
+  font-weight: 700; 
+  color: #fff; 
+  margin-bottom: 16px; 
+}
+
+/* Already white, but ensure it stays white on hover */
+.impact-card-flipped:hover .impact-card-back-content h3 { 
+  color: #ffffff; 
+}
 .impact-read-more-btn { padding:10px 26px; background:linear-gradient(135deg,#0d47a1,#0066cc); color:#fff; border:none; border-radius:25px; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.3s ease; }
 .impact-read-more-btn:hover { box-shadow:0 8px 28px rgba(0,180,255,0.5); transform:translateY(-3px); }
 
@@ -120,7 +132,13 @@ position:relative; overflow:hidden; }
 .impact-card-mobile { background:transparent; margin-bottom:20px; perspective:1000px; min-height:200px; position:relative; transition: transform 0.3s ease; }
 .impact-card-mobile:active { transform: scale(0.98); }
 .impact-card-mobile-front, .impact-card-mobile-back { border-radius:16px; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1); min-height:200px; }
-.impact-card-mobile-front { background:#fff; border:1px solid rgba(0,132,255,0.08); box-shadow:0 2px 12px rgba(0,0,0,0.03); cursor:pointer; position:relative; z-index:2; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.impact-card-mobile-front { 
+  background: linear-gradient(160deg, #F5F9FF 0%, #EDF4FF 100%); 
+  border:1px solid rgba(0,132,255,0.12); 
+  box-shadow:0 2px 12px rgba(0,0,0,0.03); 
+  cursor:pointer; position:relative; z-index:2; 
+  backface-visibility:hidden; -webkit-backface-visibility:hidden; 
+}
 .impact-card-mobile:hover .impact-card-mobile-front { box-shadow:0 8px 30px rgba(11,111,232,0.15); border-color:rgba(11,111,232,0.3); }
 .impact-card-mobile-back { background:#0d1528; position:absolute; inset:0; transform:rotateY(180deg); backface-visibility:hidden; -webkit-backface-visibility:hidden; overflow:hidden; border-radius:16px; }
 .impact-card-mobile-flipped .impact-card-mobile-front { transform:rotateY(180deg); }
@@ -139,7 +157,18 @@ position:relative; overflow:hidden; }
 .impact-card-mobile-back-img { position:absolute; inset:0; background-size:cover; background-position:center; }
 .impact-card-mobile-back-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,21,40,0.95) 0%,rgba(13,21,40,0.5) 60%,rgba(13,21,40,0.2) 100%); }
 .impact-card-mobile-back-info { position:relative; z-index:2; padding:24px 20px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:200px; }
-.impact-card-mobile-back-info h3 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:14px; }
+/* Mobile back card title */
+.impact-card-mobile-back-info h3 { 
+  font-size: 1rem; 
+  font-weight: 700; 
+  color: #fff; 
+  margin-bottom: 14px; 
+}
+
+/* Ensure it stays white on hover */
+.impact-card-mobile-flipped:hover .impact-card-mobile-back-info h3 { 
+  color: #ffffff; 
+}
 .impact-read-more-btn-mobile { padding:10px 24px; background:linear-gradient(135deg,#0d47a1,#0066cc); color:#fff; border:none; border-radius:25px; font-size:0.8rem; font-weight:600; cursor:pointer; transition:all 0.3s ease; }
 .impact-read-more-btn-mobile:active { transform:scale(0.95); }
 

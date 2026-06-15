@@ -1,6 +1,10 @@
 import './GalleryGrid.css'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FaBuilding, FaStar, FaHandshake, FaUsers } from 'react-icons/fa'
+import { FiArrowUpRight } from 'react-icons/fi'
+import GalleryCard from './GalleryCard'
+import GalleryLightbox from './GalleryLightbox'
 
 // Import all 35 images
 import ph1 from '../../assets/gallerym/ph1.jpg'
@@ -39,147 +43,144 @@ import ph33 from '../../assets/gallerym/ph33.jpg'
 import ph34 from '../../assets/gallerym/ph34.jpg'
 import ph35 from '../../assets/gallerym/ph35.jpg'
 
-const images = [
-  { src: ph1, id: 1 }, { src: ph2, id: 2 }, { src: ph3, id: 3 }, { src: ph4, id: 4 }, { src: ph5, id: 5 },
-  { src: ph6, id: 6 }, { src: ph7, id: 7 }, { src: ph8, id: 8 }, { src: ph9, id: 9 }, { src: ph10, id: 10 },
-  { src: ph11, id: 11 }, { src: ph12, id: 12 }, { src: ph13, id: 13 }, { src: ph14, id: 14 }, { src: ph15, id: 15 },
-  { src: ph16, id: 16 }, { src: ph17, id: 17 }, { src: ph18, id: 18 }, { src: ph19, id: 19 }, { src: ph20, id: 20 },
-  { src: ph21, id: 21 }, { src: ph22, id: 22 }, { src: ph23, id: 23 }, { src: ph24, id: 24 }, { src: ph25, id: 25 },
-  { src: ph26, id: 26 }, { src: ph27, id: 27 }, { src: ph28, id: 28 }, { src: ph29, id: 29 }, { src: ph30, id: 30 },
-  { src: ph31, id: 31 }, { src: ph32, id: 32 }, { src: ph33, id: 33 }, { src: ph34, id: 34 }, { src: ph35, id: 35 },
+// ============================================================
+// GALLERY DATA
+// ============================================================
+
+const galleryData = [
+  { id: 1, category: 'Exhibitions & Conferences', title: 'Exhibition', description: 'Mou signed with Client', image: ph1, date: '2016', location: 'Hong Kong', type: 'image' },
+  { id: 2, category: 'Events & Celebrations', title: 'Diwali Celebration', description: 'Zeta-V Diwali Celebration 2024', image: ph2, date: '2024', location: 'Dubai, UAE', type: 'image' },
+  { id: 3, category: 'Leadership & Team', title: 'Leadership at Zeta-V', description: 'A proud moment featuring our CEO, CPO, and Board of Directors at Zeta-V.', image: ph3, date: '2023', location: 'Singapore', type: 'image' },
+  { id: 4, category: 'Exhibitions & Conferences', title: 'Conference', description: 'CEO delivering keynote speech', image: ph4, date: '2024', location: 'Bangalore, India', type: 'image' },
+  { id: 5, category: 'Exhibitions & Conferences', title: 'Zeta-V signs MoU at China-India Forum', description: 'A landmark moment as Zeta-V formalized a Memorandum of Understanding with the Government of Langfang.', image: ph5, date: '2024', location: 'New York, USA', type: 'image' },
+  { id: 6, category: 'Leadership & Team', title: 'Zeta-V Workplace', description: 'Team at work', image: ph6, date: '2024', location: 'London, UK', type: 'image' },
+  { id: 7, category: 'Client & Partnerships', title: 'Partnership with SIDCOP', description: 'A collaborative moment with our client SIDCOP.', image: ph7, date: '2023', location: 'San Francisco, USA', type: 'image' },
+  { id: 8, category: 'Events & Celebrations', title: 'Celebrating Indian Classical Music', description: 'An enchanting evening of Indian classical music featuring Ustad Shujaat Khan.', image: ph8, date: '2024', location: 'Sydney, Australia', type: 'image' },
+  { id: 9, category: 'Exhibitions & Conferences', title: 'CEO presenting at Wuhan Conference', description: 'Our CEO addressing delegates at the Wuhan conference.', image: ph9, date: '2024', location: 'Tokyo, Japan', type: 'image' },
+  { id: 10, category: 'Exhibitions & Conferences', title: 'Mentoring Program 2016 - HKUST', description: 'A memorable session at the Mentoring Program 2016, hosted at HKUST.', image: ph10, date: '2023', location: 'Paris, France', type: 'image' },
+  { id: 11, category: 'Exhibitions & Conferences', title: 'Reception in Honour of the President of India', description: 'A formal reception held in Guangzhou on 24th May 2016.', image: ph11, date: '2024', location: 'Dubai, UAE', type: 'image' },
+  { id: 12, category: 'Exhibitions & Conferences', title: "With Hon'ble Prime Minister Narendra Modi", description: 'A distinguished moment captured alongside the Hon\'ble Prime Minister of India.', image: ph12, date: '2024', location: 'Seoul, Korea', type: 'image' },
+  { id: 13, category: 'Exhibitions & Conferences', title: 'Professional Meeting Moment', description: 'A formal interaction captured in an academic setting.', image: ph13, date: '2024', location: 'Mumbai, India', type: 'image' },
+  { id: 14, category: 'Exhibitions & Conferences', title: 'Delegation Group Photo', description: 'A formal gathering captured during an international delegation meeting.', image: ph14, date: '2024', location: 'Las Vegas, USA', type: 'image' },
+  { id: 15, category: 'Client & Partnerships', title: 'Tripartite Cooperation Agreement Signing', description: 'Zeta-V joined hands with Guiyang Hi-tech Zone and Maritime Silk Road Co.', image: ph15, date: '2023', location: 'Goa, India', type: 'image' },
+  { id: 16, category: 'Exhibitions & Conferences', title: 'Formal Agreement Ceremony', description: 'A successful partnership formalized during the signing ceremony.', image: ph16, date: '2024', location: 'London, UK', type: 'image' },
+  { id: 17, category: 'Exhibitions & Conferences', title: 'Networking at Conference', description: 'A formal moment captured during the conference.', image: ph17, date: '2024', location: 'Delhi, India', type: 'image' },
+  { id: 18, category: 'Exhibitions & Conferences', title: 'China-India IT Cooperation Signing', description: 'A landmark ceremony at the Big Data Expo 2018 in Guiyang.', image: ph18, date: '2024', location: 'Dubai, UAE', type: 'image' },
+  { id: 19, category: 'Exhibitions & Conferences', title: 'Seventh China-India Forum, Langfang', description: 'Delegates gathered for the Seventh China-India Forum in Langfang.', image: ph19, date: '2024', location: 'Singapore', type: 'image' },
+  { id: 20, category: 'Exhibitions & Conferences', title: 'Formal Meeting Moment', description: 'A professional interaction captured in an elegant setting.', image: ph20, date: '2023', location: 'Jaipur, India', type: 'image' },
+  { id: 21, category: 'Leadership & Team', title: 'Founders of Zeta-V', description: 'A formal portrait featuring Ranga Vellamore, Founder & CTO, and Sujit Chatterjee, Founder & CEO.', image: ph21, date: '2024', location: 'Mumbai, India', type: 'image' },
+  { id: 22, category: 'Client & Partnerships', title: 'Business Delegation Visit', description: 'Corporate meeting with Henan 863 Software Co. Ltd. and Zeta-V Technology Solutions.', image: ph22, date: '2024', location: 'Bangalore, India', type: 'image' },
+  { id: 23, category: 'Exhibitions & Conferences', title: 'Strategic Cooperation Signing Ceremony', description: 'A formal signing ceremony marking a strategic cooperation agreement.', image: ph23, date: '2024', location: 'Milan, Italy', type: 'image' },
+  { id: 24, category: 'Exhibitions & Conferences', title: 'Innovation & Collaboration', description: 'A professional moment captured during a corporate visit.', image: ph24, date: '2024', location: 'Pune, India', type: 'image' },
+  { id: 25, category: 'Exhibitions & Conferences', title: 'Visit to Schoeller Technologies, Switzerland', description: 'Visit to Schoeller Technologies in Switzerland.', image: ph25, date: '2023', location: 'Delhi, India', type: 'image' },
+  { id: 26, category: 'Client & Partnerships', title: 'WEISS Partnership Signing', description: 'A formal signing ceremony with WEISS.', image: ph26, date: '2024', location: 'Hyderabad, India', type: 'image' },
+  { id: 27, category: 'Exhibitions & Conferences', title: 'India-China Focus Group Roundtable', description: 'A keynote moment at the India-China Focus Group Roundtable.', image: ph27, date: '2024', location: 'Mumbai, India', type: 'image' },
+  { id: 28, category: 'Events & Celebrations', title: 'Zeta-V Diwali Celebration', description: 'A festive Diwali event at Zeta-V, celebrating culture and togetherness.', image: ph28, date: '2024', location: 'Goa, India', type: 'image' },
+  { id: 29, category: 'Events & Celebrations', title: 'Zeta-V Diwali Celebration', description: 'Team members gathered in traditional attire to celebrate Diwali at Zeta-V.', image: ph29, date: '2024', location: 'Chennai, India', type: 'image' },
+  { id: 30, category: 'Leadership & Team', title: 'Zeta-V Team Spirit', description: 'The Zeta-V team captured in a moment of unity and enthusiasm.', image: ph30, date: '2024', location: 'Mumbai, India', type: 'image' },
+  { id: 31, category: 'Leadership & Team', title: 'Zeta-V Board of Directors', description: 'A formal gathering of the Zeta-V Board of Directors.', image: ph31, date: '2024', location: 'Kolkata, India', type: 'image' },
+  { id: 32, category: 'Leadership & Team', title: 'Zeta-V Leadership Team', description: 'A formal moment featuring members of the Zeta-V leadership team.', image: ph32, date: '2023', location: 'Mumbai, India', type: 'image' },
+  { id: 33, category: 'Leadership & Team', title: 'Zeta-V Family', description: 'The Zeta-V family united in spirit and purpose.', image: ph33, date: '2024', location: 'Ahmedabad, India', type: 'image' },
+  { id: 34, category: 'Leadership & Team', title: 'Empowered Women at Zeta-V', description: 'Celebrating the strength and leadership of women at Zeta-V.', image: ph34, date: '2024', location: 'Frankfurt, Germany', type: 'image' },
+  { id: 35, category: 'Exhibitions & Conferences', title: 'Zeta-V CEO Address', description: 'Our CEO delivering an insightful presentation.', image: ph35, date: '2024', location: 'Bangalore, India', type: 'image' },
 ]
 
-// Get card size class based on index
-const getCardClass = (index) => {
-  const pattern = [
-    'card-wide',      // 1 - spans 3 cols, 2 rows
-    'card-tall',      // 2 - spans 2 cols, 2 rows (tall)
-    'card-normal',    // 3 - spans 2 cols, 1 row
-    'card-large',     // 4 - spans 2 cols, 2 rows
-    'card-normal',    // 5 - spans 2 cols, 1 row
-    'card-tall',      // 6 - spans 2 cols, 2 rows (tall)
-    'card-wide',      // 7 - spans 3 cols, 2 rows
-    'card-normal',    // 8 - spans 2 cols, 1 row
-    'card-normal',    // 9 - spans 2 cols, 1 row
-    'card-large',     // 10 - spans 2 cols, 2 rows
-    'card-normal',    // 11
-    'card-tall',      // 12
-    'card-wide',      // 13
-    'card-normal',    // 14
-    'card-large',     // 15
-    'card-normal',    // 16
-    'card-tall',      // 17
-    'card-wide',      // 18
-    'card-normal',    // 19
-    'card-large',     // 20
-    'card-normal',    // 21
-    'card-tall',      // 22
-    'card-wide',      // 23
-    'card-normal',    // 24
-    'card-large',     // 25
-    'card-normal',    // 26
-    'card-tall',      // 27
-    'card-wide',      // 28
-    'card-normal',    // 29
-    'card-large',     // 30
-    'card-normal',    // 31
-    'card-tall',      // 32
-    'card-wide',      // 33
-    'card-normal',    // 34
-    'card-large',     // 35
-  ]
-  return pattern[index] || 'card-normal'
-}
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.04, delayChildren: 0.1 } }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } }
-}
+// Updated categories matching the 4 groups
+const categories = [
+  { id: 'all', name: 'All', icon: <FaBuilding />, count: galleryData.length },
+  { id: 'Exhibitions & Conferences', name: 'Exhibitions & Conferences', icon: <FaBuilding />, count: galleryData.filter(item => item.category === 'Exhibitions & Conferences').length },
+  { id: 'Events & Celebrations', name: 'Events & Celebrations', icon: <FaStar />, count: galleryData.filter(item => item.category === 'Events & Celebrations').length },
+  { id: 'Client & Partnerships', name: 'Client & Partnerships', icon: <FaHandshake />, count: galleryData.filter(item => item.category === 'Client & Partnerships').length },
+  { id: 'Leadership & Team', name: 'Leadership & Team', icon: <FaUsers />, count: galleryData.filter(item => item.category === 'Leadership & Team').length },
+]
 
 export default function GalleryGrid() {
-  const [selectedIndex, setSelectedIndex] = useState(null)
-  const selectedImage = selectedIndex !== null ? images[selectedIndex] : null
-
-  const openLightbox = (index) => {
-    setSelectedIndex(index)
-    document.body.style.overflow = 'hidden'
-  }
-  const closeLightbox = () => {
-    setSelectedIndex(null)
-    document.body.style.overflow = ''
-  }
-  const goNext = useCallback(() => setSelectedIndex(prev => (prev + 1) % images.length), [])
-  const goPrev = useCallback(() => setSelectedIndex(prev => (prev - 1 + images.length) % images.length), [])
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [lightboxItem, setLightboxItem] = useState(null)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [filteredItems, setFilteredItems] = useState(galleryData)
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (selectedIndex === null) return
-      if (e.key === 'Escape') closeLightbox()
-      if (e.key === 'ArrowRight') goNext()
-      if (e.key === 'ArrowLeft') goPrev()
+    setFilteredItems(activeCategory === 'all' ? galleryData : galleryData.filter(item => item.category === activeCategory))
+  }, [activeCategory])
+
+  const openLightbox = (item) => {
+    const index = filteredItems.findIndex(i => i.id === item.id)
+    setLightboxIndex(index)
+    setLightboxItem(item)
+  }
+
+  const closeLightbox = () => setLightboxItem(null)
+
+  const nextImage = () => {
+    if (lightboxIndex < filteredItems.length - 1) {
+      setLightboxIndex(lightboxIndex + 1)
+      setLightboxItem(filteredItems[lightboxIndex + 1])
     }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedIndex, goNext, goPrev])
+  }
+
+  const prevImage = () => {
+    if (lightboxIndex > 0) {
+      setLightboxIndex(lightboxIndex - 1)
+      setLightboxItem(filteredItems[lightboxIndex - 1])
+    }
+  }
 
   return (
-    <section className="gallery-grid-section" id="gallery-grid">
-      <motion.div 
-        className="gallery-header"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="section-label">Portfolio</span>
-        <h2 className="section-title">Our <span className="grad-text">Gallery</span></h2>
-        <p className="section-subtitle">Explore our portfolio of innovative projects and enterprise solutions.</p>
-      </motion.div>
+    <>
+      <section className="gallery-categories">
+        <div className="gallery-categories__inner">
+          <div className="gallery-categories__tabs">
+            {categories.map((cat, idx) => (
+              <motion.button
+                key={cat.id}
+                className={`gallery-tab ${activeCategory === cat.id ? 'active' : ''}`}
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05, duration: 0.4 }}
+                onClick={() => setActiveCategory(cat.id)}
+              >
+                <span className="gallery-tab__icon">{cat.icon}</span>
+                <span>{cat.name}</span>
+                <span className="gallery-tab__count">{cat.count}</span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <motion.div 
-        className="gallery-grid"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-30px" }}
-      >
-        {images.map((img, index) => (
-          <motion.div
-            className={`gallery-card ${getCardClass(index)}`}
-            key={img.id}
-            variants={itemVariants}
-            whileHover={{ y: -6, scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => openLightbox(index)}
-          >
-            <div className="gallery-card-inner">
-              <img src={img.src} alt={`Gallery ${img.id}`} loading="lazy" />
-              <div className="gallery-card-overlay"></div>
+      <section className="gallery-grid-section">
+        <div className="gallery-grid__inner">
+          <AnimatePresence mode="wait">
+            <motion.div key={activeCategory} className="gallery-grid"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
+            >
+              {filteredItems.map((item, idx) => (
+                <GalleryCard key={item.id} item={item} index={idx} onClick={openLightbox} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
+      <section className="gallery-cta">
+        <div className="gallery-cta__inner">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <h2 className="gallery-cta__title">Ready to Create <span className="grad-text">Something Amazing</span>?</h2>
+            <p className="gallery-cta__subtitle">Let's bring your vision to life. Contact us to discuss your next project.</p>
+            <div className="gallery-cta__actions">
+              <a href="/contact" className="gallery-btn gallery-btn--primary">Start a Project <FiArrowUpRight /></a>
+              <a href="/contact" className="gallery-btn gallery-btn--outline">Contact Our Team</a>
             </div>
           </motion.div>
-        ))}
-      </motion.div>
+        </div>
+      </section>
 
-      {/* Lightbox */}
       <AnimatePresence>
-        {selectedImage && (
-          <motion.div className="gallery-lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-            <div className="lightbox-bg" onClick={closeLightbox}></div>
-            <button className="lightbox-close" onClick={closeLightbox}>✕</button>
-            <button className="lightbox-nav lightbox-prev" onClick={goPrev}><span>‹</span></button>
-            <motion.div className="lightbox-content" key={selectedIndex} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} transition={{ duration: 0.3 }}>
-              <img src={selectedImage.src} alt={`Gallery ${selectedImage.id}`} />
-              <div className="lightbox-counter">{selectedIndex + 1} / {images.length}</div>
-            </motion.div>
-            <button className="lightbox-nav lightbox-next" onClick={goNext}><span>›</span></button>
-          </motion.div>
+        {lightboxItem && (
+          <GalleryLightbox item={lightboxItem} onClose={closeLightbox} onNext={nextImage} onPrev={prevImage}
+            hasNext={lightboxIndex < filteredItems.length - 1} hasPrev={lightboxIndex > 0} />
         )}
       </AnimatePresence>
-    </section>
+    </>
   )
 }

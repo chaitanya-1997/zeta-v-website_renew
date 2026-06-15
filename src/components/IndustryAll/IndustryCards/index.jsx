@@ -46,6 +46,24 @@ const industryCardsData = [
 ]
 
 export default function IndustryCards({ active, setActive }) {
+    const handleCardClick = (cardId) => {
+        setActive(cardId)
+        // Scroll to the details section after a small delay to allow DOM to update
+        setTimeout(() => {
+            const detailsSection = document.querySelector('.ind-detail')
+            if (detailsSection) {
+                const headerOffset = 80 // Account for navbar height
+                const elementPosition = detailsSection.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                })
+            }
+        }, 100)
+    }
+
     return (
         <section id="industries-cards" className="ind-cards">
             <div className="ind-cards__inner">
@@ -78,7 +96,7 @@ export default function IndustryCards({ active, setActive }) {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1, duration: 0.5 }}
                                 whileHover={{ y: -8 }}
-                                onClick={() => setActive(card.id)}
+                                onClick={() => handleCardClick(card.id)}
                             >
                                 <motion.div 
                                     className="ind-card__bg"

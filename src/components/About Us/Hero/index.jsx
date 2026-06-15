@@ -1,170 +1,99 @@
-import React from "react";
-import { motion } from "framer-motion";
+// src/components/AboutAll/AboutHero.jsx
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { FaRocket } from 'react-icons/fa'
+import { FiArrowUpRight } from 'react-icons/fi'
+import heroBg from "../../../assets/about/hero.jpg";
 
-import {
-  ArrowRight,
-  ChevronDown,
-} from "lucide-react";
-
-import "./Hero.css";
-
-export default function Hero() {
-
-  const scrollToNext = () => {
-    window.scrollBy({
-      top: window.innerHeight - 100,
-      behavior: "smooth",
-    });
-  };
+export default function AboutHero() {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100])
 
   return (
-
-    <section className="about-hero">
-
-      {/* Animated Background */}
-
-      <div className="hero-gradient"></div>
-
- 
-
-      <div className="hero-container">
-
-        {/* =========================
-            LEFT CONTENT
-        ========================= */}
-
-        <motion.div
-          className="hero-content"
-
-          initial={{
-            opacity: 0,
-            x: -60,
-          }}
-
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-
-          transition={{
-            duration: 0.9,
-          }}
-        >
-        <span className="section-label">Trusted Technology Partner Since 2021</span>
-        
-
-        <h2 className="section-title">
-            Building Scalable <span className="grad-text">Digital Solutions</span> for Modern Businesses.
-          </h2>
-
-          <p className="section-subtitle">
-            We help startups and enterprises accelerate growth
-            through AI, cloud, web, mobile, and enterprise
-            technology solutions.
-          </p>
-
-          <div className="hero-buttons">
-
-            <a
-              href="/contact"
-              className="hero-btn primary-btn"
-            >
-              Begin Your Transformation
-              <ArrowRight size={18} />
-            </a>
-
-            <a
-              href="/services"
-              className="hero-btn secondary-btn"
-            >
-              Explore Services
-            </a>
-
-          </div>
-
-        </motion.div>
-
-        {/* =========================
-            RIGHT VISUAL
-        ========================= */}
-
-        <motion.div
-          className="hero-visual"
-
-          initial={{
-            opacity: 0,
-            x: 60,
-          }}
-
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-
-          transition={{
-            duration: 1,
-          }}
-        >
-
-          <div className="tech-orbit orbit-1"></div>
-          <div className="tech-orbit orbit-2"></div>
-          <div className="tech-orbit orbit-3"></div>
-
-          <motion.div
-            className="hero-core"
-
-            animate={{
-              y: [0, -12, 0],
-            }}
-
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            ZETA-V
-          </motion.div>
-
-          <div className="floating floating-1">
-            AI
-          </div>
-
-          <div className="floating floating-2">
-            Cloud
-          </div>
-
-          <div className="floating floating-3">
-            Web
-          </div>
-
-          <div className="floating floating-4">
-            Mobile
-          </div>
-
-        </motion.div>
-
+    <section ref={ref} className="hero">
+      <div className="hero__bg">
+        <motion.div 
+          className="hero__bg-image"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.1, 1] }}
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        <div className="hero__bg-overlay"></div>
       </div>
 
-      {/* Scroll Indicator */}
+      <div className="hero__stars">
+        {[...Array(20)].map((_, i) => (
+          <div key={i} className="star"></div>
+        ))}
+      </div>
 
-      {/* <motion.div
-        className="scroll-indicator"
+      <div className="hero__orb hero__orb--1" />
+      <div className="hero__orb hero__orb--2" />
+      <div className="hero__orb hero__orb--3" />
 
-        animate={{
-          y: [0, 10, 0],
-        }}
+      <div className="hero__inner">
+        <div className="hero__left">
+          <motion.div style={{ y }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="hero__chip">
+                <FaRocket className="hero__chip-icon" />
+                <span className="hero__overline">Trusted Technology Partner Since 2021</span>
+              </span>
+            </motion.div>
 
-        transition={{
-          repeat: Infinity,
-          duration: 1.8,
-        }}
+            <motion.h1
+              className="hero__h1"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+            >
+              <span className="hero__h1a">Building Scalable</span>
+              <span className="hero__h1b">
+                <span className="grad-text">Digital Solutions</span> for Modern Businesses
+              </span>
+            </motion.h1>
 
-        onClick={scrollToNext}
+            <motion.p
+              className="hero__sub"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              We help startups and enterprises accelerate growth through AI, cloud, web, 
+              mobile, and enterprise technology solutions.
+            </motion.p>
+
+            <motion.div
+              className="hero__ctas"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <a href="/contact" className="btn-grad">
+                Begin Your Transformation <FiArrowUpRight />
+              </a>
+              <a href="/services" className="btn-outline">
+                Explore Services
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      <motion.div 
+        className="hero__scroll"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
       >
-        <ChevronDown size={28} />
-      </motion.div> */}
-
+        <span>Discover Our Story</span>
+        <div className="hero__scroll-dot" />
+      </motion.div>
     </section>
-  );
+  )
 }

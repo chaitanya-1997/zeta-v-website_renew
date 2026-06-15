@@ -28,7 +28,11 @@ export default function HomeCmp() {
           <section id="why-zeta"><WhyZetaV /></section>
         </div>
         
-        <section id="industries"><IndustriesSection /></section>
+        {/* Industries Section - Clicking Learn More will navigate to /industries page */}
+        <section id="industries">
+          <IndustriesSection />
+        </section>
+        
         <section id="services"><ServicesSection /></section>
         <section id="how-we-work"><HowWeWork /></section>
         <section id="success-stories"><SuccessStories /></section>

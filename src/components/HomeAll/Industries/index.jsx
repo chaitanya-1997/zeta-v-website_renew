@@ -1,8 +1,7 @@
-
-
-
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useReveal } from '../../../hooks/useReveal'
+import { Link, useLocation } from 'react-router-dom'
 import './Industries.css'
 
 // Custom SVG Icons
@@ -59,6 +58,7 @@ const IndustryIcons = {
 
 const industries = [
   {
+    id: 'financial',
     icon: IndustryIcons.financial,
     title: 'Financial Services',
     desc: 'Driving fintech innovation through secure cloud migration, advanced data analytics, AI-powered fraud detection, and cybersecurity consulting.',
@@ -67,6 +67,7 @@ const industries = [
     gradient: 'linear-gradient(135deg, #0D47A1, #1565C0)'
   },
   {
+    id: 'manufacturing',
     icon: IndustryIcons.manufacturing,
     title: 'Manufacturing',
     desc: 'Enabling smart factories with IoT, machine learning, DevOps pipelines, cloud migration, and robotic process automation.',
@@ -75,6 +76,7 @@ const industries = [
     gradient: 'linear-gradient(135deg, #7C3AED, #A855F7)'
   },
   {
+    id: 'healthcare',
     icon: IndustryIcons.healthcare,
     title: 'Healthcare',
     desc: 'Accelerating digital transformation in patient care through telemedicine platforms, secure patient data systems, and AI-driven healthcare analytics.',
@@ -83,6 +85,7 @@ const industries = [
     gradient: 'linear-gradient(135deg, #DB2777, #EC4899)'
   },
   {
+    id: 'government',
     icon: IndustryIcons.government,
     title: 'Government',
     desc: 'Modernizing public services with scalable digital integration, secure cloud infrastructure, citizen-centric platforms, and cybersecurity services.',
@@ -93,6 +96,8 @@ const industries = [
 ]
 
 export default function IndustriesSection() {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [headRef, headVisible] = useReveal(0)
   const [currentIndex, setCurrentIndex] = useState(1)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -105,6 +110,28 @@ export default function IndustriesSection() {
   const startIndex = currentIndex - 1
   const endIndex = currentIndex + 2
   const visibleCards = extendedItems.slice(startIndex, endIndex)
+
+  // Handle card click - navigate to industries page
+  const handleLearnMore = (industryId, industryTitle) => {
+    // Navigate to industries page with the selected industry
+    navigate('/industries', { 
+      state: { activeIndustry: industryId, scrollToTop: false }
+    })
+  }
+
+  // Handle CTA button click - navigate to industries page and scroll to top
+  const handleCTAClick = (e) => {
+    e.preventDefault()
+    // If already on industries page, just scroll to top
+    if (location.pathname === '/industries') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      // Navigate to industries page with scroll to top flag
+      navigate('/industries', { 
+        state: { scrollToTop: true }
+      })
+    }
+  }
 
   // Auto-rotate every 3 seconds
   useEffect(() => {
@@ -174,12 +201,11 @@ export default function IndustriesSection() {
     }
   }, [currentIndex, extendedItems.length])
 
-  // Get card style with smooth chain transition - all cards move together
+  // Get card style with smooth chain transition
   const getCardStyle = (index) => {
     const offset = index - currentIndex
     
     if (offset === 0) {
-      // Center card - largest
       return {
         transform: 'scale(1.25) translateY(-8px)',
         opacity: 1,
@@ -187,7 +213,6 @@ export default function IndustriesSection() {
         transition: 'all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)'
       }
     } else if (offset === -1) {
-      // Left card
       return {
         transform: 'scale(0.9) translateX(-10px)',
         opacity: 0.9,
@@ -195,7 +220,6 @@ export default function IndustriesSection() {
         transition: 'all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)'
       }
     } else if (offset === 1) {
-      // Right card
       return {
         transform: 'scale(0.9) translateX(10px)',
         opacity: 0.9,
@@ -203,7 +227,6 @@ export default function IndustriesSection() {
         transition: 'all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)'
       }
     } else if (offset === -2) {
-      // Far left (coming into view)
       return {
         transform: 'scale(0.7) translateX(-30px)',
         opacity: 0.5,
@@ -211,7 +234,6 @@ export default function IndustriesSection() {
         transition: 'all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)'
       }
     } else if (offset === 2) {
-      // Far right (coming into view)
       return {
         transform: 'scale(0.7) translateX(30px)',
         opacity: 0.5,
@@ -245,7 +267,6 @@ export default function IndustriesSection() {
 
   return (
     <section id="industries" className="industries">
-      {/* Industry Particle Background */}
       <div className="industry-particles-container">
         {industryParticles.map((particle, index) => (
           <div
@@ -271,12 +292,13 @@ export default function IndustriesSection() {
           </p>
         </div>
 
-        {/* Carousel Container - 3 cards visible, all move in chain */}
         <div className="industries-carousel-container">
           <div className="industries-carousel-track">
             {visibleCards.map((ind, idx) => {
               const cardGlobalIndex = startIndex + idx
               const IconComponent = ind.icon
+              const industryId = ind.id
+              const industryTitle = ind.title
               
               return (
                 <div
@@ -304,12 +326,16 @@ export default function IndustriesSection() {
                     <p className="industries-card-desc">{ind.desc}</p>
                     
                     <div className="industries-card-footer">
-                      <a href="#contact" className="industries-card-link" style={{ color: ind.color }}>
+                      <button 
+                        className="industries-card-link" 
+                        style={{ color: ind.color }}
+                        onClick={() => handleLearnMore(industryId, industryTitle)}
+                      >
                         <span>Learn more</span>
                         <span className="link-icon">
                           <IndustryIcons.arrowRight />
                         </span>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -317,7 +343,6 @@ export default function IndustriesSection() {
             })}
           </div>
 
-          {/* Navigation at Bottom */}
           <div className="industries-carousel-nav">
             <button className="industries-carousel-arrow industries-carousel-arrow-prev" onClick={handlePrev}>
               <IndustryIcons.arrowLeft />
@@ -337,11 +362,10 @@ export default function IndustriesSection() {
           </div>
         </div>
 
-        {/* CTA below industries */}
         <div className="industries__cta-wrapper">
-          <a href="#contact" className="btn-grad">
+          <button onClick={handleCTAClick} className="btn-grad">
             Explore Industry Solutions →
-          </a>
+          </button>
         </div>
       </div>
     </section>

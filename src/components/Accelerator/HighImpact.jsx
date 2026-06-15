@@ -10,7 +10,7 @@ import imgProgramManagement from '../../assets/accimg/program-management.jpg'
 import imgJointIP from '../../assets/accimg/joint-ip-cocreation.jpg'
 
 // Import section background
-import highImpactBg from '../../assets/accimg/high-impact-bg.jpg'
+import highImpactBg from '../../assets/accimg/high-impact-bg.png'
 
 const impactData = [
   { 

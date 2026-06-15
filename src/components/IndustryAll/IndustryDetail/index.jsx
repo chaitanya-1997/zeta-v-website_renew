@@ -1,8 +1,8 @@
 // src/components/IndustryAll/IndustryDetail/Index.jsx
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-    FaArrowRight
+    FaArrowRight, FaQuoteLeft, FaChartLine, FaCloud, FaRobot, FaShieldAlt
 } from 'react-icons/fa'
 import {
     HiOutlineLightBulb, HiOutlineExclamationTriangle,
@@ -55,7 +55,7 @@ const industriesData = {
         ],
     },
     manufacturing: {
-        heading: 'Manufacturing Technology Consulting — ERP, IIoT & Smart Factory',
+        heading: 'Manufacturing Technology Consulting ERP, IIoT & Smart Factory',
         overview: [
             'The manufacturing industry is rapidly evolving with smart factories, connected supply chains, and data-driven production systems.',
             'Zeta-V supports manufacturers with Industry 4.0 consulting, advanced automation, and real-time production intelligence platforms.',
@@ -83,7 +83,7 @@ const industriesData = {
         ],
     },
     healthcare: {
-        heading: 'Healthcare IT Solutions — Telemedicine, EHR & Digital Health',
+        heading: 'Healthcare IT Solutions Telemedicine, EHR & Digital Health',
         overview: [
             'Healthcare organizations are rapidly embracing digital technologies to improve patient care and streamline clinical workflows.',
             'Zeta-V helps hospitals, clinics, and networks adopt telemedicine platforms, healthcare data analytics, and intelligent management systems.',
@@ -110,7 +110,7 @@ const industriesData = {
         ],
     },
     government: {
-        heading: 'Government Digital Transformation — Cloud, AI & Citizen Services',
+        heading: 'Government Digital Transformation Cloud, AI & Citizen Services',
         overview: [
             'Government organizations are adopting digital technologies to improve citizen services and modernize public infrastructure.',
             'Zeta-V helps public sector institutions accelerate transformation through smart city solutions, cloud modernization, and intelligent data platforms.',
@@ -136,16 +136,54 @@ const industriesData = {
     },
 }
 
-export default function IndustryDetail({ industryKey }) {
+export default function IndustryDetail({ industryKey, shouldAutoScroll = false }) {
     const [openFaq, setOpenFaq] = useState(0)
+    const [isVisible, setIsVisible] = useState(false)
+    const detailRef = useRef(null)
     const data = industriesData[industryKey]
+
+    // Get industry-specific icons for overview
+    const getIndustryIcons = () => {
+        const icons = {
+            financial: [<FaChartLine />, <FaCloud />, <FaShieldAlt />],
+            manufacturing: [<FaRobot />, <FaChartLine />, <FaCloud />],
+            healthcare: [<FaRobot />, <FaShieldAlt />, <FaChartLine />],
+            government: [<FaCloud />, <FaShieldAlt />, <FaRobot />]
+        }
+        return icons[industryKey] || [<FaChartLine />, <FaCloud />, <FaRobot />]
+    }
+
+    // Add animation when industry changes
+    useEffect(() => {
+        setIsVisible(false)
+        const timer = setTimeout(() => setIsVisible(true), 50)
+        return () => clearTimeout(timer)
+    }, [industryKey])
+
+    // Only scroll when shouldAutoScroll is true (coming from home page)
+    useEffect(() => {
+        if (shouldAutoScroll && detailRef.current) {
+            const headerOffset = 80
+            const elementPosition = detailRef.current.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+            
+            setTimeout(() => {
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                })
+            }, 150)
+        }
+    }, [industryKey, shouldAutoScroll])
+
+    if (!data) return null
 
     return (
         <motion.section
+            ref={detailRef}
             className="ind-detail"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.5 }}
         >
             <div className="ind-detail__bg">
@@ -169,18 +207,74 @@ export default function IndustryDetail({ industryKey }) {
                     {data.heading}
                 </motion.h2>
 
-                <div className="ind-detail__overview">
-                    {data.overview.map((p, i) => (
-                        <motion.p
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1, duration: 0.5 }}
+                {/* Enhanced Overview Section with Unique Design */}
+                <div className="ind-detail__overview-enhanced">
+                    <div className="overview-header">
+                        <motion.div 
+                            className="overview-badge"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5 }}
                         >
-                            {p}
-                        </motion.p>
-                    ))}
+                            <span className="badge-dot"></span>
+                            Industry Insights
+                        </motion.div>
+                        <motion.div 
+                            className="overview-quote-icon"
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.2, duration: 0.5 }}
+                        >
+                            <FaQuoteLeft />
+                        </motion.div>
+                    </div>
+
+                    <div className="overview-cards">
+                        {data.overview.map((p, i) => {
+                            const icons = getIndustryIcons()
+                            return (
+                                <motion.div
+                                    key={i}
+                                    className="overview-card"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.15, duration: 0.6 }}
+                                    whileHover={{ y: -5 }}
+                                >
+                                    <div className="overview-card-icon">
+                                        {icons[i % icons.length]}
+                                    </div>
+                                    <div className="overview-card-content">
+                                        <div className="overview-card-number">0{i + 1}</div>
+                                        <p>{p}</p>
+                                    </div>
+                                    <div className="overview-card-glow"></div>
+                                </motion.div>
+                            )
+                        })}
+                    </div>
+
+                    <motion.div 
+                        className="overview-stats"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.6, duration: 0.5 }}
+                    >
+                        <div className="stat-item">
+                            <div className="stat-number">15+</div>
+                            <div className="stat-label">Years Experience</div>
+                        </div>
+                        <div className="stat-divider"></div>
+                        <div className="stat-item">
+                            <div className="stat-number">200+</div>
+                            <div className="stat-label">Projects Delivered</div>
+                        </div>
+                        <div className="stat-divider"></div>
+                        <div className="stat-item">
+                            <div className="stat-number">98%</div>
+                            <div className="stat-label">Client Satisfaction</div>
+                        </div>
+                    </motion.div>
                 </div>
 
                 {data.challenges.length > 0 && (

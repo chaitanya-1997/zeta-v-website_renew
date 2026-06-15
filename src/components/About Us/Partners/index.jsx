@@ -2,9 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import "./Partners.css";
-
-
-
 import swan from '../../../assets/team/cl1.avif';
 import zerolite from '../../../assets/team/cl2.png';
 import izapy from '../../../assets/team/cl3.png';

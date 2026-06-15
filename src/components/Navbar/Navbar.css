@@ -12,7 +12,7 @@
 
 .navbar--scrolled {
     height: 60px;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgb(255, 255, 255);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(13, 71, 161, 0.1);
@@ -705,4 +705,40 @@
         padding: 0 10px;
         gap: 6px;
     }
+}
+
+/* Add these styles to your Navbar.css or update existing ones */
+
+/* Ensure dropdown menu stays open when clicked inside */
+.navbar__dropdown.open .navbar__dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Add a subtle transition for better UX */
+.navbar__dropdown-menu {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Make the arrow button more clickable */
+.navbar__dropdown-arrow-btn {
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Optional: Add a small indicator that dropdown can be clicked */
+.navbar__dropdown-arrow-btn:hover {
+    transform: scale(1.1);
+}
+
+.navbar__dropdown-arrow-btn:active {
+    transform: scale(0.95);
+}
+
+/* Ensure dropdown doesn't close immediately when moving to menu */
+.navbar__dropdown-menu {
+    margin-top: -4px;
+    padding-top: 4px;
 }

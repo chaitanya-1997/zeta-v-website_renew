@@ -1,31 +1,44 @@
 .leadership-section {
   width: 100%;
   padding: 120px 5%;
-  background-color: #F4F9FF;
   overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  
+  /* Background image applied directly to the section */
+  background-image: url('../../../assets/team/leader-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Creates a static parallax effect */
 }
 
-/* =========================
-   Heading
-========================= */
-
-.leadership-heading {
-  text-align: center;
-  margin-bottom: 90px;
+/* Overlay effect */
+.leadership-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(198, 224, 251, 0.85),
+    rgba(118, 174, 243, 0.75)
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
-.leadership-heading h2 {
-  font-size: 4rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 18px;
-  line-height: 1.2;
+/* Keep all content above background */
+.leadership-section > * {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 50px;
 }
 
-.leadership-heading h2 span {
-  color: #2563eb;
+.founder-card,
+.leader-card {
+  position: relative;
+  z-index: 2;
 }
-
 
 /* =========================
    Main Layout
@@ -33,11 +46,8 @@
 
 .leadership-layout {
   display: grid;
-
   grid-template-columns: 1.1fr 1fr;
-
   gap: 40px;
-
   align-items: flex-start;
 }
 
@@ -47,14 +57,10 @@
 
 .founders-section {
   display: flex;
-
   justify-content: center;
   align-items: flex-start;
-
   gap: 30px;
-
   width: 100%;
-
   flex-wrap: wrap;
 }
 
@@ -70,15 +76,10 @@
 .founder-image-wrapper {
   width: 100%;
   height: 320px;
-
   overflow: hidden;
-
   border-radius: 28px;
-
   background: #f8fafc;
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
 .founder-image-wrapper img {
@@ -89,28 +90,22 @@
 
 .founder-card h3 {
   margin-top: 18px;
-
   font-size: 1.7rem;
   font-weight: 700;
-
   color: #0f172a;
 }
 
 .founder-card h4 {
   margin-top: 8px;
-
   font-size: 1rem;
-
   color: #2563eb;
 }
 
 .founder-card p {
   margin-top: 14px;
-
   font-size: 0.95rem;
   line-height: 1.8;
-
-  color: #475569;
+  color: #24282e;
 }
 
 /* =========================
@@ -119,9 +114,7 @@
 
 .leaders-grid {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 35px;
 }
 
@@ -145,35 +138,24 @@
 .leader-image {
   width: 150px;
   height: 150px;
-
   border-radius: 80%;
-
   object-fit: cover;
-
-  box-shadow:
-    0 10px 25px rgba(37,99,235,0.18);
-
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.18);
   transition: 0.4s ease;
 }
 
 .leader-card h3 {
   margin-top: 14px;
-
   font-size: 1rem;
   font-weight: 700;
-
   color: #0f172a;
-
   line-height: 1.5;
 }
 
 .leader-card h4 {
   margin-top: 8px;
-
   font-size: 0.92rem;
-
   color: #2563eb;
-
   line-height: 1.7;
 }
 
@@ -183,62 +165,39 @@
 
 .hover-icons {
   display: flex;
-
   justify-content: center;
-
   gap: 12px;
-
   margin-top: 0;
-
   opacity: 0;
-
   max-height: 0;
-
   overflow: hidden;
-
   transition:
     opacity 0.4s ease,
     margin-top 0.4s ease,
     max-height 0.4s ease;
 }
 
-/* =========================
-   Show Icons On Hover
-========================= */
-
 .leader-card:hover .hover-icons,
 .founder-card:hover .hover-icons {
   opacity: 1;
-
   margin-top: 16px;
-
   max-height: 60px;
 }
-
-/* =========================
-   Icon Style
-========================= */
 
 .hover-icons a {
   width: 38px;
   height: 38px;
-
   border-radius: 50%;
-
-  background: rgba(15,23,42,0.9);
-
+  background: rgba(15, 23, 42, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: white;
-
   transition: 0.3s ease;
 }
 
 .hover-icons a:hover {
   transform: translateY(-4px);
-
   background: #2563eb;
 }
 
@@ -247,10 +206,8 @@
 ====================================================== */
 
 @media screen and (max-width: 1200px) {
-
   .leadership-layout {
     grid-template-columns: 1fr;
-
     gap: 80px;
   }
 
@@ -268,14 +225,12 @@
 ====================================================== */
 
 @media screen and (max-width: 992px) {
-
   .leadership-heading h2 {
     font-size: 3.2rem;
   }
 
   .leaders-grid {
     grid-template-columns: repeat(2, 1fr);
-
     gap: 50px;
   }
 
@@ -289,10 +244,6 @@
 ====================================================== */
 
 @media screen and (max-width: 768px) {
-
-  .leadership-section {
-    padding: 80px 20px;
-  }
 
   .leadership-heading {
     margin-bottom: 60px;
@@ -311,13 +262,9 @@
     gap: 70px;
   }
 
-  /* Founders */
-
   .founders-section {
     flex-direction: column;
-
     align-items: center;
-
     gap: 50px;
   }
 
@@ -342,8 +289,6 @@
     font-size: 0.92rem;
   }
 
-  /* Leaders */
-
   .leaders-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 35px 20px;
@@ -353,8 +298,6 @@
   .leader-image {
     width: 115px;
     height: 115px;
-
-    font-size: 1.8rem;
   }
 
   .leader-card h3 {
@@ -364,8 +307,6 @@
   .leader-card h4 {
     font-size: 0.9rem;
   }
-
-  /* Hover Icons */
 
   .hover-icons a {
     width: 36px;
@@ -378,10 +319,6 @@
 ====================================================== */
 
 @media screen and (max-width: 480px) {
-
-  .leadership-section {
-    padding: 70px 16px;
-  }
 
   .leadership-heading h2 {
     font-size: 2rem;
@@ -402,14 +339,11 @@
   .leader-image {
     width: 100px;
     height: 100px;
-
-    font-size: 1.5rem;
   }
 
   .leaders-grid {
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 30px 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 16px;
   }
 
   .leader-card h3 {

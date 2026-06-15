@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaRocket, FaLayerGroup, FaCode } from "react-icons/fa";
 import CountUp from "react-countup";
 import teamOffsiteImg from "../../../assets/gallery/team-offsite.png";
 
@@ -8,22 +7,19 @@ import "./OurStory.css";
 
 const stats = [
   {
-    icon: <FaRocket />,
-    value: 5,
+    value: 10,
     suffix: "+",
-    label: "Years Experience",
+    label: "YEARS EXPERIENCE",
   },
   {
-    icon: <FaLayerGroup />,
     value: 100,
     suffix: "+",
-    label: "Deployments",
+    label: "DEPLOYMENTS",
   },
   {
-    icon: <FaCode />,
     value: 15,
     suffix: "+",
-    label: "Technologies",
+    label: "TECHNOLOGIES",
   },
 ];
 
@@ -64,42 +60,56 @@ export default function OurStory() {
           </span>
 
           <h2 className="section-title">
-           Who We <span className="grad-text"> Are</span>
+            Who We <span className="grad-text">Are</span>
           </h2>
 
-           <p className="story-description">
-            Founded with a vision to bridge the gap between business ambition and technology execution, 
-            Zeta-V empowers organizations to accelerate digital transformation and unlock measurable business value. 
-            We combine strategic consulting, intelligent technology ecosystems, and our proprietary Zeta Value Multiplier 
-            Framework (zVMF) to help enterprises navigate complexity, embrace innovation, and achieve sustainable growth. 
-            Today, we partner with businesses across industries to transform ideas into impactful digital solutions that drive 
-            performance, agility, and long-term success.
+          <p className="section-subtitle">
+             Founded to bridge the gap between business ambition and technology
+             execution, Zeta-V empowers organizations to accelerate digital
+             transformation and unlock measurable value. Through strategic consulting,
+             intelligent technology ecosystems, and our proprietary zVMF framework,
+             we help enterprises innovate, grow, and turn ideas into impactful
+             digital solutions.
           </p>
 
-          <p className="story-description">
-            <strong>Our Mantra:</strong> Simplify Solutions. Multiply Value.
-            This guides every strategy we develop, every solution we engineer,
-            and every partnership we nurture.
-          </p>
+          {/* Mantra */}
 
-          <p className="story-description">
-            Because at Zeta-V, success is not defined by technology alone; it is
-            measured by the value it creates.
-          </p>
+          <motion.div
+  className="mantra-box"
+  initial={{
+    opacity: 0,
+    y: 40,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.8,
+    ease: "easeOut",
+  }}
+  viewport={{ once: true }}
+>
+  <span className="mantra-tag">
+    OUR MANTRA
+  </span>
 
-          {/* Stats */}
+  <h3>
+    Simplify Solutions. <span className="grad-text"> Multiply Value.</span>
+  </h3>
+
+  <p>
+    Every strategy we create, every solution we engineer,
+    and every partnership we build is focused on delivering
+    measurable business outcomes and sustainable growth.
+  </p>
+</motion.div>
+
+          {/* Statistics */}
 
           <div className="story-stats">
             {stats.map((item, index) => (
-              <motion.div
-                className="story-stat"
-                key={index}
-                whileHover={{ y: -6 }}
-              >
-                <div className="story-stat-icon">
-                  {item.icon}
-                </div>
-
+              <div className="stat-item" key={index}>
                 <h3>
                   <CountUp
                     end={item.value}
@@ -111,7 +121,7 @@ export default function OurStory() {
                 </h3>
 
                 <p>{item.label}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 

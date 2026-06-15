@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "../components/About Us/Hero";
 import OurStory from "../components/About Us/OurStory";
 import OurJourney from "../components/About Us/OurJourney";
-import Vision from "../components/About Us/Vision";
 import Mission from "../components/About Us/Mission";
 import Values from "../components/About Us/Values";
 import Leadership from "../components/About Us/Leadership";
@@ -25,11 +24,11 @@ const AboutUs = () => {
       <Hero />
       <OurStory />
       <OurJourney />
-      {/* Mission + Vision Section */}
-       <div className="mission-vision-section">
+     
+     
         <Mission />
-        <Vision />
-      </div>
+      
+      
       <Values />
       <WhyChooseUs />
       <DevProcess />

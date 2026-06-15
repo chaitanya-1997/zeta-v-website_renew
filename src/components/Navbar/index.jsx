@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import './Navbar.css'
 import logoImage from '../../../public/ZETAV-LOGO-zv.png'
@@ -6,7 +6,6 @@ import logoImage from '../../../public/ZETAV-LOGO-zv.png'
 const navLinks = [
   { name: 'Industries', type: 'route', path: '/industries' },
   { name: 'Services', type: 'route', path: '/services' },
-  { name: 'Expertise', type: 'route', path: '/expertise' },
   { name: 'Romicons', type: 'route', path: '/romicons' },
   { name: 'Careers', type: 'route', path: '/careers' },
   { name: 'Contact', type: 'route', path: '/contact' }
@@ -24,43 +23,73 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
+  const [hoverTimer, setHoverTimer] = useState(null)
+  
   const navigate = useNavigate()
   const location = useLocation()
+  const dropdownRef = useRef(null)
 
+  // Handle scroll effect
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Handle click outside to close dropdown
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenuOpen(false)
-      }
-      if (e.key === 'Escape' && dropdownOpen) {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false)
       }
-      if (e.key === 'Escape' && mobileDropdownOpen) {
+    }
+
+    if (dropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }
+  }, [dropdownOpen])
+
+  // Handle escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        setDropdownOpen(false)
         setMobileDropdownOpen(false)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [menuOpen, dropdownOpen, mobileDropdownOpen])
+  }, [])
 
-  // Scroll to top when route changes
+  // Handle body scroll when mobile menu is open
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-    setDropdownOpen(false)
-    setMobileDropdownOpen(false)
-  }, [location.pathname])
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [menuOpen])
 
   const handleNavigation = (path) => {
+    // Check if we're already on the industries page and clicking industries again
+    const isSameIndustriesPage = location.pathname === '/industries' && path === '/industries'
+    
     navigate(path)
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 100)
+    
+    // Scroll to top only when navigating to a different page
+    if (!isSameIndustriesPage) {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
+    }
+    
     setMenuOpen(false)
     setDropdownOpen(false)
     setMobileDropdownOpen(false)
@@ -98,14 +127,33 @@ export default function Navbar() {
     setMobileDropdownOpen(false)
   }
 
-  // Handle mouse enter for dropdown
-  const handleMouseEnter = () => {
-    setDropdownOpen(true)
+  // Handle dropdown trigger click (main click to toggle dropdown)
+  const handleDropdownClick = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDropdownOpen(!dropdownOpen)
   }
 
-  // Handle mouse leave for dropdown
+  // Handle mouse enter for hover - with delay to prevent accidental opens
+  const handleMouseEnter = () => {
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+    }
+    const timer = setTimeout(() => {
+      setDropdownOpen(true)
+    }, 200)
+    setHoverTimer(timer)
+  }
+
+  // Handle mouse leave for hover - with delay to prevent accidental closes
   const handleMouseLeave = () => {
-    setDropdownOpen(false)
+    if (hoverTimer) {
+      clearTimeout(hoverTimer)
+    }
+    const timer = setTimeout(() => {
+      setDropdownOpen(false)
+    }, 300)
+    setHoverTimer(timer)
   }
 
   // Toggle mobile dropdown on click
@@ -136,17 +184,6 @@ export default function Navbar() {
     return ['/about', '/gallery', '/accelerator'].includes(location.pathname)
   }
 
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [menuOpen])
-
   return (
     <>
       <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
@@ -163,8 +200,9 @@ export default function Navbar() {
           </Link>
 
           <nav className="navbar__links">
-            {/* Discover Zeta-V - Hover to open dropdown, click main text goes to Home */}
+            {/* Discover Zeta-V - Click or Hover to open dropdown */}
             <div 
+              ref={dropdownRef}
               className={`navbar__dropdown ${dropdownOpen ? 'open' : ''} ${isHomeActive() || isDropdownActive() ? 'active' : ''}`}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -178,6 +216,7 @@ export default function Navbar() {
                 </button>
                 <button 
                   className="navbar__dropdown-arrow-btn"
+                  onClick={handleDropdownClick}
                   aria-label="Toggle dropdown"
                 >
                   <svg className="navbar__dropdown-arrow" viewBox="0 0 24 24" fill="none">
