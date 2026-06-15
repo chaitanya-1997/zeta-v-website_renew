@@ -497,9 +497,9 @@
 .feature-excerpt {
   padding: 0 12px;
   color: #5a6e8a;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.6;
-  text-align: center;
+  text-align: left;
 }
 
 /* ========== CTA SECTION ========== */
@@ -659,8 +659,9 @@
   }
   
   .feature-excerpt {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     padding: 0 8px;
+    text-align: left;
   }
   
   .particles-bg {
@@ -690,7 +691,7 @@
   }
   
   .feature-excerpt {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
   
   .feature-title > span {

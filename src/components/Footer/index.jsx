@@ -1,4 +1,5 @@
 // Footer.jsx
+import { Link, useLocation } from 'react-router-dom'
 import './Footer.css'
 import logoImage from '../../../public/ZETAV-LOGO-zv.png'
 
@@ -28,6 +29,11 @@ const SocialIcons = {
       <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
     </svg>
   ),
+  facebook: () => (
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+    </svg>
+  ),
   location: () => (
     <svg viewBox="0 0 24 24" fill="none">
       <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
@@ -48,20 +54,65 @@ const SocialIcons = {
 }
 
 const social = [
-  { icon: SocialIcons.linkedin, href: '#', label: 'LinkedIn' },
-  { icon: SocialIcons.twitter, href: '#', label: 'Twitter' },
-  { icon: SocialIcons.youtube, href: '#', label: 'YouTube' },
-  { icon: SocialIcons.instagram, href: '#', label: 'Instagram' },
+  { icon: SocialIcons.linkedin, href: 'https://www.linkedin.com/company/zeta-v-technology-solutions-ltd/', label: 'LinkedIn' },
+  { icon: SocialIcons.twitter, href: 'https://x.com/ZetaV2024', label: 'Twitter' },
+  { icon: SocialIcons.youtube, href: 'https://www.youtube.com/@zeta-v-2024', label: 'YouTube' },
+  { icon: SocialIcons.instagram, href: 'https://www.instagram.com/zetav24/', label: 'Instagram' },
+  { icon: SocialIcons.facebook, href: 'https://www.facebook.com/people/Zeta-V-Technology-Solutions/61571634543628/', label: 'Facebook' },
 ]
 
 const footerLinks = {
-  Company: ['About Us', 'Leadership', 'Careers', 'News & Insights'],
-  Services: ['Strategy Consulting', 'Digital Footprint', 'Analytics & Automation', 'Co-creation & Monetization', 'Enterprise Technologies', 'Legacy Transformation', 'Engineering Solutions', 'Staff Augmentation'],
-  Industries: ['Financial Services', 'Manufacturing', 'Healthcare', 'Government', 'Retail', 'Technology'],
-  Resources: ['Blogs', 'Case Studies', 'Technology Insights', 'Whitepapers']
+  Company: [
+    { name: 'About Us', path: '/about' },
+    { name: 'Leadership', path: '/about#leadership' },
+    { name: 'Careers', path: '/careers' },
+    { name: 'Gallery', path: '/gallery' }
+  ],
+  Services: [
+    { name: 'Strategy Consulting', path: '/services' },
+    { name: 'Digital Footprint', path: '/services' },
+    { name: 'Analytics & Automation', path: '/services' },
+    { name: 'Co-creation & Monetization', path: '/services' },
+    { name: 'Enterprise Technologies', path: '/services' },
+    { name: 'Legacy Transformation', path: '/services' },
+    { name: 'Engineering Solutions', path: '/services' },
+    { name: 'Staff Augmentation', path: '/services' }
+  ],
+  Industries: [
+    { name: 'Financial Services', path: '/industries' },
+    { name: 'Manufacturing', path: '/industries' },
+    { name: 'Healthcare', path: '/industries' },
+    { name: 'Government', path: '/industries' },
+    { name: 'Retail', path: '/industries' },
+    { name: 'Technology', path: '/industries' }
+  ],
+  Resources: [
+    { name: 'Blogs', path: '/blogs' },
+    { name: 'Case Studies', path: '/case-studies' },
+    { name: 'Technology Insights', path: '/insights' },
+    { name: 'Whitepapers', path: '/whitepapers' }
+  ]
 }
 
-const legal = ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'GDPR Compliance']
+const legal = [
+  { name: 'Privacy Policy', path: '/privacy-policy' },
+  { name: 'Terms of Service', path: '/terms-of-service' },
+  { name: 'Cookie Policy', path: '/cookie-policy' },
+  { name: 'GDPR Compliance', path: '/gdpr-compliance' }
+]
+
+// Scroll to top component
+const ScrollToTopLink = ({ to, children, ...props }) => {
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  
+  return (
+    <Link to={to} onClick={handleClick} {...props}>
+      {children}
+    </Link>
+  )
+}
 
 export default function FooterSection() {
   return (
@@ -95,7 +146,14 @@ export default function FooterSection() {
 
             <div className="site-footer__social">
               {social.map((s, i) => (
-                <a key={i} href={s.href} className="site-footer__social-link" aria-label={s.label}>
+                <a 
+                  key={i} 
+                  href={s.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="site-footer__social-link" 
+                  aria-label={s.label}
+                >
                   <s.icon />
                 </a>
               ))}
@@ -109,7 +167,9 @@ export default function FooterSection() {
               <ul className="site-footer__links">
                 {links.map((link, i) => (
                   <li key={i}>
-                    <a href="#" className="site-footer__link">{link}</a>
+                    <ScrollToTopLink to={link.path} className="site-footer__link">
+                      {link.name}
+                    </ScrollToTopLink>
                   </li>
                 ))}
               </ul>
@@ -123,7 +183,9 @@ export default function FooterSection() {
           </div>
           <div className="site-footer__legal">
             {legal.map((l, i) => (
-              <a key={i} href="#" className="site-footer__legal-link">{l}</a>
+              <ScrollToTopLink key={i} to={l.path} className="site-footer__legal-link">
+                {l.name}
+              </ScrollToTopLink>
             ))}
           </div>
         </div>

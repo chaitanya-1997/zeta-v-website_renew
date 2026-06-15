@@ -96,11 +96,7 @@
     display: none;
   }
   
-  .hero__left {
-    flex: 0 0 100%;
-    max-width: 100%;
-    text-align: center;
-  }
+
   
   .contact-cards {
     justify-content: center;
@@ -120,11 +116,7 @@
     font-size: 0.75rem;
   }
   
-  .hero__sub {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
+
 }
 
 @media (max-width: 480px) {

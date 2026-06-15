@@ -29,6 +29,8 @@ export default function FinalCTASection() {
         >
           <div className="careers-cta__badge">
             <FaHandshake />
+
+            
             <span>Join Our Team</span>
           </div>
           <h2 className="careers-cta__title">

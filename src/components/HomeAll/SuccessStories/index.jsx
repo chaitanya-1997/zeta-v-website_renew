@@ -88,7 +88,7 @@ export default function SuccessStories() {
             Client Success Stories
           </span>
           <h2 className="section-title">
-            What our <span className="gradient-highlight">partners say</span>
+            What our <span className="gradient-highlight">Client say</span>
           </h2>
          <p className="section-subtitle">
             Real results from real partnerships — hear directly from our clients

@@ -46,8 +46,8 @@
 }
 
 .navbar__logo-mark {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -602,7 +602,7 @@
     }
     
     .navbar__wordmark-line {
-        font-size: 0.85rem;
+      font-size: 0.9rem;
         white-space: nowrap;
     }
 }
@@ -617,12 +617,12 @@
     }
     
     .navbar__logo-mark {
-        width: 28px;
-        height: 28px;
+        width: 35px;
+        height: 35px;
     }
     
     .navbar__wordmark-line {
-        font-size: 0.75rem;
+       font-size: 0.9rem;
     }
     
     .navbar__inner {
@@ -664,12 +664,12 @@
 
 @media (max-width: 480px) {
     .navbar__logo-mark {
-        width: 24px;
-        height: 24px;
+        width: 35px;
+        height: 35px;
     }
     
     .navbar__wordmark-line {
-        font-size: 0.7rem;
+     font-size: 0.9rem;
     }
     
     .navbar__logo {
@@ -689,12 +689,12 @@
 
 @media (max-width: 380px) {
     .navbar__logo-mark {
-        width: 22px;
-        height: 22px;
+        width: 35px;
+        height: 35px;
     }
     
     .navbar__wordmark-line {
-        font-size: 0.65rem;
+        font-size: 0.9rem;
     }
     
     .navbar__logo {

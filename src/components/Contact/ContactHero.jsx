@@ -1,4 +1,3 @@
-// src/components/ContactAll/ContactHero/Index.jsx
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FaPhone, FaEnvelope, FaHeadset, FaMapMarkerAlt } from 'react-icons/fa'
@@ -25,26 +24,9 @@ export default function ContactHero() {
 
       {/* Stars background */}
       <div className="hero__stars">
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
+        {[...Array(20)].map((_, i) => (
+          <div key={i} className="star" />
+        ))}
       </div>
 
       <div className="hero__orb hero__orb--1" />
@@ -63,32 +45,35 @@ export default function ContactHero() {
               </span>
             </h1>
             <p className="hero__sub">
-              Have a project in mind? We'd love to hear about it. Our team is ready to help 
-              you transform your ideas into reality with enterprise-grade solutions.
+            Give us a call or drop by anytime, we endeavour to answer all enquiries within 24 hours on business days. We will be happy to answer your questions.
             </p>
             
             {/* Contact Cards */}
             <div className="contact-cards">
-              <div className="contact-card">
+              {/* Phone Card - Clickable */}
+              <a href="tel:+912069015402" className="contact-card">
                 <div className="contact-card-icon">
                   <FaPhone />
                 </div>
                 <div className="contact-card-text">
                   <span>Call Us</span>
-                  <strong>+1 (555) 123-4567</strong>
+                  <strong>+91 20 6901 5402</strong>
                 </div>
-              </div>
+              </a>
 
-              <div className="contact-card">
+              {/* Email Card - Clickable */}
+              <a href="mailto:contactus@zeta-v.com" className="contact-card">
                 <div className="contact-card-icon">
                   <FaEnvelope />
                 </div>
                 <div className="contact-card-text">
                   <span>Email Us</span>
-                  <strong>hello@zeta-v.com</strong>
+                  <strong>contactus@zeta-v.com</strong>
+                  <strong>careers@zeta-v.com</strong>
                 </div>
-              </div>
+              </a>
 
+              {/* Support Card */}
               <div className="contact-card">
                 <div className="contact-card-icon">
                   <FaHeadset />
@@ -101,18 +86,9 @@ export default function ContactHero() {
             </div>
           </motion.div>
         </div>
-
-      
       </div>
 
-      <motion.div 
-        className="hero__scroll"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-      >
-        <span>Scroll to explore</span>
-        <div className="hero__scroll-dot" />
-      </motion.div>
+    
     </section>
   )
 }

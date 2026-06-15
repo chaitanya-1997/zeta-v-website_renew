@@ -1,13 +1,15 @@
+// ConnectWithUs.jsx
 import './ConnectWithUs.css'
 import { motion } from 'framer-motion'
-import { FaLinkedinIn, FaXTwitter, FaInstagram, FaYoutube, FaGithub } from 'react-icons/fa6'
+import { FaLinkedinIn, FaXTwitter, FaInstagram, FaYoutube, FaFacebookF, FaGithub } from 'react-icons/fa6'
 
 const socialLinks = [
-  { icon: <FaLinkedinIn />, name: 'LinkedIn', url: '#', color: '#0077B5' },
-  { icon: <FaXTwitter />, name: 'Twitter', url: '#', color: '#000000' },
-  { icon: <FaInstagram />, name: 'Instagram', url: '#', color: '#E4405F' },
-  { icon: <FaYoutube />, name: 'YouTube', url: '#', color: '#FF0000' },
-  { icon: <FaGithub />, name: 'GitHub', url: '#', color: '#333333' },
+  { icon: <FaLinkedinIn />, name: 'LinkedIn', url: 'https://www.linkedin.com/company/zeta-v-technology-solutions-ltd/', color: '#0077B5' },
+  { icon: <FaXTwitter />, name: 'Twitter', url: 'https://x.com/ZetaV2024', color: '#000000' },
+  { icon: <FaInstagram />, name: 'Instagram', url: 'https://www.instagram.com/zetav24/', color: '#E4405F' },
+  { icon: <FaYoutube />, name: 'YouTube', url: 'https://www.youtube.com/@zeta-v-2024', color: '#FF0000' },
+  { icon: <FaFacebookF />, name: 'Facebook', url: 'https://www.facebook.com/people/Zeta-V-Technology-Solutions/61571634543628/', color: '#1877F2' },
+  
 ]
 
 const containerVariants = {
@@ -27,6 +29,17 @@ const itemVariants = {
 }
 
 export default function ConnectWithUs() {
+  const handleSubscribe = (e) => {
+    e.preventDefault()
+    const email = e.target.querySelector('input[type="email"]').value
+    if (email) {
+      // Add your newsletter subscription logic here
+      console.log('Newsletter subscription:', email)
+      alert('Thank you for subscribing!')
+      e.target.reset()
+    }
+  }
+
   return (
     <section className="connect-section">
       <motion.div 
@@ -36,17 +49,17 @@ export default function ConnectWithUs() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-    <span className="section-label">
-  <span className="label-dot"></span>
-  Stay Connected
-  <span className="label-line"></span>
-</span>
-<h2 className="section-title">
-  Connect <span className="grad-text">With Us</span>
-</h2>
-<p className="section-subtitle">
-  Follow us on social media for the latest updates and insights.
-</p>
+        <span className="section-label">
+          <span className="label-dot"></span>
+          Stay Connected
+          <span className="label-line"></span>
+        </span>
+        <h2 className="section-title">
+          Connect <span className="grad-text">With Us</span>
+        </h2>
+        <p className="section-subtitle">
+          Follow us on social media for the latest updates and insights.
+        </p>
       </motion.div>
 
       <motion.div 
@@ -60,6 +73,8 @@ export default function ConnectWithUs() {
           <motion.a
             key={index}
             href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-card"
             variants={itemVariants}
             whileHover={{ 
@@ -94,38 +109,7 @@ export default function ConnectWithUs() {
         ))}
       </motion.div>
 
-      <motion.div 
-        className="newsletter-box"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-      >
-        <motion.div 
-          className="newsletter-icon"
-          animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </motion.div>
-        <h3>Stay Updated</h3>
-        <p>Subscribe to our newsletter for the latest insights and updates.</p>
-        <div className="newsletter-form">
-          <input type="email" placeholder="Enter your email" />
-          <motion.button 
-            whileHover={{ scale: 1.02 }} 
-            whileTap={{ scale: 0.98 }}
-          >
-            Subscribe
-          </motion.button>
-        </div>
-      </motion.div>
+   
     </section>
   )
 }

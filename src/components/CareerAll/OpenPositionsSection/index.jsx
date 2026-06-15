@@ -1,7 +1,12 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { FaBriefcase, FaClock, FaRegHeart, FaArrowRight, FaSpinner } from 'react-icons/fa'
+import { 
+  FaBriefcase, FaClock, FaRegHeart, FaArrowRight, FaSpinner, FaHeart,
+  FaListUl, FaGift, FaLightbulb, FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillWave
+} from 'react-icons/fa'
 import { HiOutlineLocationMarker, HiOutlineCash } from 'react-icons/hi'
+import { MdOutlineAssignment, MdOutlineWorkOutline } from 'react-icons/md'
+import { BsClockHistory } from 'react-icons/bs'
 import './OpenPositionsSection.css'
 
 const API_BASE_URL = 'https://zeta-v-invoicemanagement-ddgwdzg2dchdfaf4.centralindia-01.azurewebsites.net'
@@ -44,7 +49,7 @@ export default function OpenPositionsSection({ onApply }) {
           type: job.job_type,
           salary: formatSalary(job.salary_min, job.salary_max, job.show_salary),
           skills: job.skills || [],
-          description: job.description,
+          description: job.description || '',
           jr_id: job.jr_id,
           requirements: job.requirements || [],
           benefits: job.benefits || [],
@@ -98,11 +103,11 @@ export default function OpenPositionsSection({ onApply }) {
     return 'Negotiable'
   }
 
-  const departments = ['all', ...new Set(jobs.map(job => job.department))]
+  const departments = ['all', ...new Set(jobs.map(job => job.department).filter(Boolean))]
   
   const filteredJobs = jobs.filter(job => {
     const matchesDept = filter === 'all' || job.department === filter
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const matchesSearch = job.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           (job.skills && job.skills.some(s => s.toLowerCase().includes(searchTerm.toLowerCase())))
     return matchesDept && matchesSearch
   })
@@ -121,6 +126,12 @@ export default function OpenPositionsSection({ onApply }) {
       setSavedJobs(JSON.parse(saved))
     }
   }, [])
+
+  // Function to render HTML content safely
+  const renderHTML = (htmlContent) => {
+    if (!htmlContent) return null
+    return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+  }
 
   if (loading) {
     return (
@@ -144,11 +155,15 @@ export default function OpenPositionsSection({ onApply }) {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="zv-section-label">Open Positions</span>
-          <h2 className="zv-section-title">
-            Join Our <span className="zv-grad-text">Team</span>
+          <span className="section-label">
+            <span className="label-dot"></span>
+            Open Positions
+            <span className="label-line"></span>
+          </span>
+          <h2 className="section-title">
+            Join Our <span className="grad-text">Team</span>
           </h2>
-          <p className="zv-section-subtitle">
+          <p className="section-subtitle">
             Find your perfect role and start your journey with us.
           </p>
         </motion.div>
@@ -183,43 +198,44 @@ export default function OpenPositionsSection({ onApply }) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: idx * 0.05, duration: 0.5 }}
-              whileHover={{ y: -3 }}
             >
               <div className="zv-job-card__gradient" />
               
               <div className="zv-job-card__header">
                 <div>
                   <h3>{job.title}</h3>
-                  <span className="zv-job-card__dept">{job.department}</span>
-                  {job.jr_id && <span className="zv-job-card__jr-id">{job.jr_id}</span>}
+                  <div className="zv-job-card__meta">
+                    <span className="zv-job-card__dept">{job.department}</span>
+                    {job.jr_id && <span className="zv-job-card__jr-id">{job.jr_id}</span>}
+                  </div>
                 </div>
                 <button 
                   className={`zv-job-card__save ${savedJobs.includes(job.id) ? 'saved' : ''}`}
                   onClick={() => toggleSaveJob(job.id)}
                   aria-label="Save job"
                 >
-                  <FaRegHeart />
+                  {savedJobs.includes(job.id) ? <FaHeart /> : <FaRegHeart />}
                 </button>
               </div>
 
               <div className="zv-job-card__details">
                 <div className="zv-job-card__detail">
-                  <FaBriefcase /> <span>{job.experience}</span>
+                  <MdOutlineWorkOutline /> <span>{job.experience}</span>
                 </div>
                 <div className="zv-job-card__detail">
-                  <HiOutlineLocationMarker /> <span>{job.location}</span>
+                  <FaMapMarkerAlt /> <span>{job.location}</span>
                 </div>
                 <div className="zv-job-card__detail">
-                  <FaClock /> <span>{job.type}</span>
+                  <BsClockHistory /> <span>{job.type}</span>
                 </div>
                 <div className="zv-job-card__detail">
-                  <HiOutlineCash /> <span>{job.salary}</span>
+                  <FaMoneyBillWave /> <span>{job.salary}</span>
                 </div>
               </div>
 
               {job.shift_timings && (
                 <div className="zv-job-card__shift">
-                  <span>🕒 {job.shift_timings}</span>
+                  <FaClock /> <span>{job.shift_timings}</span>
                 </div>
               )}
 
@@ -241,38 +257,48 @@ export default function OpenPositionsSection({ onApply }) {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className="zv-job-description">{job.description}</p>
+                    {/* Description with HTML support */}
+                    {job.description && (
+                      <div className="zv-job-description">
+                        {renderHTML(job.description)}
+                      </div>
+                    )}
                     
+                    {/* Requirements with HTML support */}
                     {job.requirements && job.requirements.length > 0 && (
                       <div className="zv-job-requirements">
-                        <strong>📋 Requirements:</strong>
+                        <strong><FaListUl /> Requirements:</strong>
                         <ul>
                           {job.requirements.map((req, i) => (
-                            <li key={i}>{req}</li>
+                            <li key={i} dangerouslySetInnerHTML={{ __html: req }} />
                           ))}
                         </ul>
                       </div>
                     )}
                     
+                    {/* Benefits with HTML support */}
                     {job.benefits && job.benefits.length > 0 && (
                       <div className="zv-job-benefits">
-                        <strong>🎁 Benefits:</strong>
+                        <strong><FaGift /> Benefits:</strong>
                         <ul>
                           {job.benefits.map((benefit, i) => (
-                            <li key={i}>{benefit}</li>
+                            <li key={i} dangerouslySetInnerHTML={{ __html: benefit }} />
                           ))}
                         </ul>
                       </div>
                     )}
                     
-                    <div className="zv-job-full-skills">
-                      <strong>💡 Required Skills:</strong>
-                      <div className="zv-job-skill-list">
-                        {job.skills && job.skills.map((skill, i) => (
-                          <span key={i}>{skill}</span>
-                        ))}
+                    {/* Required Skills */}
+                    {job.skills && job.skills.length > 0 && (
+                      <div className="zv-job-full-skills">
+                        <strong><FaLightbulb /> Required Skills:</strong>
+                        <div className="zv-job-skill-list">
+                          {job.skills.map((skill, i) => (
+                            <span key={i} dangerouslySetInnerHTML={{ __html: skill }} />
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -285,11 +311,8 @@ export default function OpenPositionsSection({ onApply }) {
                   {expandedJob === job.id ? '▲ Show Less' : '▼ View Details'}
                 </button>
                 <button 
-                  className="zv-job-card__apply-btn"
-                  onClick={() => {
-                    console.log('Apply button clicked for job:', job)
-                    onApply(job)
-                  }}
+                  className="btn-grad"
+                  onClick={() => onApply && onApply(job)}
                 >
                   Apply Now <FaArrowRight />
                 </button>

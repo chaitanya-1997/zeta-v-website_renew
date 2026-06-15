@@ -86,14 +86,14 @@ export default function AboutHero() {
         </div>
       </div>
 
-      <motion.div 
+      {/* <motion.div 
         className="hero__scroll"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
         <span>Discover Our Story</span>
         <div className="hero__scroll-dot" />
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }

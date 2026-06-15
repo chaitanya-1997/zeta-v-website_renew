@@ -167,14 +167,7 @@ export default function AdvisoryHero() {
         
       </div>
 
-      <motion.div 
-        className="hero__scroll"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-      >
-        <span>Scroll to explore</span>
-        <div className="hero__scroll-dot" />
-      </motion.div>
+    
     </section>
   )
 }
