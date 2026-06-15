@@ -1,0 +1,224 @@
+.connect-section {
+  padding: 0;
+}
+
+.social-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.social-card {
+  width: 140px;
+  height: 140px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 132, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--social-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.social-card:hover::before {
+  transform: scaleX(1);
+}
+
+.social-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 132, 255, 0.1);
+  border-color: rgba(0, 132, 255, 0.2);
+}
+
+.social-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(13,71,161,0.06), rgba(0,180,255,0.06));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-card:hover .social-icon-wrapper {
+  background: var(--social-color);
+}
+
+.social-icon {
+  font-size: 22px;
+  color: var(--social-color);
+  transition: color 0.3s ease;
+}
+
+.social-card:hover .social-icon {
+  color: #ffffff;
+}
+
+.social-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #07142b;
+}
+
+.social-arrow {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 14px;
+  color: var(--social-color);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.social-card:hover .social-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Newsletter */
+.newsletter-box {
+  max-width: 500px;
+  margin: 50px auto 0;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid rgba(0, 132, 255, 0.1);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.newsletter-box h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #07142b;
+  margin-bottom: 8px;
+}
+
+.newsletter-box p {
+  font-size: 14px;
+  color: #5d6b82;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(0, 132, 255, 0.15);
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  background: #fafcff;
+  transition: border-color 0.3s ease;
+}
+
+.newsletter-form input:focus {
+  border-color: #00b4ff;
+}
+
+.newsletter-form button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0d47a1, #0066cc);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: linear-gradient(135deg, #1565c0, #0091ea);
+}
+
+@media (max-width: 768px) {
+  .social-grid {
+    gap: 14px;
+  }
+  
+  .social-card {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-box {
+    padding: 28px 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-grid {
+    gap: 12px;
+  }
+  
+  .social-card {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .social-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .social-icon {
+    font-size: 18px;
+  }
+  
+  .social-name {
+    font-size: 11px;
+  }
+}
+
+/* Fix for social icon hover */
+.social-icon {
+  color: var(--social-color);
+  transition: all 0.3s ease;
+}
+
+.social-icon-wrapper:hover .social-icon {
+  color: #ffffff !important;
+}
+
+.social-icon-wrapper {
+  background: rgba(var(--social-color-rgb), 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-card:hover .social-icon-wrapper {
+  background: var(--social-color);
+}

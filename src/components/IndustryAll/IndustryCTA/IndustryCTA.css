@@ -1,0 +1,80 @@
+/* src/components/IndustryAll/IndustryCTA/IndustryCTA.css */
+
+.ind-cta {
+  position: relative;
+  padding: 120px 32px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ind-cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.ind-cta__bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.ind-cta__bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(6, 8, 24, 0.9) 0%, rgba(11, 17, 48, 0.95) 100%);
+}
+
+.ind-cta__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+}
+
+.ind-cta__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+}
+
+.ind-cta__orb--1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.4), transparent 70%);
+  top: -100px;
+  left: -80px;
+}
+
+.ind-cta__orb--2 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.45), transparent 70%);
+  bottom: -100px;
+  right: -80px;
+}
+
+.ind-cta__inner {
+  position: relative;
+  z-index: 1;
+   padding: 120px 32px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .ind-cta {
+    padding: 80px 20px;
+  }
+  
+  .hero__h1a, .hero__h1b {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__h1a, .hero__h1b {
+    font-size: 1.5rem;
+  }
+}

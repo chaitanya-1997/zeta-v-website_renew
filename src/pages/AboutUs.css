@@ -1,0 +1,79 @@
+.mission-vision-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  padding: 50px 20px;
+  flex-wrap: nowrap;
+  position: relative;
+  overflow: hidden;
+   
+ 
+}
+
+.mission-vision-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Push the cards above the background */
+.mission-vision-section > :not(.mission-vision-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Tablet (landscape + portrait) ── */
+@media (max-width: 1024px) {
+  .mission-vision-section {
+    gap: 20px;
+    padding: 100px 20px;
+  }
+}
+
+/* ── Tablet portrait / large mobile ── */
+@media (max-width: 768px) {
+  .mission-vision-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 80px 24px;
+  }
+
+  /* Hide SVG background on tablets */
+  .mission-vision-bg {
+    display: none;
+  }
+
+  /* Cards fill the column width but cap at a readable size */
+  .mission-vision-section > :not(.mission-vision-bg) {
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+/* ── Mobile (standard phones: 360–480px) ── */
+@media (max-width: 480px) {
+  .mission-vision-section {
+    gap: 24px;
+    padding: 60px 16px;
+  }
+
+  .mission-vision-section > :not(.mission-vision-bg) {
+    width: 90%;
+    max-width: 90%;
+  }
+}
+
+/* ── Small mobile (≤360px: Galaxy S8, iPhone SE gen1) ── */
+@media (max-width: 360px) {
+  .mission-vision-section {
+    gap: 20px;
+    padding: 48px 12px;
+  }
+}

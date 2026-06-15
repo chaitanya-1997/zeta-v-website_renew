@@ -1,0 +1,402 @@
+/* ================================
+   Section
+================================ */
+.journey-section {
+  width: 100%;
+  padding: 100px 5%;
+  background: rgb(231, 244, 249);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+/* ================================
+   Scroll wrapper
+   overflow-x: auto enables horizontal
+   scroll on mobile/tablet.
+================================ */
+.timeline-outer {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* scrollbar-width: thin; */
+  /* scrollbar-color: #cbd5e1 transparent; */
+  padding-bottom: 12px;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+.timeline-outer::-webkit-scrollbar {
+  height: 4px;
+}
+
+.timeline-outer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.timeline-outer::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* ================================
+   Timeline container
+   Fixed height. Line sits at top:50%.
+   Upper half = 210px, lower half = 210px.
+   min-width forces horizontal scroll
+   on smaller screens.
+================================ */
+.horizontal-timeline {
+  position: relative;
+  width: 100%;
+  min-width: 900px;
+  height: 420px;
+  box-sizing: border-box;
+}
+
+/* ================================
+   Track + animated line
+================================ */
+.timeline-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  background: #dde8f8;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.timeline-line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #3097f3, #2563eb, #60a5fa);
+  transform-origin: left center;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(48, 151, 243, 0.25);
+}
+
+/* ================================
+   Card
+================================ */
+.timeline-card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  
+}
+
+/* ================================
+   Dot — pinned at line center
+================================ */
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3.5px solid #3097f3;
+  box-shadow:
+    0 0 0 4px rgba(48, 151, 243, 0.15),
+    0 0 10px rgba(48, 151, 243, 0.2);
+  z-index: 5;
+}
+
+/* ================================
+   Node halves
+   Each half = exactly 50% of card height.
+   Top half ends at the line; bottom starts at line.
+   padding creates gap between circle and dot.
+================================ */
+.node-half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node-top {
+  top: 0;
+  bottom: 55%;
+  justify-content: flex-end;
+  padding-bottom: 18px;
+}
+
+.node-bottom {
+  top: 55%;
+  bottom: 0;
+  justify-content: flex-start;
+  padding-top: 18px;
+}
+
+/* ================================
+   Year circle
+================================ */
+.timeline-year {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3097f3, #2563eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.24);
+  flex-shrink: 0;
+  z-index: 4;
+}
+
+.timeline-year span {
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ================================
+   Connector
+================================ */
+.timeline-connector {
+  width: 2px;
+  height: 28px;
+  background: linear-gradient(180deg, #3097f3, #93c5fd);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ================================
+   Content box
+================================ */
+.timeline-text {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 100px;
+  max-width: 130px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.timeline-text p {
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* ================================
+   Tablet landscape (1024px and below)
+   Still horizontal, slightly compact
+================================ */
+@media screen and (max-width: 1024px) {
+  .section-title {
+    font-size: 2.8rem;
+  }
+
+  .journey-section {
+    padding: 80px 4%;
+  }
+}
+/* ================================
+   Tablet portrait + mobile landscape
+   (768px and below)
+   Horizontal scroll layout.
+   min-width on .horizontal-timeline
+   keeps the design intact while
+   .timeline-outer scrolls it.
+================================ */
+@media screen and (max-width: 768px) {
+  .journey-section {
+    padding: 70px 0;
+  }
+
+  .journey-heading {
+    padding: 0 20px;
+    margin-bottom: 56px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.92rem;
+  }
+
+  .timeline-outer {
+    padding: 0 20px 16px;
+    box-sizing: border-box;
+  }
+
+  /* Compact height for mobile */
+  .horizontal-timeline {
+    height: 340px;
+    min-width: 860px;
+  }
+
+  /* ── Year circle: smaller, but still centered
+     in its card column (left:0 right:0 + align-items:center
+     already handles horizontal centering via the node-half rules).
+     The dot is absolute at left:50% of the card, which matches
+     the center of the node-half column. ── */
+  .timeline-year {
+    width: 56px;
+    height: 56px;
+  }
+
+  .timeline-year span {
+    font-size: 0.76rem;
+  }
+
+  /* Shorter connectors so everything fits in 340px height */
+  .timeline-connector {
+    height: 20px;
+  }
+
+  /* Gap between year circle edge and dot — keep equal on both sides */
+  .node-top {
+    padding-bottom: 14px;
+    padding-right: 50px;
+  }
+
+  .node-bottom {
+    padding-top: 14px;
+    padding-right: 50px;
+  }
+
+  .timeline-text {
+    min-width: 88px;
+    max-width: 112px;
+    padding: 8px 10px;
+  }
+
+  .timeline-text p {
+    font-size: 0.7rem;
+  }
+
+  /* Dot: stays at position:absolute top:50% left:50%
+     which is the exact center of the card column.
+     Year circle is centered in node-half via align-items:center
+     and node-half has left:0 right:0 — so both share the same
+     horizontal center line. */
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-width: 3px;
+    /* Explicitly re-assert centering in case any rule drifts */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+/* ================================
+   Small mobile (480px and below)
+   Same horizontal scroll, even more compact
+================================ */
+@media screen and (max-width: 480px) {
+  .journey-section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+  }
+
+  .journey-heading {
+    margin-bottom: 44px;
+  }
+
+  .horizontal-timeline {
+    height: 350px;
+    min-width: 800px;
+  }
+
+  .timeline-year {
+    width: 50px;
+    height: 50px;
+  }
+
+  .timeline-year span {
+    font-size: 0.7rem;
+  }
+
+  .timeline-connector {
+    height: 16px;
+  }
+
+  .node-top {
+    padding-bottom: 12px;
+  }
+
+  .node-bottom {
+    padding-top: 12px;
+  }
+
+  .timeline-text {
+    min-width: 80px;
+    max-width: 100px;
+    padding: 7px 8px;
+  }
+
+  .timeline-text p {
+    font-size: 0.66rem;
+  }
+
+  /* Dot center re-asserted at this breakpoint */
+  .timeline-dot {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ================================
+   Extra small (360px and below)
+================================ */
+@media screen and (max-width: 360px) {
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .horizontal-timeline {
+    height: 380px;
+    min-width: 760px;
+  }
+
+  .timeline-year {
+    width: 46px;
+    height: 46px;
+  }
+
+  .timeline-year span {
+    font-size: 0.65rem;
+  }
+
+  /* Dot center re-asserted at this breakpoint */
+  .timeline-dot {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,118 @@
+.offices-section {
+  padding: 0;
+}
+
+.offices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.office-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 132, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px 24px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.office-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 132, 255, 0.1);
+  border-color: rgba(0, 132, 255, 0.25);
+}
+
+.office-card-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #0d47a1, #00b4ff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.office-card:hover .office-card-line {
+  transform: scaleX(1);
+}
+
+.office-flag {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.office-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #07142b;
+  margin-bottom: 4px;
+}
+
+.office-country {
+  font-size: 13px;
+  color: #5d6b82;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.office-details {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.office-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #5d6b82;
+  line-height: 1.5;
+}
+
+.detail-icon {
+  color: #00b4ff;
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .offices-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  
+  .office-card {
+    padding: 28px 20px 24px;
+  }
+}
+
+/* Add to your existing WorldwideOffices.css */
+
+.office-flag {
+  width: 48px;
+  height: 36px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.flag-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

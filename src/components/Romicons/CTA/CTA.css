@@ -1,0 +1,123 @@
+.cta-section {
+  width: 100%;
+  padding: 100px 5%;
+  background: #f4f9ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-container {
+  text-align: center;
+  max-width: 700px;
+}
+
+/* =========================
+   Heading
+========================= */
+
+.cta-container h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 14px;
+}
+
+/* =========================
+   Subtitle
+========================= */
+
+.cta-container p {
+  font-size: 1.15rem;
+  color: #475569;
+  margin-bottom: 35px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.cta-btn {
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Primary Button */
+
+.primary-btn {
+  background: #111111;
+  color: #ffffff;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Secondary Button */
+
+.secondary-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+}
+
+.secondary-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-3px);
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 1024px) {
+
+  .cta-container h2 {
+    font-size: 2.1rem;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+  .cta-section {
+    padding: 80px 20px;
+  }
+
+  .cta-container h2 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .cta-container p {
+    font-size: 1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .cta-btn {
+    width: 100%;
+
+    max-width: 280px;
+  }
+}

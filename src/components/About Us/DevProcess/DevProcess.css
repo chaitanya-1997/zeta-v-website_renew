@@ -1,0 +1,463 @@
+.process-section {
+  width: 100%;
+  padding: 80px 5%;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+}
+
+/* =========================
+   Background Image
+========================= */
+
+.dev-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  animation: bgKenBurns 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes bgKenBurns {
+  0% {
+    transform: scale(1.00) translate(0%, 0%);
+  }
+
+  33% {
+    transform: scale(1.06) translate(-1.5%, 1%);
+  }
+
+  66% {
+    transform: scale(1.10) translate(1.5%, -1%);
+  }
+
+  100% {
+    transform: scale(1.05) translate(-0.5%, 0.5%);
+  }
+}
+
+.process-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(135deg,
+      rgba(10, 22, 40, 0.82) 0%,
+      rgba(13, 71, 161, 0.70) 50%,
+      rgba(0, 60, 120, 0.78) 100%);
+  pointer-events: none;
+}
+
+.process-section>*:not(.dev-bg) {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================
+   Tree Wrapper
+========================= */
+
+.tree-wrapper {
+  padding-top: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* =========================
+   TOP ROW
+========================= */
+
+.tree-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* =========================
+   CARDS — glassmorphism
+========================= */
+
+.tree-card {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 24px 20px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  transition: all 0.35s ease;
+}
+
+.tree-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(0, 180, 255, 0.40);
+  box-shadow:
+    0 16px 48px rgba(0, 180, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.tree-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 16px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #3097f3, #2563eb);
+  color: white;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+}
+
+.tree-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.tree-card p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* =========================
+   VERTICAL DROPS FROM CARDS
+========================= */
+
+.tree-top-row .tree-card:first-child::after,
+.tree-top-row .tree-card:last-child::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 40px;
+  background: rgba(0, 180, 255, 0.80);
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.40);
+}
+
+.tree-top-row .tree-card:nth-child(2)::after {
+  display: none;
+}
+
+/* =========================
+   TREE CONNECTOR
+========================= */
+
+.tree-connectors {
+  position: relative;
+  height: 80px;
+}
+
+.connector-horizontal {
+  position: absolute;
+  top: 40px;
+  left: calc((91% - 48px) / 6);
+  right: calc((91% - 48px) / 6);
+  height: 3px;
+  background: rgba(0, 180, 255, 0.80);
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.40);
+}
+
+.connector-vertical {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 80px;
+  background: rgba(0, 180, 255, 0.80);
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.40);
+}
+
+/* =========================
+   BOTTOM SECTION
+========================= */
+
+.tree-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tree-vertical-line-small {
+  width: 3px;
+  height: 50px;
+  background: rgba(0, 180, 255, 0.80);
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.40);
+}
+
+/* =========================
+   MOBILE SCROLL
+   (hidden on desktop)
+========================= */
+
+.mobile-scroll-fade {
+  display: none;
+}
+
+/* =========================
+   TABLET — 768px–1024px
+========================= */
+
+@media (max-width: 1024px) {
+  .process-section {
+    padding: 80px 4%;
+  }
+
+  .process-heading {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  .tree-wrapper {
+    max-width: 100%;
+  }
+
+  .tree-top-row {
+    gap: 16px;
+  }
+
+  .tree-card {
+    max-width: none;
+    padding: 20px 16px;
+  }
+
+  .tree-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .connector-horizontal {
+    left: calc((91% - 32px) / 6);
+    right: calc((91% - 32px) / 6);
+  }
+}
+
+/* =========================
+   MOBILE — ≤767px
+========================= */
+
+/* =========================
+   MOBILE — ≤767px
+========================= */
+
+@media (max-width: 767px) {
+
+  .process-section {
+    padding: 72px 0 80px;
+  }
+
+  /* ---------- Heading ---------- */
+
+  .process-heading {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    margin: 0 auto 50px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Hide desktop tree */
+  .tree-wrapper {
+    display: none;
+  }
+
+  /* Show mobile scroll */
+  .mobile-scroll-fade {
+    display: block;
+    position: relative;
+    z-index: 3;
+  }
+
+  .mobile-scroll-fade::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 100%;
+    background: linear-gradient(to right,
+        transparent,
+        rgba(0, 30, 80, 0.60));
+    pointer-events: none;
+  }
+
+  .mobile-scroll-strip {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+
+  .mobile-scroll-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-scroll-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: 16px 5%;
+  }
+
+  .mobile-scroll-strip .tree-card {
+    flex-shrink: 0;
+    width: 200px;
+    max-width: none;
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  .mobile-scroll-strip .tree-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .mobile-step-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #3097f3, #2563eb);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  hr.mobile-connector-line {
+    display: block;
+    flex-shrink: 0;
+    width: 36px;
+    height: 3px;
+    background: rgba(0, 180, 255, 0.8);
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-scroll-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .mobile-scroll-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .mobile-scroll-dots span.active {
+    width: 18px;
+    border-radius: 20px;
+    background: #3097f3;
+  }
+}
+
+
+.mobile-scroll-strip .tree-card::after {
+  display: none !important;
+}
+
+.mobile-scroll-strip .mobile-scroll-track>.tree-card:first-child::before,
+.mobile-scroll-strip .mobile-scroll-track>.tree-card:first-child::after {
+  display: none !important;
+}
+
+
+
+/* =========================
+   SMALL MOBILE — ≤480px
+========================= */
+
+@media (max-width: 480px) {
+
+  .process-section {
+    padding: 60px 0 72px;
+  }
+
+  .process-heading {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    padding: 0 18px;
+
+    margin-bottom: 50px;
+
+    text-align: center;
+  }
+
+
+  .mobile-scroll-strip .tree-card {
+    width: 178px;
+    padding: 20px 14px;
+  }
+
+  .mobile-scroll-strip .tree-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+  }
+
+  .mobile-scroll-strip .tree-card h3 {
+    font-size: 1rem;
+  }
+
+  .mobile-scroll-strip .tree-card p {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 380px) {
+
+  .process-heading {
+    padding: 0 14px;
+  }
+
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .dev-bg {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .dev-bg {
+    animation: none !important;
+    transform: none !important;
+  }
+}

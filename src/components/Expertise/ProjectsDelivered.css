@@ -1,0 +1,472 @@
+.projects-section {
+  padding: 50px 40px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 50%, #f5f9ff 100%);
+}
+
+/* ============================================
+   BACKGROUND ANIMATION
+============================================ */
+.projects-bg-animation {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.orb-1 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.12) 0%, transparent 70%);
+  top: 10%;
+  right: -50px;
+  animation: floatOrb1 8s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(13, 71, 161, 0.1) 0%, transparent 70%);
+  bottom: 15%;
+  left: -40px;
+  animation: floatOrb2 10s ease-in-out infinite;
+}
+
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.15); }
+  66% { transform: translate(-15px, 15px) scale(0.9); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-25px, 20px) scale(1.1); }
+  66% { transform: translate(15px, -10px) scale(0.88); }
+}
+
+/* Animated grid pattern */
+.projects-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 132, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 132, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+/* Floating particles */
+.projects-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle, rgba(0, 180, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle, rgba(13, 71, 161, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px, 100px 100px;
+  background-position: 0 0, 40px 40px;
+  animation: particlesDrift 20s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes particlesDrift {
+  0% { background-position: 0 0, 40px 40px; }
+  100% { background-position: 80px 80px, 120px 120px; }
+}
+
+/* ============================================
+   SECTION HEADER
+============================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+/* .section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #07142b;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #0d47a1, #00b4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+} */
+
+.section-header p {
+  font-size: 15px;
+  color: #5d6b82;
+  max-width: 450px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+.section-header::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #0d47a1, #00b4ff);
+  margin: 12px auto 0;
+  border-radius: 2px;
+  animation: linePulse 2s ease-in-out infinite;
+}
+
+@keyframes linePulse {
+  0%, 100% { width: 50px; opacity: 1; }
+  50% { width: 65px; opacity: 0.7; }
+}
+
+/* ============================================
+   CARDS GRID
+============================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   CARD - Glass Effect
+============================================ */
+.project-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(0, 132, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 26px 18px 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+/* Glow border on hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0d47a1, #00b4ff, #0d47a1);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* Inner white background */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 16px;
+  background: white;
+  z-index: -1;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 16px 32px rgba(0, 132, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Shine sweep effect */
+.project-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.project-card:hover .project-shine {
+  left: 150%;
+}
+
+/* Icon */
+.project-icon {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.project-icon-bg {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+  transform: scale(1.15) translateY(-3px);
+}
+
+.project-card:hover .project-icon-bg {
+  transform: scale(1.05);
+}
+
+/* Counter */
+.project-card h1 {
+  font-size: 38px;
+  background: linear-gradient(135deg, #0d47a1, #00b4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+  font-weight: 800;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* Label */
+.project-card p {
+  color: #5d6b82;
+  font-size: 13px;
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+}
+
+/* Decoration dots */
+.project-decoration {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.project-card:hover .project-decoration {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.decoration-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d47a1, #00b4ff);
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.4);
+  animation: dotBounce 1.5s ease-in-out infinite;
+}
+
+.decoration-circle:nth-child(2) { 
+  animation-delay: 0.2s; 
+  background: #1565c0;
+}
+
+.decoration-circle:nth-child(3) { 
+  animation-delay: 0.4s; 
+  background: #00b4ff;
+}
+
+@keyframes dotBounce {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+    opacity: 0.6; 
+  }
+  50% { 
+    transform: translateY(-6px) scale(1.4); 
+    opacity: 1; 
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1024px) {
+  .projects-section {
+    padding: 40px 24px;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+    gap: 16px;
+  }
+  
+  .section-header h2 {
+    font-size: 30px;
+  }
+  
+  .project-card h1 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 36px 16px;
+  }
+  
+  .projects-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 14px; 
+    max-width: 360px;
+  }
+  
+  .project-card { 
+    padding: 22px 14px 20px; 
+    border-radius: 16px; 
+  }
+  
+  .project-card h1 { 
+    font-size: 30px; 
+  }
+  
+  .project-card p { 
+    font-size: 12px; 
+  }
+  
+  .project-icon-bg {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  
+  .project-icon-bg span {
+    font-size: 26px !important;
+  }
+  
+  .section-header h2 {
+    font-size: 26px;
+  }
+  
+  .section-header {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid { 
+    grid-template-columns: 1fr;
+    max-width: 280px;
+  }
+  
+  .project-card { 
+    padding: 22px 18px 20px; 
+  }
+  
+  .project-card h1 { 
+    font-size: 32px; 
+  }
+  
+  .section-header h2 {
+    font-size: 24px;
+  }
+  
+  .project-decoration {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb,
+  .project-shine,
+  .decoration-circle,
+  .section-header::after,
+  .projects-section::before,
+  .projects-section::after {
+    animation: none !important;
+  }
+}
+
+.projects-section {
+  padding: 50px 40px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-accent, #EDF7FF);
+}
+
+/* Analytics chart watermark */
+.projects-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 200px;
+  background: 
+    linear-gradient(135deg, transparent 49%, rgba(11, 111, 232, 0.03) 49%, rgba(11, 111, 232, 0.03) 51%, transparent 51%) 0 0 / 60px 60px,
+    linear-gradient(45deg, transparent 49%, rgba(32, 184, 255, 0.03) 49%, rgba(32, 184, 255, 0.03) 51%, transparent 51%) 0 0 / 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* Remove old background animations */
+.projects-bg-animation,
+.bg-orb,
+.orb-1,
+.orb-2 {
+  display: none;
+}
+
+/* Remove old pseudo-elements */
+.projects-section::after {
+  display: none;
+}
