@@ -1,0 +1,675 @@
+/* ==========================================
+   POPPINS FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ==========================================
+   INDUSTRY DETAIL — Complete CSS
+========================================== */
+
+.industry-detail {
+  --ind-accent-rgb: 55, 138, 221;
+  --ind-accent-mid: #378ADD;
+  --ind-accent-light: #85B7EB;
+  --ind-accent-glow: rgba(55, 138, 221, 0.12);
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #0a0f1a;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ==========================================
+   BACKGROUND
+========================================== */
+
+.industry-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.industry-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.industry-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.industry-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at 85% 0%, var(--ind-accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.industry-content {
+  position: relative;
+  z-index: 2;
+}
+
+.industry-content__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 90px 5vw 80px;
+}
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.industry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 18px;
+}
+
+.industry-badge--sm {
+  margin-bottom: 0;
+  font-size: 11px;
+  padding: 5px 14px;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ind-accent-mid);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   HEADING
+========================================== */
+
+.industry-heading-area {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.industry-heading-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.industry-heading {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ==========================================
+   OVERVIEW
+========================================== */
+
+.industry-overview {
+  margin-bottom: 72px;
+}
+
+.industry-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.industry-quote-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.industry-overview-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.industry-glass-card {
+  position: relative;
+  background: rgba(var(--ind-accent-rgb), 0.25);
+  border: 1px solid rgba(var(--ind-accent-rgb), 0.42);
+  border-radius: 14px;
+  padding: 24px 28px;
+  transition: background 0.2s, border-color 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.industry-glass-card:hover {
+  background: rgba(var(--ind-accent-rgb), 0.35);
+  border-color: rgba(var(--ind-accent-rgb), 0.55);
+}
+
+.industry-faq--open {
+  background: rgba(var(--ind-accent-rgb), 0.32) !important;
+  border-color: rgba(var(--ind-accent-rgb), 0.55) !important;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.card-body {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.card-tag {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(var(--ind-accent-rgb), 0.28);
+  color: var(--ind-accent-light);
+}
+
+.industry-overview-cards .industry-glass-card {
+  display: flex;
+  gap: 20px;
+  padding: 26px 30px;
+}
+
+.industry-glass-card__content {
+  flex: 1;
+  position: relative;
+}
+
+/* ==========================================
+   STATS — Industry-themed dividers, proper spacing
+========================================== */
+
+.industry-stats {
+  display: flex;
+  gap: 0;
+  padding-top: 28px;
+  margin-top: 32px;
+  border-top: 1px solid rgba(var(--ind-accent-rgb), 0.30);
+}
+
+.industry-stat {
+  flex: 1;
+  padding: 0 32px;
+  border-right: 1px solid rgba(var(--ind-accent-rgb), 0.35);
+  text-align: center;
+}
+
+.industry-stat:first-child {
+  padding-left: 0;
+}
+
+.industry-stat:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ind-accent-light);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.60);
+}
+
+/* ==========================================
+   BLOCKS
+========================================== */
+
+.industry-block {
+  margin-bottom: 68px;
+}
+
+.industry-block__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 28px;
+}
+
+.industry-block__icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.industry-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/* ==========================================
+   CHALLENGES
+========================================== */
+
+.industry-challenge__num {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.50);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   SOLUTIONS
+========================================== */
+
+.industry-glass-card--solution {
+  padding: 24px 26px;
+}
+
+/* ==========================================
+   CASE STUDIES TABLE
+========================================== */
+
+.cs-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 14px;
+  background: rgba(0, 0, 0, 0.52);
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  min-width: 650px;
+}
+
+.cs-table thead tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.cs-table th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cs-table td {
+  padding: 14px 16px;
+  color: rgba(255, 255, 255, 0.92);
+  vertical-align: top;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.cs-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cs-table td.cs-client {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cs-result {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+  background: rgba(var(--ind-accent-rgb), 0.35);
+  color: var(--ind-accent-light);
+}
+
+/* ==========================================
+   BENEFITS
+========================================== */
+
+.industry-benefit-card {
+  display: flex;
+  align-items: flex-start;
+  padding: 18px 22px;
+}
+
+.industry-benefit__check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 12px;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   WHY CHOOSE US
+========================================== */
+
+.industry-why {
+  position: relative;
+  border-radius: 18px;
+  padding: 46px 40px;
+  margin-bottom: 68px;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+}
+
+.industry-why__overline {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.60);
+}
+
+.industry-why__title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+
+.industry-why__gradient {
+  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.industry-why__subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.76);
+  max-width: 800px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.industry-why__text {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ==========================================
+   FAQS
+========================================== */
+
+.industry-faqs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.industry-faq {
+  padding: 0;
+  overflow: hidden;
+}
+
+.industry-faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.industry-faq__toggle {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--ind-accent-rgb), 0.28);
+  color: var(--ind-accent-light);
+  transition: all 0.3s ease;
+}
+
+.industry-faq--open .industry-faq__toggle {
+  background: var(--ind-accent-mid);
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.industry-faq__a {
+  overflow: hidden;
+}
+
+.industry-faq__a-inner {
+  padding: 0 22px 22px;
+}
+
+/* ==========================================
+   RESPONSIVE — Tablet
+========================================== */
+
+@media (max-width: 768px) {
+  .industry-content__inner {
+    padding: 60px 20px;
+  }
+
+  .industry-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .industry-overview-cards .industry-glass-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px;
+  }
+
+  .industry-stats {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .industry-stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(var(--ind-accent-rgb), 0.30);
+    padding: 18px 0;
+    text-align: center;
+  }
+
+  .industry-stat:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .industry-stat:first-child {
+    padding-top: 0;
+  }
+
+  .industry-why {
+    padding: 34px 28px;
+  }
+
+  .industry-block__title {
+    font-size: 1.2rem;
+  }
+
+  .industry-heading-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-body {
+    font-size: 0.95rem;
+  }
+
+  .cs-table {
+    min-width: 500px;
+  }
+
+  .cs-table td {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+
+  .cs-table th {
+    font-size: 0.7rem;
+    padding: 10px 12px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — Small Mobile
+========================================== */
+
+@media (max-width: 480px) {
+  .industry-heading {
+    font-size: 1.5rem;
+  }
+
+  .industry-glass-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .industry-faq__q {
+    padding: 16px 18px;
+  }
+
+  .industry-faq__a-inner {
+    padding: 0 18px 18px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    font-size: 0.9rem;
+  }
+
+  .cs-table td,
+  .cs-table th {
+    font-size: 0.78rem;
+    padding: 8px 10px;
+  }
+
+  .cs-result {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+
+  .industry-badge {
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+
+  .industry-why {
+    padding: 28px 20px;
+  }
+
+  .industry-why__title {
+    font-size: 1.3rem;
+  }
+
+  .industry-why__subtitle,
+  .industry-why__text {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,296 @@
+/* =========================
+   SECTION
+========================= */
+.values-section {
+  padding: var(--section-py) var(--section-px);
+  background: rgb(231, 244, 249);
+  position: relative;
+  overflow: hidden;
+
+}
+
+.values-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.values-heading,
+.values-list {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   HEADING — inherits globals, no overrides
+========================= */
+.values-heading {
+  margin-bottom: 64px;
+}
+
+/* =========================
+   LIST LAYOUT
+========================= */
+.values-list {
+  max-width: 860px;
+  margin: 0 0; /* left-aligned to match section-title */
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--card-border);
+   margin-left: 80px;
+}
+
+/* =========================
+   EACH ROW
+========================= */
+.value-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 36px 0 36px 40px;
+  position: relative;
+  cursor: default;
+  transition: background var(--t-base) var(--ease);
+}
+
+/* dot on the spine */
+.value-row::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 44px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-light);
+  border: 2px solid var(--bg-primary);
+  transition: background var(--t-base) var(--ease),
+              transform var(--t-base) var(--ease-spring);
+}
+
+/* active left accent sweep */
+.value-row::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--grad);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--t-base) var(--ease);
+}
+
+.value-row:hover::after {
+  transform: scaleY(1);
+}
+
+.value-row:hover::before {
+  background: var(--cyan);
+  transform: scale(1.35);
+}
+
+/* =========================
+   NUMBER
+========================= */
+.value-number {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: blue;
+  letter-spacing: 2px;
+  min-width: 28px;
+  padding-top: 6px;
+  transition: color var(--t-base) var(--ease);
+}
+
+.value-row:hover .value-number {
+  color: var(--cyan);
+}
+
+/* =========================
+   BODY
+========================= */
+.value-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.value-top {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.value-title {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: black;
+  margin: 0;
+  transition: color var(--t-base) var(--ease);
+}
+
+.value-row:hover .value-title {
+  color: rgb(8, 72, 136);
+}
+
+.value-tagline {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 520;
+  color: rgb(68, 68, 68);
+  font-style: italic;
+  letter-spacing: 0.2px;
+  transition: color var(--t-base) var(--ease);
+}
+
+.value-row:hover .value-tagline {
+  color: rgb(37, 142, 255);
+}
+
+.value-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgb(54, 53, 53);
+  margin: 0;
+  max-width: 600px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--t-slow) var(--ease),
+              opacity var(--t-base) var(--ease);
+}
+
+.value-row:hover .value-desc {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* =========================
+   TABLET — 1024px
+========================= */
+@media (max-width: 1024px) {
+  .values-list {
+    max-width: 100%;
+  }
+
+  .value-title {
+    font-size: 1.35rem;
+  }
+}
+
+/* =========================
+   TABLET PORTRAIT — 768px
+========================= */
+@media (max-width: 768px) {
+  .values-section {
+    padding: 80px 24px;
+  }
+
+  .values-bg {
+    display: none; /* ← add this */
+  }
+
+  .values-list {
+    margin-left: 0; /* ← add this */
+  }
+
+  .values-heading {
+    margin-bottom: 48px;
+  }
+
+  .value-row {
+    padding: 28px 0 28px 28px;
+    gap: 20px;
+  }
+
+  .value-title {
+    font-size: 1.2rem;
+  }
+
+  /* always show description — no hover on touch */
+  .value-desc {
+    max-height: 200px;
+    opacity: 1;
+  }
+}
+
+/* =========================
+   MOBILE — 480px
+========================= */
+@media (max-width: 480px) {
+  .values-section {
+    padding: 60px 16px;
+  }
+
+  .values-heading {
+    margin-bottom: 36px;
+  }
+
+  .value-row {
+    padding: 22px 0 22px 20px;
+    gap: 14px;
+  }
+
+  .value-number {
+    font-size: 0.65rem;
+    min-width: 20px;
+  }
+
+  .value-title {
+    font-size: 1.05rem;
+  }
+
+  .value-top {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .value-tagline {
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================
+   SMALL MOBILE — 360px
+========================= */
+@media (max-width: 360px) {
+  .value-row {
+    padding: 18px 0 18px 14px;
+  }
+
+  .value-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  .value-row,
+  .value-row::after,
+  .value-row::before,
+  .value-number,
+  .value-title,
+  .value-tagline,
+  .value-desc {
+    transition: none;
+  }
+
+  .value-desc {
+    max-height: 200px;
+    opacity: 1;
+  }
+}

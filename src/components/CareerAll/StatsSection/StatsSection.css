@@ -1,0 +1,56 @@
+.careers-stats {
+  padding: 60px 24px;
+  background: var(--svc-surface);
+}
+
+.careers-stats__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.careers-stats__card {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--svc-surface-2);
+  border: 1px solid var(--svc-border);
+  border-radius: var(--svc-radius);
+  transition: all 0.3s var(--svc-ease);
+}
+
+.careers-stats__card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--svc-shadow);
+}
+
+.careers-stats__icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.careers-stats__value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--svc-text);
+  margin-bottom: 4px;
+}
+
+.careers-stats__label {
+  font-size: 0.85rem;
+  color: var(--svc-text-3);
+}
+
+@media (max-width: 768px) {
+  .careers-stats__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .careers-stats__inner {
+    grid-template-columns: 1fr;
+  }
+}

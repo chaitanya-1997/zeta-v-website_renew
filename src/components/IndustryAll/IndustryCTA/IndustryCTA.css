@@ -1,0 +1,170 @@
+/* ==========================================
+   INDUSTRY CTA — Left-Heavy Layout
+========================================== */
+
+.industry-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 5vw;
+  background: linear-gradient(180deg, #F8FAFC 0%, #EEF4FA 100%);
+}
+
+/* Subtle top glow */
+.industry-cta__glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 180px;
+  background: radial-gradient(
+    circle at top center,
+    rgba(37, 99, 235, 0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================
+   INNER — Content left, button right
+========================================== */
+
+.industry-cta__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* ==========================================
+   LEFT CONTENT — More to the left
+========================================== */
+
+.industry-cta__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+  flex: 1;
+}
+
+.industry-cta__label {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: #2563EB;
+}
+
+.industry-cta__heading {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.industry-cta__heading-gradient {
+  background: linear-gradient(90deg, #2563EB, #3B82F6, #60A5FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.industry-cta__description {
+  font-size: 1.02rem;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 540px;
+}
+
+/* ==========================================
+   RIGHT BUTTON — More to the right
+========================================== */
+
+.industry-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 38px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563EB, #0EA5E9);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.25);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+  .industry-cta {
+    padding: 52px 24px;
+  }
+
+  .industry-cta__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .industry-cta__content {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .industry-cta__heading {
+    font-size: 1.5rem;
+  }
+
+  .industry-cta__description {
+    font-size: 0.92rem;
+    max-width: 100%;
+  }
+
+  .industry-cta__label {
+    font-size: 13px;
+  }
+
+  .industry-cta__button {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .industry-cta {
+    padding: 40px 20px;
+  }
+
+  .industry-cta__heading {
+    font-size: 1.25rem;
+  }
+
+  .industry-cta__description {
+    font-size: 0.88rem;
+  }
+
+  .industry-cta__label {
+    font-size: 12px;
+  }
+
+  .industry-cta__button {
+    padding: 15px 28px;
+    font-size: 0.92rem;
+  }
+}

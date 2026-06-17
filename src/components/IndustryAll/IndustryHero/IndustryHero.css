@@ -1,0 +1,352 @@
+/* ==========================================
+   INDUSTRY HERO — Clean Enterprise
+   No glass, no cards, no auto-scroll
+========================================== */
+
+.industry-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #080a0e;
+  padding-top: 80px;
+}
+
+/* ==========================================
+   BACKGROUND IMAGE
+========================================== */
+
+.industry-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.industry-hero__bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% center;
+  filter: brightness(0.68) contrast(1.05) saturate(0.85);
+}
+
+/* ==========================================
+   UNIFORM DARK OVERLAY
+========================================== */
+
+.industry-hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+/* ==========================================
+   CONTENT WRAPPER
+========================================== */
+
+.industry-hero__inner {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 6%;
+}
+
+.industry-hero__content {
+  position: relative;
+  max-width: 720px;
+  padding-left: 32px;
+}
+
+/* ==========================================
+   VERTICAL ACCENT LINE
+========================================== */
+
+.industry-hero__accent-line {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 150px;
+  background: #4F8CFF;
+  border-radius: 10px;
+}
+
+/* ==========================================
+   OVERLINE
+========================================== */
+
+.industry-hero__overline {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #6db3ff;
+}
+
+/* ==========================================
+   HEADING
+========================================== */
+
+.industry-hero__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.industry-hero__heading-line {
+  display: block;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.08;
+  color: #ffffff;
+  letter-spacing: -0.035em;
+}
+
+.hero-title,
+.hero-subtitle {
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================
+   GRADIENT TEXT
+========================================== */
+
+.industry-hero__gradient-text {
+  background: linear-gradient(135deg, #5baeff 0%, #a0d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.industry-hero__description {
+  max-width: 540px;
+  font-size: 1.05rem;
+  line-height: 1.78;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================
+   CTA BUTTON
+========================================== */
+
+.industry-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+.industry-hero__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 2rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0066cc, #0088ff);
+  box-shadow: 0 4px 28px rgba(0, 102, 204, 0.35);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ==========================================
+   TRUST BAR
+========================================== */
+
+.industry-hero__trust {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.industry-hero__trust-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.industry-hero__trust-number {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.industry-hero__trust-label {
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.industry-hero__trust-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+
+
+
+/* ==========================================
+   RESPONSIVE — Tablet
+========================================== */
+
+@media (max-width: 1024px) {
+  .industry-hero {
+    padding-top: 72px;
+  }
+  
+  .industry-hero__inner {
+    padding: 30px 5%;
+  }
+  
+  .industry-hero__content {
+    max-width: 620px;
+  }
+  
+  .industry-hero__heading-line {
+    font-size: 2.6rem;
+  }
+  
+  .industry-hero__accent-line {
+    height: 130px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — Mobile
+========================================== */
+
+@media (max-width: 768px) {
+  .industry-hero {
+    min-height: auto;
+    padding-top: 64px;
+  }
+  
+  .industry-hero__inner {
+    padding: 60px 5% 50px;
+  }
+  
+  .industry-hero__content {
+    max-width: 100%;
+    padding-left: 24px;
+  }
+  
+  .industry-hero__accent-line {
+    width: 3px;
+    height: 110px;
+    top: 6px;
+  }
+  
+  .industry-hero__heading-line {
+    font-size: 2rem;
+  }
+  
+  .industry-hero__description {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    max-width: 100%;
+  }
+  
+  .industry-hero__btn-primary {
+    width: 100%;
+    justify-content: center;
+    height: 50px;
+    font-size: 0.88rem;
+  }
+  
+  .industry-hero__trust {
+    gap: 1rem;
+  }
+  
+  .industry-hero__trust-number {
+    font-size: 1.25rem;
+  }
+  
+  .industry-hero__trust-label {
+    font-size: 0.68rem;
+  }
+  
+  .industry-hero__trust-divider {
+    height: 26px;
+  }
+  
+  
+  
+  .industry-hero__bg-image {
+    filter: brightness(0.58) contrast(1.05) saturate(0.8);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — Small Mobile
+========================================== */
+
+@media (max-width: 480px) {
+  .industry-hero__inner {
+    padding: 50px 1.25rem 40px;
+  }
+  
+  .industry-hero__content {
+    padding-left: 20px;
+  }
+  
+  .industry-hero__accent-line {
+    width: 3px;
+    height: 90px;
+    border-radius: 6px;
+  }
+  
+  .industry-hero__heading-line {
+    font-size: 1.65rem;
+  }
+  
+  .industry-hero__description {
+    font-size: 0.85rem;
+  }
+  
+  .industry-hero__trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .industry-hero__trust-divider {
+    display: none;
+  }
+  
+  .industry-hero__trust-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+  
+  .industry-hero__overline {
+    font-size: 0.7rem;
+  }
+}

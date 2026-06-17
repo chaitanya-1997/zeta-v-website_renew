@@ -1,0 +1,346 @@
+.offices-section {
+  padding: var(--section-py) var(--section-px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   FLOATING DOTS BACKGROUND
+============================================ */
+.offices-bg-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(13, 71, 161, 0.10) 0%, transparent 8%),
+    radial-gradient(circle at 85% 15%, rgba(0, 180, 255, 0.08) 0%, transparent 6%),
+    radial-gradient(circle at 30% 70%, rgba(13, 71, 161, 0.09) 0%, transparent 7%),
+    radial-gradient(circle at 70% 60%, rgba(0, 180, 255, 0.07) 0%, transparent 6%),
+    radial-gradient(circle at 50% 40%, rgba(13, 71, 161, 0.08) 0%, transparent 8%),
+    radial-gradient(circle at 20% 85%, rgba(0, 180, 255, 0.09) 0%, transparent 6%);
+  background-size: 350px 350px, 300px 300px, 320px 320px, 280px 280px, 380px 380px, 290px 290px;
+  background-position: 10% 20%, 85% 15%, 30% 70%, 70% 60%, 50% 40%, 20% 85%;
+  background-repeat: no-repeat;
+  animation: wwDotsFloat 20s ease-in-out infinite;
+}
+
+@keyframes wwDotsFloat {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(20px, -15px); }
+  40% { transform: translate(-15px, 20px); }
+  60% { transform: translate(-20px, -10px); }
+  80% { transform: translate(10px, 15px); }
+}
+
+/* ============================================
+   SECTION HEADER
+============================================ */
+.ww-section-header {
+  text-align: left;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ww-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+
+.ww-label-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  display: inline-block;
+}
+
+.ww-label-line {
+  width: 20px;
+  height: 1px;
+  background: var(--cyan);
+  display: inline-block;
+}
+
+.ww-section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.ww-section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   LAYOUT - Slider + Map
+============================================ */
+.ww-office-layout {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 32px;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   LEFT - OFFICE SLIDER
+============================================ */
+.ww-office-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.ww-slider-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--blue-mid);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  transition: all var(--t-base) var(--ease);
+  box-shadow: var(--card-shadow);
+  z-index: 2;
+}
+
+.ww-slider-arrow:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--card-border-hover);
+  transform: scale(1.1);
+}
+
+.ww-slider-viewport {
+  flex: 1;
+  overflow: hidden;
+  margin: 0 8px;
+}
+
+/* Office Card */
+.ww-office-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.ww-office-image {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.ww-office-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ww-office-content {
+  padding: 24px;
+}
+
+.ww-office-city {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.ww-office-country {
+  font-size: 0.85rem;
+  color: var(--cyan);
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.ww-office-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ww-office-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.ww-detail-icon {
+  color: var(--cyan);
+  font-size: 15px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.ww-open-map-btn {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Navigation Dots */
+.ww-office-nav {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ww-office-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(13, 71, 161, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--t-base) var(--ease);
+}
+
+.ww-office-dot.active {
+  background: var(--cyan);
+  width: 26px;
+  border-radius: 5px;
+}
+
+/* ============================================
+   RIGHT - MAP
+============================================ */
+.ww-office-map {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+}
+
+.ww-office-map-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 580px;
+  border: none;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1024px) {
+  .ww-office-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ww-office-map-frame {
+    min-height: 400px;
+  }
+  
+  .ww-office-slider {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .offices-section {
+    padding: 60px var(--section-px);
+  }
+  
+  .ww-section-header {
+    margin-bottom: 35px;
+  }
+  
+  .ww-section-title {
+    font-size: 1.6rem;
+  }
+  
+  .ww-office-image {
+    height: 200px;
+  }
+  
+  .ww-office-content {
+    padding: 20px 18px;
+  }
+  
+  .ww-office-city {
+    font-size: 1.3rem;
+  }
+  
+  .ww-office-map-frame {
+    min-height: 350px;
+  }
+  
+  .ww-slider-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offices-section {
+    padding: 40px 4vw;
+  }
+  
+  .ww-office-image {
+    height: 170px;
+  }
+  
+  .ww-office-content {
+    padding: 16px 14px;
+  }
+  
+  .ww-office-city {
+    font-size: 1.2rem;
+  }
+  
+  .ww-office-detail {
+    font-size: 0.75rem;
+  }
+  
+  .ww-office-map-frame {
+    min-height: 300px;
+  }
+}

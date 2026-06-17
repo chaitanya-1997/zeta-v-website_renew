@@ -1,0 +1,256 @@
+/* src/components/ServicesAll/ServicesHowWeWork/ServicesHowWeWork.css */
+
+.svc-how {
+  padding:80px 5vw;
+  background: #F6F8FE;
+  position: relative;
+}
+
+.svc-how__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.svc-how__timeline {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.svc-how__step {
+  flex: 1;
+  min-width: 220px;
+  margin-top: 30PX;
+  position: relative;
+}
+
+.svc-how__connector {
+  position: absolute;
+  top: 40px;
+  left: calc(100% - 10px);
+  width: calc(100% - 40px);
+  height: 2px;
+  background: rgba(14, 21, 48, 0.08);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.svc-how__connector-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #00B4FF, #0D47A1);
+  transform-origin: left;
+}
+
+.svc-how__step:last-child .svc-how__connector {
+  display: none;
+}
+
+.svc-how__node {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: #FFFFFF;
+  border: 2px solid rgba(14, 21, 48, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.svc-how__step:hover .svc-how__node {
+  border-color: #7C5CFF;
+  transform: scale(1.02);
+  box-shadow: 0 0 0 6px rgba(124, 92, 255, 0.15);
+}
+
+.svc-how__node-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #7C5CFF;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.svc-how__step:hover .svc-how__node-ring {
+  opacity: 0.4;
+}
+
+.svc-how__node-number {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #00B4FF, #0D47A1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(124, 92, 255, 0.3);
+}
+
+.svc-how__node-icon {
+  font-size: 1.6rem;
+  color: #7C5CFF;
+  transition: transform 0.3s;
+}
+
+.svc-how__step:hover .svc-how__node-icon {
+  transform: scale(1.08);
+}
+
+.svc-how__card {
+  background: #FFFFFF;
+  border: 1px solid rgba(14, 21, 48, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.svc-how__step:hover .svc-how__card {
+  box-shadow: 0 10px 40px rgba(14, 21, 48, 0.06);
+}
+
+.svc-how__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0E1530;
+  margin-bottom: 8px;
+}
+
+.svc-how__body {
+  font-size: 0.8rem;
+  color: #4A5474;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.svc-how__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(14, 21, 48, 0.08);
+}
+
+.svc-how__duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #7C5CFF;
+}
+
+.svc-how__duration-icon {
+  font-size: 0.65rem;
+}
+
+.svc-how__arrow {
+  font-size: 0.8rem;
+  color: #7B85A3;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.svc-how__card:hover .svc-how__arrow {
+  transform: translateX(4px);
+  color: #7C5CFF;
+}
+
+@media (max-width: 1024px) {
+  .svc-how__timeline {
+    gap: 16px;
+  }
+  
+  .svc-how__step {
+    min-width: 200px;
+  }
+  
+  .svc-how__node {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .svc-how__node-icon {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .svc-how {
+    padding: 60px 24px;
+  }
+  
+  .svc-how__timeline {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .svc-how__step {
+    min-width: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .svc-how__connector {
+    display: none;
+  }
+  
+  .svc-how__node {
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+  
+  .svc-how__card {
+    flex: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .svc-how {
+    padding: 50px 20px;
+  }
+  
+  .svc-how__step {
+    gap: 14px;
+  }
+  
+  .svc-how__node {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .svc-how__node-icon {
+    font-size: 1.2rem;
+  }
+  
+  .svc-how__card {
+    padding: 14px;
+  }
+  
+  .svc-how__title {
+    font-size: 0.85rem;
+  }
+  
+  .svc-how__body {
+    font-size: 0.7rem;
+  }
+}

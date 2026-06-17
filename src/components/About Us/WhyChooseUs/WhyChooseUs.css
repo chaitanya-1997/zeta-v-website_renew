@@ -1,0 +1,466 @@
+/* WhyChooseUs.css */
+
+/* =========================
+   CSS Variables
+========================= */
+:root {
+  --why-bg-primary: #ffffff;
+  --why-bg-secondary: #f8fafc;
+  --why-bg-tertiary: #eef2ff;
+  --why-text-primary: #0f172a;
+  --why-text-light: #64748b;
+  --why-border-color: #e2e8f0;
+  --why-cyan: #06b6d4;
+  --why-blue-mid: #3b82f6;
+  --why-blue-dark: #1e40af;
+  --why-section-py: 100px;
+  --why-section-px: 80px;
+  --why-font-head: 'Inter', system-ui, -apple-system, sans-serif;
+  --why-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --why-transition-base: 0.3s;
+  --why-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --why-ease-spring: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --why-radius-md: 12px;
+}
+
+/* =========================
+   Main Section
+========================= */
+.why_section {
+  padding: var(--why-section-py) var(--why-section-px);
+  background: var(--why-bg-primary);
+  overflow: hidden;
+  position: relative;
+}
+
+.why_bg_image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+  animation: why_bg_zoom 25s ease-in-out infinite alternate;
+}
+
+@keyframes why_bg_zoom {
+  0% {
+    transform: scale(1) translateX(0);
+  }
+  50% {
+    transform: scale(1.08) translateX(-15px);
+  }
+  100% {
+    transform: scale(1.15) translateX(15px);
+  }
+}
+
+.why_heading_container,
+.why_list_container {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   Heading Styles
+========================= */
+.why_heading_container {
+  margin-bottom: 56px;
+}
+
+.why_label {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--why-cyan);
+  margin-bottom: 16px;
+  font-family: var(--why-font-body);
+}
+
+.why_title {
+  font-family: var(--why-font-head);
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--why-text-primary);
+  margin: 0 0 20px 0;
+}
+
+.why_gradient_text {
+  background: linear-gradient(135deg, var(--why-cyan) 0%, var(--why-blue-mid) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.why_subtitle {
+  font-family: var(--why-font-body);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--why-text-light);
+  max-width: 600px;
+  margin: 0;
+}
+
+/* =========================
+   List Container
+========================= */
+.why_list_container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Row Styles
+========================= */
+.why_row {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--why-border-color);
+  padding: 32px 0;
+  gap: 0;
+  transition: background var(--why-transition-base) var(--why-ease);
+  cursor: default;
+}
+
+.why_row:last-child {
+  border-bottom: 1px solid var(--why-border-color);
+}
+
+.why_row:hover {
+  background: var(--why-bg-secondary);
+  border-radius: var(--why-radius-md);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* =========================
+   Left Panel
+========================= */
+.why_left_panel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 44%;
+  padding-right: 40px;
+  flex-shrink: 0;
+}
+
+.why_row_number {
+  font-family: var(--why-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--why-text-light);
+  letter-spacing: 2px;
+  min-width: 24px;
+  transition: color var(--why-transition-base) var(--why-ease);
+}
+
+.why_row:hover .why_row_number {
+  color: var(--why-cyan);
+}
+
+.why_icon_wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--why-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--why-transition-base) var(--why-ease-spring);
+}
+
+.why_row:hover .why_icon_wrapper {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+.why_row_title {
+  font-family: var(--why-font-head);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--why-text-primary);
+  margin: 0;
+  transition: color var(--why-transition-base) var(--why-ease);
+}
+
+.why_row:hover .why_row_title {
+  color: var(--why-blue-mid);
+}
+
+/* =========================
+   Divider
+========================= */
+.why_divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--why-border-color);
+  flex-shrink: 0;
+  margin: 0 40px;
+  transition: background var(--why-transition-base) var(--why-ease);
+}
+
+.why_row:hover .why_divider {
+  background: var(--why-cyan);
+}
+
+/* =========================
+   Right Panel
+========================= */
+.why_right_panel {
+  flex: 1;
+}
+
+.why_description {
+  font-family: var(--why-font-body);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgb(94, 93, 93);
+  margin: 0;
+}
+
+/* =========================
+   Tablet — 1024px
+========================= */
+@media (max-width: 1024px) {
+  .why_section {
+    padding: 90px 40px;
+  }
+
+  .why_left_panel {
+    width: 45%;
+    padding-right: 24px;
+    gap: 16px;
+  }
+
+  .why_divider {
+    margin: 0 24px;
+  }
+
+  .why_row_title {
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .why_description {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .why_icon_wrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  .why_bg_image {
+    object-position: center;
+  }
+
+  .why_bg_image {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* =========================
+   Tablet Portrait — 768px
+========================= */
+@media (max-width: 768px) {
+  .why_section {
+    padding: 80px 24px;
+  }
+
+  .why_title {
+    font-size: 2.2rem;
+  }
+
+  .why_row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 28px 0;
+  }
+
+  .why_row:hover {
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+  }
+
+  .why_left_panel {
+    width: 100%;
+    padding-right: 0;
+    gap: 16px;
+  }
+
+  .why_divider {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+  }
+
+  .why_right_panel {
+    width: 100%;
+  }
+
+  .why_row_title {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .why_description {
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .why_bg_image {
+    opacity: 0.2;
+    object-position: center;
+  }
+}
+
+/* =========================
+   Mobile — 600px
+========================= */
+@media (max-width: 600px) {
+  .why_section {
+    padding: 70px 20px;
+  }
+
+  .why_title {
+    font-size: 1.8rem;
+  }
+
+  .why_subtitle {
+    font-size: 1rem;
+  }
+
+  .why_left_panel {
+    gap: 12px;
+  }
+
+  .why_row_title {
+    font-size: 0.95rem;
+  }
+
+  .why_description {
+    font-size: 0.9rem;
+  }
+
+  .why_icon_wrapper {
+    width: 42px;
+    height: 42px;
+  }
+
+  .why_row_number {
+    min-width: 18px;
+  }
+}
+
+/* =========================
+   Mobile — 480px
+========================= */
+@media (max-width: 480px) {
+  .why_section {
+    padding: 60px 16px;
+  }
+
+  .why_heading_container {
+    margin-bottom: 40px;
+  }
+
+  .why_title {
+    font-size: 1.6rem;
+  }
+
+  .why_label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+
+  .why_row {
+    padding: 22px 0;
+  }
+
+  .why_left_panel {
+    gap: 10px;
+  }
+
+  .why_row_number {
+    font-size: 0.7rem;
+    min-width: 18px;
+  }
+
+  .why_icon_wrapper {
+    width: 38px;
+    height: 38px;
+  }
+
+  .why_row_title {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .why_description {
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .why_bg_image {
+    opacity: 0.15;
+  }
+}
+
+/* =========================
+   Small Mobile — 360px
+========================= */
+@media (max-width: 360px) {
+  .why_section {
+    padding: 50px 14px;
+  }
+
+  .why_title {
+    font-size: 1.4rem;
+  }
+
+  .why_row_title {
+    font-size: 0.85rem;
+  }
+
+  .why_description {
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  .why_icon_wrapper {
+    width: 34px;
+    height: 34px;
+  }
+
+  .why_row_number {
+    font-size: 0.65rem;
+  }
+}
+
+/* =========================
+   Reduced Motion Preference
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  .why_row,
+  .why_icon_wrapper,
+  .why_row_title,
+  .why_row_number,
+  .why_divider {
+    transition: none;
+  }
+
+  .why_bg_image {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,121 @@
+.gallery-hero {
+  position: relative;
+  min-height: 60vh;
+  background: #0a0a2a;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-top: 72px;
+}
+
+.gallery-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gallery-hero__bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.02);
+}
+
+.gallery-hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 10, 42, 0.85), rgba(13, 71, 161, 0.4));
+}
+
+.gallery-hero__inner {
+  position: relative;
+  z-index: 2;
+  padding: 30px var(--section-px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.gallery-hero__left {
+  max-width: 55%;
+}
+
+.gallery-hero__overline {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #00B4FF, #0D47A1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+
+.gallery-hero__title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.gallery-hero__title-line {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-hero__title .grad-text {
+  background: linear-gradient(135deg, #00B4FF, #38bdf8, #0D47A1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.gallery-hero__subtitle {
+  font-size: 0.9rem;
+  color: #c0c0e0;
+  line-height: 1.5;
+  max-width: 500px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .gallery-hero {
+    min-height: 50vh;
+    padding-top: 60px;
+  }
+  
+  .gallery-hero__inner {
+    padding: 20px 20px 60px;
+  }
+  
+  .gallery-hero__left {
+    max-width: 100%;
+  }
+  
+  .gallery-hero__title-line {
+    font-size: 1.9rem;
+  }
+  
+  .gallery-hero__subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .gallery-hero__overline {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-hero {
+    padding-top: 56px;
+  }
+}
