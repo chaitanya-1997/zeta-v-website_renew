@@ -1,203 +1,555 @@
-.careers-culture {
+/* CultureSection.css - Updated with Google Reviews */
+
+.culture-premium {
   position: relative;
-  padding: 100px 24px;
+  padding: 100px 0 80px;
   overflow: hidden;
   isolation: isolate;
 }
 
-.careers-culture__bg-image {
+/* ---- Background ---- */
+.culture-premium-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.culture-premium-bg-image {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  z-index: -2;
+  transform: scale(1.02);
 }
 
-.careers-culture__overlay {
+.culture-premium-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(6, 8, 24, 0.88) 0%, rgba(11, 17, 48, 0.92) 100%);
-  z-index: -1;
 }
 
-.careers-culture__inner {
+.culture-premium-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(34, 167, 240, 0.08), transparent 50%),
+              radial-gradient(ellipse at 70% 50%, rgba(99, 102, 241, 0.06), transparent 50%);
+  pointer-events: none;
+}
+
+/* ---- Orbs ---- */
+.culture-premium-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cult-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  animation: cultOrbFloat 25s ease-in-out infinite alternate;
+}
+
+.cult-orb-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -100px;
+  background: rgba(34, 167, 240, 0.15);
+  animation-delay: 0s;
+}
+
+.cult-orb-2 {
+  width: 350px;
+  height: 350px;
+  bottom: -80px;
+  left: -80px;
+  background: rgba(99, 102, 241, 0.12);
+  animation-delay: -10s;
+}
+
+.cult-orb-3 {
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(167, 139, 250, 0.1);
+  animation-delay: -20s;
+  animation-duration: 35s;
+}
+
+@keyframes cultOrbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 20px) scale(0.9); }
+  100% { transform: translate(20px, -10px) scale(1.05); }
+}
+
+/* ---- Container ---- */
+.culture-premium-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 24px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-.careers-culture__head {
+/* ---- Header ---- */
+.culture-premium-header {
   text-align: center;
   margin-bottom: 60px;
 }
 
-.careers-culture__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 80px;
-}
-
-.careers-culture__card {
-  padding: 32px 24px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--svc-radius);
-  text-align: center;
-  transition: all 0.3s var(--svc-ease);
-}
-
-.careers-culture__card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(0, 212, 255, 0.3);
-}
-
-.careers-culture__card-icon {
-  font-size: 2rem;
+.culture-premium-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 16px;
-  color: var(--svc-cyan);
 }
 
-.careers-culture__card h3 {
-  font-size: 1rem;
+.label-icon-cult {
+  color: #00B4FF;
+  font-size: 0.9rem;
+}
+
+.culture-premium-label span {
+  font-size: 0.75rem;
   font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.careers-culture__card p {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+.culture-premium-title {
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
-.careers-testimonials {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+.gradient-text-culture {
+  background: linear-gradient(135deg, #00B4FF, #6366f1, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.careers-testimonials__header h3 {
+.title-icon-cult {
+  font-size: 1.5rem;
+  color: #00B4FF;
+  opacity: 0.3;
+  animation: spinOrnament 20s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spinOrnament {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---- Layout: Left + Right ---- */
+.culture-premium-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ---- LEFT - Culture Cards ---- */
+.culture-premium-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.culture-premium-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.culture-premium-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.culture-premium-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 180, 255, 0.15);
+}
+
+.culture-premium-card-icon {
   font-size: 1.8rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 40px;
-}
-
-.careers-testimonial {
+  color: #00B4FF;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
-  gap: 32px;
-  background: rgba(255, 255, 255, 0.08);
+  justify-content: center;
+  background: rgba(0, 180, 255, 0.08);
+  border-radius: 12px;
+}
+
+.culture-premium-card-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.culture-premium-card-content p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---- RIGHT - Testimonials ---- */
+.culture-premium-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.culture-premium-testimonials {
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--svc-radius);
-  padding: 40px;
-  text-align: left;
-}
-
-.careers-testimonial__avatar {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 32px 30px;
   position: relative;
-  flex-shrink: 0;
 }
 
-.careers-testimonial__avatar img {
-  width: 80px;
-  height: 80px;
+.culture-premium-testimonials-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.quote-icon {
+  color: #00B4FF;
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.culture-premium-testimonials-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.culture-premium-testimonial {
+  min-height: 200px;
+}
+
+/* Testimonial Top */
+.culture-premium-testimonial-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.culture-premium-testimonial-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* --- AVATAR IMAGE QUALITY IMPROVEMENTS --- */
+.culture-premium-testimonial-avatar img {
+  width: 60px;                     /* slightly larger for better quality */
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;               /* ensures square crop without distortion */
+  image-rendering: auto;           /* fallback for scaling */
+  border: 2px solid rgba(0, 180, 255, 0.2);
+  transition: transform 0.3s ease;
+  backface-visibility: hidden;     /* prevents flicker on some browsers */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optional: scale on hover for a premium feel */
+.culture-premium-testimonial-avatar img:hover {
+  transform: scale(1.08);
+}
+
+/* --- FALLBACK INITIALS (if image fails) --- */
+.culture-premium-testimonial-avatar canvas {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--svc-cyan);
 }
 
-.careers-testimonial__quote-icon {
+.culture-premium-testimonial-status {
   position: absolute;
-  bottom: -5px;
-  right: -5px;
-  width: 28px;
-  height: 28px;
-  background: var(--svc-grad);
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
+  background: #34d399;
+  border: 2px solid #0a0f1e;
+}
+
+/* Source Badges */
+.culture-premium-testimonial-source {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.google-badge {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  color: #fff;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(66, 133, 244, 0.15);
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(66, 133, 244, 0.2);
 }
 
-.careers-testimonial__content p {
+.google-badge svg {
+  color: #4285f4;
+  font-size: 0.75rem;
+}
+
+.employee-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+.review-date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Testimonial Content */
+.culture-premium-testimonial-content p {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 14px 0;
 }
 
-.careers-testimonial__author strong {
-  display: block;
-  font-size: 1rem;
-  color: #fff;
-  margin-bottom: 4px;
-}
-
-.careers-testimonial__author span {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.careers-testimonial__stars {
+.culture-premium-testimonial-stars {
   display: flex;
-  gap: 4px;
-  margin-top: 12px;
+  gap: 3px;
+  margin-bottom: 12px;
 }
 
-.careers-testimonial__star {
-  color: #FFB800;
+.testimonial-star {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.testimonial-star.filled {
+  color: #fbbf24;
+}
+
+.culture-premium-testimonial-author strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.culture-premium-testimonial-author span {
   font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.careers-testimonials__dots {
+/* Dots */
+.culture-premium-testimonials-dots {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 32px;
+  gap: 10px;
+  margin-top: 24px;
 }
 
-.careers-testimonials__dot {
+.culture-premium-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
-.careers-testimonials__dot.active {
-  width: 24px;
+.culture-premium-dot.active {
+  width: 28px;
   border-radius: 4px;
-  background: var(--svc-grad);
+  background: linear-gradient(135deg, #00B4FF, #6366f1);
 }
+
+.culture-premium-dot:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.culture-premium-dot.active:hover {
+  background: linear-gradient(135deg, #00B4FF, #6366f1);
+}
+
+/* ---- Bottom Edge ---- */
+.culture-premium-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(6, 8, 24, 0.6) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 
 @media (max-width: 1024px) {
-  .careers-culture__grid {
-    grid-template-columns: repeat(2, 1fr);
+  .culture-premium-layout {
+    gap: 40px;
+  }
+  
+  .culture-premium-testimonials {
+    padding: 28px 24px;
   }
 }
 
 @media (max-width: 768px) {
-  .careers-culture__grid {
+  .culture-premium {
+    padding: 80px 0 60px;
+  }
+  
+  .culture-premium-layout {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
   
-  .careers-testimonial {
-    flex-direction: column;
-    text-align: center;
-    padding: 32px 24px;
+  .culture-premium-title {
+    font-size: 2.5rem;
   }
   
-  .careers-culture__bg-image {
+  .culture-premium-card {
+    padding: 18px 20px;
+  }
+  
+  .culture-premium-testimonials {
+    padding: 24px 20px;
+  }
+  
+  .culture-premium-bg-image {
     background-attachment: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  .culture-premium {
+    padding: 60px 0 40px;
+  }
+  
+  .culture-premium-container {
+    padding: 0 16px;
+  }
+  
+  .culture-premium-header {
+    margin-bottom: 40px;
+  }
+  
+  .culture-premium-title {
+    font-size: 2rem;
+  }
+  
+  .culture-premium-card {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+  
+  .culture-premium-card-icon {
+    font-size: 1.4rem;
+    width: 38px;
+    height: 38px;
+  }
+  
+  .culture-premium-card-content h3 {
+    font-size: 0.95rem;
+  }
+  
+  .culture-premium-card-content p {
+    font-size: 0.8rem;
+  }
+  
+  .culture-premium-testimonials {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  .culture-premium-testimonials-header h3 {
+    font-size: 0.95rem;
+  }
+  
+  .culture-premium-testimonial-avatar img {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .culture-premium-testimonial-content p {
+    font-size: 0.9rem;
+  }
+  
+  .google-badge,
+  .employee-badge {
+    font-size: 0.55rem;
+    padding: 2px 10px;
+  }
+  
+  .review-date {
+    font-size: 0.5rem;
+  }
+  
+  .cult-orb {
+    opacity: 0.08;
+  }
+  
+  .culture-premium-testimonial-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .culture-premium-testimonial-source {
+    align-items: flex-start;
   }
 }

@@ -45,9 +45,9 @@ export default function GalleryLightbox({ item, onClose, onNext, onPrev, hasNext
           )}
         </div>
         <div className="lightbox-info">
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-          <div className="lightbox-meta"><span>{item.date}</span><span>{item.location}</span></div>
+          <h3 style={{color:'white'}}>{item.title}</h3>
+          {/* <p>{item.description}</p>
+          <div className="lightbox-meta"><span>{item.date}</span><span>{item.location}</span></div> */}
         </div>
       </motion.div>
     </motion.div>

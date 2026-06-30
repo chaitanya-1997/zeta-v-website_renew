@@ -1,3 +1,4 @@
+// FrameworkTree.jsx
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './FrameworkTree.css'
@@ -29,16 +30,16 @@ export default function FrameworkTree({ title, description, items, bgClass = '',
   }, [])
 
   const openModal = (item, index) => {
-  setSelectedItem({ ...item, index })
-  setModalOpen(true)
-  document.body.style.overflow = 'hidden'  // ← ADD THIS
-}
+    setSelectedItem({ ...item, index })
+    setModalOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
 
-const closeModal = () => {
-  setModalOpen(false)
-  setSelectedItem(null)
-  document.body.style.overflow = ''  // ← ADD THIS
-}
+  const closeModal = () => {
+    setModalOpen(false)
+    setSelectedItem(null)
+    document.body.style.overflow = ''
+  }
 
   return (
     <>
@@ -56,7 +57,7 @@ const closeModal = () => {
             <h2>
               {title.split(' ').map((word, i) => 
                 i === title.split(' ').length - 1 ? 
-                  <span key={i} className="fw-title-last"> {word}</span> : 
+                  <span key={i} > {word}</span> : 
                   <span key={i}>{word} </span>
               )}
             </h2>
@@ -76,30 +77,66 @@ const closeModal = () => {
                         <>
                           {isAbove ? (
                             <>
-                              <motion.div className="fw-card-main" onClick={() => openModal(item, index)} whileHover={{ y: -8, boxShadow: '0 14px 40px rgba(11,111,232,0.15)' }}>
-                                <div className="fw-card-main-inner"><span className="fw-step">0{index + 1}</span><div className="fw-icon-bg"><span className="fw-icon-el">{item.icon}</span></div><h3>{item.title}</h3><p>{item.desc}</p><div className="fw-read-more-btn">Read More →</div></div>
+                              <motion.div 
+                                className="fw-card-main" 
+                                onClick={() => openModal(item, index)} 
+                                whileHover={{ y: -8, boxShadow: '0 14px 40px rgba(0,0,0,0.08)' }}
+                                style={{ '--card-color': item.color }}
+                              >
+                                <div className="fw-card-main-inner">
+                                  <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                                    <span className="fw-icon-el">{item.icon}</span>
+                                  </div>
+                                  <h3>{item.title}</h3>
+                                  <p>{item.desc}</p>
+                                  <div className="fw-read-more-btn">Read More →</div>
+                                </div>
                               </motion.div>
                               <div className="zigzag-connector-above">
-                                <div className="zigzag-line-vert line-from-card-to-dot animate-line-grow" style={{ animationDelay: `${1.3 + (index * 0.12)}s` }}></div>
-                                <div className="zigzag-dot animate-dot-pop" style={{ animationDelay: `${1.2 + (index * 0.12)}s` }}><div className="zigzag-dot-inner"></div><div className="zigzag-dot-ripple"></div></div>
+                                <div className="zigzag-line-vert line-from-card-to-dot animate-line-grow" style={{ animationDelay: `${1.3 + (index * 0.12)}s`, background: `linear-gradient(to top, ${item.color}, rgba(0,180,255,0.2))` }}></div>
+                                <div className="zigzag-dot animate-dot-pop" style={{ animationDelay: `${1.2 + (index * 0.12)}s` }}>
+                                  <div className="zigzag-dot-inner" style={{ borderColor: item.color, boxShadow: `0 0 16px ${item.color}40` }}></div>
+                                  <div className="zigzag-dot-ripple" style={{ borderColor: item.color }}></div>
+                                </div>
                               </div>
                             </>
                           ) : (
                             <>
                               <div className="zigzag-connector-below">
-                                <div className="zigzag-dot animate-dot-pop" style={{ animationDelay: `${1.2 + (index * 0.12)}s` }}><div className="zigzag-dot-inner"></div><div className="zigzag-dot-ripple"></div></div>
-                                <div className="zigzag-line-vert line-from-dot-to-card animate-line-grow" style={{ animationDelay: `${1.3 + (index * 0.12)}s` }}></div>
+                                <div className="zigzag-dot animate-dot-pop" style={{ animationDelay: `${1.2 + (index * 0.12)}s` }}>
+                                  <div className="zigzag-dot-inner" style={{ borderColor: item.color, boxShadow: `0 0 16px ${item.color}40` }}></div>
+                                  <div className="zigzag-dot-ripple" style={{ borderColor: item.color }}></div>
+                                </div>
+                                <div className="zigzag-line-vert line-from-dot-to-card animate-line-grow" style={{ animationDelay: `${1.3 + (index * 0.12)}s`, background: `linear-gradient(to bottom, ${item.color}, rgba(0,180,255,0.2))` }}></div>
                               </div>
-                              <motion.div className="fw-card-main" onClick={() => openModal(item, index)} whileHover={{ y: -8, boxShadow: '0 14px 40px rgba(11,111,232,0.15)' }}>
-                                <div className="fw-card-main-inner"><span className="fw-step">0{index + 1}</span><div className="fw-icon-bg"><span className="fw-icon-el">{item.icon}</span></div><h3>{item.title}</h3><p>{item.desc}</p><div className="fw-read-more-btn">Read More →</div></div>
+                              <motion.div 
+                                className="fw-card-main" 
+                                onClick={() => openModal(item, index)} 
+                                whileHover={{ y: -8, boxShadow: '0 14px 40px rgba(0,0,0,0.08)' }}
+                                style={{ '--card-color': item.color }}
+                              >
+                                <div className="fw-card-main-inner">
+                                  <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                                    <span className="fw-icon-el">{item.icon}</span>
+                                  </div>
+                                  <h3>{item.title}</h3>
+                                  <p>{item.desc}</p>
+                                  <div className="fw-read-more-btn">Read More →</div>
+                                </div>
                               </motion.div>
                             </>
                           )}
                         </>
                       )}
                       {isMobile && (
-                        <div className="fw-card-main" onClick={() => openModal(item, index)}>
-                          <div className="fw-card-main-inner"><span className="fw-step">0{index + 1}</span><div className="fw-icon-bg"><span className="fw-icon-el">{item.icon}</span></div><h3>{item.title}</h3><p>{item.desc}</p></div>
+                        <div className="fw-card-main" onClick={() => openModal(item, index)} style={{ '--card-color': item.color }}>
+                          <div className="fw-card-main-inner">
+                            <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                              <span className="fw-icon-el">{item.icon}</span>
+                            </div>
+                            <h3>{item.title}</h3>
+                            <p>{item.desc}</p>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -141,12 +178,17 @@ const closeModal = () => {
                 <div className="promaf-row promaf-row-top">
                   {items.slice(0, 3).map((item, index) => (
                     <div key={index} className="promaf-card-wrapper animate-card-reveal" style={{ animationDelay: `${2.2 + (index * 0.15)}s` }}>
-                      <motion.div className="fw-card-main" onClick={() => openModal(item, index)}
-                        whileHover={{ y: -12, boxShadow: '0 20px 50px rgba(11,111,232,0.2)', scale: 1.03 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}>
+                      <motion.div 
+                        className="fw-card-main" 
+                        onClick={() => openModal(item, index)}
+                        whileHover={{ y: -12, boxShadow: '0 20px 50px rgba(0,0,0,0.08)', scale: 1.02 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        style={{ '--card-color': item.color }}
+                      >
                         <div className="fw-card-main-inner">
-                          <span className="fw-step">0{index + 1}</span>
-                          <div className="fw-icon-bg"><motion.span className="fw-icon-el" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.5 }}>{item.icon}</motion.span></div>
+                          <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                            <motion.span className="fw-icon-el" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.5 }}>{item.icon}</motion.span>
+                          </div>
                           <h3>{item.title}</h3>
                           <p>{item.desc}</p>
                           <div className="fw-read-more-btn">Read More →</div>
@@ -159,12 +201,18 @@ const closeModal = () => {
                 <div className="promaf-row promaf-row-bottom">
                   {items.slice(3, 6).map((item, index) => (
                     <div key={index + 3} className="promaf-card-wrapper animate-card-reveal" style={{ animationDelay: `${2.2 + ((index + 3) * 0.15)}s` }}>
-                      <motion.div className="fw-card-main" onClick={() => openModal(item, index + 3)}
-                        whileHover={{ y: -12, boxShadow: '0 20px 50px rgba(11,111,232,0.2)', scale: 1.03 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}>
+                      <motion.div 
+                        className="fw-card-main" 
+                        onClick={() => openModal(item, index + 3)}
+                        whileHover={{ y: -12, boxShadow: '0 20px 50px rgba(0,0,0,0.08)', scale: 1.02 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        style={{ '--card-color': item.color }}
+                      >
                         <div className="fw-card-main-inner">
-                          <span className="fw-step">0{6 - index}</span>
-                          <div className="fw-icon-bg"><motion.span className="fw-icon-el" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.5 }}>{item.icon}</motion.span></div>
+                          {/* <span className="fw-step">0{6 - index}</span> */}
+                          <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                            <motion.span className="fw-icon-el" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.5 }}>{item.icon}</motion.span>
+                          </div>
                           <h3>{item.title}</h3>
                           <p>{item.desc}</p>
                           <div className="fw-read-more-btn">Read More →</div>
@@ -184,12 +232,17 @@ const closeModal = () => {
                 const isReversed = index === 1 || index === 3
                 return (
                   <div key={index} className={`stacked-row ${index % 2 === 0 ? 'stacked-left' : 'stacked-right'} animate-card-reveal`} style={{ animationDelay: `${index * 0.15}s` }}>
-                    {!isMobile && (
+                    {/* {!isMobile && (
                       <div className="stacked-number">
-                        <span className="animate-dot-pop" style={{ animationDelay: `${0.3 + (index * 0.15)}s` }}>0{index + 1}</span>
+                        <span className="animate-dot-pop" style={{ animationDelay: `${0.3 + (index * 0.15)}s`, background: item.gradient, boxShadow: `0 4px 14px ${item.color}40` }}>0{index + 1}</span>
                       </div>
-                    )}
-                    <motion.div className="fw-card-stacked" onClick={() => openModal(item, index)} whileHover={{ y: -6, boxShadow: '0 14px 35px rgba(11,111,232,0.15)' }}>
+                    )} */}
+                    <motion.div 
+                      className="fw-card-stacked" 
+                      onClick={() => openModal(item, index)} 
+                      whileHover={{ y: -6, boxShadow: '0 14px 35px rgba(0,0,0,0.08)' }}
+                      style={{ '--card-color': item.color }}
+                    >
                       <div className="fw-card-stacked-inner">
                         {isReversed ? (
                           <div className="stacked-header-rev">
@@ -198,12 +251,19 @@ const closeModal = () => {
                               <h3>{item.title}</h3>
                               <p>{item.desc}</p>
                             </div>
-                            <div className="fw-icon-bg"><span className="fw-icon-el">{item.icon}</span></div>
+                            <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                              <span className="fw-icon-el">{item.icon}</span>
+                            </div>
                           </div>
                         ) : (
                           <div className="stacked-header-reg">
-                            <div className="fw-icon-bg"><span className="fw-icon-el">{item.icon}</span></div>
-                            <div className="stacked-title-group"><h3>{item.title}</h3><p>{item.desc}</p></div>
+                            <div className="fw-icon-bg" style={{ background: item.gradient }}>
+                              <span className="fw-icon-el">{item.icon}</span>
+                            </div>
+                            <div className="stacked-title-group">
+                              <h3>{item.title}</h3>
+                              <p>{item.desc}</p>
+                            </div>
                             <div className="fw-read-more-btn-sm">Read More →</div>
                           </div>
                         )}
@@ -222,10 +282,27 @@ const closeModal = () => {
       <AnimatePresence>
         {modalOpen && selectedItem && (
           <motion.div className="fw-modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeModal}>
-            <motion.div className="fw-modal-popup" initial={{ scale: 0.85, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.85, opacity: 0, y: 20 }} transition={{ type: "spring", stiffness: 300, damping: 25 }} onClick={(e) => e.stopPropagation()}>
-              <div className="fw-modal-popup-header"><div className="fw-modal-popup-icon"><span>{selectedItem.icon}</span></div><h2>{selectedItem.title}</h2></div>
+            <motion.div 
+              className="fw-modal-popup" 
+              initial={{ scale: 0.85, opacity: 0, y: 20 }} 
+              animate={{ scale: 1, opacity: 1, y: 0 }} 
+              exit={{ scale: 0.85, opacity: 0, y: 20 }} 
+              transition={{ type: "spring", stiffness: 300, damping: 25 }} 
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="fw-modal-popup-header">
+                <div className="fw-modal-popup-icon" style={{ background: selectedItem.gradient }}>
+                  <span>{selectedItem.icon}</span>
+                </div>
+                <h2>{selectedItem.title}</h2>
+              </div>
               <div className="fw-modal-popup-body">{selectedItem.content}</div>
-              <div className="fw-modal-popup-footer"><button className="fw-modal-close-btn" onClick={closeModal}>Close</button></div>
+              <div className="fw-modal-popup-footer">
+                <button className="fw-modal-close-btn" onClick={closeModal} style={{ background: selectedItem.gradient }}>
+                  Close
+                </button>
+              </div>
+              <div className="fw-modal-line" style={{ background: selectedItem.gradient }}></div>
             </motion.div>
           </motion.div>
         )}

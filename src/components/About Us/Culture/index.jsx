@@ -1,123 +1,138 @@
+// Culture.jsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
-
-import cultureBg   from "../../../assets/about/culture.jpg";
-import diversityBg from "../../../assets/about/diversity.jpg";
-import equalityBg  from "../../../assets/about/equality.jpg";
-import inclusiveBg from "../../../assets/about/inclusive.jpg";
-
-import divCulBg from "../../../assets/about/div-cul-bg.gif";
-
 import {
   UserCheck,
   HeartHandshake,
   BarChart3,
   Laptop,
   ChevronDown,
+  Sparkles,
+  Globe,
+  Users,
+  Award,
+  TrendingUp
 } from "lucide-react";
-
 import "./Culture.css";
 
-/* ─── Data ─────────────────────────────────────────────── */
+import cultureBg from "../../../assets/about/culture.jpg";
+import diversityBg from "../../../assets/about/diversity.jpg";
+import equalityBg from "../../../assets/about/equality.jpg";
+import inclusiveBg from "../../../assets/about/inclusive.jpg";
 
 const culturePillars = [
   {
     title: "Culture",
-    description:
-      "We cultivate an environment where collaboration, trust, and continuous learning are not aspirations, they are daily practice. Every team member contributes to a culture built on psychological safety, open feedback, and shared growth.",
+    description: "We cultivate an environment where collaboration, trust, and continuous learning are not aspirations, they are daily practice. Every team member contributes to a culture built on psychological safety, open feedback, and shared growth.",
     bg: cultureBg,
+    icon: Users,
+    gradient: "linear-gradient(135deg, #22a7f0, #6366f1)"
   },
   {
     title: "Diversity",
-    description:
-      "Our strength lies in the breadth of perspectives we bring together. From Hong Kong to Germany, India to the USA, our teams span continents, languages, and lived experiences, making every solution richer and every challenge better understood.",
+    description: "Our strength lies in the breadth of perspectives we bring together. From Hong Kong to Germany, India to the USA, our teams span continents, languages, and lived experiences, making every solution richer and every challenge better understood.",
     bg: diversityBg,
+    icon: Globe,
+    gradient: "linear-gradient(135deg, #34d399, #06b6d4)"
   },
   {
     title: "Equality",
-    description:
-      "Fairness is non-negotiable. We ensure equitable access to opportunities, resources, and recognition regardless of background, gender, or geography. Our pay equity reviews and transparent promotion criteria hold us accountable.",
+    description: "Fairness is non-negotiable. We ensure equitable access to opportunities, resources, and recognition regardless of background, gender, or geography. Our pay equity reviews and transparent promotion criteria hold us accountable.",
     bg: equalityBg,
+    icon: Award,
+    gradient: "linear-gradient(135deg, #f472b6, #ec4899)"
   },
   {
     title: "Inclusion",
-    description:
-      "Being included is more than being present. We actively create space for every voice to be heard, build accessible digital platforms, and run programs that help team members lead with confidence.",
+    description: "Being included is more than being present. We actively create space for every voice to be heard, build accessible digital platforms, and run programs that help team members lead with confidence.",
     bg: inclusiveBg,
+    icon: HeartHandshake,
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)"
   },
 ];
 
 const stats = [
-  { value: 52,  suffix: "%", label: "Women in Workforce" },
-  { value: 73,  suffix: "%", label: "Diverse Leadership" },
-  { value: 12,  suffix: "",  label: "Employee Resource Groups" },
-  { value: 18,  suffix: "+", label: "Nationalities Represented" },
+  { value: 52, suffix: "%", label: "Women in Workforce", icon: Users },
+  { value: 73, suffix: "%", label: "Diverse Leadership", icon: TrendingUp },
+  { value: 12, suffix: "", label: "Employee Resource Groups", icon: Sparkles },
+  { value: 18, suffix: "+", label: "Nationalities Represented", icon: Globe },
 ];
 
 const regions = [
-  { label: "China",  percent: 38 },
-  { label: "USA",    percent: 27 },
-  { label: "India",  percent: 22 },
+  { label: "China", percent: 38, color: "#22a7f0" },
+  { label: "USA", percent: 27, color: "#6366f1" },
+  { label: "India", percent: 22, color: "#a78bfa" },
+  { label: "Europe", percent: 13, color: "#34d399" },
 ];
 
 const commitments = [
   {
-    icon: <UserCheck size={22} />,
+    icon: UserCheck,
     title: "Inclusive Hiring",
-    description:
-      "Structured, bias-reduced interview panels with diverse hiring managers ensure every candidate is evaluated on merit. We publish role criteria publicly before posting.",
+    description: "Structured, bias-reduced interview panels with diverse hiring managers ensure every candidate is evaluated on merit. We publish role criteria publicly before posting.",
+    gradient: "linear-gradient(135deg, #22a7f0, #6366f1)"
   },
   {
-    icon: <HeartHandshake size={22} />,
+    icon: HeartHandshake,
     title: "Cultural Celebrations",
-    description:
-      "From Chinese New Year to Diwali, Independence Days to Christmas, we celebrate the traditions and milestones that make our global team who they are, with dedicated time and budget for every region.",
+    description: "From Chinese New Year to Diwali, Independence Days to Christmas, we celebrate the traditions and milestones that make our global team who they are, with dedicated time and budget for every region.",
+    gradient: "linear-gradient(135deg, #34d399, #06b6d4)"
   },
   {
-    icon: <BarChart3 size={22} />,
+    icon: BarChart3,
     title: "Pay Equity Reviews",
-    description:
-      "Annual third-party pay equity audits across all teams and geographies. Where gaps are identified, they are closed within the same review cycle, no exceptions.",
+    description: "Annual third-party pay equity audits across all teams and geographies. Where gaps are identified, they are closed within the same review cycle, no exceptions.",
+    gradient: "linear-gradient(135deg, #f472b6, #ec4899)"
   },
   {
-    icon: <Laptop size={22} />,
+    icon: Laptop,
     title: "Accessible Experiences",
-    description:
-      "We prioritize accessibility in every project, ensuring our digital platforms are inclusive, user-friendly, and accessible to people of all abilities..",
+    description: "We prioritize accessibility in every project, ensuring our digital platforms are inclusive, user-friendly, and accessible to people of all abilities.",
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)"
   },
 ];
 
-/* ─── Component ─────────────────────────────────────────── */
-
 export default function Culture() {
-  const [hoveredPillar, setHoveredPillar]   = useState(0);
+  const [hoveredPillar, setHoveredPillar] = useState(0);
   const [openCommitment, setOpenCommitment] = useState(null);
 
   const toggleCommitment = (index) =>
     setOpenCommitment(openCommitment === index ? null : index);
 
   return (
-    <section className="culture-section"
-     style={{ backgroundImage: `url(${divCulBg})`, }}
-    >
-      
-      <div className="culture-container">
+    <section className="culture-section-premium">
+      {/* Background Decorations */}
+      <div className="culture-bg-decor">
+        <div className="culture-bg-blob cblob-1" />
+        <div className="culture-bg-blob cblob-2" />
+        <div className="culture-bg-blob cblob-3" />
+        <div className="culture-bg-blob cblob-4" />
+      </div>
+      <div className="culture-grid-overlay" />
 
-        {/* ── Heading ── */}
+      <div className="culture-container-premium">
+        {/* Heading */}
         <motion.div
-          className="culture-heading"
+          className="culture-heading-premium"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <span className="section-label">Culture &amp; Diversity</span>
-          <h2 className="section-title">
+          <div className="culture-label-wrapper">
+            <span className="culture-label-line" />
+            <span className="culture-label-text">Culture & Diversity</span>
+            <span className="culture-label-line" />
+          </div>
+          <h2 className="culture-title-premium">
             Diverse Perspectives,{" "}
-            <span className="grad-text">Unified Purpose.</span>
+            {/* <span className="text-gradient-culture">Unified Purpose.</span> */}
+                        <span >Unified Purpose.</span>
+
+            <span className="culture-title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="culture-subtitle-premium">
             At Zeta-V, great ideas emerge when people from different cultures,
             backgrounds, and experiences collaborate toward a common vision.
             Our teams work across regions, industries, and technologies,
@@ -125,141 +140,155 @@ export default function Culture() {
           </p>
         </motion.div>
 
-        {/* ── Culture Pillars — unified panel ── */}
+        {/* Culture Pillars */}
         <motion.div
-          className="pillars-wrapper"
+          className="culture-pillars-wrapper"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <span className="section-label pillars-eyebrow">
-            Our Culture Pillars
-          </span>
+          <div className="culture-pillars-header">
+            <Sparkles className="pillars-header-icon" />
+            <span>Our Culture Pillars</span>
+          </div>
 
-          {/* Unified panel — one section, background swaps on hover */}
           <div
-            className="pillars-panel"
+            className="culture-pillars-panel"
             onMouseLeave={() => setHoveredPillar(0)}
           >
-            {/* Background layers — one per pillar, crossfade */}
             {culturePillars.map((item, index) => (
               <div
                 key={index}
-                className="pillars-panel-bg"
+                className="culture-pillars-bg"
                 style={{
                   backgroundImage: `url(${item.bg})`,
                   opacity: hoveredPillar === index ? 1 : 0,
                 }}
               />
             ))}
+            <div className="culture-pillars-overlay" />
 
-            {/* Dark overlay */}
-            <div className="pillars-panel-overlay" />
-
-            {/* Content */}
-            <div className="pillars-panel-inner">
-
-              {/* Left — tab selectors */}
-              <div className="pillars-tabs">
-                {culturePillars.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`pillar-tab${hoveredPillar === index ? " pillar-tab--active" : ""}`}
-                    onMouseEnter={() => setHoveredPillar(index)}
-                  >
-                    <div className="pillar-tab-orb" />
-                    <span className="pillar-tab-title">{item.title}</span>
-                    <div className="pillar-tab-arrow">→</div>
-                  </div>
-                ))}
+            <div className="culture-pillars-inner">
+              <div className="culture-pillars-tabs">
+                {culturePillars.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={index}
+                      className={`culture-pillar-tab${hoveredPillar === index ? " active" : ""}`}
+                      onMouseEnter={() => setHoveredPillar(index)}
+                    >
+                      <div className="pillar-tab-icon-wrapper" style={{ background: item.gradient }}>
+                        <Icon size={16} />
+                      </div>
+                      <span className="pillar-tab-title">{item.title}</span>
+                      <div className="pillar-tab-line" style={{ background: item.gradient }} />
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Right — content area */}
-              <div className="pillars-content-area">
+              <div className="culture-pillars-content">
                 <AnimatePresence mode="wait">
                   {culturePillars.map((item, index) =>
                     hoveredPillar === index ? (
                       <motion.div
                         key={index}
-                        className="pillar-content-block"
-                        initial={{ opacity: 0, x: 24 }}
+                        className="culture-pillar-block"
+                        initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -16 }}
-                        transition={{ duration: 0.35 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.4 }}
                       >
-                        <h3 className="pillar-content-title">{item.title}</h3>
-                        <div className="pillar-content-line" />
-                        <p className="pillar-content-desc">{item.description}</p>
+                        <div className="pillar-block-icon" style={{ background: item.gradient }}>
+                          <item.icon size={28} />
+                        </div>
+                        <h3>{item.title}</h3>
+                        <div className="pillar-block-line" style={{ background: item.gradient }} />
+                        <p>{item.description}</p>
                       </motion.div>
                     ) : null
                   )}
                 </AnimatePresence>
               </div>
-
             </div>
           </div>
         </motion.div>
 
-        {/* ── Stats + Regions ── */}
-        <div className="stats-region-grid">
-
+        {/* Stats + Regions */}
+        <div className="culture-stats-region">
           <motion.div
-            className="stats-card"
+            className="culture-stats-card"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <span className="section-label">Workforce at a Glance</span>
-            <div className="stats-grid">
-              {stats.map((s, i) => (
-                <motion.div
-                  key={i}
-                  className="stat-box"
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -4 }}
-                >
-                  <h3>
-                    <CountUp
-                      end={s.value}
-                      duration={2.2}
-                      suffix={s.suffix}
-                      enableScrollSpy
-                      scrollSpyOnce
-                    />
-                  </h3>
-                  <p>{s.label}</p>
-                </motion.div>
-              ))}
+            <div className="card-header">
+              <Users className="card-header-icon" />
+              <span>Workforce at a Glance</span>
+            </div>
+            <div className="culture-stats-grid">
+              {stats.map((s, i) => {
+                const Icon = s.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    className="culture-stat-box"
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -6 }}
+                  >
+                    <div className="stat-icon-wrapper">
+                      <Icon size={20} />
+                    </div>
+                    <h3>
+                      <CountUp
+                        end={s.value}
+                        duration={2.2}
+                        suffix={s.suffix}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
+                    </h3>
+                    <p>{s.label}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
 
           <motion.div
-            className="regions-card"
+            className="culture-regions-card"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <span className="section-label">People by Region</span>
+            <div className="card-header">
+              <Globe className="card-header-icon" />
+              <span>People by Region</span>
+            </div>
             {regions.map((region, index) => (
-              <div key={index} className="region-item">
+              <div key={index} className="culture-region-item">
                 <div className="region-row">
                   <span className="region-label">{region.label}</span>
-                  <span className="region-pct">{region.percent}%</span>
+                  <span className="region-pct" style={{ color: region.color }}>
+                    {region.percent}%
+                  </span>
                 </div>
-                <div className="progress-track">
+                <div className="region-progress">
                   <motion.div
-                    className="progress-fill"
+                    className="region-progress-fill"
+                    style={{ background: region.color }}
                     initial={{ width: 0 }}
                     whileInView={{ width: `${region.percent}%` }}
                     transition={{
                       duration: 1.2,
-                      delay: index * 0.18,
+                      delay: index * 0.15,
                       ease: "easeOut",
                     }}
                     viewport={{ once: true }}
@@ -268,38 +297,43 @@ export default function Culture() {
               </div>
             ))}
           </motion.div>
-
         </div>
 
-        {/* ── How We Act On It — Accordion ── */}
+        {/* Commitments Accordion */}
         <motion.div
-          className="commitments-wrapper"
+          className="culture-commitments-wrapper"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <span className="section-label">How We Act On It</span>
+          <div className="commitments-header">
+            <HeartHandshake className="commitments-header-icon" />
+            <span>How We Act On It</span>
+          </div>
 
-          <div className="commitments-list">
+          <div className="culture-commitments-list">
             {commitments.map((item, index) => {
               const isOpen = openCommitment === index;
+              const Icon = item.icon;
               return (
                 <div
                   key={index}
-                  className={`commitment-item${isOpen ? " commitment-item--open" : ""}`}
+                  className={`culture-commitment-item${isOpen ? " open" : ""}`}
                 >
                   <button
-                    className="commitment-trigger"
+                    className="culture-commitment-trigger"
                     onClick={() => toggleCommitment(index)}
                     aria-expanded={isOpen}
                   >
-                    <div className="commitment-trigger-left">
-                      <div className="commitment-icon">{item.icon}</div>
-                      <span className="commitment-title">{item.title}</span>
+                    <div className="trigger-left">
+                      <div className="trigger-icon" style={{ background: item.gradient }}>
+                        <Icon size={20} />
+                      </div>
+                      <span className="trigger-title">{item.title}</span>
                     </div>
                     <motion.div
-                      className="commitment-chevron"
+                      className="trigger-chevron"
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.28 }}
                     >
@@ -310,14 +344,13 @@ export default function Culture() {
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
-                        className="commitment-body"
-                        key="body"
+                        className="culture-commitment-body"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.32, ease: "easeInOut" }}
+                        transition={{ duration: 0.35, ease: "easeInOut" }}
                       >
-                        <p className="commitment-desc">{item.description}</p>
+                        <p>{item.description}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -326,8 +359,10 @@ export default function Culture() {
             })}
           </div>
         </motion.div>
-
       </div>
+
+      {/* Bottom Edge */}
+      <div className="culture-bottom-edge" />
     </section>
   );
 }

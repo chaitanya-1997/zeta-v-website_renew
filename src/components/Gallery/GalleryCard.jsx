@@ -32,10 +32,10 @@ export default function GalleryCard({ item, index, onClick }) {
       
       <div className="gallery-card__content">
         <h3 className="gallery-card__title">{item.title}</h3>
-        <div className="gallery-card__meta">
+        {/* <div className="gallery-card__meta">
           <span>{item.date}</span>
           <span>{item.location}</span>
-        </div>
+        </div> */}
       </div>
     </motion.div>
   )

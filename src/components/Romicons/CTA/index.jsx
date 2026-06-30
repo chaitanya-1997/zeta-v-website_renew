@@ -16,7 +16,9 @@ export default function CTA() {
       >
 
         <h2>
-          Ready to multiply your business <span className="grad-text">value?</span>
+          Ready to multiply your business 
+          {/* <span className="grad-text">value?</span> */}
+          <span >value?</span>
         </h2>
 
         <p>

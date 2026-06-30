@@ -1,3 +1,4 @@
+// HexaFit.jsx
 import FrameworkTree from './FrameworkTree'
 import { FaUsers, FaClipboardCheck, FaHeart, FaUserCheck, FaBrain, FaComments } from 'react-icons/fa'
 
@@ -6,6 +7,8 @@ const items = [
     title: 'One Touch Network', 
     desc: 'Direct experiential references over database searched profiles.', 
     icon: <FaUsers />,
+    color: '#22a7f0',
+    gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
     content: (
       <div>
         <h4>One Touch Network</h4>
@@ -18,6 +21,8 @@ const items = [
     title: '3T Summit Evaluation', 
     desc: '360 degree evaluation with self, peer and Zeta-V assessment.', 
     icon: <FaClipboardCheck />,
+    color: '#34d399',
+    gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
     content: (
       <div>
         <h4>3T Summit Evaluation Process</h4>
@@ -30,6 +35,8 @@ const items = [
     title: 'Value Alignment Index', 
     desc: 'Stringent value system evaluation for cultural fitment.', 
     icon: <FaHeart />,
+    color: '#f472b6',
+    gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
     content: (
       <div>
         <h4>Value Alignment Index</h4>
@@ -42,6 +49,8 @@ const items = [
     title: 'Extended Compatibility', 
     desc: 'Evaluating compatibility beyond the job description.', 
     icon: <FaUserCheck />,
+    color: '#f59e0b',
+    gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
     content: (
       <div>
         <h4>Extended Compatibility Reference</h4>
@@ -54,6 +63,8 @@ const items = [
     title: 'MBTI Aspiration Fitment', 
     desc: 'Matching careers to aspirations with psychometric assessment.', 
     icon: <FaBrain />,
+    color: '#a78bfa',
+    gradient: 'linear-gradient(135deg, #a78bfa, #8b5cf6)',
     content: (
       <div>
         <h4>MBTI based Aspiration Fitment</h4>
@@ -66,6 +77,8 @@ const items = [
     title: '4Q Mentoring & Coaching', 
     desc: 'Quarterly coaching and continuous interactive mentoring sessions.', 
     icon: <FaComments />,
+    color: '#f472b6',
+    gradient: 'linear-gradient(135deg, #f472b6, #f59e0b)',
     content: (
       <div>
         <h4>4Q Mentoring and Coaching</h4>
@@ -78,14 +91,12 @@ const items = [
 
 export default function HexaFit() {
   return (
-    <section id="hexafit">
-      <FrameworkTree
-        title="HexaFit Framework"
-        description="A proprietary talent sourcing and evaluation framework for enterprise-grade candidate selection."
-        items={items}
-        bgClass="hexafit-bg"
-        layoutType="zigzag"
-      />
-    </section>
+    <FrameworkTree
+      title="HexaFit"
+      description="A proprietary talent sourcing and evaluation framework for enterprise-grade candidate selection."
+      items={items}
+      bgClass="hexafit-bg"
+      layoutType="zigzag"
+    />
   )
 }

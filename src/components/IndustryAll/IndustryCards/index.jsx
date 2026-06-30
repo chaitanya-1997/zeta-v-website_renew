@@ -1,58 +1,74 @@
-// src/components/IndustryAll/IndustryCards/Index.jsx
+// IndustryCards.jsx
 import { motion } from 'framer-motion'
 import { FiArrowUpRight } from 'react-icons/fi'
 import { 
-    FaUniversity, FaIndustry, FaHeartbeat, FaLandmark 
+    FaUniversity, FaIndustry, FaHeartbeat, FaLandmark,
+    FaArrowRight, FaMoneyBillWave, FaStore   // <-- Added FaStore
 } from 'react-icons/fa'
+import { HiOutlineSparkles } from 'react-icons/hi2'
 import './IndustryCards.css'
 
 const iconMap = {
-    FaUniversity: FaUniversity,
+    FaMoneyBillWave: FaMoneyBillWave,
     FaIndustry: FaIndustry,
     FaHeartbeat: FaHeartbeat,
     FaLandmark: FaLandmark,
+    FaStore: FaStore,   // <-- New mapping for retail
 }
 
-// Embedded industry cards data
 const industryCardsData = [
     { 
-        Icon: 'FaUniversity', 
+        Icon: 'FaMoneyBillWave', 
         title: 'Financial Services', 
         id: 'financial', 
-        tag: 'Banking · Fintech · Insurance', 
+        tag: 'Banking · Fintech · Insurance',
+        gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
+        color: '#22a7f0',
+        lightBg: 'rgba(34, 167, 240, 0.08)',
         bgImage: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1920' 
     },
     { 
         Icon: 'FaIndustry', 
         title: 'Manufacturing', 
         id: 'manufacturing', 
-        tag: 'Industry 4.0 · ERP · IIoT', 
+        tag: 'Industry 4.0 · ERP · IIoT',
+        gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
+        color: '#34d399',
+        lightBg: 'rgba(52, 211, 153, 0.08)',
         bgImage: 'https://images.pexels.com/photos/15893881/pexels-photo-15893881.jpeg' 
     },
     { 
         Icon: 'FaHeartbeat', 
         title: 'Healthcare', 
         id: 'healthcare', 
-        tag: 'Telemedicine · EHR · AI', 
+        tag: 'Telemedicine · EHR · AI',
+        gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
+        color: '#f472b6',
+        lightBg: 'rgba(244, 114, 182, 0.08)',
         bgImage: 'https://images.pexels.com/photos/7723524/pexels-photo-7723524.jpeg' 
     },
+    // NEW: Retail & Distribution
     { 
-        Icon: 'FaLandmark', 
-        title: 'Government', 
-        id: 'government', 
-        tag: 'Smart Cities · Cloud · GenAI', 
-        bgImage: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920' 
-    },
+        Icon: 'FaStore', 
+        title: 'Retail & Distribution', 
+        id: 'retail', 
+        tag: 'ERP · Commerce · Analytics',
+        gradient: 'linear-gradient(135deg, #f97316, #fb923c)',
+        color: '#f97316',
+        lightBg: 'rgba(249, 115, 22, 0.08)',
+        bgImage: 'https://images.pexels.com/photos/4487365/pexels-photo-4487365.jpeg'
+    }
 ]
 
 export default function IndustryCards({ active, setActive }) {
     const handleCardClick = (cardId) => {
         setActive(cardId)
-        // Scroll to the details section after a small delay to allow DOM to update
+        
+        // Wait for state update and DOM render
         setTimeout(() => {
-            const detailsSection = document.querySelector('.ind-detail')
+            const detailsSection = document.getElementById(cardId)
             if (detailsSection) {
-                const headerOffset = 80 // Account for navbar height
+                const headerOffset = 80
                 const elementPosition = detailsSection.getBoundingClientRect().top
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset
                 
@@ -61,65 +77,96 @@ export default function IndustryCards({ active, setActive }) {
                     behavior: 'smooth'
                 })
             }
-        }, 100)
+        }, 200)
     }
 
     return (
-        <section id="industries-cards" className="ind-cards">
-            <div className="ind-cards__inner">
+        <section id="industries-cards" className="industry-cards-premium">
+            {/* Background Decorations */}
+            <div className="industry-cards-premium-bg">
+                <div className="industry-cards-premium-blob icblob-1" />
+                <div className="industry-cards-premium-blob icblob-2" />
+                <div className="industry-cards-premium-blob icblob-3" />
+            </div>
+            <div className="industry-cards-premium-pattern" />
+
+            <div className="industry-cards-premium-container">
+                {/* Header */}
                 <motion.div
-                    className="ind-cards__head"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="industry-cards-premium-header"
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7 }}
                 >
-                    <span className="section-label">Industry Verticals</span>
-                    <h2 className="section-title">
-                        Industries We <span className="grad-text">Serve</span>
+                    <div className="industry-cards-premium-label">
+                        <span className="label-line" />
+                        <span className="label-text">Industry Verticals</span>
+                        <span className="label-line" />
+                    </div>
+                    
+                    <h2 className="industry-cards-premium-title">
+                        Industries We 
+                        <span >Serve</span>
+                        <span className="title-icon">✦</span>
                     </h2>
-                    <p className="section-subtitle">
+                    
+                    <p className="industry-cards-premium-subtitle">
                         Driving digital transformation across regulated, complex industries.
                     </p>
                 </motion.div>
 
-                <div className="ind-cards__grid">
+                {/* Cards Grid */}
+                <div className="industry-cards-premium-grid">
                     {industryCardsData.map((card, i) => {
                         const IconComponent = iconMap[card.Icon]
                         const isActive = active === card.id
                         return (
                             <motion.button
                                 key={card.id}
-                                className={`ind-card ${isActive ? 'ind-card--active' : ''}`}
+                                className={`industry-cards-premium-card ${isActive ? 'active' : ''}`}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1, duration: 0.5 }}
                                 whileHover={{ y: -8 }}
                                 onClick={() => handleCardClick(card.id)}
+                                style={{ '--card-color': card.color }}
                             >
-                                <motion.div 
-                                    className="ind-card__bg"
-                                    style={{ backgroundImage: `url(${card.bgImage})` }}
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ duration: 0.4 }}
-                                />
-                                <div className="ind-card__overlay" />
-                                <div className="ind-card__glow" />
-                                <div className="ind-card__icon-wrap">
-                                    <IconComponent className="ind-card__icon" />
+                                <div className="industry-cards-premium-card-glow" style={{ background: card.gradient }} />
+                                
+                                <div className="industry-cards-premium-card-image">
+                                    <img src={card.bgImage} alt={card.title} />
+                                    <div className="industry-cards-premium-card-overlay" style={{ background: card.gradient }} />
                                 </div>
-                                <h3 className="ind-card__title">{card.title}</h3>
-                                <p className="ind-card__tag">{card.tag}</p>
-                                <span className="ind-card__cta">
-                                    {isActive ? 'Viewing' : 'Explore'} <FiArrowUpRight />
-                                </span>
-                                <div className="ind-card__bar" />
+                                
+                                <div className="industry-cards-premium-card-content">
+                                    <div className="industry-cards-premium-card-icon" style={{ background: card.lightBg, color: card.color }}>
+                                        <IconComponent />
+                                    </div>
+                                    
+                                    <h3 className="industry-cards-premium-card-title">{card.title}</h3>
+                                    <p className="industry-cards-premium-card-tag">{card.tag}</p>
+                                    
+                                    <div className="industry-cards-premium-card-footer">
+                                        <span className="industry-cards-premium-card-cta" style={{ color: card.color }}>
+                                            {isActive ? 'Active' : 'Explore'}
+                                        </span>
+                                        <div className="industry-cards-premium-card-arrow" style={{ background: card.gradient }}>
+                                            <FaArrowRight />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="industry-cards-premium-card-line" style={{ background: card.gradient }} />
+                                </div>
                             </motion.button>
                         )
                     })}
                 </div>
             </div>
+
+            {/* Bottom Edge */}
+            <div className="industry-cards-premium-bottom" />
         </section>
     )
 }

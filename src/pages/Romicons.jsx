@@ -19,7 +19,7 @@ const Romicons = () => {
       <MarketAdvisory />
       <DealAdvisory />
       <TechAdvisory />
-      <CTA />
+      
     </main>
     <FooterSection />
     </>

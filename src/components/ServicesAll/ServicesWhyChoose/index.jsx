@@ -1,11 +1,16 @@
-// src/components/ServicesAll/ServicesWhyChoose/Index.jsx
+// ServicesWhyChoose.jsx
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { 
-  HiOutlineSparkles, HiOutlineChartBar 
+  HiOutlineSparkles, 
+  HiOutlineChartBar,
+
 } from 'react-icons/hi2'
 import { 
-  FaCloudUploadAlt, FaCodeBranch, FaShieldAlt, FaGlobe 
+  FaCloudUploadAlt, 
+  FaCodeBranch, 
+  FaShieldAlt, 
+  FaGlobe 
 } from 'react-icons/fa'
 import './ServicesWhyChoose.css'
 
@@ -23,42 +28,78 @@ export default function ServicesWhyChoose() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="svc-why" ref={ref}>
-      <div className="svc-why__bg" />
-      <div className="svc-why__inner">
+    <section className="whychoose-premium" ref={ref}>
+      {/* Background Image */}
+      <div className="whychoose-premium-bg">
+        <div 
+          className="whychoose-premium-bg-image"
+          style={{ backgroundImage: `url(https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920)` }}
+        />
+        <div className="whychoose-premium-overlay">
+          <div className="whychoose-premium-gradient" />
+        </div>
+      </div>
+
+      {/* Animated Orbs */}
+      <div className="whychoose-premium-orbs">
+        <div className="worb worb-1" />
+        <div className="worb worb-2" />
+        <div className="worb worb-3" />
+      </div>
+
+      <div className="whychoose-premium-container">
+        {/* Header */}
         <motion.div
-          className="svc-why__head"
+          className="whychoose-premium-header"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <span className="section-label">Why Choose Us</span>
-                              <h2 className="hero__h1" style={{ color: '#fff', fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', marginBottom: '16px' }}>
-
-        <span className="hero__h1a">
-            Why <span className="svc-grad-text">Zeta-V</span>?
-          </span>
+          <div className="whychoose-premium-label">
+            <span className="label-line" />
+            <span className="label-text" style={{color:'white'}}>Why Choose Us</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="whychoose-premium-title">
+            Why 
+            {/* <span className="gradient-text-whychoose">Zeta-V</span> */}
+            <span> Zeta-V</span>
+            <span className="title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">
+          
+          <p className="whychoose-premium-subtitle">
             We combine deep technical expertise with business acumen to deliver transformative results.
           </p>
         </motion.div>
 
-        <div className="svc-why__benefits">
+        {/* Benefits Grid */}
+        <motion.div 
+          className="whychoose-premium-grid"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           {benefits.map((benefit, idx) => (
             <motion.div
               key={benefit.title}
-              className="svc-benefit"
-              initial={{ opacity: 0, x: -20 }}
+              className="whychoose-premium-benefit"
+              initial={{ opacity: 0, x: -15 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: idx * 0.08, duration: 0.5 }}
+              transition={{ delay: 0.3 + idx * 0.06, duration: 0.4 }}
+              whileHover={{ x: 6 }}
             >
-              <div className="svc-benefit__icon">{benefit.icon}</div>
-              <span className="svc-benefit__text">{benefit.title}</span>
+              <div className="whychoose-premium-benefit-icon">
+                {benefit.icon}
+              </div>
+              <span className="whychoose-premium-benefit-text">{benefit.title}</span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="whychoose-premium-bottom" />
     </section>
-  );
+  )
 }

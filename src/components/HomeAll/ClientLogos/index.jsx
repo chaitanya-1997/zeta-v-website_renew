@@ -1,5 +1,7 @@
 // ClientLogos.jsx
 import { useEffect, useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { HiOutlineSparkles, HiOutlineChevronRight } from 'react-icons/hi2'
 import './ClientLogos.css';
 
 // Import client logos
@@ -10,7 +12,6 @@ import cl4 from '../../../assets/team/cl4.png';
 import cl5 from '../../../assets/team/cl5.png';
 import cl6 from '../../../assets/team/cl6.png';
 
-// Client logos - 6 actual images
 const logoItems = [
   { id: 1, name: 'Client A', image: cl1 },
   { id: 2, name: 'Client B', image: cl2 },
@@ -27,7 +28,6 @@ export default function ClientLogosStrip() {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Duplicate logos for smooth infinite scroll effect
   const allLogos = [...logoItems, ...logoItems, ...logoItems];
 
   // Auto-scroll marquee effect
@@ -62,7 +62,6 @@ export default function ClientLogosStrip() {
     return () => cancelAnimationFrame(animationId);
   }, [isHovered, isDragging]);
 
-  // Manual scroll handlers
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.pageX - trackRef.current.offsetLeft);
@@ -111,52 +110,55 @@ export default function ClientLogosStrip() {
   };
 
   return (
-    <section className="clients">
-      {/* Particle Background - All particles contained with cli_ prefix */}
-      <div className="cli_particles-container">
-        <div className="cli_particle cli_particle-1"></div>
-        <div className="cli_particle cli_particle-2"></div>
-        <div className="cli_particle cli_particle-3"></div>
-        <div className="cli_particle cli_particle-4"></div>
-        <div className="cli_particle cli_particle-5"></div>
-        <div className="cli_particle cli_particle-6"></div>
-        <div className="cli_particle cli_particle-7"></div>
-        <div className="cli_particle cli_particle-8"></div>
-        <div className="cli_particle cli_particle-9"></div>
-        <div className="cli_particle cli_particle-10"></div>
-        <div className="cli_particle cli_particle-11"></div>
-        <div className="cli_particle cli_particle-12"></div>
-        <div className="cli_particle cli_particle-13"></div>
-        <div className="cli_particle cli_particle-14"></div>
-        <div className="cli_particle cli_particle-15"></div>
-        <div className="cli_particle cli_particle-16"></div>
-        <div className="cli_particle cli_particle-17"></div>
-        <div className="cli_particle cli_particle-18"></div>
-        <div className="cli_particle cli_particle-19"></div>
-        <div className="cli_particle cli_particle-20"></div>
+    <section className="clients-premium">
+      {/* Background Decorations */}
+      <div className="clients-premium-bg">
+        <div className="clients-premium-blob blob-1" />
+        <div className="clients-premium-blob blob-2" />
+        <div className="clients-premium-blob blob-3" />
       </div>
 
-      <div className="clients__container">
-        <div className="clients__header">
-          <span className="section-label">Trusted Partners</span>
-          <h2 className="section-title">
-            Trusted by <span className="gradient-text">Global Businesses</span> <br/>
-            and Growing Enterprises.
+      <div className="clients-premium-container">
+        {/* Header */}
+        <motion.div 
+          className="clients-premium-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <div className="clients-premium-label">
+            <span className="label-line" />
+            <span className="label-text">Trusted Partners</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="clients-premium-title">
+            Trusted by{' '}
+            {/* <span className="gradient-text-premium">Global Businesses</span> */}
+               <span >Global Businesses</span>
+            <span className="title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">
-            Forward-thinking organizations partner with Zeta-V for Software Development Services to accelerate their Digital Transformation initiatives.
+          
+          <p className="clients-premium-subtitle">
+            Forward-thinking organizations partner with Zeta-V for Software Development Services 
+            to accelerate their Digital Transformation initiatives.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Logo Strip Slider */}
-        <div 
-          className="clients__track-wrapper"
+        {/* Logo Strip */}
+        <motion.div 
+          className="clients-premium-strip-wrapper"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <div 
             ref={trackRef}
-            className="clients__track"
+            className="clients-premium-strip"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -164,32 +166,50 @@ export default function ClientLogosStrip() {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            style={{ cursor: 'grab', overflowX: 'auto', scrollBehavior: 'auto' }}
+            style={{ cursor: 'grab' }}
           >
             {allLogos.map((item, idx) => (
-              <div className="clients__card" key={idx}>
-                <div className="clients__logo-wrapper">
+              <div className="clients-premium-card" key={idx}>
+                <div className="clients-premium-logo">
                   <img 
                     src={item.image} 
                     alt={item.name}
-                    className="clients__logo-img"
                     draggable="false"
                   />
                 </div>
-                <div className="clients__card-shine"></div>
+                <div className="clients-premium-card-glow" />
               </div>
             ))}
           </div>
-        </div>
+          
+          {/* Gradient overlays */}
+          <div className="clients-premium-fade-left" />
+          <div className="clients-premium-fade-right" />
+        </motion.div>
 
-        {/* Tagline */}
-        <div className="clients__tagline">
-          <div className="tagline-line"></div>
-          <p className="tagline-text">
+        {/* Bottom Tagline with CTA */}
+        <motion.div 
+          className="clients-premium-footer"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="clients-premium-divider">
+            <span className="divider-line" />
+            <HiOutlineSparkles className="divider-icon" />
+            <span className="divider-line" />
+          </div>
+          
+          <p className="clients-premium-tagline">
             Helping organizations across industries unlock measurable business value through technology.
           </p>
-          <div className="tagline-line"></div>
-        </div>
+          
+          <a href="/about" className="clients-premium-cta">
+            <span>View All Partners</span>
+            <HiOutlineChevronRight />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

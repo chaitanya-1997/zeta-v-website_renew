@@ -49,7 +49,9 @@ export default function TechStack() {
   <span className="label-line"></span>
 </span>
 <h2 className="section-title">
-  Our Technology <span className="grad-text">Stack</span>
+  Our Technology 
+  {/* <span className="grad-text">Stack</span> */}
+  <span > Stack</span>
 </h2>
 <p className="section-subtitle">
   Modern tools and frameworks we use to build exceptional solutions.

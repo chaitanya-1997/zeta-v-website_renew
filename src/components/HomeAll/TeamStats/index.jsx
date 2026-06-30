@@ -1,112 +1,63 @@
 // TeamStats.jsx
-import { useState, useEffect } from 'react'
-
-import { useReveal } from '../../../hooks/useReveal'
-
-import './TeamStats.css'
+import React, { useState, useEffect, useRef } from 'react';
+import { useInView } from 'framer-motion';
+import './TeamStats.css';
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Projects Delivered' },
-  { value: 40, suffix: '+', label: 'Enterprise Clients' },
-  { value: 15, suffix: '+', label: 'Years Experience' },
-  { value: 98, suffix: '%', label: 'Success Rate' },
-]
+  { value: 242, suffix: '+', label: 'Enterprise Projects Delivered' },
+  { value: 34, suffix: '+', label: 'Global Enterprise Clients' },
+  { value: 9, suffix: '+', label: 'Years of Engineering Excellence' },
+  { value: 98, suffix: '%', label: 'Client Success Rate' },
+];
 
-function AnimatedNumber({ value, suffix, label, index }) {
-  const [count, setCount] = useState(0)
-  const [ref, visible] = useReveal(index * 100)
-  const [isAnimating, setIsAnimating] = useState(false)
+function AnimatedNumber({ value, suffix, label }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (visible) {
-      setIsAnimating(true)
-      let start = 0
-      const duration = 1800
-      const increment = value / (duration / 16)
+    if (isInView) {
+      let start = 0;
+      const duration = 2000;
+      const increment = value / (duration / 16);
       const timer = setInterval(() => {
-        start += increment
+        start += increment;
         if (start >= value) {
-          setCount(value)
-          clearInterval(timer)
-          setTimeout(() => setIsAnimating(false), 300)
+          setCount(value);
+          clearInterval(timer);
         } else {
-          setCount(Math.floor(start))
+          setCount(Math.floor(start));
         }
-      }, 16)
-      return () => clearInterval(timer)
+      }, 16);
+      return () => clearInterval(timer);
     }
-  }, [visible, value])
+  }, [isInView, value]);
 
   return (
-    <div 
-      ref={ref} 
-      className={`ts__stat ${isAnimating ? 'counter-animate' : ''}`}
-    >
-      <span className="ts__num">
-        {count}{suffix}
-      </span>
-      <span className="ts__label">{label}</span>
+    <div ref={ref} className="stat-card">
+      <div className="stat-value-container">
+        <span className="stat-value">{count}</span>
+        <span className="stat-suffix">{suffix}</span>
+      </div>
+      <p className="stat-label-i">{label}</p>
     </div>
-  )
+  );
 }
 
-export default function TrustStats() {
-  const [sparkles, setSparkles] = useState([])
-
-  useEffect(() => {
-    // Generate sparkles
-    const sparklesArray = []
-    for (let i = 0; i < 30; i++) {
-      sparklesArray.push({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        delay: Math.random() * 5,
-        duration: 2 + Math.random() * 3
-      })
-    }
-    setSparkles(sparklesArray)
-  }, [])
-
+export default function TeamStats() {
   return (
-    <section className="ts">
-      {/* Animated waves */}
-      <div className="ts__waves">
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-      </div>
-
-      {/* Sparkles */}
-      <div className="ts__sparkles">
-        {sparkles.map(sparkle => (
-          <div
-            key={sparkle.id}
-            className="ts-sparkle"
-            style={{
-              left: `${sparkle.left}%`,
-              top: `${sparkle.top}%`,
-              animationDelay: `${sparkle.delay}s`,
-              animationDuration: `${sparkle.duration}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Grid overlay */}
-      <div className="ts__grid"></div>
-
-      {/* Watermark */}
-      <div className="ts__watermark">ZETA-V</div>
-
-      <div className="ts__inner">
-        {stats.map((stat, i) => (
-          <div key={i} className="ts__block">
-            <AnimatedNumber {...stat} index={i} />
-            {i < stats.length - 1 && <div className="ts__divider" />}
-          </div>
-        ))}
+    <section className="section team-stats-section section-dark">
+      {/* Background Elements */}
+      <div className="stats-bg-pattern"></div>
+      <div className="stats-glow"></div>
+      
+      <div className="container">
+        <div className="stats-grid">
+          {stats.map((stat, index) => (
+            <AnimatedNumber key={index} {...stat} />
+          ))}
+        </div>
       </div>
     </section>
-  )
+  );
 }

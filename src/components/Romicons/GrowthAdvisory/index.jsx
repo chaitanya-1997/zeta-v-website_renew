@@ -1,3 +1,4 @@
+// GrowthAdvisory.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -5,111 +6,175 @@ import {
   Rocket,
   Handshake,
   Zap,
+  ArrowRight,
+  Sparkles
 } from "lucide-react";
-
 import "./GrowthAdvisory.css";
 
-import growth from "../../../assets/advisory/growth.svg";
+import { Link } from 'react-router-dom';
+
+// Import images
+
+
+
 
 const growthPoints = [
   {
     number: "01",
-    icon: <TrendingUp size={28} />,
+    icon: <TrendingUp size={22} />,
     title: "Market Expansion",
-    description:
-      "Expanding into new geographical or demographic markets to incease reach.",
-    active: true,
+    description: "Expanding into new geographical or demographic markets to increase reach and revenue.",
+    image: "https://images.pexels.com/photos/10981234/pexels-photo-10981234.jpeg",
+    gradient: "linear-gradient(135deg, #22a7f0, #6366f1)",
+    color: "#22a7f0",
+    lightBg: "rgba(34, 167, 240, 0.08)"
   },
   {
     number: "02",
-    icon: <Rocket size={28} />,
+    icon: <Rocket size={22} />,
     title: "Innovation-Driven Growth",
-    description:
-      "Leveraging new ideas and technologies to drive business environment.",
+    description: "Leveraging new ideas and technologies to drive business transformation and growth.",
+    image: "https://images.pexels.com/photos/19825314/pexels-photo-19825314.jpeg",
+    gradient: "linear-gradient(135deg, #34d399, #06b6d4)",
+    color: "#34d399",
+    lightBg: "rgba(52, 211, 153, 0.08)"
   },
   {
     number: "03",
-    icon: <Zap size={28} />,
+    icon: <Zap size={22} />,
     title: "Agile Execution",
-    description:
-      "Implementing flexible and efficient processes to adapt quickly to changes.",
+    description: "Implementing flexible and efficient processes to adapt quickly to market changes.",
+    image: "https://images.pexels.com/photos/7947839/pexels-photo-7947839.jpeg",
+    gradient: "linear-gradient(135deg, #f472b6, #ec4899)",
+    color: "#f472b6",
+    lightBg: "rgba(244, 114, 182, 0.08)"
   },
   {
     number: "04",
-    icon: <Handshake size={28} />,
+    icon: <Handshake size={22} />,
     title: "Strategic Partnerships",
-    description:
-      "Forming alliances to enhance capabilities and market presence.",
+    description: "Forming alliances to enhance capabilities, expand reach, and drive mutual growth.",
+    image: "https://images.pexels.com/photos/7651924/pexels-photo-7651924.jpeg",
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+    color: "#f59e0b",
+    lightBg: "rgba(245, 158, 11, 0.08)"
   },
 ];
 
 export default function GrowthAdvisory() {
   return (
-    <section className="growth-advisory">
-
-      {/* SVG BACKGROUND */}
-      <div className="growth-bg-animation">
-        <img src={growth} alt="" aria-hidden="true" />
+    <section className="growth-advisory-unique">
+      {/* Background Image */}
+      <div className="growth-advisory-bg-image">
+        <img src="https://images.pexels.com/photos/7172856/pexels-photo-7172856.jpeg" alt="Growth" />
+        <div className="growth-advisory-bg-overlay" />
+        <div className="growth-advisory-bg-pattern" />
       </div>
 
-      <div className="growth-container">
+      {/* Floating Orbs */}
+      <div className="growth-advisory-float-orbs">
+        <div className="float-orb fo-1" />
+        <div className="float-orb fo-2" />
+        <div className="float-orb fo-3" />
+        <div className="float-orb fo-4" />
+      </div>
 
-        {/* LEFT CONTENT */}
-
-        <motion.div
-          className="growth-content"
-          initial={{ opacity: 0, x: -70 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+      <div className="growth-advisory-unique-container">
+        {/* Header */}
+        <motion.div 
+          className="growth-advisory-unique-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <span className="section-label">
-            GROWTH ADVISORY
-          </span>
-
-          <h2 className="section-title">
-            Accelerating Sustainable
-            <span className="grad-text">
-              {" "}Business Growth
-            </span>
+            <div className="industry-cards-premium-label">
+           <span className="label-line" />
+            <span className="label-text" >Growth Advisory</span>
+                <span className="label-line" />
+         </div>
+          
+          
+          <h2 className="growth-advisory-unique-title">
+            Accelerating Sustainable{' '}
+            {/* <span className="gradient-text-growth-light">Business Growth</span> */}
+             <span >Business Growth</span>
           </h2>
-
-          <p className="section-subtitle">
-            At Zeta-V, we specialize in guiding IT businesses
-            through pivotal growth phases, from recovery and
-            turnarounds to scaling at lightning speed in new
-            and existing markets.
-          </p>
         </motion.div>
 
-        {/* RIGHT CARDS */}
-
-        <motion.div
-          className="growth-cards"
-          initial={{ opacity: 0, x: 70 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+        {/* Description */}
+        <motion.p 
+          className="growth-advisory-unique-desc"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          {growthPoints.map((item, index) => (
-            <motion.div
-              key={index}
-              className={`growth-card ${item.active ? "active" : ""}`}
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="card-top">
-                <div className="card-number">{item.number}</div>
-                <div className="card-icon">{item.icon}</div>
-              </div>
+          At Zeta-V, we specialize in guiding IT businesses through pivotal growth phases, 
+          from recovery and turnarounds to scaling at lightning speed in new and existing markets.
+        </motion.p>
 
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Cards */}
+        <div className="growth-advisory-unique-grid">
+          {growthPoints.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={index}
+                className="growth-advisory-unique-card"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                style={{ '--card-color': item.color }}
+              >
+                <div className="growth-advisory-unique-card-image">
+                  <img src={item.image} alt={item.title} />
+                  <div className="growth-advisory-unique-card-overlay" style={{ background: item.gradient }} />
+                  {/* <div className="growth-advisory-unique-card-badge" style={{ background: item.gradient }}>
+                    {item.number}
+                  </div> */}
+                </div>
+                
+                <div className="growth-advisory-unique-card-body">
+                  <div className="growth-advisory-unique-card-icon" style={{ background: item.lightBg, color: item.color }}>
+                    {Icon}
+                  </div>
+                  <h3 className="growth-advisory-unique-card-title">{item.title}</h3>
+                  <p className="growth-advisory-unique-card-desc">{item.description}</p>
+                  {/* <div className="growth-advisory-unique-card-link" style={{ color: item.color }}>
+                    <span>Learn More</span>
+                    <ArrowRight />
+                  </div> */}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
+        {/* CTA */}
+     <motion.div 
+  className="growth-advisory-unique-cta"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.6 }}
+  viewport={{ once: true }}
+>
+  <Link 
+   to="/contact"
+  state={{ scrollTo: 'enquiries' }} 
+    className="growth-advisory-unique-cta-btn"
+    // onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  >
+    <span>Start Your Growth Journey</span>
+    <ArrowRight />
+  </Link>
+</motion.div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="growth-advisory-unique-bottom" />
     </section>
   );
 }

@@ -1,3 +1,4 @@
+// GalleryGrid.jsx
 import './GalleryGrid.css'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -6,13 +7,13 @@ import { FiArrowUpRight } from 'react-icons/fi'
 import GalleryCard from './GalleryCard'
 import GalleryLightbox from './GalleryLightbox'
 
-// Import all 35 images
+// Import all 35 images (now 34 after removing one)
 import ph1 from '../../assets/gallerym/ph1.jpg'
 import ph2 from '../../assets/gallerym/ph2.jpg'
 import ph3 from '../../assets/gallerym/ph3.jpg'
 import ph4 from '../../assets/gallerym/ph4.jpg'
 import ph5 from '../../assets/gallerym/ph5.jpg'
-import ph6 from '../../assets/gallerym/ph6.jpg'
+import Ph6 from '../../assets/gallerym/Media.jpg'
 import ph7 from '../../assets/gallerym/ph7.jpg'
 import ph8 from '../../assets/gallerym/ph8.jpg'
 import ph9 from '../../assets/gallerym/ph9.jpg'
@@ -42,18 +43,20 @@ import ph32 from '../../assets/gallerym/ph32.jpg'
 import ph33 from '../../assets/gallerym/ph33.jpg'
 import ph34 from '../../assets/gallerym/ph34.jpg'
 import ph35 from '../../assets/gallerym/ph35.jpg'
-
+import ph36 from '../../assets/gallerym/team2.jpg'
 // ============================================================
-// GALLERY DATA
+// GALLERY DATA – UPDATED
 // ============================================================
 
 const galleryData = [
   { id: 1, category: 'Exhibitions & Conferences', title: 'Exhibition', description: 'Mou signed with Client', image: ph1, date: '2016', location: 'Hong Kong', type: 'image' },
   { id: 2, category: 'Events & Celebrations', title: 'Diwali Celebration', description: 'Zeta-V Diwali Celebration 2024', image: ph2, date: '2024', location: 'Dubai, UAE', type: 'image' },
   { id: 3, category: 'Leadership & Team', title: 'Leadership at Zeta-V', description: 'A proud moment featuring our CEO, CPO, and Board of Directors at Zeta-V.', image: ph3, date: '2023', location: 'Singapore', type: 'image' },
+    { id: 36, category: 'Leadership & Team', title: 'Leadership at Zeta-V', description: 'A proud moment featuring our CEO, CPO, and Board of Directors at Zeta-V.', image: ph36, date: '2023', location: 'Singapore', type: 'image' },
+
   { id: 4, category: 'Exhibitions & Conferences', title: 'Conference', description: 'CEO delivering keynote speech', image: ph4, date: '2024', location: 'Bangalore, India', type: 'image' },
-  { id: 5, category: 'Exhibitions & Conferences', title: 'Zeta-V signs MoU at China-India Forum', description: 'A landmark moment as Zeta-V formalized a Memorandum of Understanding with the Government of Langfang.', image: ph5, date: '2024', location: 'New York, USA', type: 'image' },
-  { id: 6, category: 'Leadership & Team', title: 'Zeta-V Workplace', description: 'Team at work', image: ph6, date: '2024', location: 'London, UK', type: 'image' },
+  { id: 5, category: 'Exhibitions & Conferences', title: 'Zeta-V signs MoU at China-India Forum', description: 'A landmark moment as Zeta-V formalized a Memorandum of Understanding with the Retail & Distribution of Langfang.', image: ph5, date: '2024', location: 'New York, USA', type: 'image' },
+  { id: 6, category: 'Exhibitions & Conferences', title: 'Formal Meeting Moment', description: 'A professional interaction captured in an elegant setting.', image: Ph6, date: '2023', location: 'Jaipur, India', type: 'image' },
   { id: 7, category: 'Client & Partnerships', title: 'Partnership with SIDCOP', description: 'A collaborative moment with our client SIDCOP.', image: ph7, date: '2023', location: 'San Francisco, USA', type: 'image' },
   { id: 8, category: 'Events & Celebrations', title: 'Celebrating Indian Classical Music', description: 'An enchanting evening of Indian classical music featuring Ustad Shujaat Khan.', image: ph8, date: '2024', location: 'Sydney, Australia', type: 'image' },
   { id: 9, category: 'Exhibitions & Conferences', title: 'CEO presenting at Wuhan Conference', description: 'Our CEO addressing delegates at the Wuhan conference.', image: ph9, date: '2024', location: 'Tokyo, Japan', type: 'image' },
@@ -68,7 +71,10 @@ const galleryData = [
   { id: 18, category: 'Exhibitions & Conferences', title: 'China-India IT Cooperation Signing', description: 'A landmark ceremony at the Big Data Expo 2018 in Guiyang.', image: ph18, date: '2024', location: 'Dubai, UAE', type: 'image' },
   { id: 19, category: 'Exhibitions & Conferences', title: 'Seventh China-India Forum, Langfang', description: 'Delegates gathered for the Seventh China-India Forum in Langfang.', image: ph19, date: '2024', location: 'Singapore', type: 'image' },
   { id: 20, category: 'Exhibitions & Conferences', title: 'Formal Meeting Moment', description: 'A professional interaction captured in an elegant setting.', image: ph20, date: '2023', location: 'Jaipur, India', type: 'image' },
-  { id: 21, category: 'Leadership & Team', title: 'Founders of Zeta-V', description: 'A formal portrait featuring Ranga Vellamore, Founder & CTO, and Sujit Chatterjee, Founder & CEO.', image: ph21, date: '2024', location: 'Mumbai, India', type: 'image' },
+
+
+  // Changed from Leadership & Team → Events & Celebrations
+  { id: 21, category: 'Events & Celebrations', title: 'Shanghai Team', description: 'A formal portrait featuring Ranga Vellamore, Founder & CTO, and Sujit Chatterjee, Founder & CEO.', image: ph21, date: '2024', location: 'Mumbai, India', type: 'image' },
   { id: 22, category: 'Client & Partnerships', title: 'Business Delegation Visit', description: 'Corporate meeting with Henan 863 Software Co. Ltd. and Zeta-V Technology Solutions.', image: ph22, date: '2024', location: 'Bangalore, India', type: 'image' },
   { id: 23, category: 'Exhibitions & Conferences', title: 'Strategic Cooperation Signing Ceremony', description: 'A formal signing ceremony marking a strategic cooperation agreement.', image: ph23, date: '2024', location: 'Milan, Italy', type: 'image' },
   { id: 24, category: 'Exhibitions & Conferences', title: 'Innovation & Collaboration', description: 'A professional moment captured during a corporate visit.', image: ph24, date: '2024', location: 'Pune, India', type: 'image' },
@@ -77,15 +83,16 @@ const galleryData = [
   { id: 27, category: 'Exhibitions & Conferences', title: 'India-China Focus Group Roundtable', description: 'A keynote moment at the India-China Focus Group Roundtable.', image: ph27, date: '2024', location: 'Mumbai, India', type: 'image' },
   { id: 28, category: 'Events & Celebrations', title: 'Zeta-V Diwali Celebration', description: 'A festive Diwali event at Zeta-V, celebrating culture and togetherness.', image: ph28, date: '2024', location: 'Goa, India', type: 'image' },
   { id: 29, category: 'Events & Celebrations', title: 'Zeta-V Diwali Celebration', description: 'Team members gathered in traditional attire to celebrate Diwali at Zeta-V.', image: ph29, date: '2024', location: 'Chennai, India', type: 'image' },
-  { id: 30, category: 'Leadership & Team', title: 'Zeta-V Team Spirit', description: 'The Zeta-V team captured in a moment of unity and enthusiasm.', image: ph30, date: '2024', location: 'Mumbai, India', type: 'image' },
-  { id: 31, category: 'Leadership & Team', title: 'Zeta-V Board of Directors', description: 'A formal gathering of the Zeta-V Board of Directors.', image: ph31, date: '2024', location: 'Kolkata, India', type: 'image' },
-  { id: 32, category: 'Leadership & Team', title: 'Zeta-V Leadership Team', description: 'A formal moment featuring members of the Zeta-V leadership team.', image: ph32, date: '2023', location: 'Mumbai, India', type: 'image' },
-  { id: 33, category: 'Leadership & Team', title: 'Zeta-V Family', description: 'The Zeta-V family united in spirit and purpose.', image: ph33, date: '2024', location: 'Ahmedabad, India', type: 'image' },
-  { id: 34, category: 'Leadership & Team', title: 'Empowered Women at Zeta-V', description: 'Celebrating the strength and leadership of women at Zeta-V.', image: ph34, date: '2024', location: 'Frankfurt, Germany', type: 'image' },
+  // Changed from Leadership & Team → Events & Celebrations
+  { id: 30, category: 'Events & Celebrations', title: 'Zeta-V Team Spirit', description: 'The Zeta-V team captured in a moment of unity and enthusiasm.', image: ph30, date: '2024', location: 'Mumbai, India', type: 'image' },
+  { id: 31, category: 'Events & Celebrations', title: 'Zeta-V Board of Directors', description: 'A formal gathering of the Zeta-V Board of Directors.', image: ph31, date: '2024', location: 'Kolkata, India', type: 'image' },
+  { id: 32, category: 'Events & Celebrations', title: 'Zeta-V Leadership Team', description: 'A formal moment featuring members of the Zeta-V leadership team.', image: ph32, date: '2023', location: 'Mumbai, India', type: 'image' },
+  { id: 33, category: 'Events & Celebrations', title: 'Zeta-V Family', description: 'The Zeta-V family united in spirit and purpose.', image: ph33, date: '2024', location: 'Ahmedabad, India', type: 'image' },
+  { id: 34, category: 'Events & Celebrations', title: 'Empowered Women at Zeta-V', description: 'Celebrating the strength and leadership of women at Zeta-V.', image: ph34, date: '2024', location: 'Frankfurt, Germany', type: 'image' },
   { id: 35, category: 'Exhibitions & Conferences', title: 'Zeta-V CEO Address', description: 'Our CEO delivering an insightful presentation.', image: ph35, date: '2024', location: 'Bangalore, India', type: 'image' },
 ]
 
-// Updated categories matching the 4 groups
+// Updated categories (same structure, counts auto‑update)
 const categories = [
   { id: 'all', name: 'All', icon: <FaBuilding />, count: galleryData.length },
   { id: 'Exhibitions & Conferences', name: 'Exhibitions & Conferences', icon: <FaBuilding />, count: galleryData.filter(item => item.category === 'Exhibitions & Conferences').length },
@@ -128,7 +135,7 @@ export default function GalleryGrid() {
 
   return (
     <>
-      <section className="gallery-categories">
+      <section className="gallery-categories" id='galleries'>
         <div className="gallery-categories__inner">
           <div className="gallery-categories__tabs">
             {categories.map((cat, idx) => (
@@ -159,19 +166,6 @@ export default function GalleryGrid() {
               ))}
             </motion.div>
           </AnimatePresence>
-        </div>
-      </section>
-
-      <section className="gallery-cta">
-        <div className="gallery-cta__inner">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 className="gallery-cta__title">Ready to Create <span className="grad-text">Something Amazing</span>?</h2>
-            <p className="gallery-cta__subtitle">Let's bring your vision to life. Contact us to discuss your next project.</p>
-            <div className="gallery-cta__actions">
-              <a href="/contact" className="gallery-btn gallery-btn--primary">Start a Project <FiArrowUpRight /></a>
-              <a href="/contact" className="gallery-btn gallery-btn--outline">Contact Our Team</a>
-            </div>
-          </motion.div>
         </div>
       </section>
 

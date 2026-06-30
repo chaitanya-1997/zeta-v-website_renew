@@ -1,326 +1,270 @@
 // Services.jsx
-import { useState } from 'react'
-import { useReveal } from '../../../hooks/useReveal'
-import './Services.css'
+import { useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { FaGlobe } from 'react-icons/fa';
+import {
+  HiOutlineSparkles,
+  HiOutlineCloud,
+  HiOutlineCpuChip,
+  HiOutlineUsers,
+  HiOutlineGlobeAlt,
+  HiOutlineShieldCheck,
+  HiOutlineArrowTrendingUp ,
+  HiOutlineCodeBracket ,
+  HiOutlineArrowRight
+} from 'react-icons/hi2';
+import './Services.css';
 
-// Modern gradient icons for service categories
-const ServiceIcons = {
-  digital: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" fill="url(#digitalGrad)" stroke="none" opacity="0.9"/>
-      <path d="M12 6V12L15 15" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-      <circle cx="12" cy="12" r="2" fill="white" opacity="0.8"/>
-      <defs>
-        <linearGradient id="digitalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  enterprise: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <rect x="4" y="8" width="16" height="12" rx="2" fill="url(#enterpriseGrad)" stroke="none" opacity="0.9"/>
-      <path d="M8 8V6C8 4.9 8.9 4 10 4H14C15.1 4 16 4.9 16 6V8" stroke="white" strokeWidth="1.5" fill="none"/>
-      <path d="M12 12V16" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="12" cy="14" r="1" fill="white"/>
-      <defs>
-        <linearGradient id="enterpriseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  workforce: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="9" cy="8" r="4" fill="url(#workforceGrad)" stroke="none" opacity="0.9"/>
-      <path d="M3 18V17C3 14.8 4.8 13 7 13H11C13.2 13 15 14.8 15 17V18" stroke="#00B4FF" strokeWidth="1.8" fill="none"/>
-      <circle cx="17" cy="10" r="3" fill="#2196F3" opacity="0.8"/>
-      <defs>
-        <linearGradient id="workforceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#42A5F5"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  shared: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M3 9L12 3L21 9L12 15L3 9Z" fill="url(#sharedGrad)" stroke="none" opacity="0.9"/>
-      <path d="M5 13V19L12 22L19 19V13" stroke="#00B4FF" strokeWidth="1.5" fill="none"/>
-      <path d="M12 15V22" stroke="white" strokeWidth="1.5"/>
-      <defs>
-        <linearGradient id="sharedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  cloud: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M6 16C3.8 16 2 14.2 2 12C2 9.8 3.8 8 6 8C6.1 8 6.2 8 6.3 8C6.8 5.7 8.9 4 11.3 4C14.2 4 16.6 6.3 16.8 9.2C18.1 9.6 19.1 10.7 19.4 12.1C20.3 12.6 21 13.5 21 14.5C21 16.4 19.4 18 17.5 18H6Z" stroke="#0D47A1" strokeWidth="1.5" fill="url(#cloudGrad)" opacity="0.9"/>
-      <defs>
-        <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#e3f2fd"/>
-          <stop offset="100%" stopColor="#bbdefb"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  devops: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="9" fill="url(#devopsGrad)" stroke="none" opacity="0.9"/>
-      <path d="M12 8L12 12L15 15" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-      <path d="M8 8L10 10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-      <defs>
-        <linearGradient id="devopsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1565C0"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  cybersecurity: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M12 3L4 7V12C4 16.5 7 20 12 22C17 20 20 16.5 20 12V7L12 3Z" fill="url(#cyberGrad)" stroke="none" opacity="0.9"/>
-      <path d="M12 8V12M12 16H12.01" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-      <defs>
-        <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#2196F3"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  genai: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" fill="url(#genaiGrad)" stroke="none" opacity="0.9"/>
-      <path d="M12 6V12L14 14" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-      <path d="M8 10L10 12L8 14" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="16" cy="10" r="1.5" fill="white" opacity="0.8"/>
-      <defs>
-        <linearGradient id="genaiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  appmodern: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <rect x="4" y="6" width="16" height="12" rx="2" fill="url(#appGrad)" stroke="none" opacity="0.9"/>
-      <path d="M9 6V4H15V6" stroke="#00B4FF" strokeWidth="1.5" fill="none"/>
-      <path d="M12 10V14" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="12" cy="16" r="1" fill="white"/>
-      <defs>
-        <linearGradient id="appGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#42A5F5"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  rpa: () => (
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M4 12H20" stroke="#0D47A1" strokeWidth="2"/>
-      <circle cx="6" cy="12" r="3" fill="url(#rpaGrad)" stroke="none"/>
-      <circle cx="18" cy="12" r="3" fill="url(#rpaGrad)" stroke="none"/>
-      <path d="M9 12L15 12" stroke="white" strokeWidth="1.5"/>
-      <defs>
-        <linearGradient id="rpaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0D47A1"/>
-          <stop offset="100%" stopColor="#00B4FF"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  )
-}
-
-// Main Service Categories with sub-services
 const serviceCategories = [
   {
     id: 'digital',
-    icon: ServiceIcons.digital,
+    icon: HiOutlineSparkles,
     title: 'Digital Acceleration',
-    subServices: ['Strategy Consulting', 'Analytics and automation', 'Digital Footprint', 'Co-creation and Monetization']
+    subServices: ['Strategy Consulting', 'Analytics & Automation', 'Digital Footprint', 'Co-creation & Monetization'],
+    gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
+    color: '#22a7f0'
   },
   {
     id: 'enterprise',
-    icon: ServiceIcons.enterprise,
+    icon: HiOutlineCpuChip,
     title: 'Enterprise Transformation',
-    subServices: ['Strategy and Selection', 'Legacy Transformation', 'Enterprise Technologies', 'Engineering Solutions']
+    subServices: ['Strategy & Selection', 'Legacy Transformation', 'Enterprise Technologies', 'Engineering Solutions'],
+    gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
+    color: '#34d399'
   },
   {
     id: 'workforce',
-    icon: ServiceIcons.workforce,
+    icon: HiOutlineUsers,
     title: 'Workforce Management',
-    subServices: ['Staff Augmentation', 'Deployment Support', 'Lateral Hiring', 'Program Management']
+    subServices: ['Staff Augmentation', 'Deployment Support', 'Lateral Hiring', 'Program Management'],
+    gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
+    color: '#f472b6'
   },
   {
     id: 'shared',
-    icon: ServiceIcons.shared,
+    icon: HiOutlineGlobeAlt,
     title: 'Shared Services',
-    subServices: ['Incorporation Services', 'Compliance and Taxation', 'Sustenance Services', 'Managed Infrastructure']
+    subServices: ['Incorporation Services', 'Compliance & Taxation', 'Sustenance Services', 'Managed Infrastructure'],
+    gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+    color: '#f59e0b'
   }
-]
+];
 
-// Detailed Technology Services
 const technologyServices = [
   {
-    icon: ServiceIcons.cloud,
+    icon: HiOutlineCloud,
     title: 'Cloud Services',
-    description: 'Secure and scalable Cloud Migration Services that help enterprises move legacy infrastructure to modern cloud environments with optimized performance and security.',
-    features: ['Cloud consulting services', 'Infrastructure migration', 'Hybrid cloud architecture', 'Cloud security optimization']
+    description: 'Secure and scalable Cloud Migration Services that help enterprises move legacy infrastructure to modern cloud environments.',
+    features: ['Cloud Consulting', 'Infrastructure Migration', 'Hybrid Cloud Architecture'],
+    gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
+    color: '#22a7f0'
   },
   {
-    icon: ServiceIcons.devops,
+    icon: HiOutlineCodeBracket ,
     title: 'DevOps Services',
-    description: 'High-performance DevOps services and consulting that accelerate software delivery through CI/CD pipelines, automation, and agile development practices.',
-    features: ['CI/CD pipelines', 'Infrastructure as code', 'DevOps transformation consulting']
+    description: 'High-performance DevOps services and consulting that accelerate software delivery through CI/CD pipelines and automation.',
+    features: ['CI/CD Pipelines', 'Infrastructure as Code', 'DevOps Transformation'],
+    gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
+    color: '#34d399'
   },
   {
-    icon: ServiceIcons.cybersecurity,
+    icon: HiOutlineShieldCheck,
     title: 'Cybersecurity Services',
-    description: 'Enterprise cybersecurity services designed to protect digital assets, strengthen security architecture, and reduce cyber risk across modern IT environments.',
-    features: ['Security audits', 'Risk management', 'Cloud security solutions']
+    description: 'Enterprise cybersecurity services designed to protect digital assets, strengthen security architecture, and reduce cyber risk.',
+    features: ['Security Audits', 'Risk Management', 'Cloud Security'],
+    gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
+    color: '#f472b6'
   },
   {
-    icon: ServiceIcons.genai,
+    icon: HiOutlineArrowTrendingUp ,
     title: 'Gen AI Solutions',
-    description: 'Advanced Generative AI solutions and machine learning platforms that enable intelligent automation, predictive insights, and enterprise innovation.',
-    features: ['AI copilots', 'Enterprise AI assistants', 'Predictive analytics']
+    description: 'Advanced Generative AI solutions and machine learning platforms that enable intelligent automation and enterprise innovation.',
+    features: ['AI Copilots', 'Enterprise AI Assistants', 'Predictive Analytics'],
+    gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+    color: '#f59e0b'
   },
   {
-    icon: ServiceIcons.appmodern,
+    icon: HiOutlineCpuChip,
     title: 'Application Modernization',
-    description: 'Scalable application modernization services that transform legacy systems into secure, cloud-native applications for improved performance and agility.',
-    features: ['Microservices architecture', 'Containerization', 'Enterprise application modernization']
+    description: 'Scalable application modernization services that transform legacy systems into secure, cloud-native applications.',
+    features: ['Microservices', 'Containerization', 'Enterprise Modernization'],
+    gradient: 'linear-gradient(135deg, #a78bfa, #8b5cf6)',
+    color: '#a78bfa'
   },
   {
-    icon: ServiceIcons.rpa,
-    title: 'RPA / Robotic Process Automation',
-    description: 'Intelligent RPA and robotic process automation solutions that streamline repetitive business operations and improve productivity through automation.',
-    features: ['Business process automation', 'Intelligent automation platforms', 'Bot integration']
+    icon: FaGlobe,
+    title: 'RPA / Automation',
+    description: 'Intelligent RPA and robotic process automation solutions that streamline repetitive business operations and improve productivity.',
+    features: ['Process Automation', 'Intelligent Platforms', 'Bot Integration'],
+    gradient: 'linear-gradient(135deg, #22a7f0, #06b6d4)',
+    color: '#22a7f0'
   }
-]
+];
 
 export default function ServicesSection() {
-  const [headRef, headVisible] = useReveal(0)
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="services">
-      {/* Ripple Background Animation */}
-      <div className="ripple-background">
-        <div className="circle xxlarge shade1"></div>
-        <div className="circle xlarge shade2"></div>
-        <div className="circle large shade3"></div>
-        <div className="circle medium shade4"></div>
-        <div className="circle small shade5"></div>
-        <div className="circle-extra extra-1"></div>
-        <div className="circle-extra extra-2"></div>
-        <div className="circle-extra extra-3"></div>
+    <section className="services-premium" ref={sectionRef}>
+      {/* Background Decorations */}
+      <div className="services-premium-bg">
+        <div className="services-premium-blob sblob-1" />
+        <div className="services-premium-blob sblob-2" />
+        <div className="services-premium-blob sblob-3" />
+        <div className="services-premium-blob sblob-4" />
       </div>
-      
-      <div className="services__pattern"></div>
-      
-      <div className="services__inner">
-        <div ref={headRef} className={`services__head reveal${headVisible ? ' visible' : ''}`}>
-          <span className="section-label">Our Services</span>
-          <h2 className="section-title">
-            Comprehensive IT Consulting & <span className="gradient-highlight">Digital Transformation Services</span>
+
+      <div className="services-premium-container">
+        {/* Header */}
+        <motion.div 
+          className="services-premium-header"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="services-premium-label">
+            <span className="label-line" />
+            <span className="label-text" style={{color:"#ffff"}}>Our Services</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="services-premium-title">
+            Comprehensive IT Consulting &{' '}
+            {/* <span className="gradient-text-services">Digital Transformation</span> */}
+               <span >Digital Transformation</span>
+            <span className="title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">
+          
+          <p className="services-premium-subtitle">
             Our services are designed to help organizations accelerate innovation while optimizing operations.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Service Categories - Flip Card Design */}
-        <div className="services__categories">
-          {serviceCategories.map((category, idx) => {
-            const [ref, visible] = useReveal(idx * 100)
-            const IconComponent = category.icon
+        {/* Service Categories - Orbit Design */}
+        <div className="services-premium-orbit">
+          {serviceCategories.map((category, index) => {
+            const Icon = category.icon;
             return (
-              <div 
+              <motion.div
                 key={category.id}
-                ref={ref}
-                className={`service-category-card reveal${visible ? ' visible' : ''}`}
-                style={{ transitionDelay: `${idx * 100}ms` }}
+                className="services-premium-orbit-item"
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                style={{ '--card-color': category.color }}
               >
-                <div className="service-category-inner">
-                  <div className="category-front">
-                    <div className="category-icon-ring">
-                      <div className="category-icon">
-                        <IconComponent />
-                      </div>
-                    </div>
-                    <h3 className="category-title">{category.title}</h3>
-                  </div>
-                  <div className="category-back">
-                    <ul className="category-services-list">
-                      {category.subServices.map((service, i) => (
-                        <li key={i}>
-                          <span className="service-marker"></span>
-                          {service}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div className="orbit-item-glow" style={{ background: category.gradient }} />
+                
+                <div className="orbit-item-icon" style={{ background: category.gradient }}>
+                  <Icon />
                 </div>
-              </div>
-            )
+                
+                <h3 className="orbit-item-title">{category.title}</h3>
+                
+                <div className="orbit-item-services">
+                  {category.subServices.map((service, i) => (
+                    <span key={i} className="orbit-service-tag">
+                      {service}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* <div className="orbit-item-number">0{index + 1}</div> */}
+              </motion.div>
+            );
           })}
         </div>
 
-        {/* Technology Services - Modern Glassmorphism Cards with Animated Borders */}
-        <div className="services__tech">
-          <div className="tech-header">
-            <span className="tech-badge">Technology Expertise</span>
-            <h3 className="tech-title">Specialized Technology Services</h3>
-            <p className="tech-subtitle">Deep expertise in modern technology stacks and methodologies</p>
-          </div>
+        {/* Technology Services - Infinity Cards */}
+        <div className="services-premium-tech">
+          <motion.div 
+            className="services-premium-tech-header"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
+            <div className="tech-header-badge">
+              <HiOutlineSparkles />
+              <span>Technology Expertise</span>
+            </div>
+            <h3 className="tech-header-title">Specialized Technology Services</h3>
+            <p className="tech-header-subtitle">Deep expertise in modern technology stacks and methodologies</p>
+          </motion.div>
 
-          <div className="tech-grid">
-            {technologyServices.map((service, idx) => {
-              const [ref, visible] = useReveal(idx * 80)
-              const IconComponent = service.icon
+          <div className="services-premium-tech-grid">
+            {technologyServices.map((service, index) => {
+              const Icon = service.icon;
               return (
-                <div 
-                  key={idx}
-                  ref={ref}
-                  className={`tech-glass-card reveal${visible ? ' visible' : ''}`}
-                  style={{ transitionDelay: `${idx * 80}ms` }}
+                <motion.div
+                  key={index}
+                  className="services-premium-tech-card"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 + (index * 0.08) }}
+                  whileHover={{ y: -6 }}
+                  style={{ '--card-color': service.color }}
                 >
-                  <div className="glass-card-glow"></div>
-                  <div className="glass-card-content">
-                    <div className="tech-icon-wrapper">
-                      <IconComponent />
+                  <div className="tech-card-glow" style={{ background: service.gradient }} />
+                  
+                  <div className="tech-card-top">
+                    <div className="tech-card-icon" style={{ background: service.gradient }}>
+                      <Icon />
                     </div>
-                    <h4 className="tech-card-title">{service.title}</h4>
-                    <p className="tech-card-desc">{service.description}</p>
-                    <div className="tech-features-pills">
-                      {service.features.map((feature, i) => (
-                        <span key={i} className="tech-pill">{feature}</span>
-                      ))}
-                    </div>
+                    {/* <span className="tech-card-number">0{index + 1}</span> */}
                   </div>
-                  <div className="glass-card-footer">
-                    <span className="learn-more">Explore Service →</span>
+                  
+                  <h4 className="tech-card-title">{service.title}</h4>
+                  
+                  <p className="tech-card-description">{service.description}</p>
+                  
+                  <div className="tech-card-features">
+                    {service.features.map((feature, i) => (
+                      <span key={i} className="tech-card-pill">
+                        {feature}
+                      </span>
+                    ))}
                   </div>
-                </div>
-              )
+                  
+                  <div className="tech-card-footer">
+                    {/* <span className="tech-card-learn">Learn More</span> */}
+                    <HiOutlineArrowRight className="tech-card-arrow" />
+                  </div>
+                  
+                  <div className="tech-card-line" style={{ background: service.gradient }} />
+                </motion.div>
+              );
             })}
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="services__cta">
-          <a href="#contact" className="btn-grad">
-            Discover All Services →
-          </a>
-        </div>
+        {/* CTA */}
+        <motion.div 
+          className="services-premium-cta"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.8 }}
+        >
+          <div className="services-premium-cta-content">
+            <HiOutlineArrowTrendingUp  className="cta-icon" />
+            <span>Ready to accelerate your digital transformation?</span>
+          </div>
+        <Link 
+  to="/services" 
+  className="services-premium-cta-btn"
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+>
+  <span>Discover All Services</span>
+  <HiOutlineArrowRight />
+</Link>
+        </motion.div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="services-premium-bottom" />
     </section>
-  )
+  );
 }

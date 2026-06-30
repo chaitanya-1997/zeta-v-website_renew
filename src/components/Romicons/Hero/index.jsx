@@ -1,173 +1,211 @@
-// src/components/AdvisoryAll/AdvisoryHero/Index.jsx
-import { useState, useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import heroImg from "../../../assets/images/Hero3.jpg"
+// AdvisoryHero.jsx
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { 
+  HiArrowRight, 
+  HiOutlineSparkles, 
+  HiOutlineGlobeAlt,
+  HiOutlineCpuChip,
+  HiOutlineUsers,
+  HiOutlineBriefcase,
+  HiOutlineChartBar,
+  HiOutlineLightBulb
+} from 'react-icons/hi2'
+import { FaRocket } from 'react-icons/fa'
+import './AdvisoryHero.css'
+import { Link } from 'react-router-dom';
 
-// SVG Icons matching Home Hero
-const Icons = {
-  Lightning: () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    </svg>
-  ),
-  Digital: () => (
-    <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" stroke="url(#grad1)" strokeWidth="1.5" fill="none"/>
-      <path d="M12 8V12L15 15" stroke="url(#grad1)" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="12" cy="12" r="2" fill="url(#grad1)"/>
-      <defs>
-        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00B4FF"/>
-          <stop offset="100%" stopColor="#0D47A1"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  AI: () => (
-    <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#grad2)" strokeWidth="1.5" fill="none"/>
-      <path d="M2 17L12 22L22 17" stroke="url(#grad2)" strokeWidth="1.5" fill="none"/>
-      <path d="M2 12L12 17L22 12" stroke="url(#grad2)" strokeWidth="1.5" fill="none"/>
-      <circle cx="12" cy="12" r="2" fill="url(#grad2)"/>
-      <defs>
-        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00B4FF"/>
-          <stop offset="100%" stopColor="#0D47A1"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  Analytics: () => (
-    <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
-      <path d="M21 21H3V3" stroke="url(#grad3)" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M7 15L10 11L13 14L20 6" stroke="url(#grad3)" strokeWidth="2" strokeLinecap="round"/>
-      <circle cx="7" cy="15" r="2" fill="#00B4FF"/>
-      <circle cx="10" cy="11" r="2" fill="#1565C0"/>
-      <circle cx="13" cy="14" r="2" fill="#2196F3"/>
-      <circle cx="20" cy="6" r="2" fill="#0D47A1"/>
-      <defs>
-        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00B4FF"/>
-          <stop offset="100%" stopColor="#0D47A1"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  ),
-  Cloud: () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-      <path d="M6 16C3.8 16 2 14.2 2 12C2 9.8 3.8 8 6 8C6.1 8 6.2 8 6.3 8C6.8 5.7 8.9 4 11.3 4C14.2 4 16.6 6.3 16.8 9.2C18.1 9.6 19.1 10.7 19.4 12.1C20.3 12.6 21 13.5 21 14.5C21 16.4 19.4 18 17.5 18H6Z" stroke="url(#grad4)" strokeWidth="1.5" fill="none"/>
-      <defs>
-        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00B4FF"/>
-          <stop offset="100%" stopColor="#0D47A1"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  )
-};
+// Import background image
+import advisoryBg from '../../../assets/images/Hero3.jpg'
 
 const stats = [
-  { value: '50+', label: 'Advisory Projects' },
-  { value: '30+', label: 'Global Clients' },
-  { value: '95%', label: 'Success Rate' },
-  { value: '10+', label: 'Years Experience' },
+  { value: '242+', label: 'Advisory Projects', icon: HiOutlineBriefcase },
+  { value: '34+', label: 'Global Clients', icon: HiOutlineUsers },
+  { value: '98%', label: 'Success Rate', icon: HiOutlineChartBar },
+  { value: '9+', label: 'Years Experience', icon: HiOutlineSparkles },
+];
+
+const features = [
+  { icon: HiOutlineLightBulb, label: 'Strategic Advisory' },
+  { icon: HiOutlineCpuChip, label: 'Tech Transformation' },
+  { icon: HiOutlineGlobeAlt, label: 'Market Expansion' },
 ];
 
 export default function AdvisoryHero() {
   const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100])
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  }
 
   return (
-    <section className="hero" ref={ref}>
-      <div className="hero__bg">
-        <motion.div 
-          className="hero__bg-image"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.1, 1] }}
-          style={{ backgroundImage: `url(${heroImg})` }}
+    <section className="advisory-hero-premium" ref={ref}>
+      {/* Background */}
+      <div className="advisory-hero-bg">
+        <div 
+          className="advisory-hero-bg-image" 
+          style={{ backgroundImage: `url(${advisoryBg})` }}
         />
-        <div className="hero__bg-overlay"></div>
+        <div className="advisory-hero-overlay">
+          <div className="advisory-hero-gradient" />
+        </div>
       </div>
 
-      {/* Stars background */}
-      <div className="hero__stars">
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
-        <div className="star"></div>
+      {/* Animated Orbs */}
+      <div className="advisory-hero-orbs">
+        <div className="orb-advisory orb-1" />
+        <div className="orb-advisory orb-2" />
+        <div className="orb-advisory orb-3" />
+        <div className="orb-advisory orb-4" />
       </div>
 
-      <div className="hero__orb hero__orb--1" />
-      <div className="hero__orb hero__orb--2" />
-      <div className="hero__orb hero__orb--3" />
-
-      <div className="hero__floating-icons">
-        <div className="float-icon float-icon-1"><Icons.Cloud /></div>
-        <div className="float-icon float-icon-2"><Icons.Digital /></div>
-        <div className="float-icon float-icon-3"><Icons.AI /></div>
-        <div className="float-icon float-icon-4"><Icons.Analytics /></div>
-      </div>
-
-      <div className="hero__inner">
-        {/* LEFT SIDE */}
-        <div className="hero__left">
-          <motion.div style={{ y }}>
-            <span className="hero__overline">Strategic Advisory Services</span>
-            <h1 className="hero__h1">
-              <span className="hero__h1a">Business</span>
-              <span className="hero__h1b">
-                <span className="grad-text">Advisories</span> that turn Strategy Into Value.
-              </span>
-            </h1>
-            <p className="hero__sub">
-              Driving sustainable growth, market expansion,
-              strategic transactions, and technology transformation
-              through expert advisory and execution excellence.
-            </p>
-            <div className="hero__ctas">
-              <a href="#advisories" className="btn-grad">
-                Explore Advisories
-                <ArrowRight size={18} />
-              </a>
-              <a href="#contact" className="btn-outline">
-                Talk to Experts
-              </a>
+      <div className="advisory-hero-container">
+        <motion.div
+          className="advisory-hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* LEFT COLUMN - Content */}
+          <motion.div className="advisory-hero-left" variants={itemVariants}>
+            <div className="advisory-hero-badge">
+              <FaRocket className="badge-icon" />
+              <span>Strategic Advisory Services</span>
+              <span className="badge-pulse" />
             </div>
-            <div className="hero__stats">
-              {stats.map((s, i) => (
-                <div className="hero__stat" key={i}>
-                  <span className="hero__stat-val">{s.value}</span>
-                  <span className="hero__stat-label">{s.label}</span>
-                </div>
-              ))}
+
+            <h1 className="advisory-hero-title">
+              Business 
+              <span >Advisories</span>
+              {/* <span className="advisory-hero-highlight">Advisories</span> */}
+              <br />
+              <span className="advisory-hero-sub">that turn Strategy Into Value.</span>
+            </h1>
+
+            <p className="advisory-hero-description">
+              Driving sustainable growth, market expansion, strategic transactions, 
+              and technology transformation through expert advisory and execution excellence.
+            </p>
+
+          <div className="advisory-hero-ctas">
+  <Link 
+    to="/services" 
+    className="btn-advisory-primary"
+    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  >
+    <span>Explore Advisories</span>
+    <HiArrowRight />
+  </Link>
+  <Link 
+   to="/contact"
+  state={{ scrollTo: 'enquiries' }} 
+    className="btn-advisory-secondary"
+    // onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  >
+    Talk to Experts
+  </Link>
+</div>
+
+            <div className="advisory-hero-features">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <div key={index} className="feature-pill-advisory">
+                    <Icon />
+                    <span>{feature.label}</span>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
-        </div>
 
-        {/* RIGHT SIDE - Glassmorphic Visual Elements */}
-        
+          {/* RIGHT COLUMN - Stats */}
+          <motion.div 
+            className="advisory-hero-right"
+            variants={itemVariants}
+          >
+            <div className="advisory-hero-stats">
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <motion.div 
+                    key={index} 
+                    className="stat-card-advisory"
+                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                    animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                    transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                  >
+                    <div className="stat-icon-advisory">
+                      <Icon />
+                    </div>
+                    <div className="stat-content-advisory">
+                      <span className="stat-number-advisory">{stat.value}</span>
+                      <span className="stat-label-advisory">{stat.label}</span>
+                    </div>
+                    <div className="stat-glow-advisory" />
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Visual Element */}
+            <div className="advisory-hero-visual">
+              <div className="advisory-hero-visual-card">
+                <div className="visual-header-advisory">
+                  <div className="visual-dots-advisory">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <span className="visual-title-advisory">Advisory Insights</span>
+                </div>
+                <div className="visual-body-advisory">
+                  <div className="visual-content-advisory">
+                    <div className="visual-item">
+                      {/* <span className="visual-icon">📊</span> */}
+                      <span>Strategic Planning</span>
+                    </div>
+                    <div className="visual-item">
+                      {/* <span className="visual-icon">🌍</span> */}
+                      <span>Market Expansion</span>
+                    </div>
+                    <div className="visual-item">
+                      {/* <span className="visual-icon">🚀</span> */}
+                      <span>Growth Strategy</span>
+                    </div>
+                    <div className="visual-item">
+                      {/* <span className="visual-icon">💡</span> */}
+                      <span>Innovation Advisory</span>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-    
+      {/* Bottom Edge */}
+      <div className="advisory-hero-bottom" />
     </section>
   )
 }

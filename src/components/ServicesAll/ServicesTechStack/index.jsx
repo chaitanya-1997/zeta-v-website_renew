@@ -1,26 +1,28 @@
-// src/components/ServicesAll/ServicesTechStack/Index.jsx
+// ServicesTechStack.jsx
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaVuejs, FaAngular, 
   FaNodeJs, FaPython, FaJava, FaPhp, FaAws, FaDocker, 
-  FaDatabase, FaGitAlt, FaGithub, FaCloud, FaServer, FaLinux
+  FaDatabase, FaGitAlt, FaGithub, FaCloud, FaServer, FaLinux,
+  FaMobileAlt, FaApple                      // <-- added for mobile
 } from 'react-icons/fa'
 import { 
   SiTypescript, SiTailwindcss, SiGo, SiDjango, SiSpringboot, 
   SiDotnet, SiKubernetes, SiTerraform, SiJenkins, SiGithubactions,
-  SiMongodb, SiPostgresql, SiMysql, SiRedis, SiElasticsearch, SiFirebase
+  SiMongodb, SiPostgresql, SiMysql, SiRedis, SiElasticsearch, SiFirebase,
+  SiFlutter                               // <-- added for Flutter
 } from 'react-icons/si'
-import { 
-  DiGoogleCloudPlatform
-} from 'react-icons/di'
+import { DiGoogleCloudPlatform } from 'react-icons/di'
+import { HiOutlineSparkles } from 'react-icons/hi2'
 import './ServicesTechStack.css'
 
-// Embedded tech stack categories data with proper icons
 const techStackCategoriesData = [
   {
     category: "Frontend",
     icon: <FaHtml5 />,
+    gradient: "linear-gradient(135deg, #22a7f0, #6366f1)",
+    color: "#22a7f0",
     technologies: [
       { name: "HTML5", icon: <FaHtml5 />, color: "#E34F26" },
       { name: "CSS3", icon: <FaCss3Alt />, color: "#1572B6" },
@@ -33,8 +35,21 @@ const techStackCategoriesData = [
     ],
   },
   {
+    category: "Mobile",                              // <-- NEW CATEGORY
+    icon: <FaMobileAlt />,
+    gradient: "linear-gradient(135deg, #f472b6, #ec4899)",
+    color: "#f472b6",
+    technologies: [
+      { name: "Flutter", icon: <SiFlutter />, color: "#02569B" },
+      { name: "iOS", icon: <FaApple />, color: "#000000" },
+      // Add more mobile techs if needed: React Native, Android, etc.
+    ],
+  },
+  {
     category: "Backend",
     icon: <FaServer />,
+    gradient: "linear-gradient(135deg, #34d399, #06b6d4)",
+    color: "#34d399",
     technologies: [
       { name: "Node.js", icon: <FaNodeJs />, color: "#339933" },
       { name: "Python", icon: <FaPython />, color: "#3776AB" },
@@ -49,6 +64,8 @@ const techStackCategoriesData = [
   {
     category: "Cloud & DevOps",
     icon: <FaCloud />,
+    gradient: "linear-gradient(135deg, #f472b6, #ec4899)",
+    color: "#f472b6",
     technologies: [
       { name: "AWS", icon: <FaAws />, color: "#FF9900" },
       { name: "Azure", icon: <FaCloud />, color: "#0089D6" },
@@ -63,6 +80,8 @@ const techStackCategoriesData = [
   {
     category: "Databases",
     icon: <FaDatabase />,
+    gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
+    color: "#f59e0b",
     technologies: [
       { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
       { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1" },
@@ -75,6 +94,8 @@ const techStackCategoriesData = [
   {
     category: "Version Control",
     icon: <FaGitAlt />,
+    gradient: "linear-gradient(135deg, #a78bfa, #8b5cf6)",
+    color: "#a78bfa",
     technologies: [
       { name: "Git", icon: <FaGitAlt />, color: "#F05032" },
       { name: "GitHub", icon: <FaGithub />, color: "#181717" },
@@ -85,6 +106,8 @@ const techStackCategoriesData = [
   {
     category: "OS & Tools",
     icon: <FaLinux />,
+    gradient: "linear-gradient(135deg, #22a7f0, #06b6d4)",
+    color: "#22a7f0",
     technologies: [
       { name: "Linux", icon: <FaLinux />, color: "#FCC624" },
       { name: "Ubuntu", icon: <FaLinux />, color: "#E95420" },
@@ -100,43 +123,70 @@ export default function ServicesTechStack() {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
-    <section className="svc-tech" ref={ref}>
-      <div className="svc-tech__inner">
+    <section className="techstack-premium" ref={ref}>
+      {/* Background Decorations */}
+      <div className="techstack-premium-bg">
+        <div className="techstack-premium-blob tblob-1" />
+        <div className="techstack-premium-blob tblob-2" />
+        <div className="techstack-premium-blob tblob-3" />
+      </div>
+      <div className="techstack-premium-pattern" />
+
+      <div className="techstack-premium-container">
+        {/* Header */}
         <motion.div
-          className="svc-tech__head"
-          initial={{ opacity: 0, y: 20 }}
+          className="techstack-premium-header"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
-          <span className="section-label">Technologies</span>
-          <h2 className="section-title">
-            Our Technology <span className="svc-grad-text">Stack</span>
+          <div className="techstack-premium-label">
+            <span className="label-line" />
+            <span className="label-text">Technologies</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="techstack-premium-title">
+            Our Technology 
+            <span> Stack</span>
+            <span className="title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">
+          
+          <p className="techstack-premium-subtitle">
             Modern tools and frameworks we use to build exceptional solutions
           </p>
         </motion.div>
 
-        <div className="svc-tech__filters">
+        {/* Filters */}
+        <div className="techstack-premium-filters">
           {techStackCategoriesData.map((category, idx) => (
             <motion.button
               key={category.category}
-              className={`svc-tech__filter ${activeCategory === idx ? "active" : ""}`}
+              className={`techstack-premium-filter ${activeCategory === idx ? "active" : ""}`}
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: idx * 0.03, duration: 0.3 }}
+              transition={{ delay: idx * 0.04, duration: 0.3 }}
               onClick={() => setActiveCategory(idx)}
+              style={{
+                borderColor: activeCategory === idx ? category.color : 'rgba(15, 23, 42, 0.06)',
+                background: activeCategory === idx ? category.gradient : 'rgba(255, 255, 255, 0.8)',
+              }}
             >
-              <span className="svc-tech__filter-icon">{category.icon}</span>
-              <span className="svc-tech__filter-name">{category.category}</span>
+              <span className="techstack-premium-filter-icon" style={{ color: activeCategory === idx ? '#ffffff' : category.color }}>
+                {category.icon}
+              </span>
+              <span className="techstack-premium-filter-name" style={{ color: activeCategory === idx ? '#ffffff' : 'rgba(15, 23, 42, 0.5)' }}>
+                {category.category}
+              </span>
             </motion.button>
           ))}
         </div>
 
+        {/* Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            className="svc-tech__grid"
+            className="techstack-premium-grid"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -145,43 +195,53 @@ export default function ServicesTechStack() {
             {techStackCategoriesData[activeCategory].technologies.map((tech, idx) => (
               <motion.div
                 key={tech.name}
-                className="svc-tech__card"
+                className="techstack-premium-card"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.03, duration: 0.2 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                whileHover={{ y: -5 }}
+                style={{ '--tech-color': tech.color }}
               >
-                <div className="svc-tech__card-icon" style={{ color: tech.color }}>
+                <div className="techstack-premium-card-icon" style={{ color: tech.color }}>
                   {tech.icon}
                 </div>
-                <h4 className="svc-tech__card-name">{tech.name}</h4>
-                <span className="svc-tech__card-badge">Expert</span>
-                <div className="svc-tech__card-border" style={{ background: tech.color }} />
+                <h4 className="techstack-premium-card-name">{tech.name}</h4>
+                <span className="techstack-premium-card-badge" style={{ 
+                  background: `linear-gradient(135deg, ${tech.color}10, ${tech.color}20)`,
+                  color: tech.color 
+                }}>
+                  Expert
+                </span>
+                <div className="techstack-premium-card-line" style={{ background: tech.color }} />
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
 
+        {/* Stats */}
         <motion.div
-          className="svc-tech__stats"
+          className="techstack-premium-stats"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4, duration: 0.4 }}
         >
-          <div className="svc-tech__stat">
-            <span className="svc-tech__stat-value">50+</span>
-            <span className="svc-tech__stat-label">Technologies</span>
+          <div className="techstack-premium-stat">
+            <span className="techstack-premium-stat-value">50+</span>
+            <span className="techstack-premium-stat-label">Technologies</span>
           </div>
-          <div className="svc-tech__stat">
-            <span className="svc-tech__stat-value">6</span>
-            <span className="svc-tech__stat-label">Categories</span>
+          <div className="techstack-premium-stat">
+            <span className="techstack-premium-stat-value">7</span>  {/* updated from 6 */}
+            <span className="techstack-premium-stat-label">Categories</span>
           </div>
-          <div className="svc-tech__stat">
-            <span className="svc-tech__stat-value">5+</span>
-            <span className="svc-tech__stat-label">Years Avg Exp</span>
+          <div className="techstack-premium-stat">
+            <span className="techstack-premium-stat-value">5+</span>
+            <span className="techstack-premium-stat-label">Years Avg Exp</span>
           </div>
         </motion.div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="techstack-premium-bottom" />
     </section>
   )
 }

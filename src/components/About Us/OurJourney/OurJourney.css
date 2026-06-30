@@ -1,126 +1,278 @@
+/* OurJourney.css - Fixed Text, Padding & Responsive */
+
 /* ================================
-   Section
+   Section - Dark Theme
 ================================ */
-.journey-section {
+.journey-section-premium {
   width: 100%;
-  padding: 100px 5%;
-  background: rgb(231, 244, 249);
-  box-sizing: border-box;
+  padding: 100px 0 80px;
+  background: linear-gradient(180deg, #0a0f1e 0%, #0d1428 100%);
+  position: relative;
   overflow: hidden;
 }
 
+/* ---- Background Decorations ---- */
+.journey-bg-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
 
-/* ================================
-   Scroll wrapper
-   overflow-x: auto enables horizontal
-   scroll on mobile/tablet.
-================================ */
-.timeline-outer {
+.journey-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  animation: journeyBlobFloat 35s ease-in-out infinite alternate;
+}
+
+.jblob-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+  background: rgba(34, 167, 240, 0.2);
+  animation-delay: 0s;
+}
+
+.jblob-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  left: -80px;
+  background: rgba(99, 102, 241, 0.15);
+  animation-delay: -12s;
+}
+
+.jblob-3 {
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(167, 139, 250, 0.1);
+  animation-delay: -25s;
+  animation-duration: 45s;
+}
+
+@keyframes journeyBlobFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-40px, 30px) scale(0.9);
+  }
+  100% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+}
+
+.journey-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+}
+
+/* ---- Heading ---- */
+.journey-heading-premium {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.journey-label-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.journey-label-line {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #22a7f0, #6366f1);
+  border-radius: 2px;
+}
+
+.journey-label-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.journey-title-premium {
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 14px 0;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.text-gradient-journey {
+  background: linear-gradient(135deg, #22a7f0 0%, #6366f1 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.journey-title-icon {
+  font-size: 1.5rem;
+  color: #22a7f0;
+  opacity: 0.3;
+  animation: spinOrnament 20s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spinOrnament {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.journey-subtitle-premium {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ---- Scroll Wrapper ---- */
+.timeline-outer-premium {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  /* scrollbar-width: thin; */
-  /* scrollbar-color: #cbd5e1 transparent; */
-  padding-bottom: 12px;
-  padding-top: 40px;
-  box-sizing: border-box;
+  padding: 50px  50px;
+  position: relative;
+  z-index: 2;
 }
 
-.timeline-outer::-webkit-scrollbar {
-  height: 4px;
+.timeline-outer-premium::-webkit-scrollbar {
+  height: 5px;
 }
 
-.timeline-outer::-webkit-scrollbar-track {
-  background: transparent;
+.timeline-outer-premium::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
 }
 
-.timeline-outer::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+.timeline-outer-premium::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #22a7f0, #6366f1);
+  border-radius: 10px;
 }
 
-/* ================================
-   Timeline container
-   Fixed height. Line sits at top:50%.
-   Upper half = 210px, lower half = 210px.
-   min-width forces horizontal scroll
-   on smaller screens.
-================================ */
-.horizontal-timeline {
+/* ---- Timeline Container ---- */
+.horizontal-timeline-premium {
   position: relative;
   width: 100%;
-  min-width: 900px;
-  height: 420px;
-  box-sizing: border-box;
+  min-width: 1100px;
+  height: 440px;
+  padding: 0 24px;
 }
 
-/* ================================
-   Track + animated line
-================================ */
-.timeline-track {
+/* ---- Track & Line ---- */
+.timeline-track-premium {
   position: absolute;
   top: 50%;
-  left: 0;
-  right: 0;
-  height: 4px;
+  left: 24px;
+  right: 24px;
+  height: 3px;
   transform: translateY(-50%);
-  background: #dde8f8;
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 30px;
   overflow: hidden;
   z-index: 1;
 }
 
-.timeline-line {
+.timeline-line-premium {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #3097f3, #2563eb, #60a5fa);
+  background: linear-gradient(90deg, #22a7f0, #6366f1, #a78bfa, #8b5cf6);
   transform-origin: left center;
   border-radius: 30px;
-  box-shadow: 0 0 10px rgba(48, 151, 243, 0.25);
+  box-shadow: 0 0 40px rgba(34, 167, 240, 0.12);
 }
 
-/* ================================
-   Card
-================================ */
-.timeline-card {
+/* ---- Card ---- */
+.timeline-card-premium {
   position: absolute;
   top: 0;
+ 
   bottom: 0;
-  width: 12.5%;
+  width: 11.11%;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 3;
-  
 }
 
-/* ================================
-   Dot — pinned at line center
-================================ */
-.timeline-dot {
+/* ---- Dot with Pulse ---- */
+.timeline-dot-premium {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 3.5px solid #3097f3;
-  box-shadow:
-    0 0 0 4px rgba(48, 151, 243, 0.15),
-    0 0 10px rgba(48, 151, 243, 0.2);
+  background: #0a0f1e;
+  border: 3px solid #22a7f0;
+  box-shadow: 0 0 0 5px rgba(34, 167, 240, 0.08);
   z-index: 5;
+  transition: all 0.3s ease;
 }
 
-/* ================================
-   Node halves
-   Each half = exactly 50% of card height.
-   Top half ends at the line; bottom starts at line.
-   padding creates gap between circle and dot.
-================================ */
-.node-half {
+.timeline-card-premium:hover .timeline-dot-premium {
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 0 0 8px rgba(34, 167, 240, 0.12);
+}
+
+.dot-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22a7f0;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+}
+
+/* ---- Node Halves ---- */
+.node-half-premium {
   position: absolute;
   left: 0;
   right: 0;
@@ -129,274 +281,526 @@
   align-items: center;
 }
 
-.node-top {
+.node-top-premium {
   top: 0;
   bottom: 55%;
   justify-content: flex-end;
-  padding-bottom: 18px;
+  padding-bottom: 20px;
 }
 
-.node-bottom {
+.node-bottom-premium {
   top: 55%;
   bottom: 0;
   justify-content: flex-start;
-  padding-top: 18px;
+  padding-top: 20px;
 }
 
-/* ================================
-   Year circle
-================================ */
-.timeline-year {
-  width: 64px;
-  height: 64px;
+/* ---- Year Circle ---- */
+.timeline-year-premium {
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3097f3, #2563eb);
+  background: linear-gradient(135deg, #22a7f0, #6366f1);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.24);
+  box-shadow: 0 6px 25px rgba(34, 167, 240, 0.2);
   flex-shrink: 0;
   z-index: 4;
+  transition: all 0.3s ease;
 }
 
-.timeline-year span {
+.timeline-card-premium:hover .timeline-year-premium {
+  transform: scale(1.04);
+  box-shadow: 0 10px 35px rgba(34, 167, 240, 0.3);
+}
+
+.timeline-year-premium span {
   color: #ffffff;
-  font-size: 0.84rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
-/* ================================
-   Connector
-================================ */
-.timeline-connector {
+/* ---- Connector ---- */
+.timeline-connector-premium {
   width: 2px;
-  height: 28px;
-  background: linear-gradient(180deg, #3097f3, #93c5fd);
+  height: 20px;
+  background: linear-gradient(180deg, rgba(34, 167, 240, 0.5), rgba(147, 197, 253, 0.15));
   border-radius: 4px;
   flex-shrink: 0;
 }
 
-/* ================================
-   Content box
-================================ */
-.timeline-text {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 10px 12px;
-  min-width: 100px;
-  max-width: 130px;
+/* ---- Content Box ---- */
+.timeline-content-box {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 14px 16px;
+  min-width: 130px;
+  max-width: 170px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.timeline-card-premium:hover .timeline-content-box {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+  border-color: rgba(34, 167, 240, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.content-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  margin-top: 2px;
+  width: 24px;
   text-align: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 }
 
-.timeline-text p {
-  font-size: 0.76rem;
-  font-weight: 600;
-  line-height: 1.5;
-  color: #1e293b;
+.content-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.content-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin: 0 0 3px 0;
+}
+
+.content-desc {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Bottom Edge ---- */
+.journey-bottom-edge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(10, 15, 30, 0.3) 40%,
+      rgba(10, 15, 30, 0.7) 80%,
+      #0a0f1e 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ================================
-   Tablet landscape (1024px and below)
-   Still horizontal, slightly compact
+   Responsive
 ================================ */
+
+/* ---- Laptops & Small Desktops ---- */
+@media screen and (max-width: 1200px) {
+  .horizontal-timeline-premium {
+    min-width: 1000px;
+    height: 420px;
+  }
+
+  .timeline-content-box {
+    min-width: 115px;
+    max-width: 150px;
+    padding: 12px 14px;
+  }
+
+  .timeline-year-premium {
+    width: 62px;
+    height: 62px;
+  }
+
+  .timeline-year-premium span {
+    font-size: 0.8rem;
+  }
+
+  .content-title {
+    font-size: 0.76rem;
+  }
+
+  .content-desc {
+    font-size: 0.65rem;
+  }
+}
+
+/* ---- Tablets Landscape ---- */
 @media screen and (max-width: 1024px) {
-  .section-title {
+  .journey-section-premium {
+    padding: 80px 0 60px;
+  }
+
+  .journey-title-premium {
     font-size: 2.8rem;
   }
 
-  .journey-section {
-    padding: 80px 4%;
-  }
-}
-/* ================================
-   Tablet portrait + mobile landscape
-   (768px and below)
-   Horizontal scroll layout.
-   min-width on .horizontal-timeline
-   keeps the design intact while
-   .timeline-outer scrolls it.
-================================ */
-@media screen and (max-width: 768px) {
-  .journey-section {
-    padding: 70px 0;
+  .horizontal-timeline-premium {
+    min-width: 900px;
+    height: 400px;
   }
 
-  .journey-heading {
-    padding: 0 20px;
-    margin-bottom: 56px;
+  .timeline-content-box {
+    min-width: 105px;
+    max-width: 135px;
+    padding: 10px 12px;
+    gap: 8px;
   }
 
-  .section-title {
-    font-size: 2.2rem;
+  .content-icon {
+    font-size: 1.1rem;
+    width: 20px;
   }
 
-  .section-subtitle {
-    font-size: 0.92rem;
+  .content-title {
+    font-size: 0.72rem;
   }
 
-  .timeline-outer {
-    padding: 0 20px 16px;
-    box-sizing: border-box;
+  .content-desc {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
   }
 
-  /* Compact height for mobile */
-  .horizontal-timeline {
-    height: 340px;
-    min-width: 860px;
-  }
-
-  /* ── Year circle: smaller, but still centered
-     in its card column (left:0 right:0 + align-items:center
-     already handles horizontal centering via the node-half rules).
-     The dot is absolute at left:50% of the card, which matches
-     the center of the node-half column. ── */
-  .timeline-year {
+  .timeline-year-premium {
     width: 56px;
     height: 56px;
   }
 
-  .timeline-year span {
-    font-size: 0.76rem;
+  .timeline-year-premium span {
+    font-size: 0.75rem;
   }
 
-  /* Shorter connectors so everything fits in 340px height */
-  .timeline-connector {
-    height: 20px;
+  .timeline-connector-premium {
+    height: 16px;
   }
 
-  /* Gap between year circle edge and dot — keep equal on both sides */
-  .node-top {
-    padding-bottom: 14px;
-    padding-right: 50px;
+  .node-top-premium {
+    padding-bottom: 16px;
   }
 
-  .node-bottom {
-    padding-top: 14px;
-    padding-right: 50px;
-  }
-
-  .timeline-text {
-    min-width: 88px;
-    max-width: 112px;
-    padding: 8px 10px;
-  }
-
-  .timeline-text p {
-    font-size: 0.7rem;
-  }
-
-  /* Dot: stays at position:absolute top:50% left:50%
-     which is the exact center of the card column.
-     Year circle is centered in node-half via align-items:center
-     and node-half has left:0 right:0 — so both share the same
-     horizontal center line. */
-  .timeline-dot {
-    width: 12px;
-    height: 12px;
-    border-width: 3px;
-    /* Explicitly re-assert centering in case any rule drifts */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  .node-bottom-premium {
+    padding-top: 16px;
   }
 }
 
-
-/* ================================
-   Small mobile (480px and below)
-   Same horizontal scroll, even more compact
-================================ */
-@media screen and (max-width: 480px) {
-  .journey-section {
-    padding: 60px 0;
+/* ---- Tablets Portrait ---- */
+@media screen and (max-width: 768px) {
+  .journey-section-premium {
+    padding: 60px 0 40px;
   }
 
-  .section-title {
-    font-size: 1.9rem;
+  .journey-heading-premium {
+    padding: 0 16px;
+    margin-bottom: 30px;
   }
 
-  .section-label {
+  .journey-title-premium {
+    font-size: 2.2rem;
+  }
+
+  .journey-subtitle-premium {
+    font-size: 0.9rem;
+  }
+
+  .timeline-outer-premium {
+    padding: 20px 0 12px;
+  }
+
+  .horizontal-timeline-premium {
+    height: 380px;
+    min-width: 780px;
+    padding: 0 16px;
+  }
+
+  .timeline-content-box {
+    min-width: 95px;
+    max-width: 120px;
+    padding: 8px 10px;
+    gap: 6px;
+    border-radius: 12px;
+  }
+
+  .content-icon {
+    font-size: 1rem;
+    width: 18px;
+  }
+
+  .content-title {
     font-size: 0.68rem;
   }
 
-  .journey-heading {
-    margin-bottom: 44px;
+  .content-desc {
+    font-size: 0.58rem;
+    -webkit-line-clamp: 2;
   }
 
-  .horizontal-timeline {
-    height: 350px;
-    min-width: 800px;
-  }
-
-  .timeline-year {
+  .timeline-year-premium {
     width: 50px;
     height: 50px;
   }
 
-  .timeline-year span {
-    font-size: 0.7rem;
+  .timeline-year-premium span {
+    font-size: 0.9rem;
   }
 
-  .timeline-connector {
-    height: 16px;
+  .timeline-connector-premium {
+    height: 14px;
   }
 
-  .node-top {
+  .node-top-premium {
+    padding-bottom: 14px;
+  }
+
+  .node-bottom-premium {
+    padding-top: 14px;
+  }
+
+  .timeline-dot-premium {
+    width: 13px;
+    height: 13px;
+    border-width: 2px;
+    box-shadow: 0 0 0 4px rgba(34, 167, 240, 0.06);
+  }
+
+  .dot-pulse {
+    width: 6px;
+    height: 6px;
+  }
+
+  .journey-label-line {
+    width: 30px;
+  }
+
+  .journey-label-text {
+    font-size: 0.65rem;
+  }
+
+  .timeline-track-premium {
+    left: 16px;
+    right: 16px;
+  }
+}
+
+/* ---- Mobile Large ---- */
+@media screen and (max-width: 480px) {
+  .journey-section-premium {
+    padding: 50px 0 30px;
+  }
+
+  .journey-title-premium {
+    font-size: 1.8rem;
+  }
+
+  .journey-subtitle-premium {
+    font-size: 0.8rem;
+    padding: 0 10px;
+  }
+
+  .journey-label-text {
+    font-size: 0.9rem;
+  }
+
+  .horizontal-timeline-premium {
+    height: 360px;
+    min-width: 680px;
+    padding: 0 12px;
+  }
+
+  .timeline-content-box {
+    min-width: 80px;
+    max-width: 105px;
+    padding: 6px 8px;
+    gap: 5px;
+    border-radius: 10px;
+  }
+
+  .content-icon {
+    font-size: 0.85rem;
+    width: 16px;
+  }
+
+  .content-title {
+    font-size: 0.62rem;
+  }
+
+  .content-desc {
+    font-size: 0.52rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .timeline-year-premium {
+    width: 44px;
+    height: 44px;
+  }
+
+  .timeline-year-premium span {
+    font-size: 0.62rem;
+  }
+
+  .timeline-connector-premium {
+    height: 12px;
+  }
+
+  .node-top-premium {
     padding-bottom: 12px;
   }
 
-  .node-bottom {
+  .node-bottom-premium {
     padding-top: 12px;
   }
 
-  .timeline-text {
-    min-width: 80px;
-    max-width: 100px;
-    padding: 7px 8px;
+  .timeline-dot-premium {
+    width: 11px;
+    height: 11px;
+    border-width: 2px;
+    box-shadow: 0 0 0 3px rgba(34, 167, 240, 0.05);
   }
 
-  .timeline-text p {
-    font-size: 0.66rem;
+  .dot-pulse {
+    width: 5px;
+    height: 5px;
   }
 
-  /* Dot center re-asserted at this breakpoint */
-  .timeline-dot {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  .timeline-outer-premium::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  .timeline-track-premium {
+    left: 12px;
+    right: 12px;
+  }
+}
+
+/* ---- Mobile Small ---- */
+@media screen and (max-width: 360px) {
+  .journey-section-premium {
+    padding: 40px 0 20px;
+  }
+
+  .journey-title-premium {
+    font-size: 1.5rem;
+  }
+
+  .horizontal-timeline-premium {
+    height: 340px;
+    min-width: 580px;
+    padding: 0 10px;
+  }
+
+  .timeline-content-box {
+    min-width: 70px;
+    max-width: 90px;
+    padding: 5px 6px;
+    gap: 4px;
+    border-radius: 8px;
+  }
+
+  .content-icon {
+    font-size: 0.75rem;
+    width: 14px;
+  }
+
+  .content-title {
+    font-size: 0.55rem;
+  }
+
+  .content-desc {
+    font-size: 0.48rem;
+    display: none;
+  }
+
+  .timeline-year-premium {
+    width: 38px;
+    height: 38px;
+  }
+
+  .timeline-year-premium span {
+    font-size: 0.55rem;
+  }
+
+  .timeline-connector-premium {
+    height: 10px;
+  }
+
+  .node-top-premium {
+    padding-bottom: 10px;
+  }
+
+  .node-bottom-premium {
+    padding-top: 10px;
+  }
+
+  .timeline-dot-premium {
+    width: 10px;
+    height: 10px;
+    border-width: 1.5px;
+  }
+
+  .dot-pulse {
+    width: 4px;
+    height: 4px;
+  }
+
+  .timeline-track-premium {
+    left: 10px;
+    right: 10px;
   }
 }
 
 /* ================================
-   Extra small (360px and below)
+   Reduced Motion
 ================================ */
-@media screen and (max-width: 360px) {
-  .section-title {
-    font-size: 1.7rem;
+@media (prefers-reduced-motion: reduce) {
+  .journey-bg-blob {
+    animation: none;
   }
 
-  .horizontal-timeline {
-    height: 380px;
-    min-width: 760px;
+  .journey-title-icon {
+    animation: none;
   }
 
-  .timeline-year {
-    width: 46px;
-    height: 46px;
+  .timeline-line-premium {
+    transition: none;
   }
 
-  .timeline-year span {
-    font-size: 0.65rem;
+  .timeline-dot-premium {
+    transition: none;
   }
 
-  /* Dot center re-asserted at this breakpoint */
-  .timeline-dot {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  .timeline-card-premium:hover .timeline-dot-premium {
+    transform: none;
+  }
+
+  .timeline-card-premium:hover .timeline-content-box {
+    transform: none;
+  }
+
+  .timeline-card-premium:hover .timeline-year-premium {
+    transform: none;
+  }
+
+  .dot-pulse {
+    animation: none;
+  }
+
+  .timeline-content-box {
+    transition: none;
+  }
+
+  .timeline-year-premium {
+    transition: none;
   }
 }

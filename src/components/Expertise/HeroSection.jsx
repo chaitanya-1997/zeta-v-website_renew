@@ -36,15 +36,15 @@ const slides = [
         Exceptional <span className="grad-text">Outcomes</span>
       </>
     ),
-    sub: '120+ projects delivered, 40+ enterprise clients, 98% satisfaction rate — our track record speaks for itself across 15+ industries.',
+    sub: '242+ projects delivered, 34+ enterprise clients, 98% satisfaction rate — our track record speaks for itself across 15+ industries.',
     bgImage: heroBg,
   },
 ];
 
 const stats = [
-  { value: '120+', label: 'Projects' },
-  { value: '40+', label: 'Clients' },
-  { value: '15+', label: 'Industries' },
+  { value: '242+', label: 'Projects' },
+  { value: '34+', label: 'Clients' },
+  { value: '4+', label: 'Industries' },
   { value: '98%', label: 'Satisfaction' },
 ];
 

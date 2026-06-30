@@ -335,9 +335,9 @@ export default function ApplicationModal({ job, onClose, onSubmit }) {
 
           <div className="zv-form-actions">
             <button type="button" className="zv-btn-secondary" onClick={onClose}>Cancel</button>
-            <button type="button" className="zv-btn-outline" onClick={saveDraft}>
+            {/* <button type="button" className="zv-btn-outline" onClick={saveDraft}>
               <FaRegSave /> Save Draft
-            </button>
+            </button> */}
             <button type="submit" className="zv-btn-primary" disabled={isSubmitting || existingApplication}>
               {isSubmitting ? <><FaSpinner className="zv-spinner" /> Submitting...</> : <>Submit Application <FaArrowRight /></>}
             </button>

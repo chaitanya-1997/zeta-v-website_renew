@@ -2,7 +2,7 @@ import './ContactForm.css'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaUser, FaEnvelope, FaPhone, FaBuilding, FaMessage, FaPaperPlane } from 'react-icons/fa6'
-
+import { FaPhoneAlt } from "react-icons/fa";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -71,7 +71,7 @@ export default function ContactForm() {
             </div>
             <div className="form-contact-item">
               <div className="form-contact-icon">
-                <FaPhone />
+                <FaPhoneAlt />
               </div>
               <div>
                 <span>Phone</span>
@@ -123,7 +123,7 @@ export default function ContactForm() {
           <div className="form-row">
             <div className="form-group">
               <label>
-                <FaPhone className="input-icon" />
+                <FaPhoneAlt className="input-icon" />
                 Phone Number
               </label>
               <input 

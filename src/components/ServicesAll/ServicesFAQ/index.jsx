@@ -1,15 +1,25 @@
-// src/components/ServicesAll/ServicesFAQ/Index.jsx
+// ServicesFAQ.jsx
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { HiPlus, HiMinus, HiOutlineLightBulb } from 'react-icons/hi2'
-import { FaHeadset, FaArrowRight, FaStar, FaRobot } from 'react-icons/fa'
+import { 
+  HiPlus, 
+  HiMinus, 
+  HiOutlineLightBulb,
+  HiOutlineSparkles
+} from 'react-icons/hi2'
+import { 
+  FaHeadset, 
+  FaArrowRight, 
+  FaStar, 
+  FaRobot,
+  FaHandsHelping
+} from 'react-icons/fa'
 import './ServicesFAQ.css'
 
-// Embedded FAQs data
 const faqsData = [
   {
     question: "What industries does Zeta-V specialize in?",
-    answer: "Zeta-V serves a wide range of industries including finance, healthcare, manufacturing, retail, government, and technology. Our deep domain expertise allows us to deliver tailored solutions that address industry-specific challenges and compliance requirements.",
+    answer: "Zeta-V serves a wide range of industries including finance, healthcare, manufacturing, retail, retail & distribution, and technology. Our deep domain expertise allows us to deliver tailored solutions that address industry-specific challenges and compliance requirements.",
   },
   {
     question: "How long does a typical digital transformation project take?",
@@ -31,118 +41,147 @@ export default function ServicesFAQ() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="svc-faq" ref={ref}>
-      <div className="svc-faq__inner">
+    <section className="faq-premium" ref={ref}>
+      {/* Background Decorations */}
+      <div className="faq-premium-bg">
+        <div className="faq-premium-blob fblob-1" />
+        <div className="faq-premium-blob fblob-2" />
+        <div className="faq-premium-blob fblob-3" />
+      </div>
+      <div className="faq-premium-pattern" />
+
+      <div className="faq-premium-container">
+        {/* Header */}
         <motion.div
-          className="svc-faq__head"
+          className="faq-premium-header"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <span className="section-label">FAQ</span>
-          <h2 className="section-title">
-            Frequently Asked <span className="svc-grad-text">Questions</span>
+          <div className="faq-premium-label">
+            <span className="label-line" />
+            <span className="label-text">FAQ</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="faq-premium-title">
+            Frequently Asked 
+            {/* <span className="gradient-text-faq">Questions</span> */}
+            <span > Questions</span>
+            <span className="title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">
+          
+          <p className="faq-premium-subtitle">
             Everything you need to know about our services and how we can help your business grow.
           </p>
         </motion.div>
 
-        <div className="svc-faq__two-col">
-          <div className="svc-faq__accordion-col">
-            <div className="svc-faq__list">
-              {faqsData.map((faq, idx) => (
-                <motion.div
-                  key={idx}
-                  className={`svc-faq__item ${openIndex === idx ? "open" : ""}`}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+        {/* Content */}
+        <div className="faq-premium-content">
+          {/* Left - FAQ List */}
+          <motion.div 
+            className="faq-premium-list"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            {faqsData.map((faq, idx) => (
+              <motion.div
+                key={idx}
+                className={`faq-premium-item ${openIndex === idx ? "open" : ""}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 + idx * 0.08, duration: 0.4 }}
+              >
+                <button
+                  className="faq-premium-question"
+                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 >
-                  <button
-                    className="svc-faq__question"
-                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                  >
-                    <div className="svc-faq__question-num">
+                  <div className="faq-premium-question-left">
+                    <span className="faq-premium-number">
                       {String(idx + 1).padStart(2, "0")}
-                    </div>
-                    <span>{faq.question}</span>
-                    <div className="svc-faq__icon-wrapper">
-                      {openIndex === idx ? <HiMinus /> : <HiPlus />}
-                    </div>
-                  </button>
-                  <AnimatePresence>
-                    {openIndex === idx && (
-                      <motion.div
-                        className="svc-faq__answer"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="svc-faq__answer-inner">
-                          <div className="svc-faq__answer-icon">
-                            <HiOutlineLightBulb />
-                          </div>
-                          <p>{faq.answer}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
+                    </span>
+                    <span className="faq-premium-question-text">{faq.question}</span>
+                  </div>
+                  <div className="faq-premium-icon">
+                    {openIndex === idx ? <HiMinus /> : <HiPlus />}
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {openIndex === idx && (
+                    <motion.div
+                      className="faq-premium-answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="faq-premium-answer-inner">
+                        <HiOutlineLightBulb className="answer-icon" />
+                        <p>{faq.answer}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
 
+            {/* Help Card */}
             <motion.div
-              className="svc-faq__help"
+              className="faq-premium-help"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
             >
-              <div className="svc-faq__help-icon">
-                <FaHeadset />
+              <div className="faq-premium-help-icon">
+                <FaHandsHelping />
               </div>
-              <div className="svc-faq__help-content">
+              <div className="faq-premium-help-content">
                 <h4>Still have questions?</h4>
                 <p>Can't find the answer you're looking for? Please chat with our friendly team.</p>
-                <a href="#contact" className="svc-faq__help-link">
-                  Contact Support <FaArrowRight />
+                <a href="#contact" className="faq-premium-help-link">
+                  <span>Contact Support</span>
+                  <FaArrowRight />
                 </a>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
 
-          <motion.div
-            className="svc-faq__image-col"
-            initial={{ opacity: 0, x: 50 }}
+          {/* Right - Image */}
+          <motion.div 
+            className="faq-premium-image"
+            initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
           >
-            <div className="svc-faq__image-wrapper">
-              <div className="svc-faq__image">
-                <img
-                  src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="FAQ Support Team"
-                />
-                <div className="svc-faq__image-overlay" />
+            <div className="faq-premium-image-wrapper">
+              <img
+                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="FAQ Support Team"
+              />
+              <div className="faq-premium-image-overlay" />
+              
+              <div className="faq-premium-image-badge">
+                <FaRobot />
+                <span>AI-Powered Support</span>
               </div>
-              <div className="svc-faq__image-card">
-                <div className="svc-faq__image-card-icon">
+              
+              <div className="faq-premium-image-card">
+                <div className="faq-premium-image-card-icon">
                   <FaStar />
                 </div>
-                <div className="svc-faq__image-card-content">
+                <div className="faq-premium-image-card-content">
                   <h4>24/7 Support Available</h4>
-                  <p>Our team is always here to help you</p>
+                  <p>Our team is always here to help</p>
                 </div>
-              </div>
-              <div className="svc-faq__image-badge">
-                <FaRobot />
-                <span>AI-Powered Assistance</span>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="faq-premium-bottom" />
     </section>
   )
 }

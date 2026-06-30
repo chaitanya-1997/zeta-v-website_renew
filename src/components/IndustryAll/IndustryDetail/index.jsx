@@ -7,19 +7,26 @@ import {
 import {
     HiOutlineLightBulb, HiOutlineExclamationTriangle,
     HiOutlineDocumentText, HiOutlineChartBar, HiOutlineQuestionMarkCircle,
-    HiOutlineCheckCircle, HiPlus, HiMinus, HiCheck,
+    HiPlus, HiMinus, HiCheck,
 } from 'react-icons/hi2'
 import './IndustryDetail.css'
 
-// Embedded industry background images
 const industryBgImages = {
     financial: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1920',
     manufacturing: 'https://images.pexels.com/photos/15893881/pexels-photo-15893881.jpeg',
     healthcare: 'https://images.pexels.com/photos/7723524/pexels-photo-7723524.jpeg',
-    government: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920',
+     retaildistribution: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    retail: 'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg', // retail store
 }
 
-// Embedded complete industry data
+const industryColors = {
+    financial: { gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)', color: '#22a7f0', lightBg: 'rgba(34, 167, 240, 0.08)' },
+    manufacturing: { gradient: 'linear-gradient(135deg, #34d399, #06b6d4)', color: '#34d399', lightBg: 'rgba(52, 211, 153, 0.08)' },
+    healthcare: { gradient: 'linear-gradient(135deg, #f472b6, #ec4899)', color: '#f472b6', lightBg: 'rgba(244, 114, 182, 0.08)' },
+     retaildistribution: { gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)', color: '#f59e0b', lightBg: 'rgba(245, 158, 11, 0.08)' },
+    retail: { gradient: 'linear-gradient(135deg, #f97316, #fb923c)', color: '#f97316', lightBg: 'rgba(249, 115, 22, 0.08)' },
+}
+
 const industriesData = {
     financial: {
         heading: 'Financial Services: Digital Transformation & AI Solutions',
@@ -39,10 +46,6 @@ const industriesData = {
             { title: 'Enterprise Cloud Migration', desc: 'Move legacy financial platforms to secure cloud environments for improved scalability and resilience.' },
             { title: 'AI & Generative AI for Finance', desc: 'Automate reporting, detect fraud patterns, and generate predictive insights with GenAI.' },
             { title: 'Legacy System Modernization', desc: 'Modernize outdated infrastructures with modern APIs, analytics platforms, and cloud-native architectures.' },
-        ],
-        caseStudies: [
-            { title: 'Cloud Transformation for a Regional Bank', challenge: 'A regional bank struggled with legacy reporting systems that delayed financial reporting and limited real-time visibility.', solution: ['Cloud migration of financial data infrastructure', 'Real-time business intelligence dashboards', 'Automated financial reporting workflows'], results: ['60% faster reporting cycles', 'Real-time executive insights'] },
-            { title: 'AI Fraud Detection for Payment Platform', challenge: 'A payment processing company needed advanced fraud detection capabilities at scale.', solution: ['ML fraud detection models', 'Real-time analytics dashboards', 'Automated alert systems'], results: ['35% drop in fraudulent transactions', 'Enhanced security'] },
         ],
         benefits: ['Improved decision-making with predictive analytics', 'Reduced compliance risks through AI automation', 'Enhanced fraud prevention using ML risk analysis', 'Scalable infrastructure on cloud-native platforms'],
         whyUs: 'Zeta-V brings deep expertise in implementing advanced financial technology solutions for banks, fintech companies, and financial institutions.',
@@ -71,9 +74,6 @@ const industriesData = {
             { title: 'Industry 4.0 & Smart Manufacturing', desc: 'Enable smart factories using IoT sensors and predictive maintenance.' },
             { title: 'AI Automation for Production', desc: 'Automate operational tasks and improve equipment performance.' },
         ],
-        caseStudies: [
-            { title: 'ERP Modernization for a Manufacturing Company', challenge: 'A mid-sized manufacturer ran multiple disconnected legacy systems.', solution: ['Centralized ERP platform implementation', 'Automated supply chain workflows'], results: ['35% improvement in operational efficiency', 'Real-time production visibility'] },
-        ],
         benefits: ['Increased operational efficiency through ERP', 'Reduced downtime via predictive maintenance', 'Improved planning with MRP integration'],
         whyUs: 'Zeta-V brings deep expertise in implementing advanced technology solutions for manufacturers.',
         faqs: [
@@ -99,9 +99,6 @@ const industriesData = {
             { title: 'Healthcare Data Analytics', desc: 'Analyze patient data and support clinical decision-making.' },
             { title: 'AI & Generative AI in Healthcare', desc: 'Automate admin processes and enhance decision-making.' },
         ],
-        caseStudies: [
-            { title: 'Telemedicine Platform for a Healthcare Provider', challenge: 'A provider wanted to expand access in remote areas.', solution: ['Secure telemedicine consultation portal', 'EHR integration'], results: ['50% increase in patient access', 'Improved patient satisfaction'] },
-        ],
         benefits: ['Expanded digital health transformation', 'Improved patient engagement', 'Enhanced clinical decisions through analytics'],
         whyUs: 'Zeta-V brings deep expertise in developing secure, scalable healthcare IT solutions.',
         faqs: [
@@ -109,31 +106,44 @@ const industriesData = {
             { q: 'What are the benefits of EHR integration?', a: 'Securely stored patient history improves care coordination and efficiency.' },
         ],
     },
-    government: {
-        heading: 'Government Digital Transformation Cloud, AI & Citizen Services',
+    // NEW: Retail & Distribution
+    retail: {
+        heading: 'Retail & Distribution: Connected Commerce & Operational Excellence',
         overview: [
-            'Government organizations are adopting digital technologies to improve citizen services and modernize public infrastructure.',
-            'Zeta-V helps public sector institutions accelerate transformation through smart city solutions, cloud modernization, and intelligent data platforms.',
-            'By implementing AI-driven automation and citizen service portals, we help build resilient digital ecosystems.',
+            'Retail and distribution businesses operate in fast-moving environments where inventory accuracy, order fulfilment, customer experience, and financial visibility directly impact business performance.',
+            'As organizations expand supplier networks, sales channels, and customer touchpoints, there is increasing demand for integrated systems that improve operational visibility, streamline workflows, and support scalable growth.',
+            'Zeta-V helps retail and distribution organizations modernize business operations through ERP enablement, workflow automation, digital commerce solutions, analytics, and financial operations support.',
         ],
         challenges: [
-            { title: 'Legacy IT Infrastructure', desc: 'Outdated systems limit integration with modern platforms.' },
-            { title: 'Limited Scalability', desc: 'Government systems struggle with increasing digital service demand.' },
-            { title: 'Manual Processes', desc: 'Paper-based workflows slow service delivery.' },
+            { title: 'Inventory Visibility & Control', desc: 'Managing inventory across suppliers, warehouses, and sales channels while maintaining accuracy and availability.' },
+            { title: 'Inefficient Order Management', desc: 'Manual order processing and disconnected systems can slow fulfillment and impact customer experience.' },
+            { title: 'Limited Operational Visibility', desc: 'Lack of integrated reporting makes it difficult to track business performance and make informed decisions.' },
+            { title: 'Fragmented Customer Experience', desc: 'Disconnected platforms can create inconsistencies across ordering, account management, and customer support processes.' },
         ],
         solutions: [
-            { title: 'Cloud Modernization', desc: 'Migrate government systems to scalable, secure cloud environments.' },
-            { title: 'Citizen Service Portals', desc: 'Digital platforms that improve citizen engagement.' },
-            { title: 'AI for Public Sector', desc: 'Automate administrative tasks and enhance decision-making.' },
+            { title: 'ERP & Business Process Enablement', desc: 'Implement integrated business platforms that connect inventory, purchasing, sales, financial operations, and reporting.' },
+            { title: 'Digital Commerce Platforms', desc: 'Enable customers to place orders, track shipments, review invoices, and manage accounts through web and mobile experiences.' },
+            { title: 'Workflow Automation', desc: 'Streamline approvals, notifications, customer onboarding, and operational processes through automated workflows.' },
+            { title: 'Analytics & Business Intelligence', desc: 'Leverage dashboards and reporting solutions to improve visibility across inventory, finance, sales, and operations.' },
         ],
-        caseStudies: [],
-        benefits: ['Improved public service efficiency', 'Enhanced transparency', 'Scalable cloud infrastructure'],
-        whyUs: 'Zeta-V brings deep expertise in delivering digital transformation for government organizations.',
+        benefits: [
+            'Improved inventory and operational visibility',
+            'Streamlined order processing and fulfillment workflows',
+            'Enhanced customer experience through digital engagement',
+            'Better business insights through connected reporting',
+            'Increased efficiency through workflow automation',
+            'Improved coordination across finance, sales, and operations',
+        ],
+        whyUs: 'Zeta-V combines operational expertise, technology enablement, and business process modernization to help retail and distribution organizations build connected business ecosystems. Our approach focuses on improving visibility, streamlining operations, enhancing customer experiences, and supporting scalable growth through integrated technology and operational solutions.',
         faqs: [
-            { q: 'How can digital transformation improve public services?', a: 'It modernizes service delivery and provides faster digital services.' },
-            { q: 'What are the benefits of cloud migration for government?', a: 'Improved scalability, reduced costs, and enhanced security.' },
+            { q: 'How can ERP systems improve retail and distribution operations?', a: 'ERP platforms centralize inventory, sales, purchasing, and financial processes, providing greater visibility and operational control across the business.' },
+            { q: 'How does workflow automation benefit retail businesses?', a: 'Workflow automation reduces manual effort, accelerates approvals, improves process consistency, and enhances operational efficiency.' },
+            { q: 'What role does analytics play in retail and distribution?', a: 'Analytics helps organizations monitor inventory levels, sales performance, operational trends, and financial metrics to support better decision-making.' },
+            { q: 'How can digital commerce solutions improve customer experience?', a: 'Digital platforms allow customers to place orders, access invoices, track shipments, and manage accounts through a convenient self-service experience.' },
+            { q: 'Why is operational visibility important for distribution businesses?', a: 'Real-time visibility across inventory, orders, and financial operations enables faster decision-making, better planning, and improved customer service.' },
+            { q: 'How can integrated business systems support growth?', a: 'Connected systems reduce operational silos, improve efficiency, strengthen reporting capabilities, and create a scalable foundation for business expansion.' },
         ],
-    },
+    }
 }
 
 export default function IndustryDetail({ industryKey, shouldAutoScroll = false }) {
@@ -141,26 +151,25 @@ export default function IndustryDetail({ industryKey, shouldAutoScroll = false }
     const [isVisible, setIsVisible] = useState(false)
     const detailRef = useRef(null)
     const data = industriesData[industryKey]
+    const colors = industryColors[industryKey] || industryColors.financial
 
-    // Get industry-specific icons for overview
     const getIndustryIcons = () => {
         const icons = {
             financial: [<FaChartLine />, <FaCloud />, <FaShieldAlt />],
             manufacturing: [<FaRobot />, <FaChartLine />, <FaCloud />],
             healthcare: [<FaRobot />, <FaShieldAlt />, <FaChartLine />],
-            government: [<FaCloud />, <FaShieldAlt />, <FaRobot />]
+             retaildistribution: [<FaCloud />, <FaShieldAlt />, <FaRobot />],
+            retail: [<FaChartLine />, <FaCloud />, <FaRobot />], // choose appropriate icons
         }
         return icons[industryKey] || [<FaChartLine />, <FaCloud />, <FaRobot />]
     }
 
-    // Add animation when industry changes
     useEffect(() => {
         setIsVisible(false)
         const timer = setTimeout(() => setIsVisible(true), 50)
         return () => clearTimeout(timer)
     }, [industryKey])
 
-    // Only scroll when shouldAutoScroll is true (coming from home page)
     useEffect(() => {
         if (shouldAutoScroll && detailRef.current) {
             const headerOffset = 80
@@ -180,53 +189,44 @@ export default function IndustryDetail({ industryKey, shouldAutoScroll = false }
 
     return (
         <motion.section
+            id={industryKey}
             ref={detailRef}
-            className="ind-detail"
+            className="industry-detail-premium"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="ind-detail__bg">
-                <motion.div 
-                    className="ind-detail__bg-image"
+            {/* Background */}
+            <div className="industry-detail-premium-bg">
+                <div 
+                    className="industry-detail-premium-bg-image"
                     style={{ backgroundImage: `url(${industryBgImages[industryKey]})` }}
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1 }}
                 />
-                <div className="ind-detail__bg-overlay" />
+                <div className="industry-detail-premium-overlay" />
             </div>
 
-            <div className="ind-detail__inner">
+            <div className="industry-detail-premium-container">
+                {/* Header */}
                 <motion.h2
-                    className="ind-detail__heading"
+                    className="industry-detail-premium-heading"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
+                    style={{ color: colors.color }}
                 >
                     {data.heading}
                 </motion.h2>
 
-                {/* Enhanced Overview Section with Unique Design */}
-                <div className="ind-detail__overview-enhanced">
+                {/* Overview Section */}
+                <div className="industry-detail-premium-overview">
                     <div className="overview-header">
-                        <motion.div 
-                            className="overview-badge"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <span className="badge-dot"></span>
+                        <div className="overview-badge" style={{ background: colors.lightBg, color: colors.color, borderColor: colors.color }}>
+                            <span className="badge-dot" style={{ background: colors.gradient }} />
                             Industry Insights
-                        </motion.div>
-                        <motion.div 
-                            className="overview-quote-icon"
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
-                        >
+                        </div>
+                        <div className="overview-quote-icon" style={{ background: colors.gradient }}>
                             <FaQuoteLeft />
-                        </motion.div>
+                        </div>
                     </div>
 
                     <div className="overview-cards">
@@ -241,14 +241,15 @@ export default function IndustryDetail({ industryKey, shouldAutoScroll = false }
                                     transition={{ delay: i * 0.15, duration: 0.6 }}
                                     whileHover={{ y: -5 }}
                                 >
-                                    <div className="overview-card-icon">
+                                    <div className="overview-card-icon" style={{ background: colors.lightBg, color: colors.color }}>
                                         {icons[i % icons.length]}
                                     </div>
                                     <div className="overview-card-content">
-                                        <div className="overview-card-number">0{i + 1}</div>
+                                        <div className="overview-card-number" style={{ color: colors.color }}>0{i + 1}</div>
                                         <p>{p}</p>
                                     </div>
-                                    <div className="overview-card-glow"></div>
+                                    <div className="overview-card-glow" style={{ background: `radial-gradient(circle, ${colors.color}10, transparent 70%)` }} />
+                                    <div className="overview-card-line" style={{ background: colors.gradient }} />
                                 </motion.div>
                             )
                         })}
@@ -261,46 +262,42 @@ export default function IndustryDetail({ industryKey, shouldAutoScroll = false }
                         transition={{ delay: 0.6, duration: 0.5 }}
                     >
                         <div className="stat-item">
-                            <div className="stat-number">15+</div>
+                            <div className="stat-number" style={{ background: colors.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>9+</div>
                             <div className="stat-label">Years Experience</div>
                         </div>
-                        <div className="stat-divider"></div>
+                        <div className="stat-divider" />
                         <div className="stat-item">
-                            <div className="stat-number">200+</div>
+                            <div className="stat-number" style={{ background: colors.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>242+</div>
                             <div className="stat-label">Projects Delivered</div>
                         </div>
-                        <div className="stat-divider"></div>
+                        <div className="stat-divider" />
                         <div className="stat-item">
-                            <div className="stat-number">98%</div>
+                            <div className="stat-number" style={{ background: colors.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>98%</div>
                             <div className="stat-label">Client Satisfaction</div>
                         </div>
                     </motion.div>
                 </div>
 
+                {/* Challenges */}
                 {data.challenges.length > 0 && (
-                    <div className="ind-block">
-                        <motion.h3
-                            className="ind-block__title"
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <span className="ind-block__icon"><HiOutlineExclamationTriangle /></span>
+                    <div className="industry-detail-premium-block">
+                        <h3 className="industry-detail-premium-block-title" style={{ color: colors.color }}>
+                            <span className="industry-detail-premium-block-icon" style={{ background: colors.lightBg, color: colors.color }}>
+                                <HiOutlineExclamationTriangle />
+                            </span>
                             Industry Challenges
-                        </motion.h3>
-                        <div className="ind-grid-2">
+                        </h3>
+                        <div className="industry-detail-premium-grid-2">
                             {data.challenges.map((c, i) => (
                                 <motion.div
                                     key={i}
-                                    className="ind-challenge"
+                                    className="industry-detail-premium-challenge"
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.1, duration: 0.5 }}
                                     whileHover={{ y: -4 }}
                                 >
-                                    <div className="ind-challenge__num">0{i + 1}</div>
                                     <h4>{c.title}</h4>
                                     <p>{c.desc}</p>
                                 </motion.div>
@@ -309,179 +306,119 @@ export default function IndustryDetail({ industryKey, shouldAutoScroll = false }
                     </div>
                 )}
 
+                {/* Solutions */}
                 {data.solutions.length > 0 && (
-                    <div className="ind-block">
-                        <motion.h3
-                            className="ind-block__title"
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <span className="ind-block__icon"><HiOutlineLightBulb /></span>
+                    <div className="industry-detail-premium-block">
+                        <h3 className="industry-detail-premium-block-title" style={{ color: colors.color }}>
+                            <span className="industry-detail-premium-block-icon" style={{ background: colors.lightBg, color: colors.color }}>
+                                <HiOutlineLightBulb />
+                            </span>
                             Technology Solutions
-                        </motion.h3>
-                        <div className="ind-grid-2">
+                        </h3>
+                        <div className="industry-detail-premium-grid-2">
                             {data.solutions.map((s, i) => (
                                 <motion.div
                                     key={i}
-                                    className="ind-solution"
+                                    className="industry-detail-premium-solution"
                                     initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.1, duration: 0.5 }}
                                     whileHover={{ y: -4 }}
                                 >
-                                    <div className="ind-solution__corner" />
+                                    <div className="industry-detail-premium-solution-corner" style={{ background: colors.gradient }} />
                                     <h4>{s.title}</h4>
                                     <p>{s.desc}</p>
-                                    <FaArrowRight className="ind-solution__arrow" />
+                                    <FaArrowRight className="industry-detail-premium-solution-arrow" style={{ color: colors.color }} />
                                 </motion.div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {data.caseStudies.length > 0 && (
-                    <div className="ind-block">
-                        <motion.h3
-                            className="ind-block__title"
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <span className="ind-block__icon"><HiOutlineDocumentText /></span>
-                            Case Studies
-                        </motion.h3>
-                        <div className="ind-cases">
-                            {data.caseStudies.map((cs, i) => (
-                                <motion.div
-                                    key={i}
-                                    className="ind-case"
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.2, duration: 0.5 }}
-                                >
-                                    <div className="ind-case__badge">Case Study</div>
-                                    <h4>{cs.title}</h4>
-                                    <div className="ind-case__row">
-                                        <span className="ind-case__lbl">Challenge</span>
-                                        <p>{cs.challenge}</p>
-                                    </div>
-                                    <div className="ind-case__row">
-                                        <span className="ind-case__lbl">Solution</span>
-                                        <ul>
-                                            {cs.solution.map((s, j) => (
-                                                <li key={j}><HiCheck /> {s}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div className="ind-case__results">
-                                        {cs.results.map((r, j) => (
-                                            <span key={j} className="ind-case__pill">
-                                                <HiOutlineCheckCircle /> {r}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                <div className="ind-block">
-                    <motion.h3
-                        className="ind-block__title"
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <span className="ind-block__icon"><HiOutlineChartBar /></span>
+                {/* Benefits */}
+                <div className="industry-detail-premium-block">
+                    <h3 className="industry-detail-premium-block-title" style={{ color: colors.color }}>
+                        <span className="industry-detail-premium-block-icon" style={{ background: colors.lightBg, color: colors.color }}>
+                            <HiOutlineChartBar />
+                        </span>
                         Key Benefits
-                    </motion.h3>
-                    <div className="ind-benefits">
+                    </h3>
+                    <div className="industry-detail-premium-benefits">
                         {data.benefits.map((b, i) => (
                             <motion.div
                                 key={i}
-                                className="ind-benefit"
+                                className="industry-detail-premium-benefit"
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.05, duration: 0.4 }}
                             >
-                                <span className="ind-benefit__check"><HiCheck /></span>
+                                <span className="industry-detail-premium-benefit-check" style={{ background: colors.gradient }}><HiCheck /></span>
                                 <span>{b}</span>
                             </motion.div>
                         ))}
                     </div>
                 </div>
 
+                {/* Why Us */}
                 <motion.div
-                    className="ind-why"
+                    className="industry-detail-premium-why"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="ind-why__glow" />
-                    <span className="hero__overline" style={{ color: 'rgba(255,255,255,0.7)' }}>Why Choose Us</span>
-                    <h2 className="hero__h1" style={{ color: '#fff', fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', marginBottom: '16px' }}>
-                        <span className="hero__h1b">Why Businesses Choose <span className="grad-text">Zeta-V</span>?</span>
+                    <div className="industry-detail-premium-why-glow" style={{ background: `radial-gradient(circle, ${colors.color}40, transparent 70%)` }} />
+                    <div className="industry-detail-premium-why-badge" style={{ background: colors.lightBg, color: colors.color }}>
+                        Why Choose Us
+                    </div>
+                    <h2 className="industry-detail-premium-why-title">
+                        Why Businesses Choose <span>Zeta-V</span>
                     </h2>
-                    <p className="hero__sub" style={{ color: 'rgba(255,255,255,0.78)', maxWidth: '800px' }}>
-                        Delivering measurable outcomes through technology, orchestration, and value-driven execution.
-                    </p>
-                    <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.78)', lineHeight: '1.8', marginTop: '24px' }}>
-                        {data.whyUs}
-                    </p>
+                    <p className="industry-detail-premium-why-desc">{data.whyUs}</p>
                 </motion.div>
 
+                {/* FAQs */}
                 {data.faqs.length > 0 && (
-                    <div className="ind-block">
-                        <motion.h3
-                            className="ind-block__title"
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <span className="ind-block__icon"><HiOutlineQuestionMarkCircle /></span>
+                    <div className="industry-detail-premium-block">
+                        <h3 className="industry-detail-premium-block-title" style={{ color: colors.color }}>
+                            <span className="industry-detail-premium-block-icon" style={{ background: colors.lightBg, color: colors.color }}>
+                                <HiOutlineQuestionMarkCircle />
+                            </span>
                             Frequently Asked Questions
-                        </motion.h3>
-                        <div className="ind-faqs">
+                        </h3>
+                        <div className="industry-detail-premium-faqs">
                             {data.faqs.map((faq, i) => {
                                 const open = openFaq === i
                                 return (
                                     <motion.div
                                         key={i}
-                                        className={`ind-faq ${open ? 'ind-faq--open' : ''}`}
+                                        className={`industry-detail-premium-faq ${open ? 'open' : ''}`}
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: i * 0.05, duration: 0.4 }}
                                     >
                                         <button
-                                            className="ind-faq__q"
+                                            className="industry-detail-premium-faq-question"
                                             onClick={() => setOpenFaq(open ? -1 : i)}
                                         >
                                             <span>{faq.q}</span>
-                                            <span className="ind-faq__toggle">
+                                            <span className="industry-detail-premium-faq-toggle" style={{ background: open ? colors.gradient : colors.lightBg, color: open ? '#fff' : colors.color }}>
                                                 {open ? <HiMinus /> : <HiPlus />}
                                             </span>
                                         </button>
                                         <AnimatePresence initial={false}>
                                             {open && (
                                                 <motion.div
-                                                    className="ind-faq__a"
+                                                    className="industry-detail-premium-faq-answer"
                                                     initial={{ height: 0, opacity: 0 }}
                                                     animate={{ height: 'auto', opacity: 1 }}
                                                     exit={{ height: 0, opacity: 0 }}
                                                     transition={{ duration: 0.3 }}
                                                 >
-                                                    <div className="ind-faq__a-inner">{faq.a}</div>
+                                                    <div className="industry-detail-premium-faq-answer-inner">{faq.a}</div>
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>

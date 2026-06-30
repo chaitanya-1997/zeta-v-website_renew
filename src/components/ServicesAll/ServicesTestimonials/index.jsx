@@ -1,11 +1,10 @@
-// src/components/ServicesAll/ServicesTestimonials/Index.jsx
+// ServicesTestimonials.jsx
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { FaStar } from 'react-icons/fa'
-import { HiCheck } from 'react-icons/hi2'
+import { FaStar, FaQuoteLeft } from 'react-icons/fa'
+import { HiCheck, HiOutlineSparkles } from 'react-icons/hi2'
 import './ServicesTestimonials.css'
 
-// Embedded testimonials data
 const testimonialsData = [
   {
     text: "Zeta-V's digital transformation services have been instrumental in modernizing our operations. Their AI solutions delivered measurable ROI within months.",
@@ -35,110 +34,134 @@ export default function ServicesTestimonials() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonialsData.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="svc-testimonials" ref={ref}>
-      <div className="svc-testimonials__bg">
-        <div className="svc-testimonials__bg-orb-1" />
-        <div className="svc-testimonials__bg-orb-2" />
+    <section className="testimonials-premium" ref={ref}>
+      {/* Background Decorations */}
+      <div className="testimonials-premium-bg">
+        <div className="testimonials-premium-blob tblob-1" />
+        <div className="testimonials-premium-blob tblob-2" />
+        <div className="testimonials-premium-blob tblob-3" />
+        <div className="testimonials-premium-blob tblob-4" />
       </div>
-     <motion.div
-          className="svc-testimonials__head"
+      <div className="testimonials-premium-grid" />
+
+      <div className="testimonials-premium-container">
+        {/* Header */}
+        <motion.div
+          className="testimonials-premium-header"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <span className="section-label">Testimonials</span>
-          <h2 className="section-title">
-            What Our <span className="svc-grad-text">Clients Say</span>
+          <div className="testimonials-premium-label">
+            <span className="label-line" />
+            <span className="label-text" style={{color:'white'}}>Testimonials</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="testimonials-premium-title">
+            What Our 
+            {/* <span className="gradient-text-testimonials">Clients Say</span> */}
+            <span > Clients Say</span>
+            <span className="title-icon">✦</span>
           </h2>
-          <p className="section-subtitle">Trusted by leading enterprises worldwide</p>
+          
+          <p className="testimonials-premium-subtitle">
+            Trusted by leading enterprises worldwide
+          </p>
         </motion.div>
-      <div className="svc-testimonials__inner">
-   
 
-        <div className="svc-testimonials__slider">
+        {/* Slider */}
+        <div className="testimonials-premium-slider">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
-              className="svc-testimonial"
+              className="testimonials-premium-card"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <div className="svc-testimonial__quote-icon">
-                <svg width="40" height="32" viewBox="0 0 40 32" fill="none">
-                  <path
-                    d="M0 32L8 0H16L12 32H0ZM24 32L32 0H40L36 32H24Z"
-                    fill="currentColor"
-                    opacity="0.15"
-                  />
-                </svg>
+              <div className="testimonials-premium-card-glow" />
+              
+              <div className="testimonials-premium-quote">
+                <FaQuoteLeft />
               </div>
 
-              <div className="svc-testimonial__stars">
+              <div className="testimonials-premium-stars">
                 {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} className="svc-testimonial__star" />
+                  <FaStar key={i} className="testimonials-premium-star" />
                 ))}
               </div>
 
-              <p className="svc-testimonial__text">{testimonialsData[activeIndex].text}</p>
+              <p className="testimonials-premium-text">
+                {testimonialsData[activeIndex].text}
+              </p>
 
-              <div className="svc-testimonial__author">
-                <div className="svc-testimonial__author-avatar">
-                  <div className="svc-testimonial__author-initial">
+              <div className="testimonials-premium-author">
+                <div className="testimonials-premium-avatar">
+                  <span className="testimonials-premium-avatar-initial">
                     {testimonialsData[activeIndex].author.charAt(0)}
-                  </div>
-                  <div className="svc-testimonial__author-check">
+                  </span>
+                  <div className="testimonials-premium-avatar-check">
                     <HiCheck />
                   </div>
                 </div>
-                <div className="svc-testimonial__author-info">
+                <div className="testimonials-premium-author-info">
                   <strong>{testimonialsData[activeIndex].author}</strong>
                   <span>{testimonialsData[activeIndex].role}</span>
                 </div>
               </div>
 
-              <div className="svc-testimonial__company">
-                <div className="svc-testimonial__company-dot" />
+              <div className="testimonials-premium-verified">
+                <span className="verified-dot" />
                 <span>Verified Client</span>
-                <div className="svc-testimonial__company-dot" />
+                <span className="verified-dot" />
               </div>
+
+              <div className="testimonials-premium-card-line" />
             </motion.div>
           </AnimatePresence>
 
-          <div className="svc-testimonials__dots">
+          {/* Dots */}
+          <div className="testimonials-premium-dots">
             {testimonialsData.map((_, idx) => (
               <button
                 key={idx}
-                className={`svc-testimonials__dot ${activeIndex === idx ? "active" : ""}`}
+                className={`testimonials-premium-dot ${activeIndex === idx ? "active" : ""}`}
                 onClick={() => setActiveIndex(idx)}
+                style={{
+                  background: activeIndex === idx 
+                    ? 'linear-gradient(135deg, #22a7f0, #6366f1)' 
+                    : 'rgba(255, 255, 255, 0.1)'
+                }}
               >
-                <span className="svc-testimonials__dot-label">
+                <span className="testimonials-premium-dot-label">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
               </button>
             ))}
           </div>
 
-          <div className="svc-testimonials__progress">
+          {/* Progress Bar */}
+          <div className="testimonials-premium-progress">
             <motion.div
-              className="svc-testimonials__progress-bar"
+              className="testimonials-premium-progress-bar"
               key={activeIndex}
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              transition={{ duration: 5, ease: "linear" }}
-              onAnimationComplete={() => {
-                setActiveIndex((prev) => (prev + 1) % testimonialsData.length);
-              }}
+              transition={{ duration: 6, ease: "linear" }}
             />
           </div>
         </div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="testimonials-premium-bottom" />
     </section>
-  );
+  )
 }

@@ -1,8 +1,22 @@
+// Enquiries.jsx
 import './Enquiries.css'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaUser, FaPaperPlane, FaCheckCircle } from 'react-icons/fa'
+import { 
+  FaMapMarkerAlt, 
+  FaEnvelope, 
+  FaPhoneAlt, 
+  FaUser, 
+  FaPaperPlane, 
+  FaCheckCircle,
+  FaBuilding,
+  FaClock
+} from 'react-icons/fa'
+import { HiOutlineSparkles } from 'react-icons/hi2'
 import enquiryBg from '../../assets/contactimg/enquiry.jpg'
+
+// ----- API CONFIGURATION -----
+const API_URL = 'https://zeta-v-invoicemanagement-ddgwdzg2dchdfaf4.centralindia-01.azurewebsites.net/api/public/enquiries';
 
 export default function Enquiries() {
   const [formData, setFormData] = useState({
@@ -15,172 +29,234 @@ export default function Enquiries() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState(null)
+  const [successMessage, setSuccessMessage] = useState('')
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    // Clear error when user types
+    if (error) setError(null)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    console.log('Form Data:', formData)
-    localStorage.setItem('enquiryFormData', JSON.stringify(formData))
-    
-    setTimeout(() => {
-      setIsSubmitting(false)
+    setError(null)
+    setSuccessMessage('')
+
+    // Map to API expected fields
+    const payload = {
+      full_name: formData.name,
+      work_email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message
+    }
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong. Please try again.')
+      }
+
+      // Success
       setIsSubmitted(true)
-      setFormData({ name: '', email: '', company: '', phone: '', subject: '', message: '' })
-      setTimeout(() => setIsSubmitted(false), 4000)
-    }, 1500)
+      setSuccessMessage(data.message || 'Thank you for contacting us! Our team will get back to you soon.')
+      
+      // Reset form after 5 seconds (but keep success visible)
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setFormData({ name: '', email: '', company: '', phone: '', subject: '', message: '' })
+        setSuccessMessage('')
+      }, 5000)
+
+    } catch (err) {
+      setError(err.message || 'Network error. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const closePopup = () => {
     setIsSubmitted(false)
+    setError(null)
   }
 
   return (
-    <section className="enq-section">
-      {/* Background image - Vite import style */}
-      <div 
-        className="enq-bg-image" 
-        style={{ backgroundImage: `url(${enquiryBg})` }}
-      ></div>
-      <div className="enq-bg-overlay"></div>
+    <section className="enq-premium" id="enquiries">
+      {/* Background Decorations */}
+      <div className="enq-premium-bg">
+        <div className="enq-premium-blob eblob-1" />
+        <div className="enq-premium-blob eblob-2" />
+        <div className="enq-premium-blob eblob-3" />
+      </div>
+      <div className="enq-premium-pattern" />
 
-      {/* Slanted lines */}
-      <div className="enq-bg-lines"></div>
-
-      <motion.div 
-        className="enq-section-header"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.span 
-          className="enq-section-label"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-        >
-          <span className="enq-label-dot"></span>
-          Have Questions?
-          <span className="enq-label-line"></span>
-        </motion.span>
-        <h2 className="enq-section-title">
-          Send Us Your <span className="grad-text">Enquiries</span>
-        </h2>
-        <p className="enq-section-subtitle">
-          Get in touch with the right team for your needs.
-        </p>
-      </motion.div>
-
-      <div className="enq-layout">
-        {/* Left - Contact Cards */}
+      <div className="enq-premium-container">
+        {/* Header */}
         <motion.div 
-          className="enq-contact"
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          className="enq-premium-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         >
-          <div className="enq-contact-cards">
-            <motion.div 
-              className="enq-contact-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              whileHover={{ y: -3 }}
-            >
-              <div className="enq-contact-card-icon" style={{ background: 'linear-gradient(135deg, #0D47A1, #1565C0)' }}>
-                <FaMapMarkerAlt />
-              </div>
-              <div className="enq-contact-card-info">
-                <span className="enq-contact-card-label">Our Address</span>
-                <p className="enq-contact-card-text">Office no. 1220, Gera's Imperium, Hinjawadi Phase-II, Pune, Maharashtra 411057</p>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="enq-contact-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              whileHover={{ y: -3 }}
-            >
-              <div className="enq-contact-card-icon" style={{ background: 'linear-gradient(135deg, #1565C0, #1E88E5)' }}>
-                <FaEnvelope />
-              </div>
-              <div className="enq-contact-card-info">
-                <span className="enq-contact-card-label">Our Mailbox</span>
-                <p className="enq-contact-card-text">
-                  <a href="mailto:contactus@zeta-v.com">contactus@zeta-v.com</a>
-                  <br />
-                  <a href="mailto:careers@zeta-v.com">careers@zeta-v.com</a>
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="enq-contact-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-              whileHover={{ y: -3 }}
-            >
-              <div className="enq-contact-card-icon" style={{ background: 'linear-gradient(135deg, #1E88E5, #00B4FF)' }}>
-                <FaPhone />
-              </div>
-              <div className="enq-contact-card-info">
-                <span className="enq-contact-card-label">Our Phone</span>
-                <p className="enq-contact-card-text">
-                  <a href="tel:+912069015402">+91 20 6901 5402</a>
-                </p>
-              </div>
-            </motion.div>
+          <div className="enq-premium-label">
+            <span className="label-line" />
+            <span className="label-text">Have Questions?</span>
+            <span className="label-line" />
           </div>
+          
+          <h2 className="enq-premium-title">
+            Send Us Your <span>Enquiries</span>
+            <span className="title-icon">✦</span>
+          </h2>
+          
+          <p className="enq-premium-subtitle">
+            Get in touch with the right team for your needs.
+          </p>
         </motion.div>
 
-        {/* Right - Contact Form */}
-        <motion.div 
-          className="enq-form-wrapper"
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className="enq-form-card">
-            {isSubmitted ? (
+        {/* Layout */}
+        <div className="enq-premium-layout">
+          {/* Left - Contact Cards */}
+          <motion.div 
+            className="enq-premium-contact"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="enq-premium-contact-cards">
               <motion.div 
-                className="enq-success-state"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
+                className="enq-premium-contact-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                style={{ '--card-color': '#22a7f0' }}
               >
-                <div className="enq-success-icon-box">
-                  <FaCheckCircle />
+                <div className="enq-premium-contact-icon" style={{ background: 'linear-gradient(135deg, #22a7f0, #6366f1)' }}>
+                  <FaMapMarkerAlt />
                 </div>
-                <h3>Message Sent Successfully!</h3>
-                <p>Thank you for reaching out. We'll be in touch within 24 business hours.</p>
-                <button className="enq-reset-btn" onClick={closePopup}>
-                  Send Another Message
-                </button>
+                <div className="enq-premium-contact-info">
+                  <span className="enq-premium-contact-label">Our Address</span>
+                  <p className="enq-premium-contact-text">Gera's Imperium, Hinjawadi Phase-II, Pune, Maharashtra 411057</p>
+                </div>
               </motion.div>
-            ) : (
-              <>
-                <h3 className="enq-form-heading">Ready to Get Started?</h3>
-                <p className="enq-form-subheading">Required fields are marked <span className="enq-required-star">*</span></p>
 
-                <form className="enq-form" onSubmit={handleSubmit}>
-                  <div className="enq-form-row">
-                    <div className="enq-form-group">
+              <motion.div 
+                className="enq-premium-contact-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                style={{ '--card-color': '#34d399' }}
+              >
+                <div className="enq-premium-contact-icon" style={{ background: 'linear-gradient(135deg, #34d399, #06b6d4)' }}>
+                  <FaEnvelope />
+                </div>
+                <div className="enq-premium-contact-info">
+                  <span className="enq-premium-contact-label">Our Mailbox</span>
+                  <p className="enq-premium-contact-text">
+                    <a href="mailto:contactus@zeta-v.com">contactus@zeta-v.com</a>
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="enq-premium-contact-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                style={{ '--card-color': '#f472b6' }}
+              >
+                <div className="enq-premium-contact-icon" style={{ background: 'linear-gradient(135deg, #f472b6, #ec4899)' }}>
+                  <FaPhoneAlt />
+                </div>
+                <div className="enq-premium-contact-info">
+                  <span className="enq-premium-contact-label">Our Phone</span>
+                  <p className="enq-premium-contact-text">
+                    <a href="tel:+912069015402">+91 206-901-5402</a>
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="enq-premium-contact-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.45 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                style={{ '--card-color': '#f59e0b' }}
+              >
+                <div className="enq-premium-contact-icon" style={{ background: 'linear-gradient(135deg, #f59e0b, #ef4444)' }}>
+                  <FaClock />
+                </div>
+                <div className="enq-premium-contact-info">
+                  <span className="enq-premium-contact-label">Working Hours</span>
+                  <p className="enq-premium-contact-text">Mon - Fri</p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right - Contact Form */}
+          <motion.div 
+            className="enq-premium-form-wrapper"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <div className="enq-premium-form-card">
+              <div className="enq-premium-form-header">
+                <h3 className="enq-premium-form-heading">Ready to Get Started?</h3>
+                <p className="enq-premium-form-subheading">Required fields are marked <span className="enq-required-star">*</span></p>
+              </div>
+
+              {isSubmitted ? (
+                <motion.div 
+                  className="enq-premium-success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="enq-premium-success-icon">
+                    <FaCheckCircle />
+                  </div>
+                  <h3>Message Sent Successfully!</h3>
+                  <p>{successMessage}</p>
+                  <button className="enq-premium-reset" onClick={closePopup}>
+                    Send Another Message
+                  </button>
+                </motion.div>
+              ) : (
+                <form className="enq-premium-form" onSubmit={handleSubmit}>
+                  {error && (
+                    <div className="enq-premium-error">
+                      <span>{error}</span>
+                    </div>
+                  )}
+                  <div className="enq-premium-form-row">
+                    <div className="enq-premium-form-group">
                       <label>
-                        <FaUser className="enq-form-input-icon" />
+                        <FaUser className="form-icon" />
                         Full Name <span className="enq-required-star">*</span>
                       </label>
                       <input 
@@ -192,9 +268,9 @@ export default function Enquiries() {
                         required
                       />
                     </div>
-                    <div className="enq-form-group">
+                    <div className="enq-premium-form-group">
                       <label>
-                        <FaEnvelope className="enq-form-input-icon" />
+                        <FaEnvelope className="form-icon" />
                         Work Email <span className="enq-required-star">*</span>
                       </label>
                       <input 
@@ -208,10 +284,10 @@ export default function Enquiries() {
                     </div>
                   </div>
 
-                  <div className="enq-form-row">
-                    <div className="enq-form-group">
+                  <div className="enq-premium-form-row">
+                    <div className="enq-premium-form-group">
                       <label>
-                        <FaUser className="enq-form-input-icon" />
+                        <FaBuilding className="form-icon" />
                         Company
                       </label>
                       <input 
@@ -222,9 +298,9 @@ export default function Enquiries() {
                         placeholder="Company Name"
                       />
                     </div>
-                    <div className="enq-form-group">
+                    <div className="enq-premium-form-group">
                       <label>
-                        <FaPhone className="enq-form-input-icon" />
+                        <FaPhoneAlt className="form-icon" />
                         Phone
                       </label>
                       <input 
@@ -237,9 +313,9 @@ export default function Enquiries() {
                     </div>
                   </div>
 
-                  <div className="enq-form-group">
+                  <div className="enq-premium-form-group">
                     <label>
-                      <FaPaperPlane className="enq-form-input-icon" />
+                      <FaPaperPlane className="form-icon" />
                       Subject <span className="enq-required-star">*</span>
                     </label>
                     <input 
@@ -252,20 +328,20 @@ export default function Enquiries() {
                     />
                   </div>
 
-                  <div className="enq-form-group">
+                  <div className="enq-premium-form-group">
                     <label>Message</label>
                     <textarea 
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell us about your challenge or project..."
-                      rows={3}
-                    ></textarea>
+                      rows={4}
+                    />
                   </div>
 
                   <motion.button 
                     type="submit" 
-                    className="enq-submit-btn"
+                    className="enq-premium-submit"
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
@@ -280,11 +356,14 @@ export default function Enquiries() {
                     )}
                   </motion.button>
                 </form>
-              </>
-            )}
-          </div>
-        </motion.div>
+              )}
+            </div>
+          </motion.div>
+        </div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="enq-premium-bottom" />
     </section>
   )
 }

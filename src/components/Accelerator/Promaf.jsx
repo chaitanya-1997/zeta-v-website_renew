@@ -1,3 +1,4 @@
+// Promaf.jsx
 import FrameworkTree from './FrameworkTree'
 import { FaProjectDiagram, FaUserTie, FaShieldAlt, FaSitemap, FaPuzzlePiece, FaLightbulb } from 'react-icons/fa'
 
@@ -6,6 +7,8 @@ const items = [
     title: 'Program Management', 
     desc: 'Defining charter, schedule, resource plan and tracking mechanisms.', 
     icon: <FaProjectDiagram />,
+    color: '#22a7f0',
+    gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
     content: (
       <div>
         <h4>Program Management Framework</h4>
@@ -25,6 +28,8 @@ const items = [
     title: 'Domain Expertise', 
     desc: 'Leveraging domain knowledge and product networks for execution.', 
     icon: <FaUserTie />,
+    color: '#34d399',
+    gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
     content: (
       <div>
         <h4>Domain Expertise</h4>
@@ -41,6 +46,8 @@ const items = [
     title: 'Risk Mitigation', 
     desc: 'Comprehensive risk identification and continuous monitoring.', 
     icon: <FaShieldAlt />,
+    color: '#f472b6',
+    gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
     content: (
       <div>
         <h4>Risk Mitigation Framework</h4>
@@ -57,6 +64,8 @@ const items = [
     title: 'Governance', 
     desc: 'Creating right channels for proactive stakeholder communication.', 
     icon: <FaSitemap />,
+    color: '#f59e0b',
+    gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
     content: (
       <div>
         <h4>Governance Framework</h4>
@@ -73,6 +82,8 @@ const items = [
     title: 'Ecosystem Integration', 
     desc: 'Engaging partners and planning system integrations effectively.', 
     icon: <FaPuzzlePiece />,
+    color: '#a78bfa',
+    gradient: 'linear-gradient(135deg, #a78bfa, #8b5cf6)',
     content: (
       <div>
         <h4>Ecosystem Integration Framework</h4>
@@ -88,6 +99,8 @@ const items = [
     title: 'Knowledge Network', 
     desc: 'Creating forums for domain, technology and program competency sharing.', 
     icon: <FaLightbulb />,
+    color: '#f472b6',
+    gradient: 'linear-gradient(135deg, #f472b6, #f59e0b)',
     content: (
       <div>
         <h4>Knowledge Network</h4>

@@ -1,0 +1,524 @@
+/* IndustryCTA.css - Premium Dark Theme */
+
+/* ============================================
+   SECTION - Premium Dark Theme
+============================================ */
+.industry-cta-premium {
+  position: relative;
+  padding: 120px 24px 100px;
+  overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Background ---- */
+.industry-cta-premium-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.industry-cta-premium-bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: ictaBgKenBurns 25s ease-in-out infinite alternate;
+}
+
+@keyframes ictaBgKenBurns {
+  0% { transform: scale(1) translateX(0); }
+  50% { transform: scale(1.05) translateX(-15px); }
+  100% { transform: scale(1.08) translateX(15px); }
+}
+
+.industry-cta-premium-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.industry-cta-premium-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 30, 0.88) 0%,
+    rgba(10, 15, 30, 0.70) 40%,
+    rgba(10, 15, 30, 0.55) 70%,
+    rgba(10, 15, 30, 0.80) 100%
+  );
+}
+
+/* ---- Animated Orbs ---- */
+.industry-cta-premium-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.icta-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: ictaOrbFloat 30s ease-in-out infinite alternate;
+}
+
+.icta-orb-1 {
+  width: 400px;
+  height: 400px;
+  top: -120px;
+  left: -80px;
+  background: rgba(34, 167, 240, 0.06);
+  animation-delay: 0s;
+}
+
+.icta-orb-2 {
+  width: 350px;
+  height: 350px;
+  bottom: -100px;
+  right: -60px;
+  background: rgba(99, 102, 241, 0.05);
+  animation-delay: -12s;
+}
+
+.icta-orb-3 {
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  left: 40%;
+  background: rgba(167, 139, 250, 0.04);
+  animation-delay: -25s;
+  animation-duration: 40s;
+}
+
+@keyframes ictaOrbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 20px) scale(0.9); }
+  100% { transform: translate(20px, -10px) scale(1.05); }
+}
+
+/* ---- Floating Particles ---- */
+.industry-cta-premium-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle-icta {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleIctaFloat 12s ease-in-out infinite;
+}
+
+@keyframes particleIctaFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0) rotate(0deg);
+  }
+  15% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 0.1;
+    transform: translateY(-60px) scale(1) rotate(180deg);
+  }
+  60% {
+    opacity: 0.05;
+    transform: translateY(-120px) scale(0.7) rotate(360deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) scale(0) rotate(720deg);
+  }
+}
+
+/* ---- Container ---- */
+.industry-cta-premium-container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+/* ---- Content ---- */
+.industry-cta-premium-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ---- Badge ---- */
+.industry-cta-premium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px 8px 12px;
+  background: rgba(34, 167, 240, 0.08);
+  border: 1px solid rgba(34, 167, 240, 0.12);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-icon-icta {
+  color: #22a7f0;
+  font-size: 0.9rem;
+  animation: pulseBadgeICTA 2s ease-in-out infinite;
+}
+
+@keyframes pulseBadgeICTA {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* ---- Icon ---- */
+.industry-cta-premium-icon {
+  font-size: 3rem;
+  color: #22a7f0;
+  opacity: 0.15;
+}
+
+/* ---- Title ---- */
+.industry-cta-premium-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.gradient-text-icta {
+  background: linear-gradient(135deg, #22a7f0 0%, #6366f1 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-icon-icta {
+  font-size: 1.8rem;
+  color: #22a7f0;
+  opacity: 0.3;
+  animation: spinOrnamentICTA 20s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spinOrnamentICTA {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---- Subtitle ---- */
+.industry-cta-premium-subtitle {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ---- Actions ---- */
+.industry-cta-premium-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.industry-cta-premium-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.industry-cta-premium-btn.primary {
+  background: linear-gradient(135deg, #22a7f0, #6366f1);
+  color: #ffffff;
+  box-shadow: 0 4px 24px rgba(34, 167, 240, 0.25);
+}
+
+.industry-cta-premium-btn.primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #6366f1, #22a7f0);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.industry-cta-premium-btn.primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 40px rgba(34, 167, 240, 0.35);
+}
+
+.industry-cta-premium-btn.primary:hover::before {
+  opacity: 1;
+}
+
+.industry-cta-premium-btn.primary span,
+.industry-cta-premium-btn.primary svg {
+  position: relative;
+  z-index: 1;
+}
+
+.industry-cta-premium-btn.primary svg {
+  transition: transform 0.3s ease;
+}
+
+.industry-cta-premium-btn.primary:hover svg {
+  transform: translateX(4px);
+}
+
+.industry-cta-premium-btn.secondary {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.industry-cta-premium-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  color: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Trust Indicators ---- */
+.industry-cta-premium-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.icta-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.trust-icon {
+  color: #22a7f0;
+  font-size: 0.9rem;
+}
+
+.icta-trust-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ---- Bottom Edge ---- */
+.industry-cta-premium-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(10, 15, 30, 0.3) 40%,
+    rgba(10, 15, 30, 0.6) 80%,
+    #0a0f1e 100%
+  );
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media screen and (max-width: 1024px) {
+  .industry-cta-premium {
+    padding: 100px 24px 80px;
+  }
+
+  .industry-cta-premium-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .industry-cta-premium {
+    padding: 80px 20px 60px;
+    min-height: 400px;
+  }
+
+  .industry-cta-premium-title {
+    font-size: 2.8rem;
+  }
+
+  .industry-cta-premium-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .industry-cta-premium-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .industry-cta-premium-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .industry-cta-premium-trust {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .icta-trust-divider {
+    display: none;
+  }
+
+  .icta-trust-item {
+    font-size: 0.8rem;
+  }
+
+  .icta-orb-1,
+  .icta-orb-2 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .industry-cta-premium-bg-image {
+    animation: none;
+  }
+
+  .title-icon-icta {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .industry-cta-premium {
+    padding: 60px 16px 40px;
+    min-height: 350px;
+  }
+
+  .industry-cta-premium-title {
+    font-size: 2.2rem;
+  }
+
+  .industry-cta-premium-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .industry-cta-premium-badge {
+    font-size: 0.65rem;
+    padding: 6px 14px 6px 10px;
+  }
+
+  .badge-icon-icta {
+    font-size: 0.8rem;
+  }
+
+  .industry-cta-premium-icon {
+    font-size: 2.5rem;
+  }
+
+  .industry-cta-premium-btn {
+    font-size: 0.85rem;
+    padding: 12px 20px;
+  }
+
+  .icta-trust-item {
+    font-size: 0.75rem;
+  }
+
+  .trust-icon {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .industry-cta-premium-title {
+    font-size: 1.8rem;
+  }
+
+  .industry-cta-premium-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .industry-cta-premium-btn {
+    font-size: 0.8rem;
+    padding: 10px 16px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .industry-cta-premium-bg-image {
+    animation: none;
+  }
+
+  .icta-orb {
+    animation: none;
+  }
+
+  .particle-icta {
+    animation: none;
+    opacity: 0.05;
+  }
+
+  .badge-icon-icta {
+    animation: none;
+  }
+
+  .title-icon-icta {
+    animation: none;
+  }
+
+  .industry-cta-premium-btn {
+    transition: none;
+  }
+
+  .industry-cta-premium-btn.primary:hover {
+    transform: none;
+  }
+
+  .industry-cta-premium-btn.secondary:hover {
+    transform: none;
+  }
+}

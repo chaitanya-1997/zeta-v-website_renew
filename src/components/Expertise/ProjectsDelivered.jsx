@@ -5,9 +5,9 @@ import { useEffect, useState, useRef } from 'react'
 import { FaRocket, FaBuilding, FaGlobeAmericas, FaHeart } from 'react-icons/fa'
 
 const projects = [
-  { value: 120, suffix: '+', label: 'Projects Delivered', icon: <FaRocket />, color: '#00b4ff' },
-  { value: 40, suffix: '+', label: 'Enterprise Clients', icon: <FaBuilding />, color: '#00b4ff' },
-  { value: 15, suffix: '+', label: 'Industries Served', icon: <FaGlobeAmericas />, color: '#00b4ff' },
+  { value: 242, suffix: '+', label: 'Projects Delivered', icon: <FaRocket />, color: '#00b4ff' },
+  { value: 34, suffix: '+', label: 'Enterprise Clients', icon: <FaBuilding />, color: '#00b4ff' },
+  { value: 4, suffix: '+', label: 'Industries Served', icon: <FaGlobeAmericas />, color: '#00b4ff' },
   { value: 98, suffix: '%', label: 'Client Satisfaction', icon: <FaHeart />, color: '#00b4ff' },
 ]
 

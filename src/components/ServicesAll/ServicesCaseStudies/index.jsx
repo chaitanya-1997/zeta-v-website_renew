@@ -1,10 +1,15 @@
-// src/components/ServicesAll/ServicesCaseStudies/Index.jsx
+// ServicesCaseStudies.jsx
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { HiCheck } from 'react-icons/hi2'
+import { 
+  HiCheck, 
+  HiOutlineSparkles,
+  HiOutlineChartBar,
+  HiOutlineLightBulb
+} from 'react-icons/hi2'
+import { FaArrowRight } from 'react-icons/fa'
 import './ServicesCaseStudies.css'
 
-// Embedded case studies data
 const caseStudiesData = [
   {
     title: "AI-Driven Digital Transformation for Enterprise Operations",
@@ -21,6 +26,9 @@ const caseStudiesData = [
       { metric: "Automated", label: "reduced manual workload through automation" },
     ],
     image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
+    gradient: "linear-gradient(135deg, #22a7f0, #6366f1)",
+    color: "#22a7f0",
+    lightBg: "rgba(34, 167, 240, 0.08)"
   },
   {
     title: "Industrial IoT Implementation for Smart Manufacturing",
@@ -37,6 +45,9 @@ const caseStudiesData = [
       { metric: "Real-time", label: "operational insights across facilities" },
     ],
     image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+    gradient: "linear-gradient(135deg, #34d399, #06b6d4)",
+    color: "#34d399",
+    lightBg: "rgba(52, 211, 153, 0.08)"
   },
 ];
 
@@ -45,71 +56,122 @@ export default function ServicesCaseStudies() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="svc-cases" ref={ref}>
-      <div className="svc-cases__inner">
+    <section className="cases-premium" ref={ref}>
+      {/* Background Decorations */}
+      <div className="cases-premium-bg">
+        <div className="cases-premium-blob cblob-1" />
+        <div className="cases-premium-blob cblob-2" />
+        <div className="cases-premium-blob cblob-3" />
+      </div>
+      <div className="cases-premium-pattern" />
+
+      <div className="cases-premium-container">
+        {/* Header */}
         <motion.div
-          className="svc-cases__head"
+          className="cases-premium-header"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <span className="section-label">Case Studies</span>
-          <h2 className="section-title">
-            Real-World <span className="gradient-highlight">Results</span>
+          <div className="cases-premium-label">
+            <span className="label-line" />
+            <span className="label-text">Case Studies</span>
+            <span className="label-line" />
+          </div>
+          
+          <h2 className="cases-premium-title">
+            Real-World 
+            {/* <span className="gradient-text-cases">Results</span> */}
+            <span >Results</span>
+            <span className="title-icon">✦</span>
           </h2>
+          
+          <p className="cases-premium-subtitle">
+            See how we've helped businesses transform their operations and achieve measurable success.
+          </p>
         </motion.div>
 
-        <div className="svc-cases__grid">
+        {/* Cards Grid */}
+        <div className="cases-premium-grid">
           {caseStudiesData.map((cs, idx) => (
             <motion.div
               key={idx}
-              className="svc-case"
-              initial={{ opacity: 0, y: 50 }}
+              className="cases-premium-card"
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: idx * 0.2, duration: 0.6 }}
-              whileHover={{ y: -5 }}
+              transition={{ delay: idx * 0.15, duration: 0.6 }}
+              whileHover={{ y: -6 }}
+              style={{ '--card-color': cs.color }}
             >
-              <motion.div
-                className="svc-case__image"
-                style={{ backgroundImage: `url(${cs.image})` }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.4 }}
-              />
-              <div className="svc-case__content">
-                <div className="svc-case__gradient" />
-                <div className="svc-case__badge">{cs.industry}</div>
-                <h3 className="svc-case__title">{cs.title}</h3>
+              <div className="cases-premium-card-glow" style={{ background: cs.gradient }} />
+              
+              {/* Image */}
+              <div className="cases-premium-card-image">
+                <img src={cs.image} alt={cs.title} />
+                <div className="cases-premium-card-overlay" style={{ background: cs.gradient }} />
+                <div className="cases-premium-card-badge" style={{ background: cs.gradient }}>
+                  <HiOutlineSparkles />
+                  <span>{cs.industry}</span>
+                </div>
+              </div>
 
-                <div className="svc-case__section">
-                  <div className="svc-case__label">Challenge</div>
-                  <p className="svc-case__text">{cs.challenge}</p>
+              {/* Content */}
+              <div className="cases-premium-card-content">
+                <h3 className="cases-premium-card-title">{cs.title}</h3>
+
+                {/* Challenge */}
+                <div className="cases-premium-card-section">
+                  <div className="cases-premium-card-section-header">
+                    <HiOutlineLightBulb className="section-icon" style={{ color: cs.color }} />
+                    <span className="cases-premium-card-label">Challenge</span>
+                  </div>
+                  <p className="cases-premium-card-text">{cs.challenge}</p>
                 </div>
 
-                <div className="svc-case__section">
-                  <div className="svc-case__label">Solutions</div>
-                  <ul className="svc-case__list">
+                {/* Solutions */}
+                <div className="cases-premium-card-section">
+                  <div className="cases-premium-card-section-header">
+                    <HiCheck className="section-icon" style={{ color: cs.color }} />
+                    <span className="cases-premium-card-label">Solutions</span>
+                  </div>
+                  <ul className="cases-premium-card-list">
                     {cs.solutions.map((s, i) => (
                       <li key={i}>
-                        <HiCheck className="svc-case__bullet" />
+                        <span className="cases-premium-card-bullet" style={{ background: cs.gradient }} />
                         {s}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="svc-case__results">
+                {/* Results */}
+                <div className="cases-premium-card-results">
                   {cs.results.map((r, i) => (
-                    <div key={i} className="svc-case__result">
-                      <div className="svc-case__result-value">{r.metric}</div>
-                      <div className="svc-case__result-label">{r.label}</div>
+                    <div key={i} className="cases-premium-card-result" style={{ borderColor: cs.lightBg }}>
+                      <div className="cases-premium-card-result-value" style={{ color: cs.color }}>
+                        {r.metric}
+                      </div>
+                      <div className="cases-premium-card-result-label">{r.label}</div>
                     </div>
                   ))}
                 </div>
+
+                <div className="cases-premium-card-footer">
+                  <span className="cases-premium-card-learn" style={{ color: cs.color }}>
+                    Read Full Case Study
+                  </span>
+                  <FaArrowRight className="cases-premium-card-arrow" />
+                </div>
               </div>
+
+              <div className="cases-premium-card-line" style={{ background: cs.gradient }} />
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Bottom Edge */}
+      <div className="cases-premium-bottom" />
     </section>
   )
 }

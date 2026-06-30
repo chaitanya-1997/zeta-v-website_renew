@@ -1,3 +1,4 @@
+// Refive.jsx
 import FrameworkTree from './FrameworkTree'
 import { FaLightbulb, FaChartLine, FaBullhorn, FaSitemap, FaEye } from 'react-icons/fa'
 
@@ -6,6 +7,8 @@ const items = [
     title: 'Re-Imagine', 
     desc: 'Creating a unifying purpose through stakeholder vision mapping.', 
     icon: <FaLightbulb />,
+    color: '#22a7f0',
+    gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
     content: (
       <div>
         <h4>Re-Imagine</h4>
@@ -17,6 +20,8 @@ const items = [
     title: 'Re-Calibrate', 
     desc: 'Strengthening thought leadership and building operational leaders.', 
     icon: <FaChartLine />,
+    color: '#34d399',
+    gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
     content: (
       <div>
         <h4>Re-Calibrate</h4>
@@ -28,6 +33,8 @@ const items = [
     title: 'Re-Position', 
     desc: 'Holistic rebranding and strategic communication planning.', 
     icon: <FaBullhorn />,
+    color: '#f472b6',
+    gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
     content: (
       <div>
         <h4>Re-Position</h4>
@@ -39,6 +46,8 @@ const items = [
     title: 'Re-Structure', 
     desc: 'Annual Operating Plan with Balanced Score Card alignment.', 
     icon: <FaSitemap />,
+    color: '#f59e0b',
+    gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
     content: (
       <div>
         <h4>Re-Structure</h4>
@@ -50,6 +59,8 @@ const items = [
     title: 'Re-View', 
     desc: 'Institutionalizing a structured governance and review framework.', 
     icon: <FaEye />,
+    color: '#a78bfa',
+    gradient: 'linear-gradient(135deg, #a78bfa, #8b5cf6)',
     content: (
       <div>
         <h4>Re-View</h4>

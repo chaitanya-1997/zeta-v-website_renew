@@ -4,14 +4,14 @@ export const industryBgImages = {
     financial: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1920',
     manufacturing: 'https://images.pexels.com/photos/15893881/pexels-photo-15893881.jpeg',
     healthcare: 'https://images.pexels.com/photos/7723524/pexels-photo-7723524.jpeg',
-    government: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    retaildistribution: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920',
 }
 
 export const industryCards = [
     { Icon: 'FaUniversity', title: 'Financial Services', id: 'financial', tag: 'Banking · Fintech · Insurance', bgImage: industryBgImages.financial },
     { Icon: 'FaIndustry', title: 'Manufacturing', id: 'manufacturing', tag: 'Industry 4.0 · ERP · IIoT', bgImage: industryBgImages.manufacturing },
     { Icon: 'FaHeartbeat', title: 'Healthcare', id: 'healthcare', tag: 'Telemedicine · EHR · AI', bgImage: industryBgImages.healthcare },
-    { Icon: 'FaLandmark', title: 'Government', id: 'government', tag: 'Smart Cities · Cloud · GenAI', bgImage: industryBgImages.government },
+    { Icon: 'FaLandmark', title: 'Retail & Distribution', id: 'retaildistribution', tag: 'Smart Cities · Cloud · GenAI', bgImage: industryBgImages.retaildistribution },
 ]
 
 export const industries = {
@@ -103,29 +103,29 @@ export const industries = {
             { q: 'What are the benefits of EHR integration?', a: 'Securely stored patient history improves care coordination and efficiency.' },
         ],
     },
-    government: {
-        heading: 'Government Digital Transformation — Cloud, AI & Citizen Services',
+    retaildistribution: {
+        heading: 'Retail & Distribution Digital Transformation — Cloud, AI & Citizen Services',
         overview: [
-            'Government organizations are adopting digital technologies to improve citizen services and modernize public infrastructure.',
+            'Retail & Distribution organizations are adopting digital technologies to improve citizen services and modernize public infrastructure.',
             'Zeta-V helps public sector institutions accelerate transformation through smart city solutions, cloud modernization, and intelligent data platforms.',
             'By implementing AI-driven automation and citizen service portals, we help build resilient digital ecosystems.',
         ],
         challenges: [
             { title: 'Legacy IT Infrastructure', desc: 'Outdated systems limit integration with modern platforms.' },
-            { title: 'Limited Scalability', desc: 'Government systems struggle with increasing digital service demand.' },
+            { title: 'Limited Scalability', desc: 'Retail & Distribution systems struggle with increasing digital service demand.' },
             { title: 'Manual Processes', desc: 'Paper-based workflows slow service delivery.' },
         ],
         solutions: [
-            { title: 'Cloud Modernization', desc: 'Migrate government systems to scalable, secure cloud environments.' },
+            { title: 'Cloud Modernization', desc: 'Migrate  retail & distribution systems to scalable, secure cloud environments.' },
             { title: 'Citizen Service Portals', desc: 'Digital platforms that improve citizen engagement.' },
             { title: 'AI for Public Sector', desc: 'Automate administrative tasks and enhance decision-making.' },
         ],
         caseStudies: [],
         benefits: ['Improved public service efficiency', 'Enhanced transparency', 'Scalable cloud infrastructure'],
-        whyUs: 'Zeta-V brings deep expertise in delivering digital transformation for government organizations.',
+        whyUs: 'Zeta-V brings deep expertise in delivering digital transformation for  retail & distribution organizations.',
         faqs: [
             { q: 'How can digital transformation improve public services?', a: 'It modernizes service delivery and provides faster digital services.' },
-            { q: 'What are the benefits of cloud migration for government?', a: 'Improved scalability, reduced costs, and enhanced security.' },
+            { q: 'What are the benefits of cloud migration for  retail & distribution?', a: 'Improved scalability, reduced costs, and enhanced security.' },
         ],
     },
 }
