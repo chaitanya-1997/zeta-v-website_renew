@@ -16,6 +16,9 @@ import {
 } from 'react-icons/fa'
 import './ServicesFAQ.css'
 
+import BgImage from '../../../assets/pexels/pexels-photo-8.avif';
+
+
 const faqsData = [
   {
     question: "What industries does Zeta-V specialize in?",
@@ -156,7 +159,7 @@ export default function ServicesFAQ() {
           >
             <div className="faq-premium-image-wrapper">
               <img
-                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={BgImage}
                 alt="FAQ Support Team"
               />
               <div className="faq-premium-image-overlay" />

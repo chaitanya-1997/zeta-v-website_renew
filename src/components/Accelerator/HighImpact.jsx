@@ -12,10 +12,10 @@ import {
 } from 'react-icons/fa'
 
 // Import images
-import imgBusinessConsulting from '../../assets/accimg/business-tech-consulting.jpg'
-import imgSpecialtySourcing from '../../assets/accimg/specialty-sourcing.jpg'
-import imgProgramManagement from '../../assets/accimg/program-management.jpg'
-import imgJointIP from '../../assets/accimg/joint-ip-cocreation.jpg'
+import imgBusinessConsulting from '../../assets/accimg/business-tech-consulting.webp'
+import imgSpecialtySourcing from '../../assets/accimg/specialty-sourcing.webp'
+import imgProgramManagement from '../../assets/accimg/program-management.webp'
+import imgJointIP from '../../assets/accimg/joint-ip-cocreation.webp'
 
 const impactData = [
   { 

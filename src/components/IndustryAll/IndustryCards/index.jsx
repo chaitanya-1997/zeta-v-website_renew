@@ -8,6 +8,13 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2'
 import './IndustryCards.css'
 
+
+import BgImage1 from '../../../assets/pexels/pexels-photo-25.webp';
+import BgImage2 from '../../../assets/pexels/pexels-photo-26.avif';
+import BgImage3 from '../../../assets/pexels/pexels-photo-27.avif';
+import BgImage4 from '../../../assets/pexels/pexels-photo-28.webp';
+import BgImage5 from '../../../assets/pexels/pexels-photo-29.avif';
+
 const iconMap = {
     FaMoneyBillWave: FaMoneyBillWave,
     FaIndustry: FaIndustry,
@@ -15,6 +22,8 @@ const iconMap = {
     FaLandmark: FaLandmark,
     FaStore: FaStore,   // <-- New mapping for retail
 }
+
+
 
 const industryCardsData = [
     { 
@@ -25,7 +34,7 @@ const industryCardsData = [
         gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
         color: '#22a7f0',
         lightBg: 'rgba(34, 167, 240, 0.08)',
-        bgImage: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1920' 
+        bgImage: BgImage5
     },
     { 
         Icon: 'FaIndustry', 
@@ -35,7 +44,7 @@ const industryCardsData = [
         gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
         color: '#34d399',
         lightBg: 'rgba(52, 211, 153, 0.08)',
-        bgImage: 'https://images.pexels.com/photos/15893881/pexels-photo-15893881.jpeg' 
+        bgImage: BgImage4
     },
     { 
         Icon: 'FaHeartbeat', 
@@ -45,7 +54,7 @@ const industryCardsData = [
         gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
         color: '#f472b6',
         lightBg: 'rgba(244, 114, 182, 0.08)',
-        bgImage: 'https://images.pexels.com/photos/7723524/pexels-photo-7723524.jpeg' 
+        bgImage: BgImage3
     },
     // NEW: Retail & Distribution
     { 
@@ -56,7 +65,7 @@ const industryCardsData = [
         gradient: 'linear-gradient(135deg, #f97316, #fb923c)',
         color: '#f97316',
         lightBg: 'rgba(249, 115, 22, 0.08)',
-        bgImage: 'https://images.pexels.com/photos/4487365/pexels-photo-4487365.jpeg'
+        bgImage: BgImage1
     }
 ]
 
@@ -107,7 +116,7 @@ export default function IndustryCards({ active, setActive }) {
                     
                     <h2 className="industry-cards-premium-title">
                         Industries We 
-                        <span >Serve</span>
+                        <span > Serve</span>
                         <span className="title-icon">✦</span>
                     </h2>
                     

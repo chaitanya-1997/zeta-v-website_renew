@@ -15,6 +15,8 @@ import Leadership from './components/Leadership'
 import PricingCalculator from './components/ServicesAll/BookkeepingServices/PricingCalculator' 
  import DigitalFootprint from "./components/ServicesAll/BookkeepingServices/DigitalFootprint";
 import ChatBox from "./components/ChatBox/ChatBox";
+import DigitalCalculator from './components/ServicesAll/BookkeepingServices/DigitalCalculator'
+
 export default function App() {
     return (
         <>
@@ -37,8 +39,9 @@ export default function App() {
                  <Route path="/leadership" element={<Leadership />} />
                  <Route path='/calculator' element={<PricingCalculator/>}/>
  <Route path="/digitalfootprint" element={<DigitalFootprint/>} />
+  <Route path="/digitalcalculator" element={<DigitalCalculator/>} />
             </Routes>
-            <ChatBox/>
+            {/* <ChatBox/> */}
         </>
     )
 }

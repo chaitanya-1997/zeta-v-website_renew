@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { HiOutlineSparkles, HiOutlineUsers, HiOutlineGlobeAlt } from "react-icons/hi2";
 import "./Partners.css";
 
-import swan from '../../../assets/team/cl1.avif';
-import zerolite from '../../../assets/team/cl2.png';
-import izapy from '../../../assets/team/cl3.png';
-import fugu from '../../../assets/team/cl4.png';
-import inmorphis from '../../../assets/team/cl5.png';
-import cynoteck from '../../../assets/team/cl6.png';
+import swan from '../../../assets/team/cl1.webp';
+import zerolite from '../../../assets/team/cl2.webp';
+import izapy from '../../../assets/team/cl3.webp';
+import fugu from '../../../assets/team/cl4.webp';
+import inmorphis from '../../../assets/team/cl5.webp';
+import cynoteck from '../../../assets/team/cl6.webp';
 
 const partners = [
   {

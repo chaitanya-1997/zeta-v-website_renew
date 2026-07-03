@@ -16,7 +16,7 @@ import './AdvisoryHero.css'
 import { Link } from 'react-router-dom';
 
 // Import background image
-import advisoryBg from '../../../assets/images/Hero3.jpg'
+import advisoryBg from '../../../assets/images/Hero3.webp'
 
 const stats = [
   { value: '242+', label: 'Advisory Projects', icon: HiOutlineBriefcase },
@@ -93,10 +93,10 @@ export default function AdvisoryHero() {
 
             <h1 className="advisory-hero-title">
               Business 
-              <span >Advisories</span>
+              <span > Advisories</span>
               {/* <span className="advisory-hero-highlight">Advisories</span> */}
               <br />
-              <span className="advisory-hero-sub">that turn Strategy Into Value.</span>
+              <span className="advisory-hero-sub"> that turn Strategy Into Value.</span>
             </h1>
 
             <p className="advisory-hero-description">

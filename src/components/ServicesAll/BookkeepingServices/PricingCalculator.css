@@ -207,7 +207,7 @@
 
 /* ─── STEP 1: NAME & EMAIL ─── */
 .pc-step-1 {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   min-height: 350px;
@@ -782,12 +782,12 @@
   font-weight: 800;
   color: #0a0f1e;
 }
-
 /* ─── SELECTIONS SUMMARY ─── */
 .pc-final-selections {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 24px;
+  grid-template-columns: max-content 1fr max-content 1fr ;
+  column-gap: 24px;
+  row-gap: 10px;
   padding: 20px 24px;
   background: #f8faff;
   border: 1px solid #e8ecf1;
@@ -795,30 +795,19 @@
   margin-bottom: 24px;
 }
 
-.pc-final-selection-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #e8ecf1;
-}
-
-.pc-final-selection-item:last-child {
-  border-bottom: none;
-}
-
 .pc-final-selection-label {
   font-size: 0.8rem;
   color: #b0b8c4;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .pc-final-selection-value {
   font-size: 0.8rem;
   font-weight: 600;
   color: #0a0f1e;
-  text-align: right;
-  max-width: 60%;
+  text-align: left;
 }
-
 /* ─── FINAL FORM FIELDS ─── */
 .pc-final-form-fields {
   margin-top: 8px;
@@ -1881,8 +1870,9 @@
 /* ─── SELECTIONS SUMMARY ─── */
 .pc-final-selections {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 24px;
+  grid-template-columns: repeat(4);
+  column-gap: 20px;
+  row-gap: 14px;
   padding: 20px 24px;
   background: #f8faff;
   border: 1px solid #e8ecf1;
@@ -1891,22 +1881,42 @@
 }
 
 .pc-final-selection-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #e8ecf1;
+  display: contents;
 }
-.pc-final-selection-item:last-child { border-bottom: none; }
 
-.pc-final-selection-label { font-size: 0.8rem; color: #b0b8c4; }
+.pc-final-selection-label {
+  font-size: 0.8rem;
+  color: #b0b8c4;
+  text-align: left;
+  white-space: nowrap;
+}
 
 .pc-final-selection-value {
   font-size: 0.8rem;
   font-weight: 600;
   color: #0a0f1e;
-  text-align: right;
-  max-width: 60%;
+  text-align: left;
+  white-space: nowrap;
 }
+
+/* Add-ons row spans full width since it's usually long */
+.pc-final-selection-item--full {
+  display: block;
+  grid-column: 1 / -1;
+}
+
+.pc-final-selection-item--full .pc-final-selection-label {
+  display: block;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.pc-final-selection-item--full .pc-final-selection-value {
+  white-space: normal;
+  text-align: left;
+}
+
+
 
 /* ─── FINAL FORM FIELDS ─── */
 .pc-final-form-fields { margin-top: 8px; }
@@ -2095,4 +2105,142 @@
   .pc-final-price-amount { font-size: 1.4rem; }
   .pc-final-selection-value { max-width: 50%; font-size: 0.7rem; }
   .pc-success-price-amount { font-size: 1.8rem; }
+}
+
+/* ─── EMAIL PREVIEW CARD ─── */
+.pc-email-preview-card {
+  margin: 24px 0;
+  border: 1px solid #e8ecf1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  text-align: left;
+}
+
+.pc-email-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f8faff;
+  border-bottom: 1px solid #e8ecf1;
+  flex-wrap: wrap;
+}
+
+.pc-email-preview-icon {
+  font-size: 1rem;
+}
+
+.pc-email-preview-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0a0f1e;
+}
+
+.pc-email-preview-email {
+  font-size: 0.75rem;
+  color: #22a7f0;
+  font-weight: 500;
+  margin-left: auto;
+  background: rgba(34, 167, 240, 0.06);
+  padding: 2px 12px;
+  border-radius: 50px;
+}
+
+.pc-email-preview-body {
+  padding: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+.pc-email-preview-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.pc-email-preview-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pc-email-preview-body::-webkit-scrollbar-thumb {
+  background: #e0e4ea;
+  border-radius: 4px;
+}
+
+/* ─── SUCCESS PRICE REVEAL ─── */
+.pc-success-price-reveal {
+  margin: 20px 0 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(34, 167, 240, 0.07), rgba(99, 102, 241, 0.07));
+  border: 1px solid rgba(34, 167, 240, 0.15);
+  border-radius: 14px;
+}
+
+.pc-success-price-label {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.45);
+  margin: 0 0 6px;
+}
+
+.pc-success-price-amount {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #0a0f1e;
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pc-success-price-period {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.35);
+  margin-bottom: 4px;
+}
+
+.pc-success-id {
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.4);
+  background: #f0f4f8;
+  padding: 4px 14px;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 6px 0 0;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .pc-email-preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .pc-email-preview-email {
+    margin-left: 0;
+  }
+  
+  .pc-email-preview-body {
+    padding: 16px;
+    max-height: 250px;
+  }
+  
+  .pc-success-price-amount {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pc-email-preview-body {
+    padding: 12px;
+    max-height: 200px;
+  }
+  
+  .pc-success-price-amount {
+    font-size: 1.8rem;
+  }
 }

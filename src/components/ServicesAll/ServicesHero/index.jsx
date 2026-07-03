@@ -13,6 +13,7 @@ import {
 import { FaRocket } from 'react-icons/fa'
 import './ServicesHero.css'
 import { Link } from 'react-router-dom';
+import BgImage from '../../../assets/pexels/pexels-photo-7.avif';
 
 const stats = [
   { value: '34+', label: 'Enterprise Clients', icon: HiOutlineGlobeAlt },
@@ -72,7 +73,7 @@ export default function ServicesHero() {
       <div className="services-hero-bg">
         <div 
           className="services-hero-bg-image" 
-          style={{ backgroundImage: `url(https://images.pexels.com/photos/7658350/pexels-photo-7658350.jpeg)` }}
+          style={{ backgroundImage: `url(${BgImage})` }}
         />
         <div className="services-hero-overlay">
           <div className="services-hero-gradient" />

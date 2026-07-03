@@ -10,6 +10,7 @@ import {
   Sparkles
 } from "lucide-react";
 import "./MarketAdvisory.css";
+import BgImage1 from '../../../assets/pexels/pexels-photo-16.webp';
 
 
 
@@ -61,7 +62,7 @@ const MarketAdvisory = () => {
     <section className="market-advisory-premium">
       {/* Background Image */}
       <div className="market-advisory-bg-image">
-        <img src="https://images.pexels.com/photos/5789911/pexels-photo-5789911.jpeg" alt="" />
+        <img src={BgImage1} alt="" />
         <div className="market-advisory-bg-overlay" />
         <div className="market-advisory-bg-pattern" />
       </div>

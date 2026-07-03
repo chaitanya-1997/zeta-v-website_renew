@@ -12,11 +12,11 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2'
 
 // Import office images
-import imgPune from '../../assets/contactimg/Pune.jpg'
-import imgMumbai from '../../assets/contactimg/mumbai.jpg'
-import imgHongKong from '../../assets/contactimg/hong-kong.jpg'
-import imgShanghai from '../../assets/contactimg/China.jpg'
-import imgOrlando from '../../assets/contactimg/Orlando.jpg'
+import imgPune from '../../assets/contactimg/Pune.webp'
+import imgMumbai from '../../assets/contactimg/mumbai.webp'
+import imgHongKong from '../../assets/contactimg/hong-kong.webp'
+import imgShanghai from '../../assets/contactimg/China.webp'
+import imgOrlando from '../../assets/contactimg/Orlando.webp'
 
 const offices = [
   {

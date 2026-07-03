@@ -5,8 +5,7 @@ import { FaHandshake, FaArrowRight } from 'react-icons/fa'
 import { FiDownload } from 'react-icons/fi'
 import { HiOutlineSparkles } from 'react-icons/hi2'
 import './FinalCTASection.css'
-
-const ctaBgImage = 'https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=1920'
+import ctaBgImage from '../../../assets/pexels/pexels-photo-3.avif';
 
 export default function FinalCTASection() {
   const ref = useRef(null)

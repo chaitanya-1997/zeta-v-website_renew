@@ -6,7 +6,7 @@ import {
   HiOutlineStar,
   HiOutlineArrowLeft,
   HiOutlineArrowRight,
-  HiChatBubbleLeft ,
+  HiChatBubbleLeft,
   HiOutlineSparkles
 } from 'react-icons/hi2';
 import './SuccessStories.css';
@@ -99,8 +99,7 @@ export default function SuccessStories() {
           
           <h2 className="success-premium-title">
             What Our{' '}
-            {/* <span className="gradient-text-success">Clients Say</span> */}
-             <span >Clients Say</span>
+            <span>Clients Say</span>
             <span className="title-icon">✦</span>
           </h2>
           
@@ -126,7 +125,7 @@ export default function SuccessStories() {
                 
                 {/* Quote Icon */}
                 <div className="success-premium-quote">
-                  <HiChatBubbleLeft  />
+                  <HiChatBubbleLeft />
                 </div>
 
                 {/* Company Badge */}
@@ -146,7 +145,7 @@ export default function SuccessStories() {
                     {current.initials}
                   </div>
                   <div className="success-premium-author-info">
-                    <h4 className="success-premium-author-name">{current.author}</h4>
+                    <p className="success-premium-author-name">{current.author}</p>
                     <p className="success-premium-author-position">{current.position}</p>
                   </div>
                 </div>
@@ -165,8 +164,12 @@ export default function SuccessStories() {
 
           {/* Navigation */}
           <div className="success-premium-nav">
-            <button className="success-premium-arrow" onClick={prevSlide}>
-              <HiOutlineArrowLeft />
+            <button
+              className="success-premium-arrow"
+              onClick={prevSlide}
+              aria-label="Previous testimonial"
+            >
+              <HiOutlineArrowLeft aria-hidden="true" />
             </button>
 
             <div className="success-premium-dots">
@@ -175,21 +178,23 @@ export default function SuccessStories() {
                   key={index}
                   className={`success-premium-dot ${index === active ? 'active' : ''}`}
                   onClick={() => goToSlide(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
                   style={{
-                    background: index === active ? current.gradient : 'rgba(15, 23, 42, 0.1)'
+                    background: index === active ? current.gradient : 'rgba(15, 23, 42, 0.1)',
                   }}
                 />
               ))}
             </div>
 
-            <button className="success-premium-arrow" onClick={nextSlide}>
-              <HiOutlineArrowRight />
+            <button
+              className="success-premium-arrow"
+              onClick={nextSlide}
+              aria-label="Next testimonial"
+            >
+              <HiOutlineArrowRight aria-hidden="true" />
             </button>
           </div>
         </div>
-
-        {/* Bottom CTA */}
-   
       </div>
 
       {/* Bottom Edge */}

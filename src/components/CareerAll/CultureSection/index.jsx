@@ -13,19 +13,19 @@ import './CultureSection.css'
 
 // ----- IMPORT LOCAL IMAGES -----
 // ✅ Verify these paths match your actual filenames and extensions
-import ajayImg from '../../../assets/team/ajay.jpeg'
-import johnsonImg from '../../../assets/team/johnson.png'
-import manavImg from '../../../assets/team/manav.png'
-import sandaliImg from '../../../assets/team/sandali.jpeg'
+import ajayImg from '../../../assets/team/ajay.webp'
+import johnsonImg from '../../../assets/team/johnson.webp'
+import manavImg from '../../../assets/team/manav.webp'
+import sandaliImg from '../../../assets/team/sandali.webp'
 import aniketImg from '../../../assets/team/aniket.webp'
-import rashmiImg from '../../../assets/team/rashmi.png'
-import anaghaImg from '../../../assets/team/angha.jpg'   // ← verify filename (angha.jpg or anagha.jpg?)
-import chaitanyaImg from '../../../assets/team/chaitanya.jpg'
-import ashishImg from '../../../assets/team/ashish.jpeg'
-import catherineImg from '../../../assets/team/Catherine.jpg'
-import ketanImg from '../../../assets/team/Ketan.png'
+import rashmiImg from '../../../assets/team/rashmi.webp'
+import anaghaImg from '../../../assets/team/angha.webp'   // ← verify filename (angha.webp or anagha.webp?)
+import chaitanyaImg from '../../../assets/team/chaitanya.webp'
+import ashishImg from '../../../assets/team/ashish.webp'
+import catherineImg from '../../../assets/team/Catherine.webp'
+import ketanImg from '../../../assets/team/Ketan.webp'
 
-const cultureBgImage = 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920'
+import cultureBgImage from '../../../assets/pexels/pexels-photo-2.avif';
 
 // ----- TESTIMONIALS (8 employees) -----
 const testimonials = [

@@ -6,11 +6,11 @@ import "./Gallery.css";
 import { Link } from 'react-router-dom';
 
 
-import teamOffsiteImg from "../../../assets/gallery/team-offsite.png";
-import team2Img from "../../../assets/gallery/team-2.png";
-import celebrationImg from "../../../assets/gallery/celebration.png";
-import clientMeetImg from "../../../assets/gallery/client-meet.png";
-import sujitImg from "../../../assets/gallery/sujit.png";
+import teamOffsiteImg from "../../../assets/gallerym/ph30.webp";
+import team2Img from "../../../assets/gallerym/ph3.webp";
+import celebrationImg from "../../../assets/gallerym/ph29.webp";
+import clientMeetImg from "../../../assets/gallerym/ph18.webp";
+import sujitImg from "../../../assets/gallerym/ph35.webp";
 
 const galleryData = [
   {

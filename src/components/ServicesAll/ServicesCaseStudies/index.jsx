@@ -10,6 +10,11 @@ import {
 import { FaArrowRight } from 'react-icons/fa'
 import './ServicesCaseStudies.css'
 
+
+import BgImage1 from '../../../assets/pexels/pexels-photo-14.avif';
+import BgImage2 from '../../../assets/pexels/pexels-photo-9.avif';
+
+
 const caseStudiesData = [
   {
     title: "AI-Driven Digital Transformation for Enterprise Operations",
@@ -25,7 +30,7 @@ const caseStudiesData = [
       { metric: "Real-time", label: "insights for faster decision-making" },
       { metric: "Automated", label: "reduced manual workload through automation" },
     ],
-    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: BgImage1,
     gradient: "linear-gradient(135deg, #22a7f0, #6366f1)",
     color: "#22a7f0",
     lightBg: "rgba(34, 167, 240, 0.08)"
@@ -44,7 +49,7 @@ const caseStudiesData = [
       { metric: "25%", label: "improvement in production efficiency" },
       { metric: "Real-time", label: "operational insights across facilities" },
     ],
-    image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: BgImage2,
     gradient: "linear-gradient(135deg, #34d399, #06b6d4)",
     color: "#34d399",
     lightBg: "rgba(52, 211, 153, 0.08)"

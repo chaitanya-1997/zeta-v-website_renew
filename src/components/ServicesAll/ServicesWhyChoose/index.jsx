@@ -13,6 +13,7 @@ import {
   FaGlobe 
 } from 'react-icons/fa'
 import './ServicesWhyChoose.css'
+import BgImage from '../../../assets/pexels/pexels-photo-2.avif';
 
 const benefits = [
   { icon: <HiOutlineSparkles />, title: "Generative AI Expertise" },
@@ -33,7 +34,7 @@ export default function ServicesWhyChoose() {
       <div className="whychoose-premium-bg">
         <div 
           className="whychoose-premium-bg-image"
-          style={{ backgroundImage: `url(https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920)` }}
+          style={{ backgroundImage: `url(${BgImage})` }}
         />
         <div className="whychoose-premium-overlay">
           <div className="whychoose-premium-gradient" />

@@ -14,7 +14,12 @@ import "./GrowthAdvisory.css";
 import { Link } from 'react-router-dom';
 
 // Import images
+import BgImage1 from '../../../assets/pexels/pexels-photo-17.avif';
 
+import BgImage2 from '../../../assets/pexels/pexels-photo-18.avif';
+import BgImage3 from '../../../assets/pexels/pexels-photo-19.avif';
+import BgImage4 from '../../../assets/pexels/pexels-photo-20.avif';
+import BgImage5 from '../../../assets/pexels/pexels-photo-21.avif';
 
 
 
@@ -24,7 +29,7 @@ const growthPoints = [
     icon: <TrendingUp size={22} />,
     title: "Market Expansion",
     description: "Expanding into new geographical or demographic markets to increase reach and revenue.",
-    image: "https://images.pexels.com/photos/10981234/pexels-photo-10981234.jpeg",
+    image: BgImage5,
     gradient: "linear-gradient(135deg, #22a7f0, #6366f1)",
     color: "#22a7f0",
     lightBg: "rgba(34, 167, 240, 0.08)"
@@ -34,7 +39,7 @@ const growthPoints = [
     icon: <Rocket size={22} />,
     title: "Innovation-Driven Growth",
     description: "Leveraging new ideas and technologies to drive business transformation and growth.",
-    image: "https://images.pexels.com/photos/19825314/pexels-photo-19825314.jpeg",
+    image: BgImage4,
     gradient: "linear-gradient(135deg, #34d399, #06b6d4)",
     color: "#34d399",
     lightBg: "rgba(52, 211, 153, 0.08)"
@@ -44,7 +49,7 @@ const growthPoints = [
     icon: <Zap size={22} />,
     title: "Agile Execution",
     description: "Implementing flexible and efficient processes to adapt quickly to market changes.",
-    image: "https://images.pexels.com/photos/7947839/pexels-photo-7947839.jpeg",
+    image: BgImage3,
     gradient: "linear-gradient(135deg, #f472b6, #ec4899)",
     color: "#f472b6",
     lightBg: "rgba(244, 114, 182, 0.08)"
@@ -54,7 +59,7 @@ const growthPoints = [
     icon: <Handshake size={22} />,
     title: "Strategic Partnerships",
     description: "Forming alliances to enhance capabilities, expand reach, and drive mutual growth.",
-    image: "https://images.pexels.com/photos/7651924/pexels-photo-7651924.jpeg",
+    image: BgImage2,
     gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
     color: "#f59e0b",
     lightBg: "rgba(245, 158, 11, 0.08)"
@@ -66,7 +71,7 @@ export default function GrowthAdvisory() {
     <section className="growth-advisory-unique">
       {/* Background Image */}
       <div className="growth-advisory-bg-image">
-        <img src="https://images.pexels.com/photos/7172856/pexels-photo-7172856.jpeg" alt="Growth" />
+        <img src={BgImage1} alt="Growth" />
         <div className="growth-advisory-bg-overlay" />
         <div className="growth-advisory-bg-pattern" />
       </div>

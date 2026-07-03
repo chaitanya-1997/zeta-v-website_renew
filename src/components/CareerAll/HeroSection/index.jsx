@@ -14,6 +14,9 @@ import {
 import { FaRocket } from 'react-icons/fa'
 import './CareerHero.css'
 
+import BgImage from '../../../assets/pexels/pexels-photo-4.webp';
+
+
 const stats = [
   // { value: '10+', label: 'Open Positions', icon: HiOutlineBriefcase },
   // { value: '10+', label: 'Countries', icon: HiOutlineGlobeAlt },
@@ -72,7 +75,7 @@ export default function CareerHero() {
       <div className="career-hero-bg">
         <div 
           className="career-hero-bg-image" 
-          style={{ backgroundImage: `url(https://images.pexels.com/photos/7693733/pexels-photo-7693733.jpeg)` }}
+          style={{ backgroundImage: `url(${BgImage})` }}
         />
         <div className="career-hero-overlay">
           <div className="career-hero-gradient" />

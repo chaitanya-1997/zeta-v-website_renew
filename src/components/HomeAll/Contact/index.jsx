@@ -16,6 +16,9 @@ import {
 } from 'react-icons/hi2';
 import './Contact.css';
 
+import BgImage from '../../../assets/pexels/pexels-photo-6.webp';
+
+
 const serviceOptions = [
   'Strategy Consulting',
   'Digital Footprint',
@@ -28,23 +31,23 @@ const serviceOptions = [
 ];
 
 const steps = [
-  { 
-    num: 1, 
+  {
+    num: 1,
     text: 'Our representative contacts you within 24 hours',
     icon: HiOutlineClock
   },
-  { 
-    num: 2, 
+  {
+    num: 2,
     text: 'We collect all the necessary requirements from you',
     icon: HiOutlineChatBubbleLeft
   },
-  { 
-    num: 3, 
+  {
+    num: 3,
     text: 'We keep confidentiality by signing NDA',
     icon: HiOutlineCheck
   },
-  { 
-    num: 4, 
+  {
+    num: 4,
     text: 'The team of analysts and developers prepare estimation',
     icon: HiOutlineSparkles
   }
@@ -131,7 +134,7 @@ export default function ContactSection() {
       // Success
       setSubmitted(true);
       setSuccessMessage(data.message || 'Thank you for contacting us! Our team will get back to you soon.');
-      
+
       // Reset form after 5 seconds
       setTimeout(() => {
         setSubmitted(false);
@@ -157,7 +160,7 @@ export default function ContactSection() {
 
       <div className="contact-premium-container">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="contact-premium-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -169,14 +172,14 @@ export default function ContactSection() {
             <span className="label-text">Get in Touch</span>
             <span className="label-line" />
           </div>
-          
+
           <h2 className="contact-premium-title">
             Let's <span>Transform</span> Your Business
             <span className="title-icon">✦</span>
           </h2>
-          
+
           <p className="contact-premium-subtitle">
-            Ready to Accelerate Your Digital Transformation? Partner with Zeta-V to unlock 
+            Ready to Accelerate Your Digital Transformation? Partner with Zeta-V to unlock
             the full potential of emerging technologies and drive sustainable business growth.
           </p>
         </motion.div>
@@ -184,7 +187,7 @@ export default function ContactSection() {
         {/* Main Layout */}
         <div className="contact-premium-layout">
           {/* Left Column - Form */}
-          <motion.div 
+          <motion.div
             className="contact-premium-form-wrapper"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -273,16 +276,19 @@ export default function ContactSection() {
                   </div>
 
                   <div className="contact-premium-field">
-                    <label>
+                    <label htmlFor="service">
                       <HiOutlineSparkles />
                       <span>Service Interest</span>
                     </label>
+
                     <select
+                      id="service"
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
                     >
                       <option value="">Select Service Interest</option>
+
                       {serviceOptions.map((opt) => (
                         <option key={opt} value={opt}>
                           {opt}
@@ -290,7 +296,6 @@ export default function ContactSection() {
                       ))}
                     </select>
                   </div>
-
                   <div className="contact-premium-field">
                     <label>
                       <HiOutlineChatBubbleLeft />
@@ -305,8 +310,8 @@ export default function ContactSection() {
                     />
                   </div>
 
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="contact-premium-submit"
                     disabled={loading}
                   >
@@ -325,7 +330,7 @@ export default function ContactSection() {
           </motion.div>
 
           {/* Right Column - Info & Image */}
-          <motion.div 
+          <motion.div
             className="contact-premium-info-wrapper"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -334,8 +339,8 @@ export default function ContactSection() {
           >
             {/* Image Section */}
             <div className="contact-premium-image">
-              <img 
-                src="https://images.pexels.com/photos/14314638/pexels-photo-14314638.jpeg"
+              <img
+                src={BgImage}
                 alt="Team collaboration"
                 className="contact-premium-img"
               />
@@ -350,15 +355,14 @@ export default function ContactSection() {
             <div className="contact-premium-info-cards">
               {contactInfo.map((item, index) => {
                 const Icon = item.icon;
-                const cardClass = `contact-premium-info-card ${
-                  item.type === 'address' ? 'address-card' :
-                  item.type === 'mail' ? 'mail-card' :
-                  'phone-card'
-                }`;
-                
+                const cardClass = `contact-premium-info-card ${item.type === 'address' ? 'address-card' :
+                    item.type === 'mail' ? 'mail-card' :
+                      'phone-card'
+                  }`;
+
                 return (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={cardClass}
                     style={{ '--card-color': item.color }}
                   >
@@ -367,11 +371,10 @@ export default function ContactSection() {
                     </div>
                     <div className="contact-premium-info-content">
                       <span className="contact-premium-info-label">{item.title}</span>
-                      <span className={`contact-premium-info-detail ${
-                        item.type === 'address' ? 'address-text' :
-                        item.type === 'mail' ? 'mail-text' :
-                        ''
-                      }`}>
+                      <span className={`contact-premium-info-detail ${item.type === 'address' ? 'address-text' :
+                          item.type === 'mail' ? 'mail-text' :
+                            ''
+                        }`}>
                         {item.detail}
                       </span>
                     </div>

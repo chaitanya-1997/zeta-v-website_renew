@@ -1,4 +1,5 @@
-// Hero.jsx
+
+// Hero.jsx - Updated with two-line welcome animation
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -36,33 +37,33 @@ const features = [
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
-  const [displayText, setDisplayText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [welcomePhase, setWelcomePhase] = useState('firstLine'); // 'firstLine' | 'secondLine' | 'complete'
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef(null);
 
-  const welcomeText = "Welcome to Zeta-V Technology Solutions";
-
-  // Typewriter effect
+  // Welcome animation timing - two-line sequence
   useEffect(() => {
-    let index = 0;
-    const typingSpeed = 80;
-    
-    const typeInterval = setInterval(() => {
-      if (index < welcomeText.length) {
-        setDisplayText(welcomeText.substring(0, index + 1));
-        index++;
-      } else {
-        clearInterval(typeInterval);
-        setIsTypingComplete(true);
-        setTimeout(() => {
-          setShowWelcome(false);
-          setIsLoaded(true);
-        }, 1500);
-      }
-    }, typingSpeed);
+    // First line appears: "Welcome to" - after 0.5s
+    const firstLineTimer = setTimeout(() => {
+      setWelcomePhase('secondLine');
+    }, 100);
 
-    return () => clearInterval(typeInterval);
+    // Second line appears: "Zeta-V Technology Solutions" - after 1.5s total
+    const secondLineTimer = setTimeout(() => {
+      setWelcomePhase('complete');
+    }, 1500);
+
+    // Welcome stays visible for 5 seconds after complete, then fades out
+    const exitTimer = setTimeout(() => {
+      setShowWelcome(false);
+      setIsLoaded(true);
+    }, 2500); // 1500ms (animation) + 5000ms (view time) = 6500ms
+
+    return () => {
+      clearTimeout(firstLineTimer);
+      clearTimeout(secondLineTimer);
+      clearTimeout(exitTimer);
+    };
   }, []);
 
   const toggleVideo = () => {
@@ -74,37 +75,6 @@ export default function HeroSection() {
       }
       setIsPlaying(!isPlaying);
     }
-  };
-
-  const renderTypedText = () => {
-    const words = displayText.split(' ');
-    return words.map((word, index) => {
-      const isZetaV = word === 'Zeta-V';
-      const containsZetaV = word.includes('Zeta-V');
-      
-      return (
-        <span
-          key={index}
-          style={{
-            display: 'inline-block',
-            marginRight: '8px',
-            fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
-            fontWeight: 800,
-            lineHeight: 1.15,
-            letterSpacing: '-0.02em',
-            color: isZetaV || containsZetaV ? 'transparent' : '#ffffff',
-            background: isZetaV || containsZetaV 
-              ? 'linear-gradient(135deg, #22a7f0 0%, #6366f1 50%, #a78bfa 100%)' 
-              : 'none',
-            WebkitBackgroundClip: isZetaV || containsZetaV ? 'text' : 'none',
-            WebkitTextFillColor: isZetaV || containsZetaV ? 'transparent' : '#ffffff',
-            backgroundClip: isZetaV || containsZetaV ? 'text' : 'none',
-          }}
-        >
-          {word}
-        </span>
-      );
-    });
   };
 
   return (
@@ -125,11 +95,6 @@ export default function HeroSection() {
         <div className="hero-premium-video-overlay">
           <div className="hero-premium-video-gradient-clear" />
         </div>
-        
-        {/* Video Control Button */}
-        <button className="hero-premium-video-control" onClick={toggleVideo}>
-          {isPlaying ? <HiOutlinePause /> : <HiOutlinePlay />}
-        </button>
       </div>
 
       {/* Animated Orbs - Subtle */}
@@ -160,7 +125,7 @@ export default function HeroSection() {
       </div>
 
       <div className="hero-premium-container">
-        {/* WELCOME ANIMATION - Typewriter Effect */}
+        {/* WELCOME ANIMATION - Two-line sequence with 5 second view time */}
         <AnimatePresence>
           {showWelcome && (
             <motion.div 
@@ -171,13 +136,50 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
             >
               <div className="hero-welcome-content">
-                <div className="hero-welcome-text-wrapper">
-                  <span className="hero-welcome-text">
-                    {renderTypedText()}
-                  </span>
-                  <span 
-                    className={`hero-welcome-cursor ${isTypingComplete ? 'blink-fast' : ''}`}
-                  />
+                <div className="hero-welcome-wrapper">
+                  {/* First Line: "Welcome to" - Slides from bottom */}
+                  <motion.div
+                    className="welcome-line welcome-line-first"
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      type: 'spring',
+                      damping: 20,
+                      stiffness: 200,
+                      duration: 0.8
+                    }}
+                  >
+                    <span className="welcome-text-first">Welcome to</span>
+                  </motion.div>
+
+                  {/* Second Line: "Zeta-V Technology Solutions" - Slides from bottom with delay */}
+                  <motion.div
+                    className="welcome-line welcome-line-second"
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={welcomePhase === 'secondLine' || welcomePhase === 'complete' ? { y: 0, opacity: 1 } : {}}
+                    transition={{
+                      type: 'spring',
+                      damping: 20,
+                      stiffness: 200,
+                      duration: 0.8,
+                      delay: 0.3
+                    }}
+                  >
+                    <span className="welcome-text-zetav">Zeta-V</span>
+                    <span className="welcome-text-solutions"> Technology Solutions</span>
+                  </motion.div>
+
+           
+
+                  {/* Subtle glow effect when complete */}
+                  {welcomePhase === 'complete' && (
+                    <motion.div
+                      className="welcome-glow"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.8 }}
+                    />
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -191,7 +193,7 @@ export default function HeroSection() {
               className="hero-premium-content"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               {/* Main Content */}
               <div className="hero-premium-main">
@@ -199,7 +201,7 @@ export default function HeroSection() {
                   className="hero-premium-badge"
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
                 >
                   <FaRocket className="badge-icon" />
                   <span>Trusted Technology Partner Since 2017</span>
@@ -210,11 +212,10 @@ export default function HeroSection() {
                   className="hero-premium-title"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.7 }}
+                  transition={{ delay: 0.15, duration: 0.5 }}
                 >
                   Transform Your Business with
-                
-                  <span> Digital Innovation</span>
+              Digital Innovation
                   <span className="title-underline" />
                 </motion.h1>
 
@@ -222,7 +223,7 @@ export default function HeroSection() {
                   className="hero-premium-description"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.7 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
                 >
                   We help startups and enterprises accelerate growth through AI, cloud, web,
                   mobile, and enterprise technology solutions designed for impact, built to scale.
@@ -232,7 +233,7 @@ export default function HeroSection() {
                   className="hero-premium-ctas"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.7 }}
+                  transition={{ delay: 0.25, duration: 0.5 }}
                 >
                   <Link 
                     to="/contact"
@@ -262,7 +263,7 @@ export default function HeroSection() {
                   className="hero-premium-features"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.6 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
                 >
                   {features.map((feature, index) => {
                     const Icon = feature.icon;
@@ -279,37 +280,6 @@ export default function HeroSection() {
                   })}
                 </motion.div>
               </div>
-
-              {/* Stats Grid – currently commented out */}
-              {/* <motion.div 
-                className="hero-premium-stats"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-              >
-                {stats.map((stat, index) => {
-                  const Icon = stat.icon;
-                  return (
-                    <motion.div 
-                      key={index} 
-                      className="stat-card-premium"
-                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: 0.7 + (index * 0.1), duration: 0.5 }}
-                      whileHover={{ y: -6, scale: 1.02 }}
-                    >
-                      <div className="stat-icon-premium">
-                        <Icon />
-                      </div>
-                      <div className="stat-content-premium">
-                        <span className="stat-number-premium">{stat.value}</span>
-                        <span className="stat-label-premium">{stat.label}</span>
-                      </div>
-                      <div className="stat-glow" />
-                    </motion.div>
-                  );
-                })}
-              </motion.div> */}
             </motion.div>
           )}
         </AnimatePresence>
@@ -325,8 +295,7 @@ export default function HeroSection() {
         <div className="scroll-line" />
       </motion.div>
 
-      {/* Bottom Edge – now smoothly dissolves into the next section */}
-      {/* <div className="hero-premium-bottom" /> */}
+    
     </section>
   );
 }

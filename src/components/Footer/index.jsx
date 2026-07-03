@@ -18,7 +18,7 @@ import {
 } from 'react-icons/fa6';
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import './Footer.css';
-import logoImage from '../../../public/ZETAV-LOGO-zv.png';
+import logoImage from '../../assets/about/ZETAV-LOGO-zv.webp';
 
 // ─── FOOTER LINKS MATCHING NAVBAR ───
 const footerLinks = {

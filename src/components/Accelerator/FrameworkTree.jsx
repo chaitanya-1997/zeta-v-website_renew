@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import './FrameworkTree.css'
 
 // Import PROMAF background
-import promafBg from '../../assets/accimg/promaf-bg.jpg'
+import promafBg from '../../assets/accimg/promaf-bg.webp' 
 
 export default function FrameworkTree({ title, description, items, bgClass = '', layoutType = 'zigzag' }) {
   const [modalOpen, setModalOpen] = useState(false)

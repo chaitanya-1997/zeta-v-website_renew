@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Rocket, ChevronRight } from "lucide-react";
 import "./CTA.css";
 import { Link } from 'react-router-dom';
-
+import ctaBg from '../../../assets/pexels/pexels-photo-1.avif';
 // Import your CTA background image
 
 export default function CTA() {
@@ -12,7 +12,7 @@ export default function CTA() {
     <section className="cta-section-premium">
       {/* Background Image with Overlays */}
       <div className="cta-bg-wrapper">
-        <img src="https://images.pexels.com/photos/8171308/pexels-photo-8171308.jpeg" alt="" className="cta-bg-image" />
+        <img src={ctaBg} alt="" className="cta-bg-image" />
         <div className="cta-bg-overlay" />
         <div className="cta-bg-gradient" />
         <div className="cta-bg-pattern" />

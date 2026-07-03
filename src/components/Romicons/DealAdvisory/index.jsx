@@ -11,6 +11,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import "./DealAdvisory.css";
+import BgImage1 from '../../../assets/pexels/pexels-photo-22.avif';
 
 
 
@@ -65,7 +66,7 @@ const DealAdvisory = () => {
 
       {/* Background Image */}
       <div className="deal-advisory-premium-image">
-        <img src='https://images.pexels.com/photos/9870144/pexels-photo-9870144.jpeg' alt="" />
+        <img src={BgImage1} alt="" />
         <div className="deal-advisory-premium-image-overlay" />
       </div>
 

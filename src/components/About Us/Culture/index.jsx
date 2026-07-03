@@ -16,10 +16,10 @@ import {
 } from "lucide-react";
 import "./Culture.css";
 
-import cultureBg from "../../../assets/about/culture.jpg";
-import diversityBg from "../../../assets/about/diversity.jpg";
-import equalityBg from "../../../assets/about/equality.jpg";
-import inclusiveBg from "../../../assets/about/inclusive.jpg";
+import cultureBg from "../../../assets/about/culture.webp";
+import diversityBg from "../../../assets/about/diversity.webp";
+import equalityBg from "../../../assets/about/equality.webp";
+import inclusiveBg from "../../../assets/about/inclusive.webp";
 
 const culturePillars = [
   {

@@ -11,6 +11,7 @@ import {
   HiOutlineSparkles
 } from 'react-icons/hi2';
 import './Challenges.css';
+import BgImage from '../../../assets/pexels/pexels-photo-5.webp';
 
 const challenges = [
   { 
@@ -73,7 +74,7 @@ export default function ChallengesSection() {
       <div className="challenges-wave-top">
         <div className="wave-top-bg">
           <img 
-            src="https://images.pexels.com/photos/6804103/pexels-photo-6804103.jpeg"
+            src={BgImage}
             alt=""
             className="wave-top-image"
           />

@@ -5,6 +5,7 @@ import { FaHandshake, FaArrowRight } from 'react-icons/fa'
 import { HiOutlineSparkles } from 'react-icons/hi2'
 import './ServicesCTA.css'
 import { Link } from 'react-router-dom';
+import BgImage1 from '../../../assets/pexels/pexels-photo-2.avif';
 
 export default function ServicesCTA() {
   const ref = useRef(null);
@@ -17,7 +18,7 @@ export default function ServicesCTA() {
         <div 
           className="svc-cta-premium-bg-image"
           style={{ 
-            backgroundImage: `url(https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920)`
+            backgroundImage: `url(${BgImage1})`
           }}
         />
         <div className="svc-cta-premium-overlay">

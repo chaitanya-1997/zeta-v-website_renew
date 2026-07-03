@@ -12,7 +12,7 @@ import {
   HiOutlineBriefcase
 } from 'react-icons/hi2'
 import { FaRocket } from 'react-icons/fa'
-import heroSlide3 from '../../assets/images/hero-slide-3.jpg'
+import heroSlide3 from '../../assets/images/hero-slide-3.webp'
 import './AcceleratorHero.css'
 import { Link } from 'react-router-dom';
 

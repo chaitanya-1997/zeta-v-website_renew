@@ -1,5 +1,5 @@
 // DigitalFootprint.jsx
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
   HiArrowRight,
@@ -22,10 +22,6 @@ import {
   HiOutlineTruck,
   HiOutlineWrenchScrewdriver,
   HiOutlinePhone,
-
- 
-
-
   HiOutlineShare,
   HiOutlineMegaphone,
   HiOutlinePencil,
@@ -33,12 +29,13 @@ import {
   HiOutlineCloud,
   HiOutlineLockClosed,
 } from 'react-icons/hi2'
-import { HiOutlineLocationMarker } from 'react-icons/hi'  // From 'hi' package
+import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { FaChartLine, FaDatabase, FaRocket, FaShieldAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Navbar/index'
 import FooterSection from '../../Footer/index'
 import './DigitalFootprint.css'
+import BgImage1 from '../../../assets/pexels/pexels-photo-15.avif'
 
 // ─── LOCATIONS ───
 const locations = ['Hong Kong', 'India', 'China', 'USA']
@@ -59,7 +56,8 @@ const features = [
 const stats = [
   { value: '360°', label: 'Full Digital Coverage', icon: HiOutlineGlobeAlt },
   { value: '24/7', label: 'Monitoring & Support', icon: HiOutlineClock },
-  { value: '100%', label: 'Brand Consistency', icon: HiOutlineCheckCircle },
+  { value: '98%', label: 'Brand Consistency', icon: HiOutlineCheckCircle },
+  { value: '5x', label: 'Faster Reporting', icon: HiOutlineChartBar },
 ]
 
 // ─── HIGHLIGHTS ───
@@ -81,7 +79,7 @@ const highlights = [
   },
 ]
 
-// ─── CORE SERVICES (8 cards) ───
+// ─── CORE SERVICES ───
 const coreServices = [
   {
     icon: HiOutlineGlobeAlt,
@@ -277,13 +275,176 @@ const getStartedSteps = [
   { step: 5, title: 'Ongoing Management', desc: 'Monthly content, campaigns, monitoring, reporting, and continuous optimization — all handled.' },
 ]
 
+// ─── PRICING PLANS DATA (with per‑plan add‑on definitions) ───
+const pricingPlans = [
+  {
+    id: 'lite',
+    name: 'Lite',
+    price: 499,
+    displayPrice: '$499',
+    features: ['3 pages', 'Hosting'],
+    addOns: [
+      { id: 'pages', label: 'Extra Pages', price: 200 },
+    ],
+    highlight: false,
+    gradient: 'linear-gradient(135deg, #22a7f0, #6366f1)',
+    color: '#22a7f0',
+  },
+  {
+    id: 'standard',
+    name: 'Standard',
+    price: 999,
+    displayPrice: '$999',
+    features: ['5 pages', 'Hosting', 'Domain', '5+ email ids'],
+    addOns: [
+      { id: 'pages', label: 'Extra Pages', price: 200 },
+      { id: 'emails', label: 'Extra Email IDs', price: 10 },
+    ],
+    highlight: false,
+    gradient: 'linear-gradient(135deg, #34d399, #06b6d4)',
+    color: '#34d399',
+  },
+  {
+    id: 'business',
+    name: 'Business',
+    price: 1999,
+    displayPrice: '$1999',
+    features: ['10 pages', 'Hosting', 'Domain', '5+ email ids', 'SSL', 'SEO (5 words)'],
+    addOns: [
+      { id: 'pages', label: 'Extra Pages', price: 200 },
+      { id: 'emails', label: 'Extra Email IDs', price: 10 },
+      { id: 'seo', label: 'Extra SEO Keywords', price: 0.5 }, // example
+    ],
+    highlight: true,
+    gradient: 'linear-gradient(135deg, #f472b6, #ec4899)',
+    color: '#f472b6',
+  },
+  {
+    id: 'professional',
+    name: 'Professional',
+    price: 2999,
+    displayPrice: '$2999+',
+    features: ['10 pages', 'Hosting', 'Domain', '5+ email ids', 'SSL', 'SEO', 'Integration', 'Social Media'],
+    addOns: [
+      { id: 'pages', label: 'Extra Pages', price: 200 },
+      { id: 'emails', label: 'Extra Email IDs', price: 10 },
+      { id: 'seo', label: 'Extra SEO Keywords', price: 0.5 },
+    ],
+    highlight: false,
+    gradient: 'linear-gradient(135deg, #f97316, #fb923c)',
+    color: '#f97316',
+  },
+]
+
+// // ─── CTA Banners ───
+// const DPriceCtaBannerLight = () => (
+//   <motion.div
+//     className="bk-price-cta-light"
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.7 }}
+//   >
+//     <div className="cta-content">
+//       <span className="cta-text">Check out your price and find the perfect plan for your business.</span>
+//     </div>
+//     <Link to="/digitalcalculator" state={{ scrollTo: 'digitalcalculator-top' }} className="cta-btn cta-btn-solid">
+//       <span>Calculate Your Price</span>
+//       <HiArrowRight />
+//     </Link>
+//   </motion.div>
+// )
+
+// const DPriceCtaBannerDark = () => (
+//   <motion.div
+//     className="bk-price-cta-dark"
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.7 }}
+//   >
+//     <div className="cta-content">
+//       <span className="cta-text">Ready for accurate, stress-free pricing? Let's talk.</span>
+//     </div>
+//     <Link to="/digitalcalculator" state={{ scrollTo: 'digitalcalculator-top' }} className="cta-btn cta-btn-outline">
+//       <span>Estimate My Price</span>
+//       <HiArrowRight />
+//     </Link>
+//   </motion.div>
+// )
+
 export default function DigitalFootprint() {
   const heroRef = useRef(null)
+  const pricingRef = useRef(null)
   const servicesRef = useRef(null)
   const whyRef = useRef(null)
   const industryRef = useRef(null)
   const startRef = useRef(null)
 
+  // ─── Modal State ───
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedPlanId, setSelectedPlanId] = useState(null)
+  const [modalStep, setModalStep] = useState('form') // 'form' | 'submitted'
+  const [userName, setUserName] = useState('')
+  const [userEmail, setUserEmail] = useState('')
+  const [userPhone, setUserPhone] = useState('')
+  // Quantities for add‑ons: { [addonId]: number }
+  const [addonQuantities, setAddonQuantities] = useState({})
+
+  // ─── Modal Functions ───
+  const openQuoteModal = (planId) => {
+    setSelectedPlanId(planId)
+    setModalStep('form')
+    setUserName('')
+    setUserEmail('')
+    setUserPhone('')
+    // Reset add‑on quantities to 0 for this plan
+    const plan = pricingPlans.find(p => p.id === planId)
+    if (plan) {
+      const initial = {}
+      plan.addOns.forEach(a => { initial[a.id] = 0 })
+      setAddonQuantities(initial)
+    }
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+    setSelectedPlanId(null)
+  }
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault()
+    // Move to the "submitted" screen, where add‑ons and total appear
+    setModalStep('submitted')
+    // Optionally send data to backend here
+    console.log({
+      plan: selectedPlanId,
+      name: userName,
+      email: userEmail,
+      phone: userPhone,
+    })
+  }
+
+  const updateAddonQty = (addonId, delta) => {
+    setAddonQuantities(prev => ({
+      ...prev,
+      [addonId]: Math.max(0, (prev[addonId] || 0) + delta),
+    }))
+  }
+
+  const getPlanTotal = (planId, quantities) => {
+    const plan = pricingPlans.find(p => p.id === planId)
+    if (!plan) return 0
+    let total = plan.price
+    plan.addOns.forEach(a => {
+      const qty = quantities[a.id] || 0
+      total += qty * a.price
+    })
+    return total
+  }
+
+  // ─── InView hooks ───
   const heroInView = useInView(heroRef, { once: true, margin: '-100px' })
   const servicesInView = useInView(servicesRef, { once: true, margin: '-100px' })
   const whyInView = useInView(whyRef, { once: true, margin: '-100px' })
@@ -299,6 +460,13 @@ export default function DigitalFootprint() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
   }
 
+  const scrollToPricing = () => {
+    if (pricingRef.current) {
+      pricingRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  // ─── Render ───
   return (
     <>
       <Navbar />
@@ -308,7 +476,7 @@ export default function DigitalFootprint() {
         {/* ════════════════════════════════════════════ */}
         <section className="df-hero" ref={heroRef}>
           <div className="df-hero-bg">
-            <div className="df-hero-bg-img" style={{ backgroundImage: 'url(https://images.pexels.com/photos/326513/pexels-photo-326513.jpeg)' }} />
+            <div className="df-hero-bg-img" style={{ backgroundImage: `url(${BgImage1})` }} />
             <div className="df-hero-overlay" />
           </div>
           <div className="df-hero-orbs">
@@ -323,7 +491,6 @@ export default function DigitalFootprint() {
               initial="hidden"
               animate={heroInView ? 'visible' : 'hidden'}
             >
-              {/* LEFT */}
               <motion.div className="df-hero-left" variants={itemVariants}>
                 <div className="df-hero-badge">
                   <HiOutlineCheckCircle className="df-badge-icon" />
@@ -346,10 +513,10 @@ export default function DigitalFootprint() {
                   ))}
                 </div>
                 <div className="df-hero-ctas">
-                  <Link to="/contact"   state={{ scrollTo: 'enquiries' }}  className="df-btn-primary">
+                  <button className="df-btn-primary" onClick={scrollToPricing}>
                     <span>Get Started Today</span>
                     <HiArrowRight />
-                  </Link>
+                  </button>
                 </div>
                 <div className="df-hero-pills">
                   {features.map((f, i) => {
@@ -364,22 +531,16 @@ export default function DigitalFootprint() {
                 </div>
               </motion.div>
 
-              {/* RIGHT */}
               <motion.div className="df-hero-right" variants={itemVariants}>
                 <div className="df-price-card">
                   <div className="df-price-card-glow" />
-                  <span className="df-price-label">Starting From</span>
-                  <div className="df-price-amount">
-                    <span className="df-price-dollar">$</span>1,299
-                  </div>
-                  <span className="df-price-period">per month</span>
                   <p className="df-price-tagline">
                     Complete digital presence management for your business
                   </p>
-                  <Link to="/contact"   state={{ scrollTo: 'enquiries' }}  className="df-btn-primary df-price-cta">
+                  <button className="df-btn-primary df-price-cta" onClick={scrollToPricing}>
                     <span>Start Now</span>
                     <HiArrowRight />
-                  </Link>
+                  </button>
                 </div>
                 <div className="df-stats-grid">
                   {stats.map((s, i) => {
@@ -409,6 +570,164 @@ export default function DigitalFootprint() {
         </section>
 
         {/* ════════════════════════════════════════════ */}
+        {/* PRICING SECTION - White */}
+        {/* ════════════════════════════════════════════ */}
+        <section className="df-pricing-section" ref={pricingRef}>
+          <div className="df-section-container">
+            <div className="df-section-header">
+              <div className="df-section-label">
+                <span className="df-label-line" />
+                <span className="df-label-text">Pricing Plans</span>
+                <span className="df-label-line" />
+              </div>
+              <h2 className="df-section-title">Choose the plan that fits your business</h2>
+              <p className="df-section-subtitle">
+                All plans include core digital presence management. Add extra pages or email addresses as you grow.
+              </p>
+            </div>
+
+            <div className="df-pricing-grid">
+              {pricingPlans.map((plan) => (
+                <motion.div
+                  key={plan.id}
+                  className={`df-pricing-card ${plan.highlight ? 'df-pricing-card-highlight' : ''}`}
+                  style={{
+                    borderTop: `4px solid ${plan.color}`,
+                    background: `linear-gradient(180deg, ${plan.color}08, #f8faff)`,
+                  }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {plan.highlight && <div className="df-pricing-badge">Most Popular</div>}
+                  <h3 className="df-pricing-name">{plan.name}</h3>
+                  <ul className="df-pricing-features">
+                    {plan.features.map((feat, idx) => (
+                      <li key={idx}>
+                        <HiOutlineCheck className="df-pricing-check" /> {feat}
+                      </li>
+                    ))}
+                  </ul>
+
+                <div className="df-pricing-actions">
+  <button
+    className="df-pricing-btn df-pricing-btn-quote"
+    onClick={() => openQuoteModal(plan.id)}
+  >
+    Get Customized Quote
+  </button>
+</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── QUOTE MODAL ─── */}
+        {modalOpen && selectedPlanId && (
+          <div className="df-modal-overlay" onClick={closeModal}>
+            <div className="df-modal" onClick={(e) => e.stopPropagation()}>
+              <button className="df-modal-close" onClick={closeModal}>×</button>
+              {(() => {
+                const plan = pricingPlans.find(p => p.id === selectedPlanId)
+                const total = getPlanTotal(selectedPlanId, addonQuantities)
+                const hasAddons = plan.addOns && plan.addOns.length > 0
+
+                if (modalStep === 'form') {
+                  return (
+                    <>
+                      <h2 className="df-modal-title">{plan.name} Plan</h2>
+                      <p className="df-modal-sub">Enter your details and we'll show you your custom price.</p>
+
+                      <form onSubmit={handleSubmitForm} className="df-modal-form">
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          required
+                        />
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          value={userEmail}
+                          onChange={(e) => setUserEmail(e.target.value)}
+                          required
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Phone Number"
+                          value={userPhone}
+                          onChange={(e) => setUserPhone(e.target.value)}
+                          required
+                        />
+                        <button type="submit" className="df-modal-submit">
+                          Submit & See Price
+                        </button>
+                      </form>
+                    </>
+                  )
+                } else {
+                  // submitted state – show price, add‑ons, and breakdown
+                  return (
+                    <>
+                     
+                      <h2 className="df-modal-title">Your Custom Quote</h2>
+                      <p className="df-modal-sub">
+                        Hello <strong>{userName}</strong>, here is your estimated monthly price.
+                      </p>
+
+                      <div className="df-modal-price-box">
+                        <span className="df-modal-price-label">Estimated Monthly Total</span>
+                        <div className="df-modal-price-amount">
+                          ${total.toFixed(2)}
+                          <span className="df-modal-price-period">/ month</span>
+                        </div>
+                        <div className="df-modal-price-breakdown">
+                          <span>Base: {plan.displayPrice}</span>
+                          {plan.addOns.map(a => {
+                            const qty = addonQuantities[a.id] || 0
+                            if (qty === 0) return null
+                            const cost = qty * a.price
+                            return <span key={a.id}>+ ${cost} ({qty} × {a.label})</span>
+                          })}
+                        </div>
+                      </div>
+
+                      {hasAddons && (
+                        <div className="df-modal-addons">
+                          <p className="df-modal-addons-label">Customise your plan:</p>
+                          {plan.addOns.map(a => (
+                            <div key={a.id} className="df-modal-addon-row">
+                              <label>{a.label} (${a.price} each)</label>
+                              <div className="df-modal-counter">
+                                <button onClick={() => updateAddonQty(a.id, -1)}>−</button>
+                                <span>{addonQuantities[a.id] || 0}</span>
+                                <button onClick={() => updateAddonQty(a.id, 1)}>+</button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="df-modal-contact-info">
+                        <p><strong>Email:</strong> {userEmail}</p>
+                        <p><strong>Phone:</strong> {userPhone}</p>
+                      </div>
+
+                      <button className="df-modal-submit df-modal-close-btn" onClick={closeModal}>
+                        Close
+                      </button>
+                    </>
+                  )
+                }
+              })()}
+            </div>
+          </div>
+        )}
+
+        {/* ════════════════════════════════════════════ */}
         {/* WHAT IS DIGITAL FOOTPRINT MANAGEMENT - White */}
         {/* ════════════════════════════════════════════ */}
         <section className="df-about-section">
@@ -418,7 +737,7 @@ export default function DigitalFootprint() {
                 <div className="df-section-label">
                   <span className="df-label-line" />
                   <span className="df-label-text">About</span>
-                   <span className="df-label-line" />
+                  <span className="df-label-line" />
                 </div>
                 <h2 className="df-section-title">
                   What Is Digital Footprint Management?
@@ -458,13 +777,12 @@ export default function DigitalFootprint() {
         <section className="df-services-section" ref={servicesRef}>
           <div className="df-section-container">
             <div className="df-services-wrapper">
-              {/* LEFT - Service Cards */}
               <div className="df-services-left">
                 <div className="df-section-header-left">
                   <div className="df-section-label">
                     <span className="df-label-line" />
                     <span className="df-label-text">What We Offer</span>
-                     <span className="df-label-line" /> <span className="df-label-line" />
+                    <span className="df-label-line" /> <span className="df-label-line" />
                   </div>
                   <h2 className="df-section-title">
                     Everything We Manage Inside Your Digital World
@@ -511,7 +829,6 @@ export default function DigitalFootprint() {
                 </div>
               </div>
 
-              {/* RIGHT - Highlights & Contact */}
               <div className="df-services-right-side">
                 <div className="df-services-right-inner">
                   <div className="df-right-icon">
@@ -540,27 +857,11 @@ export default function DigitalFootprint() {
                       )
                     })}
                   </div>
-                  <div className="df-right-contact">
-                    <p className="df-right-contact-label">Digital Footprint Management Services</p>
-                    <div className="df-right-contact-locations">
-                      {locations.map((loc, i) => (
-                        <span key={i} className="df-right-contact-loc">
-                          {i > 0 && <span className="df-right-loc-sep">|</span>}
-                          {loc}
-                        </span>
-                      ))}
-                    </div>
-                    <a href="mailto:contactus@zeta-v.com" className="df-right-contact-link">
-                      contactus@zeta-v.com
-                    </a>
-                    <a href="https://www.zeta-v.com" className="df-right-contact-link" target="_blank" rel="noreferrer">
-                      www.zeta-v.com
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
+          {/* <DPriceCtaBannerDark /> */}
         </section>
 
         {/* ════════════════════════════════════════════ */}
@@ -573,7 +874,7 @@ export default function DigitalFootprint() {
                 <div className="df-section-label">
                   <span className="df-label-line" />
                   <span className="df-label-text">Everything We Handle</span>
-                   <span className="df-label-line" />
+                  <span className="df-label-line" />
                 </div>
                 <h2 className="df-section-title">
                   We Take Care of Every Digital Detail
@@ -618,11 +919,11 @@ export default function DigitalFootprint() {
                 <div className="df-section-label">
                   <span className="df-label-line" />
                   <span className="df-label-text">Why Choose Us</span>
-                   <span className="df-label-line" />
+                  <span className="df-label-line" />
                 </div>
                 <h2 className="df-section-title">
                   More Than Digital Management —<br />
-                  <span >We Become Your Entire Digital Team</span>
+                  <span>We Become Your Entire Digital Team</span>
                 </h2>
                 <p className="df-section-subtitle">
                   Building separate in-house teams for web, social, SEO, IT, and compliance is expensive and hard to coordinate. We bring it all together under one accountable partner.
@@ -655,7 +956,7 @@ export default function DigitalFootprint() {
               <div className="df-section-label">
                 <span className="df-label-line" />
                 <span className="df-label-text">Industry Solutions</span>
-                 <span className="df-label-line" />
+                <span className="df-label-line" />
               </div>
               <h2 className="df-section-title">
                 Tailored Digital Strategies By Industry
@@ -684,6 +985,7 @@ export default function DigitalFootprint() {
               })}
             </div>
           </div>
+          {/* <DPriceCtaBannerLight /> */}
         </section>
 
         {/* ════════════════════════════════════════════ */}
@@ -694,7 +996,7 @@ export default function DigitalFootprint() {
             <div className="df-section-label">
               <span className="df-label-line" />
               <span className="df-label-text">Reports You Receive</span>
-               <span className="df-label-line" />
+              <span className="df-label-line" />
             </div>
             <h2 className="df-section-title">
               Monthly Reports That Tell You Exactly Where You Stand
@@ -728,7 +1030,7 @@ export default function DigitalFootprint() {
             <div className="df-section-label">
               <span className="df-label-line" />
               <span className="df-label-text">Tools & Platforms</span>
-               <span className="df-label-line" />
+              <span className="df-label-line" />
             </div>
             <h2 className="df-section-title">
               Platforms & Tools We Work With
@@ -759,7 +1061,7 @@ export default function DigitalFootprint() {
             <div className="df-section-label">
               <span className="df-label-line" />
               <span className="df-label-text">Getting Started</span>
-               <span className="df-label-line" />
+              <span className="df-label-line" />
             </div>
             <h2 className="df-section-title">
               Getting Started Is Simple
@@ -795,7 +1097,7 @@ export default function DigitalFootprint() {
                 Get a full audit of your current digital footprint  website, SEO, social, IT, and compliance  and see exactly where you stand and what to fix first.
               </p>
               <div className="df-final-cta-actions">
-                <Link to="/contact"   state={{ scrollTo: 'enquiries' }}  className="df-btn-primary">
+                <Link to="/contact" state={{ scrollTo: 'enquiries' }} className="df-btn-primary">
                   <span>Book Your Free Digital Audit</span>
                   <HiArrowRight />
                 </Link>
@@ -803,7 +1105,6 @@ export default function DigitalFootprint() {
                   Contact Us Today
                 </a>
               </div>
-              
             </div>
           </div>
         </section>

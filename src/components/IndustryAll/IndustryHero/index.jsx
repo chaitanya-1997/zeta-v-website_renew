@@ -14,6 +14,7 @@ import {
 import { FaRocket } from 'react-icons/fa'
 import './IndustryHero.css'
 import { Link } from 'react-router-dom';
+import BgImage1 from '../../../assets/pexels/pexels-photo-23.webp';
 
 
 
@@ -62,7 +63,7 @@ export default function IndustryHero() {
       <div className="industry-hero-bg">
         <div 
           className="industry-hero-bg-image" 
-          style={{ backgroundImage: `url(https://images.pexels.com/photos/459728/pexels-photo-459728.jpeg)` }}
+          style={{ backgroundImage: `url(${BgImage1})` }}
         />
         <div className="industry-hero-overlay">
           <div className="industry-hero-gradient" />

@@ -1,12 +1,4 @@
 // src/components/IndustryAll/IndustriesData.js
-
-export const industryBgImages = {
-    financial: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    manufacturing: 'https://images.pexels.com/photos/15893881/pexels-photo-15893881.jpeg',
-    healthcare: 'https://images.pexels.com/photos/7723524/pexels-photo-7723524.jpeg',
-    retaildistribution: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920',
-}
-
 export const industryCards = [
     { Icon: 'FaUniversity', title: 'Financial Services', id: 'financial', tag: 'Banking · Fintech · Insurance', bgImage: industryBgImages.financial },
     { Icon: 'FaIndustry', title: 'Manufacturing', id: 'manufacturing', tag: 'Industry 4.0 · ERP · IIoT', bgImage: industryBgImages.manufacturing },

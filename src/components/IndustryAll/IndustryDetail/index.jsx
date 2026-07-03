@@ -11,12 +11,18 @@ import {
 } from 'react-icons/hi2'
 import './IndustryDetail.css'
 
+import BgImage1 from '../../../assets/pexels/pexels-photo-25.webp';
+import BgImage2 from '../../../assets/pexels/pexels-photo-26.avif';
+import BgImage3 from '../../../assets/pexels/pexels-photo-27.avif';
+import BgImage4 from '../../../assets/pexels/pexels-photo-28.webp';
+import BgImage5 from '../../../assets/pexels/pexels-photo-29.avif';
+
 const industryBgImages = {
-    financial: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    manufacturing: 'https://images.pexels.com/photos/15893881/pexels-photo-15893881.jpeg',
-    healthcare: 'https://images.pexels.com/photos/7723524/pexels-photo-7723524.jpeg',
-     retaildistribution: 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    retail: 'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg', // retail store
+    financial: BgImage1,
+    manufacturing: BgImage2,
+    healthcare: BgImage3,
+    retaildistribution: BgImage4,
+    retail: BgImage5,
 }
 
 const industryColors = {

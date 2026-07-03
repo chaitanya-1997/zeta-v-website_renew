@@ -1,3 +1,4 @@
+
 // Navbar.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -13,8 +14,7 @@ import {
 } from 'lucide-react';
 import { BookOpenCheck } from 'lucide-react';
 import './Navbar.css';
-import logoImage from '../../../public/ZETAV-LOGO-zv.png';
-
+import logoImage from '../../assets/about/ZETAV-LOGO-zv.webp';
 const industryItems = [
   { name: 'Financial Services', path: '/industries', hash: 'financial', icon: Landmark },
   { name: 'Manufacturing', path: '/industries', hash: 'manufacturing', icon: Factory },
@@ -33,7 +33,7 @@ const serviceItems = [
     icon: RefreshCw,
     subItems: [
       { name: 'Digital Footprint', path: '/digitalfootprint', hash: 'digital-footprint', icon: Globe },
-      { name: 'Book Keeping', path: '/bookkeeping', hash: 'bookkeeping', icon: BookOpenCheck }
+      { name: 'Bookkeeping Services', path: '/bookkeeping', hash: 'bookkeeping', icon: BookOpenCheck }
     ]
   },
 ];

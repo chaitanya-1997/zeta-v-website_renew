@@ -10,6 +10,7 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2'
 import './IndustryCTA.css'
 import { Link } from 'react-router-dom';
+import BgImage1 from '../../../assets/pexels/pexels-photo-8.avif';
 
 export default function IndustryCTA() {
     return (
@@ -19,7 +20,7 @@ export default function IndustryCTA() {
                 <div 
                     className="industry-cta-premium-bg-image"
                     style={{
-                        backgroundImage: `url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920')`,
+                        backgroundImage: `url(${BgImage1})`,
                     }}
                 />
                 <div className="industry-cta-premium-overlay">
@@ -92,10 +93,10 @@ export default function IndustryCTA() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.4, duration: 0.6 }}
                     >
-                        Your Industry. Your Challenges.
+                        Your Industry. <br></br> Your Challenges.
                         <br />
                         {/* <span className="gradient-text-icta">Our Expertise.</span> */}
-                          <span >Our Expertise.</span>
+                          <span > Our Expertise.</span>
                         <span className="title-icon-icta">✦</span>
                     </motion.h2>
 

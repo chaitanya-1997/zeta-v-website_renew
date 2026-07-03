@@ -9,7 +9,7 @@ import {
   HiOutlineGlobeAlt
 } from 'react-icons/hi2'
 import { FaRocket } from 'react-icons/fa'
-import galleryHeroBg from '../../assets/gallerym/Galleryh.jpg'
+import galleryHeroBg from '../../assets/gallerym/Galleryh.webp'
 import './GalleryHero.css'
 import { Link } from 'react-router-dom';
 

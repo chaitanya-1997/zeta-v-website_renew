@@ -13,14 +13,14 @@ import Navbar from "../Navbar/index";
 import Footer from "../Footer/index";
 
 // Leadership images (keep your imports)
-import sujitImg from "../../assets/team/sujit1.jpg";
-import rangaImg from "../../assets/team/ranga.png";
-import sriniImg from "../../assets/team/srini.png";
-import gaganImg from "../../assets/team/gagan.png";
-import archanaImg from "../../assets/team/archana.png";
-import aashishImg from "../../assets/team/aashish.png";
-import meggieImg from "../../assets/team/meggie.png";
-import nehaImg from "../../assets/team/neha.png";
+import sujitImg from "../../assets/team/sujit1.webp";
+import rangaImg from "../../assets/team/ranga.webp";
+import sriniImg from "../../assets/team/srini.webp";
+import gaganImg from "../../assets/team/gagan.webp";
+import archanaImg from "../../assets/team/archana.webp";
+import aashishImg from "../../assets/team/aashish.webp";
+import meggieImg from "../../assets/team/meggie.webp";
+import nehaImg from "../../assets/team/neha.webp";
 
 // Leadership CSS (keep separate)
 import "./Leadership.css";

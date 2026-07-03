@@ -13,7 +13,7 @@ import {
   FaClock
 } from 'react-icons/fa'
 import { HiOutlineSparkles } from 'react-icons/hi2'
-import enquiryBg from '../../assets/contactimg/enquiry.jpg'
+
 
 // ----- API CONFIGURATION -----
 const API_URL = 'https://zeta-v-invoicemanagement-ddgwdzg2dchdfaf4.centralindia-01.azurewebsites.net/api/public/enquiries';

@@ -361,6 +361,21 @@ body {
   transform: translateY(-2px);
 }
 
+
+@media (max-width: 480px) {
+  .df-hero-pills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .df-pill {
+    justify-content: left;      /* centre the icon + text */
+    font-size: 0.7rem;            /* slightly smaller text */
+    padding: 5px 10px;            /* more compact */
+  }
+}
+
 .df-hero-right {
   display: flex;
   flex-direction: column;
@@ -1553,5 +1568,391 @@ body {
   .df-step-card:hover,
   .df-right-highlight-item:hover {
     transform: none;
+  }
+}
+/* ─── PRICING SECTION ─── */
+.df-pricing-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.df-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* ─── PRICING SECTION ─── */
+.df-pricing-card {
+  background: #f8faff;
+  border: 1px solid #e8ecf1;
+  border-radius: 20px;
+  padding: 28px 20px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;       /* Make card a column */
+  align-items: center;
+  border-top: 4px solid #22a7f0;
+  height: 100%;                /* Ensure equal height in grid */
+}
+
+/* Push features to take available space, button to bottom */
+.df-pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  width: 100%;
+  text-align: left;
+  flex: 1;                     /* Take remaining space */
+}
+
+.df-pricing-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 8px 0 0;            /* Reset margin, use auto to push down */
+  width: 100%;
+  margin-top: auto;            /* Push to bottom of flex container */
+}
+
+/* Keep existing styles for other elements */
+
+.df-pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(34, 167, 240, 0.08);
+  border-color: rgba(34, 167, 240, 0.2);
+}
+
+.df-pricing-card-highlight {
+  box-shadow: 0 8px 30px rgba(34, 167, 240, 0.10);
+}
+
+.df-pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #22a7f0, #6366f1);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.df-pricing-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin: 0 0 16px;
+}
+
+.df-pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.88rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+.df-pricing-check {
+  color: #22a7f0;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+
+.df-pricing-btn {
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #0a0f1e;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.df-pricing-btn:hover {
+  transform: translateY(-2px);
+}
+
+.df-pricing-btn-quote {
+  background: linear-gradient(135deg, #22a7f0, #6366f1);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(34, 167, 240, 0.2);
+}
+
+.df-pricing-btn-quote:hover {
+  box-shadow: 0 6px 24px rgba(34, 167, 240, 0.35);
+}
+
+/* ─── QUOTE MODAL ─── */
+.df-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: dfModalFadeIn 0.3s ease;
+}
+
+@keyframes dfModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.df-modal {
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 600px;
+  width: 100%;
+  padding: 32px 28px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.df-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.df-modal-close:hover {
+  color: #0a0f1e;
+}
+
+.df-modal-title {
+  margin-top: 10px;
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: 800;
+  color: #0a0f1e;
+  margin: 0 0 4px;
+}
+
+.df-modal-sub {
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 20px;
+}
+
+.df-modal-addons {
+  background: #f8faff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.df-modal-addon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e8ecf1;
+}
+
+.df-modal-addon-row:last-of-type {
+  border-bottom: none;
+}
+
+.df-modal-addon-row label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0a0f1e;
+}
+
+.df-modal-counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.df-modal-counter button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.df-modal-counter button:hover {
+  background: #f0f4ff;
+  border-color: #22a7f0;
+}
+
+.df-modal-counter span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.df-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.df-modal-form input {
+  padding: 12px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.df-modal-form input:focus {
+  outline: none;
+  border-color: #22a7f0;
+  box-shadow: 0 0 0 3px rgba(34, 167, 240, 0.15);
+}
+
+.df-modal-submit {
+  padding: 14px;
+  background: linear-gradient(135deg, #22a7f0, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.df-modal-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(34, 167, 240, 0.3);
+}
+
+/* ─── MODAL SUBMITTED STATE ─── */
+.df-modal-success-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.df-modal-price-box {
+  background: #f0f7ff;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.df-modal-price-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.df-modal-price-amount {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #0a0f1e;
+  line-height: 1.2;
+}
+
+.df-modal-price-period {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+  margin-left: 4px;
+}
+
+.df-modal-price-breakdown {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.df-modal-contact-info {
+  background: #f8faff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.df-modal-contact-info p {
+  margin: 4px 0;
+}
+
+.df-modal-close-btn {
+  width: 100%;
+  margin-top: 8px;
+  background: #e8ecf1;
+  color: #0a0f1e;
+}
+
+.df-modal-close-btn:hover {
+  background: #d0d5dd;
+  box-shadow: none;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .df-pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .df-pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .df-modal {
+    padding: 24px 16px;
+  }
+  .df-modal-addon-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .df-modal-counter button {
+    width: 26px;
+    height: 26px;
+    font-size: 1rem;
   }
 }

@@ -13,6 +13,15 @@ import {
 } from 'react-icons/hi2'
 import './ServicesDetailed.css'
 
+import BgImage1 from '../../../assets/pexels/pexels-photo-3.avif';
+import BgImage2 from '../../../assets/pexels/pexels-photo-9.avif';
+import BgImage3 from '../../../assets/pexels/pexels-photo-8.avif';
+import BgImage4 from '../../../assets/pexels/pexels-photo-2.avif';
+import BgImage5 from '../../../assets/pexels/pexels-photo-10.avif';
+import BgImage6 from '../../../assets/pexels/pexels-photo-11.avif';
+import BgImage7 from '../../../assets/pexels/pexels-photo-12.avif';
+import BgImage8 from '../../../assets/pexels/pexels-photo-13.avif';
+
 const iconMap = {
   FaBolt: FaBolt,
   FaBuilding: FaBuilding,
@@ -55,8 +64,8 @@ const detailedServicesData = [
         desc: "Siloed data sources preventing unified analytics and insights.",
       },
     ],
-    demoImage: "https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    coverImage: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200",
+     demoImage: BgImage1,
+     coverImage: BgImage2,
     iconBg: "rgba(34, 167, 240, 0.08)",
     featureIcon: <FaCloudUploadAlt />
   },
@@ -93,8 +102,8 @@ const detailedServicesData = [
         desc: "Lengthy development cycles preventing rapid response to market changes.",
       },
     ],
-    demoImage: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    coverImage: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    demoImage: BgImage3,
+    coverImage: BgImage4,
     iconBg: "rgba(52, 211, 153, 0.08)",
     featureIcon: <FaCogs />
   },
@@ -130,8 +139,8 @@ const detailedServicesData = [
         desc: "Employee retention challenges impacting project continuity.",
       },
     ],
-    demoImage: "https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    coverImage: "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    demoImage: BgImage5,
+    coverImage: BgImage6,
     iconBg: "rgba(244, 114, 182, 0.08)",
     featureIcon: <FaUsers />
   },
@@ -167,9 +176,9 @@ const detailedServicesData = [
         desc: "Keeping up with evolving regulatory requirements and security standards.",
       },
     ],
-    demoImage: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    coverImage: "https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    iconBg: "rgba(245, 158, 11, 0.08)",
+    demoImage: BgImage7,
+    coverImage: BgImage8,
+    iconBg: "rgba(10, 9, 7, 0.08)",
     featureIcon: <FaShieldAlt />,
     subServices: [
       { name: 'Digital Footprint', path: '/digitalfootprint', icon: FaGlobe },
@@ -217,11 +226,12 @@ export default function ServicesDetailed({ activeService, setActiveService, shou
 
   const getIcon = (iconName) => iconMap[iconName] || FaBolt
 
+  // ------ FIX: removed hash-setting, only update state and scroll ------
   const handleTabClick = (index) => {
     setActive(index)
     const serviceId = detailedServicesData[index].id
     if (setActiveService) setActiveService(serviceId)
-    window.history.replaceState(null, '', `#${serviceId}`)
+    // Scroll to the section manually
     setTimeout(() => {
       if (ref.current) {
         const headerOffset = 80

@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa'
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiOutlineSparkles, HiOutlineChatBubbleLeft } from 'react-icons/hi2'
-import contactHeroBg from '../../assets/images/contact-hero.jpg'
+import contactHeroBg from '../../assets/images/contact-hero.webp'
 import './ContactHero.css'
 
 export default function ContactHero() {

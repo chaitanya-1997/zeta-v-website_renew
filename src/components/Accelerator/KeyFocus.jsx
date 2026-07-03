@@ -13,10 +13,10 @@ import {
 import { HiOutlineSparkles } from 'react-icons/hi2'
 
 // Import card back images
-import imgDigitalization from '../../assets/accimg/intelligent-digitalization.jpg'
-import imgContinuity from '../../assets/accimg/continuity-compliance.jpg'
-import imgTransformation from '../../assets/accimg/enterprise-transformation.jpg'
-import imgProductivity from '../../assets/accimg/productivity-platforms.jpg'
+import imgDigitalization from '../../assets/accimg/intelligent-digitalization.webp'
+import imgContinuity from '../../assets/accimg/continuity-compliance.webp'
+import imgTransformation from '../../assets/accimg/enterprise-transformation.webp'
+import imgProductivity from '../../assets/accimg/productivity-platforms.webp'
 
 const focusAreas = [
   { 

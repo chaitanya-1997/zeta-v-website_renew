@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { HiOutlineSparkles, HiOutlineUsers, HiOutlineChartBar } from "react-icons/hi2";
-import teamOffsiteImg from "../../../assets/gallery/team-offsite.png";
+import teamOffsiteImg from "../../../assets/gallerym/ph30.webp";
 import "./OurStory.css";
 
 const stats = [

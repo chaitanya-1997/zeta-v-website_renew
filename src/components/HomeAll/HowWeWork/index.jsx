@@ -86,7 +86,7 @@ export default function HowWeWork() {
           <h2 className="how-premium-light-title">
             Our 
             {/* <span className="gradient-text-how-light">Value Delivery Model</span> */}
-            <span >Value Delivery Model</span>
+            <span > Value Delivery Model</span>
             <span className="title-icon-light">✦</span>
           </h2>
           

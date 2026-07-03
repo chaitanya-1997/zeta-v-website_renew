@@ -5,12 +5,12 @@ import { HiOutlineSparkles, HiOutlineChevronRight } from 'react-icons/hi2'
 import './ClientLogos.css';
 
 // Import client logos
-import cl1 from '../../../assets/team/cl1.avif';
-import cl2 from '../../../assets/team/cl2.png';
-import cl3 from '../../../assets/team/cl3.png';
-import cl4 from '../../../assets/team/cl4.png';
-import cl5 from '../../../assets/team/cl5.png';
-import cl6 from '../../../assets/team/cl6.png';
+import cl1 from '../../../assets/team/cl1.webp';
+import cl2 from '../../../assets/team/cl2.webp';
+import cl3 from '../../../assets/team/cl3.webp';
+import cl4 from '../../../assets/team/cl4.webp';
+import cl5 from '../../../assets/team/cl5.webp';
+import cl6 from '../../../assets/team/cl6.webp';
 
 const logoItems = [
   { id: 1, name: 'Client A', image: cl1 },
