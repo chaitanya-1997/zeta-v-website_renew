@@ -1,5 +1,5 @@
 // CareerHero.jsx
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { 
   HiArrowRight, 
@@ -17,22 +17,58 @@ import './CareerHero.css'
 import BgImage from '../../../assets/pexels/pexels-photo-4.webp';
 
 
-const stats = [
-  // { value: '10+', label: 'Open Positions', icon: HiOutlineBriefcase },
-  // { value: '10+', label: 'Countries', icon: HiOutlineGlobeAlt },
-  // { value: '95%', label: 'Employee Satisfaction', icon: HiOutlineHeart },
-  // { value: '200+', label: 'Team Members', icon: HiOutlineUsers },
-];
-
 const features = [
   { icon: HiOutlineSparkles, label: 'AI & Innovation' },
   { icon: HiOutlineCpuChip, label: 'Cloud Technology' },
   { icon: HiOutlineGlobeAlt, label: 'Global Impact' },
 ];
 
+// ─── NEW API ENDPOINT ───
+// Returns an array of all jobs → we use the array length
+const API_URL = 'https://zeta-v-invoicemanagement-ddgwdzg2dchdfaf4.centralindia-01.azurewebsites.net/api/public/jobs';
+
 export default function CareerHero() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  // ─── State for total jobs count ───
+  const [totalJobs, setTotalJobs] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  // ─── Fetch all jobs and count them ───
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setIsLoading(true)
+        const response = await fetch(API_URL)
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const data = await response.json()
+        
+        // Check if data.data is an array and get its length
+        if (data.success && Array.isArray(data.data)) {
+          setTotalJobs(data.data.length)
+        } else {
+          throw new Error('Invalid response structure – expected an array')
+        }
+      } catch (err) {
+        console.error('Failed to fetch jobs:', err)
+        setError(err.message)
+        // Fallback to a default value so UI still looks good
+        setTotalJobs(0)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchJobs()
+  }, [])
+
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,7 +144,6 @@ export default function CareerHero() {
             <h1 className="career-hero-title">
               Build Your Future{' '}
                 <span >With Zeta-V</span>
-              {/* <span className="career-hero-highlight">With Zeta-V</span> */}
             </h1>
 
             <p className="career-hero-description">
@@ -149,30 +184,7 @@ export default function CareerHero() {
             className="career-hero-right"
             variants={itemVariants}
           >
-            <div className="career-hero-stats">
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div 
-                    key={index} 
-                    className="stat-card-career"
-                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                    transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
-                    whileHover={{ y: -6, scale: 1.02 }}
-                  >
-                    <div className="stat-icon-career">
-                      <Icon />
-                    </div>
-                    <div className="stat-content-career">
-                      <span className="stat-number-career">{stat.value}</span>
-                      <span className="stat-label-career">{stat.label}</span>
-                    </div>
-                    <div className="stat-glow-career" />
-                  </motion.div>
-                );
-              })}
-            </div>
+      
 
             {/* Visual Element */}
             <div className="career-hero-visual">
@@ -188,19 +200,12 @@ export default function CareerHero() {
                 <div className="visual-body-career">
                   <div className="visual-content-career">
                     <div className="visual-item">
-                      {/* <span className="visual-icon">💼</span> */}
-                      <span>50+ Open Roles</span>
+                      <span>{isLoading ? 'Loading...' : `${totalJobs || 0}+ Open Roles`}</span>
                     </div>
-                    {/* <div className="visual-item">
-                      <span className="visual-icon">🌍</span>
-                      <span>10+ Countries</span>
-                    </div> */}
                     <div className="visual-item">
-                      {/* <span className="visual-icon">🚀</span> */}
                       <span>AI & Cloud Projects</span>
                     </div>
                     <div className="visual-item">
-                      {/* <span className="visual-icon">❤️</span> */}
                       <span>95% Satisfaction</span>
                     </div>
                   </div>

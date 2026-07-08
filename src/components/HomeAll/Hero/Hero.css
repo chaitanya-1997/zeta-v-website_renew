@@ -1,4 +1,6 @@
-/* Hero.css - Updated with Two-Line Welcome Animation */
+/* Hero.css - Performance-optimized version
+   Changes: reduced/removed blur & backdrop-filter on mobile,
+   img element shares the video's sizing class, lighter orb blur on smaller screens */
 
 /* ============================================
    WELCOME OVERLAY - Two-Line Animation
@@ -68,15 +70,13 @@
   font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: clamp(2.5rem, 5.5vw, 4.5rem);
   font-weight: 800;
-  /* background: linear-gradient(135deg, #22a7f0 0%, #6366f1 50%, #a78bfa 100%);
-   */
-   background: linear-gradient(135deg,
-  #28638d 0%,
-  #329ec5 30%,
-  #3ca6d6 60%,
-  #3da7d7 80%,
-  #3eb5ef 100%
-);
+  background: linear-gradient(135deg,
+    #28638d 0%,
+    #329ec5 30%,
+    #3ca6d6 60%,
+    #3da7d7 80%,
+    #3eb5ef 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -133,7 +133,7 @@
   padding: 80px 0 60px;
 }
 
-/* ---- Video Background - Clear ---- */
+/* ---- Video/Image Background ---- */
 .hero-premium-video-bg {
   position: absolute;
   inset: 0;
@@ -141,12 +141,14 @@
   overflow: hidden;
 }
 
+/* Shared by <video> (desktop) and <img> (mobile fallback) */
 .hero-premium-video-element {
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0.8;
   transform: scale(1);
+  display: block;
 }
 
 .hero-premium-video-overlay {
@@ -627,6 +629,11 @@
   .hero-premium-scroll {
     display: none;
   }
+
+  /* Cut orb blur cost on tablets too — still expensive on mid-range GPUs */
+  .orb-premium {
+    filter: blur(50px);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -679,6 +686,10 @@
     padding: 12px 10px;
     gap: 10px;
     border-radius: 12px;
+    /* Backdrop blur is expensive on mobile GPUs; drop it, background still reads fine */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(20, 26, 46, 0.55);
   }
 
   .stat-icon-premium {
@@ -698,10 +709,21 @@
     font-size: 0.5rem;
   }
 
+  /* Smaller, cheaper orb blur on mobile */
+  .orb-premium {
+    filter: blur(30px);
+  }
+
   .orb-1,
   .orb-2 {
     width: 200px;
     height: 200px;
+  }
+
+  .orb-3,
+  .orb-4 {
+    width: 120px;
+    height: 120px;
   }
 
   .hero-premium-video-control {
@@ -709,6 +731,10 @@
     right: 16px;
     width: 36px;
     height: 36px;
+    /* Drop backdrop-filter on mobile */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(20, 26, 46, 0.6);
   }
 
   .hero-premium-video-control svg {
@@ -740,8 +766,17 @@
     height: clamp(1.8rem, 5vw, 3rem) !important;
   }
 
+  /* Drop the heavy backdrop-filter blur on the welcome overlay for mobile;
+     the gradient background already provides enough contrast */
   .hero-welcome-overlay-clear {
-    backdrop-filter: blur(4px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .btn-premium-secondary {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -854,12 +889,13 @@
     width: 2px !important;
   }
 
-  .hero-welcome-overlay-clear {
-    backdrop-filter: blur(3px);
-  }
-
   .welcome-glow {
     inset: -20px -30px;
+  }
+
+  /* Even smaller orb blur at smallest breakpoint */
+  .orb-premium {
+    filter: blur(20px);
   }
 }
 

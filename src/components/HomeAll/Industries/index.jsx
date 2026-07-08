@@ -418,6 +418,8 @@ import {
 } from 'react-icons/hi2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Industries.css';
+import { Link } from 'react-router-dom';
+
 
 const industries = [
   {
@@ -597,14 +599,9 @@ export default function IndustriesSection() {
     }
   };
 
-  // Navigate to "All Industries" page
-  const handleAllIndustriesClick = () => {
-    navigate('/industries', {
-      state: { scrollToTop: true }
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+const handleAllIndustriesClick = () => {
+  navigate('/industries', { state: { scrollToTop: true } });
+};
   // Touch handlers for swipe
   const handleTouchStart = (e) => {
     setTouchStart(e.touches[0].clientX);
@@ -798,14 +795,14 @@ export default function IndustriesSection() {
             <HiOutlineSparkles className="cta-sparkle-v2" />
             <span>Ready to transform your industry?</span>
           </div>
-          <button 
-            className="industries-premium-v2-cta-btn"
-            onClick={handleAllIndustriesClick}
-            aria-label="Explore all industries"
-          >
-            <span>Explore All Industries</span>
-            <HiOutlineArrowRight />
-          </button>
+       <Link 
+  to="/industries" 
+  state={{ scrollToTop: true }}
+  className="industries-premium-v2-cta-btn"
+>
+  <span>Explore All Industries</span>
+  <HiOutlineArrowRight />
+</Link>
         </motion.div>
       </div>
 

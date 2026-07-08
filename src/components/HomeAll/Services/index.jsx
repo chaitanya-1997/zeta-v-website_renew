@@ -16,6 +16,8 @@ import {
   HiOutlineArrowRight
 } from 'react-icons/hi2';
 import './Services.css';
+import { useNavigate } from 'react-router-dom'; // ensure this import is present
+
 
 const serviceCategories = [
   {
@@ -106,6 +108,12 @@ const technologyServices = [
 export default function ServicesSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  const navigate = useNavigate();
+
+const handleServicesClick = () => {
+  navigate('/services', { state: { scrollToTop: true } });
+};
 
   return (
     <section className="services-premium" ref={sectionRef}>
@@ -242,25 +250,24 @@ export default function ServicesSection() {
         </div>
 
         {/* CTA */}
-        <motion.div 
-          className="services-premium-cta"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.8 }}
-        >
-          <div className="services-premium-cta-content">
-            <HiOutlineArrowTrendingUp  className="cta-icon" />
-            <span>Ready to accelerate your digital transformation?</span>
-          </div>
-        <Link 
-  to="/services" 
-  className="services-premium-cta-btn"
-  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  <motion.div 
+  className="services-premium-cta"
+  initial={{ opacity: 0, y: 20 }}
+  animate={isInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.7, delay: 0.8 }}
 >
-  <span>Discover All Services</span>
-  <HiOutlineArrowRight />
-</Link>
-        </motion.div>
+  <div className="services-premium-cta-content">
+    <HiOutlineArrowTrendingUp className="cta-icon" />
+    <span>Ready to accelerate your digital transformation?</span>
+  </div>
+  <button 
+    className="services-premium-cta-btn"
+    onClick={handleServicesClick}
+  >
+    <span>Discover All Services</span>
+    <HiOutlineArrowRight />
+  </button>
+</motion.div>
       </div>
 
       {/* Bottom Edge */}

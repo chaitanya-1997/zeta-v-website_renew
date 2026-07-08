@@ -1956,3 +1956,40 @@ body {
     font-size: 1rem;
   }
 }
+
+
+/* ─── Modal Form Actions (Back + Submit) ─── */
+.df-modal-form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* ─── Back Button ─── */
+.df-modal-back {
+  background: transparent;
+  color: #4b5563;          /* neutral gray */
+  border: 1.5px solid #d1d5db;
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.df-modal-back:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  color: #111827;
+}
+
+.df-modal-back:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}

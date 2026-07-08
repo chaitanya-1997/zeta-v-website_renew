@@ -33,7 +33,17 @@ export default function ServicesPage() {
     }
   }, []);
 
-  // ----- 3. Listen for same‑page navbar clicks (custom event) -----
+  // ----- 3. Handle scrollToTop from navigation state -----
+  useEffect(() => {
+    if (location.state?.scrollToTop) {
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Clear the state to prevent re-trigger on back/forward
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [location]);
+
+  // ----- 4. Listen for same‑page navbar clicks (custom event) -----
   useEffect(() => {
     const handleNavbarScroll = (e) => {
       const { hash } = e.detail;
@@ -47,7 +57,7 @@ export default function ServicesPage() {
     return () => window.removeEventListener('navbar:scrollToSection', handleNavbarScroll);
   }, []);
 
-  // ----- 4. Handle navigation from other pages (via state) -----
+  // ----- 5. Handle navigation from other pages (via state) -----
   useEffect(() => {
     if (location.state?.scrollToSection) {
       const sectionId = location.state.scrollToSection;
@@ -67,7 +77,7 @@ export default function ServicesPage() {
     setShouldAutoScroll(false);
   }, [location]);
 
-  // ----- 5. Perform the actual scroll to the ServicesDetailed section -----
+  // ----- 6. Perform the actual scroll to the ServicesDetailed section -----
   useEffect(() => {
     if (!shouldAutoScroll || hasScrolledRef.current) return;
     if (!pendingScrollRef.current) return;

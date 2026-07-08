@@ -108,8 +108,6 @@ const testimonials = [
   }
 ];
 
-// 🔍 Debug: log total testimonials
-console.log('📊 Total testimonials:', testimonials.length) // should be 8
 
 const culturePoints = [
   { icon: <FaUsers />, title: 'Team Collaboration', desc: 'Work with brilliant minds in a supportive environment' },
